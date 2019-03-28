@@ -5,23 +5,23 @@
   
 
   
-  <title>删数问题 | Hexo</title>
+  <title>删数问题的贪心选择策略证明 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="删数问题的贪心选择策略证明题目：在一个n位的正整数A[1…n]中删除其中任意k(k≤n)个数字后，剩下的数字按原次序组成一个新的正整数。对于给定的n位正整数A和k，设计一个贪心算法，使得剩下的数字组成的新数最小。如：A=278693，k=4时最小新数为23，k=3时为263 刚刚证明出来贪心选择性质，先写下，之后再慢慢补充全部思路。 贪心选择策略从高位向低位进行搜索：  如果A[1…n]是一条递增">
+  <meta name="description" content="删数问题的贪心选择策略证明题目：在一个n位的正整数A[1…n]中删除其中任意k(k≤n)个数字后，剩下的数字按原次序组成一个新的正整数。对于给定的n位正整数A和k，设计一个贪心算法，使得剩下的数字组成的新数最小。如：A=278693，k=4时最小新数为23，k=3时为263">
 <meta property="og:type" content="article">
-<meta property="og:title" content="删数问题">
-<meta property="og:url" content="http://yoursite.com/2019/03/28/删数问题/index.html">
+<meta property="og:title" content="删数问题的贪心选择策略证明">
+<meta property="og:url" content="http://yoursite.com/2019/03/28/删数问题的贪心选择策略证明/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="删数问题的贪心选择策略证明题目：在一个n位的正整数A[1…n]中删除其中任意k(k≤n)个数字后，剩下的数字按原次序组成一个新的正整数。对于给定的n位正整数A和k，设计一个贪心算法，使得剩下的数字组成的新数最小。如：A=278693，k=4时最小新数为23，k=3时为263 刚刚证明出来贪心选择性质，先写下，之后再慢慢补充全部思路。 贪心选择策略从高位向低位进行搜索：  如果A[1…n]是一条递增">
+<meta property="og:description" content="删数问题的贪心选择策略证明题目：在一个n位的正整数A[1…n]中删除其中任意k(k≤n)个数字后，剩下的数字按原次序组成一个新的正整数。对于给定的n位正整数A和k，设计一个贪心算法，使得剩下的数字组成的新数最小。如：A=278693，k=4时最小新数为23，k=3时为263">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2019/03/28/删数问题/删数问题/image1.jpg">
-<meta property="og:image" content="http://yoursite.com/2019/03/28/删数问题/删数问题/image2.jpg">
-<meta property="og:image" content="http://yoursite.com/2019/03/28/删数问题/删数问题/image3.jpg">
-<meta property="og:updated_time" content="2019-03-28T12:42:48.647Z">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/删数问题的贪心选择策略证明/删数问题的贪心选择策略证明/image1.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/删数问题的贪心选择策略证明/删数问题的贪心选择策略证明/image2.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/删数问题的贪心选择策略证明/删数问题的贪心选择策略证明/image3.jpg">
+<meta property="og:updated_time" content="2019-03-28T13:11:00.871Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="删数问题">
-<meta name="twitter:description" content="删数问题的贪心选择策略证明题目：在一个n位的正整数A[1…n]中删除其中任意k(k≤n)个数字后，剩下的数字按原次序组成一个新的正整数。对于给定的n位正整数A和k，设计一个贪心算法，使得剩下的数字组成的新数最小。如：A=278693，k=4时最小新数为23，k=3时为263 刚刚证明出来贪心选择性质，先写下，之后再慢慢补充全部思路。 贪心选择策略从高位向低位进行搜索：  如果A[1…n]是一条递增">
-<meta name="twitter:image" content="http://yoursite.com/2019/03/28/删数问题/删数问题/image1.jpg">
+<meta name="twitter:title" content="删数问题的贪心选择策略证明">
+<meta name="twitter:description" content="删数问题的贪心选择策略证明题目：在一个n位的正整数A[1…n]中删除其中任意k(k≤n)个数字后，剩下的数字按原次序组成一个新的正整数。对于给定的n位正整数A和k，设计一个贪心算法，使得剩下的数字组成的新数最小。如：A=278693，k=4时最小新数为23，k=3时为263">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/28/删数问题的贪心选择策略证明/删数问题的贪心选择策略证明/image1.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -68,9 +68,9 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="算法笔记-删数问题" class="article article-type-算法笔记" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-删数问题的贪心选择策略证明" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/03/28/删数问题/" class="article-date">
+    <a href="/2019/03/28/删数问题的贪心选择策略证明/" class="article-date">
   <time datetime="2019-03-28T12:39:18.000Z" itemprop="datePublished">2019-03-28</time>
 </a>
     
@@ -82,7 +82,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      删数问题
+      删数问题的贪心选择策略证明
     </h1>
   
 
@@ -91,6 +91,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="删数问题的贪心选择策略证明"><a href="#删数问题的贪心选择策略证明" class="headerlink" title="删数问题的贪心选择策略证明"></a>删数问题的贪心选择策略证明</h1><p><strong>题目：在一个n位的正整数A[1…n]中删除其中任意k(k≤n)个数字后，剩下的数字按原次序组成一个新的正整数。对于给定的n位正整数A和k，设计一个贪心算法，使得剩下的数字组成的新数最小。</strong><br><strong>如：A=278693，k=4时最小新数为23，k=3时为263</strong></p>
+<a id="more"></a>
 <p>刚刚证明出来贪心选择性质，先写下，之后再慢慢补充全部思路。</p>
 <h2 id="贪心选择策略"><a href="#贪心选择策略" class="headerlink" title="贪心选择策略"></a><strong>贪心选择策略</strong></h2><p>从高位向低位进行搜索：</p>
 <ol>
@@ -112,11 +113,11 @@
 <p>(2) 现在已经证明了如果A中只有一个山，那么删除山顶元素是最合适的。如果A中有多个山峰该如何处理？</p>
 <p>换句话说，如果A中不止有2段单调子区间，而是由很多不同的单调子区间所组成，那应该如何处理？</p>
 <p>这个问题看上去有点复杂了，我画个图吧：</p>
-<p><img src="/2019/03/28/删数问题/./删数问题/image1.jpg" alt="image1"></p>
+<p><img src="/2019/03/28/删数问题的贪心选择策略证明/./删数问题的贪心选择策略证明/image1.jpg" alt="image1"></p>
 <p>其实把图画出来后，我尝试着删除第一个山的山顶元素，删完后发现，现在的$a_6=a_5$，而$a_7=a_7$：</p>
-<p><img src="/2019/03/28/删数问题/./删数问题/image2.jpg" alt="image2"></p>
+<p><img src="/2019/03/28/删数问题的贪心选择策略证明/./删数问题的贪心选择策略证明/image2.jpg" alt="image2"></p>
 <p>但如果删除第一个山之后的任意一个元素的话，删完后发现$a_6=a_5$，而现在的$a_7=a_6$。</p>
-<p><img src="/2019/03/28/删数问题/./删数问题/image3.jpg" alt="image3"></p>
+<p><img src="/2019/03/28/删数问题的贪心选择策略证明/./删数问题的贪心选择策略证明/image3.jpg" alt="image3"></p>
 <p>由于$a_6&gt;a_7$，所以不管后面删哪个元素，都会比删除$a_6$所得到的数要大。</p>
 <p>数学证明如下：</p>
 <p>假设在A中，有3个连在一起的数$a_i,a_j,a_k(1\leq i&lt; j&lt; k\leq n)$，还有另一个数$a_r(k \leq r &lt; n)$，，其中$(a_1,a_j)$是递增序列，$(a_j,a_r)$是递减序列。</p>
@@ -126,7 +127,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/28/删数问题/" data-id="cjtsnntn30001hh0psqe7r71n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/28/删数问题的贪心选择策略证明/" data-id="cjtsnpdn30000i90pqn6em3uk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -175,7 +176,7 @@
       <ul>
         
           <li>
-            <a href="/2019/03/28/删数问题/">删数问题</a>
+            <a href="/2019/03/28/删数问题的贪心选择策略证明/">删数问题的贪心选择策略证明</a>
           </li>
         
           <li>
