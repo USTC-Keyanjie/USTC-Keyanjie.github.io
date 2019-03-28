@@ -17,7 +17,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/03/28/删数问题的贪心选择策略证明/删数问题的贪心选择策略证明/image1.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/03/28/删数问题的贪心选择策略证明/删数问题的贪心选择策略证明/image2.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/03/28/删数问题的贪心选择策略证明/删数问题的贪心选择策略证明/image3.jpg">
-<meta property="og:updated_time" content="2019-03-28T13:38:54.201Z">
+<meta property="og:updated_time" content="2019-03-28T13:41:19.801Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="删数问题的贪心选择策略证明">
 <meta name="twitter:description" content="题目：在一个n位的正整数A[1…n]中删除其中任意k(k≤n)个数字后，剩下的数字按原次序组成一个新的正整数。对于给定的n位正整数A和k，设计一个贪心算法，使得剩下的数字组成的新数最小。如：A=278693，k=4时最小新数为23，k=3时为263">
@@ -151,12 +151,12 @@
 <p><img src="/2019/03/28/删数问题的贪心选择策略证明/./删数问题的贪心选择策略证明/image2.jpg" alt="image2"></p>
 <p>但如果删除第一个山之后的任意一个元素的话，删完后发现$a_6=a_5$，而现在的$a_7=a_6$。</p>
 <p><img src="/2019/03/28/删数问题的贪心选择策略证明/./删数问题的贪心选择策略证明/image3.jpg" alt="image3"></p>
-<p>由于$a_6&gt;a_7$，所以不管后面删哪个元素，都会比删除$a_6$所得到的数要大。</p>
+<p>由于$a_6&gt;a_7​$，所以不管后面删哪个元素，都会比删除$a_6​$所得到的数要大。</p>
 <p>数学证明如下：</p>
-<p>假设在A中，有3个连在一起的数$a_i,a_j,a_k(1\leq i&lt; j&lt; k\leq n)$，还有另一个数$a_r(k \leq r &lt; n)$，，其中$(a_1,a_j)$是递增序列，$(a_j,a_r)$是递减序列。</p>
+<p>假设在A中，有3个连在一起的数$a_i,a_j,a_k(1\leq i&lt; j&lt; k\leq n)​$，还有另一个数$a_r(k \leq r &lt; n)​$，，其中$(a_1,a_j)​$是递增序列，$(a_j,a_r)​$是递减序列。</p>
 <p>记原本A所代表的数值为$T_A$，则有：</p>
 <p>$$<br>T_A=a_1 \times 10^{n-1}+a_2 \times 10^{n-2}+…+a_i \times 10^{n-i}+a_j \times 10^{n-j}+a_k \times 10^{n-k}+…+a_{n-1} \times 10+a_n<br>$$</p>
-<p>删除$a_j$后，A变为A’，A’所代表的数值为$T_{A’}$，则有：</p>
+<p>删除$a_j​$后，A变为A’，A’所代表的数值为$T_{A’}​$，则有：</p>
 <p>$$<br>T_{A’}=a_1 \times 10^{n-2}+a_2 \times 10^{n-3}+…+a_i \times 10^{n-i-1}+a_k \times 10^{n-k}+…<br>$$</p>
 <p>如果不删除$a_j$，而是删除另一个数$a_q(r \leq q \leq n)$。此时A变为A’’，A’’所代表的数值为$T_{A’’}$，则有： </p>
 <p>$$<br>T_{A’’}=a_1 \times 10^{n-2}+a_2 \times 10^{n-3}+…+a_i \times 10^{n-i-1}+a_j \times 10^{n-j-1}+…<br>$$</p>
@@ -166,7 +166,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/28/删数问题的贪心选择策略证明/" data-id="cjtsopadg0001ne0pu0dickh2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/28/删数问题的贪心选择策略证明/" data-id="cjtsuh9tb0001er2z8nt9xt05" class="article-share-link">Share</a>
       
       
     </footer>
