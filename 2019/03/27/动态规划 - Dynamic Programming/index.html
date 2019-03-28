@@ -7,17 +7,17 @@
   
   <title>动态规划 - Dynamic Programming | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Those who cannot remember the past are condemned to repeat. -Dynamic Programming  今天的算法课讲的就是动态规划，虽早已久仰大名，但始终不太懂背后原理。听完课后赶紧把今天学到的东西记下来。 动态规划和分治法有类似之处，他们都是通过组合子问题的解来求解原问题。不同之处在于，分治法常常用于将原问题划分为几个互不相交的子问">
+  <meta name="description" content="Those who cannot remember the past are condemned to repeat. -Dynamic Programming">
 <meta property="og:type" content="article">
 <meta property="og:title" content="动态规划 - Dynamic Programming">
 <meta property="og:url" content="http://yoursite.com/2019/03/27/动态规划 - Dynamic Programming/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Those who cannot remember the past are condemned to repeat. -Dynamic Programming  今天的算法课讲的就是动态规划，虽早已久仰大名，但始终不太懂背后原理。听完课后赶紧把今天学到的东西记下来。 动态规划和分治法有类似之处，他们都是通过组合子问题的解来求解原问题。不同之处在于，分治法常常用于将原问题划分为几个互不相交的子问">
+<meta property="og:description" content="Those who cannot remember the past are condemned to repeat. -Dynamic Programming">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-28T02:23:16.019Z">
+<meta property="og:updated_time" content="2019-03-28T02:51:41.450Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="动态规划 - Dynamic Programming">
-<meta name="twitter:description" content="Those who cannot remember the past are condemned to repeat. -Dynamic Programming  今天的算法课讲的就是动态规划，虽早已久仰大名，但始终不太懂背后原理。听完课后赶紧把今天学到的东西记下来。 动态规划和分治法有类似之处，他们都是通过组合子问题的解来求解原问题。不同之处在于，分治法常常用于将原问题划分为几个互不相交的子问">
+<meta name="twitter:description" content="Those who cannot remember the past are condemned to repeat. -Dynamic Programming">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -90,6 +90,7 @@
 <p>Those who cannot remember the past are condemned to repeat.</p>
 <p>-Dynamic Programming</p>
 </blockquote>
+<a id="more"></a>
 <p>今天的算法课讲的就是动态规划，虽早已久仰大名，但始终不太懂背后原理。听完课后赶紧把今天学到的东西记下来。</p>
 <p>动态规划和分治法有类似之处，他们都是通过组合子问题的解来求解原问题。不同之处在于，分治法常常用于将原问题划分为几个<strong>互不相交</strong>的子问题，如果划分后，有很多<strong>完全相同</strong>的子问题，那就使用动态规划的思路比较好。例如快速排序，将一段数组以枢纽值为界一分为二，再将这两段分别排序。将分出来的两段数组分别排序就是互不相交的两个子问题，可以使用分治法来解决。再如求斐波那契数列的第n项问题，我们知道斐波那契数列的规律是<br>$$<br>F(0) = 0 \quad F(1) = 1 \quad F(n) = F(n - 1) + F(n - 2) (n &gt;= 2)<br>$$<br>我们发现求F(n)需要计算F(n-1)和F(n-2)，可是当计算F(n-1)和F(n-2)时，都需要计算F(n-3)，这样就造成了重复计算，大幅降低了效率，而动态规划算法的目的就是避免此类重复计算。</p>
 <p>去年暑假，我好好思考了一下上台阶问题：</p>
@@ -114,7 +115,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/27/动态规划 - Dynamic Programming/" data-id="cjts1ix5k0001xt0po0o852rh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/27/动态规划 - Dynamic Programming/" data-id="cjts1krqk0001ym0pqezai7ym" class="article-share-link">Share</a>
       
       
     </footer>
