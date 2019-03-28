@@ -17,7 +17,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/03/28/删数问题的贪心选择策略证明/删数问题的贪心选择策略证明/image1.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/03/28/删数问题的贪心选择策略证明/删数问题的贪心选择策略证明/image2.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/03/28/删数问题的贪心选择策略证明/删数问题的贪心选择策略证明/image3.jpg">
-<meta property="og:updated_time" content="2019-03-28T13:24:13.364Z">
+<meta property="og:updated_time" content="2019-03-28T13:38:54.201Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="删数问题的贪心选择策略证明">
 <meta name="twitter:description" content="题目：在一个n位的正整数A[1…n]中删除其中任意k(k≤n)个数字后，剩下的数字按原次序组成一个新的正整数。对于给定的n位正整数A和k，设计一个贪心算法，使得剩下的数字组成的新数最小。如：A=278693，k=4时最小新数为23，k=3时为263">
@@ -102,7 +102,7 @@
 </ol>
 <h2 id="贪心选择性质证明"><a href="#贪心选择性质证明" class="headerlink" title="贪心选择性质证明"></a>贪心选择性质证明</h2><p>假设A中有n个元素，将A中的每个元素进行编号为$a_x(1\leq x\leq n)​$：<br>$$<br>A=[a_1,a_2,…,a_{n-1},a_n]<br>$$</p>
 <ol>
-<li><h5 id="如果A-1…n-是一条递增序列，那么就删除最后一个数；"><a href="#如果A-1…n-是一条递增序列，那么就删除最后一个数；" class="headerlink" title="如果A[1…n]是一条递增序列，那么就删除最后一个数；"></a>如果A[1…n]是一条递增序列，那么就删除最后一个数；</h5></li>
+<li>如果A[1…n]是一条递增序列，那么就删除最后一个数；</li>
 </ol>
 <p>记原本A所代表的数值为$T_A​$，则有：<br>$$<br>T_A=a_1 \times 10^{n-1}+a_2\times10^{n-2}+…+a_{n-1}\times10+a_n<br>$$</p>
 <p>记删除最后一个数后，A变为A’，A’所代表的数值为$T_{A’}$，则有：</p>
@@ -117,7 +117,7 @@
 <p>$$<br>a_{q}-a_{q+1}\leq 0,a_{q+1}-a_{q+2}\leq 0,…,a_{n-2}-a_{n-1}\leq 0,a_{n-1}-a_{n}\leq 0<br>$$</p>
 <p>所以有$T_{A’}-T_{A’’}\leq 0$，那么$T_{A’}$是A删完一个数后，所组成的最小数值。贪心选择是安全的。</p>
 <ol start="2">
-<li><h5 id="如果A-1…n-含有严格递减子序列，那么就删除第一个严格递减子序列的首字符。"><a href="#如果A-1…n-含有严格递减子序列，那么就删除第一个严格递减子序列的首字符。" class="headerlink" title="如果A[1…n]含有严格递减子序列，那么就删除第一个严格递减子序列的首字符。"></a>如果A[1…n]含有严格递减子序列，那么就删除第一个严格递减子序列的首字符。</h5></li>
+<li>如果A[1…n]含有严格递减子序列，那么就删除第一个严格递减子序列的首字符。</li>
 </ol>
 <p>(1) 先考虑一种情况，A中只有两段单调子区间，且高位部分是递增子区间，低位部分是递减子区间。那么A中的数就是先上升再下降，像一座山一样。如果删除第一个递减子序列的首字符是安全的，也就是删除山顶的数是安全的。</p>
 <p>假设在A中，有3个连在一起的数$a_i,a_j,a_k(1\leq i&lt; j&lt; k\leq n)$，其中$(a_1,a_j)$是递增序列，$(a_j,a_n)$是递减序列。</p>
@@ -125,8 +125,8 @@
 <p>$$<br>T_A=a_1 \times 10^{n-1}+a_2 \times 10^{n-2}+…+a_i \times 10^{n-i}+a_j \times 10^{n-j}+a_k \times 10^{n-k}+…+a_{n-1} \times 10+a_n<br>$$</p>
 <p>删除$a_j$后，A变为A’，A’所代表的数值为$T_{A’}$，则有：</p>
 <p>$$<br>T_{A’}=a_1 \times 10^{n-2}+a_2 \times 10^{n-3}+…+a_i \times 10^{n-i-1}+a_k \times 10^{n-k}+…+a_{n-1} \times 10+a_{n}<br>$$</p>
-<p>如果不删除$a_j$，而是删除另一个数$a_q$。<br>a) 当$1\leq q&lt; j$时，此时A变为A’’，A’’所代表的数值为$T_{A’’}$，则有： </p>
-<p>$$<br>T_{A’’}=a_1 \times 10^{n-2}+a_2 \times 10^{n-3}+…+a_{q-1} \times 10^{n-q}+a_{q+1} \times 10^{n-q-1}+…+a_j \times 10^{n-j}+…+a_{n-1} \times 10+a_{n}<br>$$</p>
+<p>如果不删除$a_j$，而是删除另一个数$a_q$。</p>
+<p>a) 当$1\leq q&lt; j$时，此时A变为A’’，A’’所代表的数值为$T_{A’’}$，则有：<br>$$<br>T_{A’’}=a_1 \times 10^{n-2}+a_2 \times 10^{n-3}+…+a_{q-1} \times 10^{n-q}+a_{q+1} \times 10^{n-q-1}+…+a_j \times 10^{n-j}+…+a_{n-1} \times 10+a_{n}<br>$$</p>
 <p>用作差法来比较$T_{A’}$和$T_{A’’}$的大小：</p>
 <p>$$<br>T_{A’}-T_{A’’}=(a_q-a_{q+1}) \times 10^{n-q-1}+(a_{q+1}-a_{q+2}) \times 10^{n-q-2}+…+(a_{i}-a_{j}) \times 10^{n-j}<br>$$</p>
 <p>由于$(a_1,a_j)$是一条递增序列，所以有：</p>
@@ -166,7 +166,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/28/删数问题的贪心选择策略证明/" data-id="cjtso68w10001m50pt9bx79bt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/28/删数问题的贪心选择策略证明/" data-id="cjtsopadg0001ne0pu0dickh2" class="article-share-link">Share</a>
       
       
     </footer>
