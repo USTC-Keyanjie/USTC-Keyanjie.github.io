@@ -15,16 +15,16 @@
 <meta property="og:description" content="中国科学技术大学软件学院 人工智能2018年秋课程期中考试复习🍰">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://www.keyanjie.net/wp-content/uploads/2018/11/Picture1-300x191.png">
-<meta property="og:image" content="https://www.keyanjie.net/wp-content/uploads/2018/11/309562-5be02dee65c32cab.png">
-<meta property="og:image" content="https://www.keyanjie.net/wp-content/uploads/2018/11/QQ20181108-211859@2x.png">
-<meta property="og:image" content="https://www.keyanjie.net/wp-content/uploads/2018/11/QQ20181108-211928@2x.png">
-<meta property="og:image" content="https://www.keyanjie.net/wp-content/uploads/2018/11/bias-variance-proof-1024x615.png">
-<meta property="og:image" content="https://www.keyanjie.net/wp-content/uploads/2018/11/bias-variance-1024x418.png">
-<meta property="og:image" content="https://www.keyanjie.net/wp-content/uploads/2018/11/QQ20181109-215528@2x-300x53.png">
-<meta property="og:image" content="https://www.keyanjie.net/wp-content/uploads/2018/11/QQ20181109-215600@2x-300x87.png">
-<meta property="og:image" content="https://www.keyanjie.net/wp-content/uploads/2018/11/QQ20181112-104427@2x-1024x564.png">
-<meta property="og:image" content="https://www.keyanjie.net/wp-content/uploads/2018/11/72B42457-9C70-419B-B5FF-5C7D5858436E-1024x735.jpg">
-<meta property="og:updated_time" content="2019-03-28T02:49:47.112Z">
+<meta property="og:image" content="http://yoursite.com/Users/alan.ke/Desktop/blog/source/_posts/科大软院%20-%20人工智能期中考试复习/cross_validation.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/27/科大软院%20-%20人工智能期中考试复习/科大软院%20-%20人工智能期中考试复习/bias_error.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/27/科大软院%20-%20人工智能期中考试复习/科大软院%20-%20人工智能期中考试复习/var_error.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/27/科大软院%20-%20人工智能期中考试复习/科大软院%20-%20人工智能期中考试复习/bias-variance-proof-1024x615.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/27/科大软院%20-%20人工智能期中考试复习/科大软院%20-%20人工智能期中考试复习/bias-variance.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/27/科大软院%20-%20人工智能期中考试复习/科大软院%20-%20人工智能期中考试复习/吴恩达教授.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/27/科大软院%20-%20人工智能期中考试复习/科大软院%20-%20人工智能期中考试复习/李宏毅教授.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/27/科大软院%20-%20人工智能期中考试复习/科大软院%20-%20人工智能期中考试复习/优化.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/27/科大软院%20-%20人工智能期中考试复习/科大软院%20-%20人工智能期中考试复习/深度学习导火索.jpg">
+<meta property="og:updated_time" content="2019-03-28T11:46:13.235Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="科大软院 - 人工智能期中考试复习">
 <meta name="twitter:description" content="中国科学技术大学软件学院 人工智能2018年秋课程期中考试复习🍰">
@@ -140,7 +140,7 @@
 <p>$$<br>w^1 \leftarrow w^0 - \frac{\eta^0}{\sigma^0}g^0 \qquad \sigma^0 = \sqrt{(g^0)^2}<br>$$</p>
 <p>$$<br>w^2 \leftarrow w^1 - \frac{\eta^1}{\sigma^1}g^1 \qquad \sigma^1 = \sqrt{\frac{1}{2}[(g^0)^2+(g^1)^2]}<br>$$</p>
 <p>$$<br>w^3 \leftarrow w^2 - \frac{\eta^2}{\sigma^2}g^2 \qquad \sigma^2 = \sqrt{\frac{1}{3}[(g^0)^2+(g^1)^2 + (g^2)^2]}<br>$$</p>
-<p><strong>……</strong></p>
+<p>$$<br>……<br>$$</p>
 <p>$$<br>w^{t+1} \leftarrow w^t - \frac{\eta^t}{\sigma^t}g^t \qquad \sigma^t = \sqrt{\frac{1}{t+1}\sum_{i=0}^{t}(g^i)^2}<br>$$</p>
 <p><strong>其中有$\eta^t=\frac{\eta}{\sqrt{t+1}}​$代入到最后一个式子就可以得到：</strong><br>$$<br>w^{t+1} \leftarrow w^t - \frac{\frac{\eta}{\sqrt{t+1}}}{\sqrt{\frac{1}{t+1}\sum_{i=0}^{t}(g^i)^2}}g^t<br>$$</p>
 <p><strong>同时约去$\frac{1}{\sqrt{t+1}}$后就可以得到：</strong></p>
@@ -149,23 +149,23 @@
 <p><strong>Adagrad算法也有很多不足：</strong></p>
 <p><strong>a) 如果初始的学习率设置过大的话，这个学习率要除以一个较大梯度，那么此算法会对梯度的调节太大；</strong><br><strong>b) 在训练的中后期，分母上梯度平方的累加将会越来越大，使$gradient\to0$，使得训练提前结束。</strong></p>
 <h3 id="5-RMSprop算法"><a href="#5-RMSprop算法" class="headerlink" title="(5) *RMSprop算法"></a><strong>(5) *RMSprop算法</strong></h3><p><strong>我感觉最多考到Adagrad算法就行了，RMSprop应该考不到。</strong></p>
-<p><strong>在凸优化问题上，Adagrad算法具有很好的效果，但是在神经网络情况下，很多问题都是非凸优化问题，即损失函数有很多局部最小值，有了Adagrad算法的改进版RMSprop算法，RMSprop算法就像是真实物理世界中一个小球在山坡上向下滑，如果滑落到一个山谷中，小球是不会立刻停在这里的，由于具有惯性的原因，小球会继续向前冲，如果惯性足够的话，可能会再次冲出山头，更有可能会落到另一个更低的山谷中。而传统的梯度下降法只会落在一个山谷中，没有机会冲出来。</strong></p>
-<p>$$<br>w^1 \leftarrow w^0 - \frac{\eta}{\sigma^0}g^0 \qquad \sigma^0 = g^0<br>$$</p>
+<p><strong>在凸优化问题上，Adagrad算法具有很好的效果，但是在神经网络情况下，很多问题都是非凸优化问题，即损失函数有很多局部最小值，有了Adagrad算法的改进版RMSprop算法，RMSprop算法就像是真实物理世界中一个小球在山坡上向下滑，如果滑落到一个山谷中，小球是不会立刻停在这里的，由于具有惯性的原因，小球会继续向前冲，如果惯性足够的话，可能会再次冲出山头，更有可能会落到另一个更低的山谷中。而传统的梯度下降法只会落在一个山谷中，没有机会冲出来。</strong><br>$$<br>w^1 \leftarrow w^0 - \frac{\eta}{\sigma^0}g^0 \qquad \sigma^0 = g^0<br>$$</p>
 <p>$$<br>w^2 \leftarrow w^1 - \frac{\eta}{\sigma^1}g^1 \qquad \sigma^1 = \sqrt{\alpha(\sigma^0)^2 + (1-\alpha)(g^1)^2}<br>$$</p>
 <p>$$<br>w^3 \leftarrow w^2 - \frac{\eta}{\sigma^2}g^2 \qquad \sigma^2 = \sqrt{\alpha(\sigma^1)^2 + (1-\alpha)(g^2)^2}<br>$$</p>
+<p>$$<br>……<br>$$</p>
 <p>$$<br>w^{t+1} \leftarrow w^t - \frac{\eta}{\sigma^t}g^t \qquad \sigma^t = \sqrt{\alpha(\sigma^{t-1})^2 + (1-\alpha)(g^t)^2}<br>$$</p>
 <p><strong>Adagrad和RMSprop算法这两个算法很相近，不同之处在于RMSprop算法增加了一个衰减系数α来控制历史信息的获取多少。</strong></p>
 <h2 id="6、Cross-Validation-交叉验证"><a href="#6、Cross-Validation-交叉验证" class="headerlink" title="6、Cross Validation - 交叉验证"></a><strong>6、Cross Validation - 交叉验证</strong></h2><p><strong>将数据集D划分成k个大小相似的互斥子集，每次用k-1个子集作为训练集，余下的子集做测试集，最终返回k个训练结果的平均值。交叉验证法评估结果的稳定性和保真性很大程度上取决于k的取值。</strong></p>
-<p><strong><img src="https://www.keyanjie.net/wp-content/uploads/2018/11/309562-5be02dee65c32cab.png" alt></strong></p>
+<p><strong><img src="/Users/alan.ke/Desktop/blog/source/_posts/科大软院 - 人工智能期中考试复习/cross_validation.png" alt></strong></p>
 <h3 id="为什么要用交叉验证-Cross-Validation）"><a href="#为什么要用交叉验证-Cross-Validation）" class="headerlink" title="为什么要用交叉验证(Cross-Validation）"></a><strong>为什么要用交叉验证(Cross-Validation）</strong></h3><p><strong>a) 交叉验证用于评估模型的预测性能，尤其是训练好的模型在新数据上的表现，可以在一定程度上减小过拟合；</strong><br><strong>b) 还可以从有限的数据中获取尽可能多的有效信息。</strong></p>
 <p><strong>注意：交叉验证使用的仅仅是训练集！</strong></p>
-<h2 id="7、偏差、方差、噪声以及泛化误差"><a href="#7、偏差、方差、噪声以及泛化误差" class="headerlink" title="7、偏差、方差、噪声以及泛化误差"></a><strong>7、偏差、方差、噪声以及泛化误差</strong></h2><h3 id="1-偏差"><a href="#1-偏差" class="headerlink" title="(1) 偏差"></a><strong>(1) 偏差</strong></h3><p><strong><img src="https://www.keyanjie.net/wp-content/uploads/2018/11/QQ20181108-211859@2x.png" alt></strong></p>
+<h2 id="7、偏差、方差、噪声以及泛化误差"><a href="#7、偏差、方差、噪声以及泛化误差" class="headerlink" title="7、偏差、方差、噪声以及泛化误差"></a><strong>7、偏差、方差、噪声以及泛化误差</strong></h2><h3 id="1-偏差"><a href="#1-偏差" class="headerlink" title="(1) 偏差"></a><strong>(1) 偏差</strong></h3><p><strong><img src="./科大软院 - 人工智能期中考试复习/bias_error.png" alt></strong></p>
 <p><strong>偏差bias： 期望预测与真实标记的误差，偏差越大偏离理论值越大。</strong></p>
 <p><strong>上面的ppt里，左边的图模型阶数小，所以不可能很好的拟合真实情况，所作出的预测与真实情况偏离程度大，所以偏差就大；而右边的图里模型很复杂，足够模拟出真实情况，所以与真实情况偏离程度小，偏差就小。</strong></p>
 <p><strong>在一个训练集$D$上模型$f$对测试样本$x$预测输出为$f(x;D)$, 那么学习算法$f$对测试样本$x$的期望预测为：</strong></p>
 <p>$$<br>\bar{f}(x)=E_D[f(x;D)]<br>$$<br><strong>这里用偏差的平方来表示偏差的计算公式：</strong></p>
 <p>$$<br>Bias^2(x)=(\bar{f}(x)-\hat{y})^2<br>$$</p>
-<h3 id="2-方差"><a href="#2-方差" class="headerlink" title="(2) 方差"></a><strong>(2) 方差</strong></h3><p><strong><img src="https://www.keyanjie.net/wp-content/uploads/2018/11/QQ20181108-211928@2x.png" alt></strong></p>
+<h3 id="2-方差"><a href="#2-方差" class="headerlink" title="(2) 方差"></a><strong>(2) 方差</strong></h3><p><strong><img src="./科大软院 - 人工智能期中考试复习/var_error.png" alt></strong></p>
 <p><strong>方差variance：预测模型的离散程度，方差越大离散程度越大。</strong></p>
 <p><strong>就像上面ppt的左图，因为模型阶数小，所以模型都很集中；而右边的模型阶数大，有时能拟合的很好，有时拟合的不好，不稳定因素太大了。</strong></p>
 <p><strong>使用样本数相同的不同训练集产生的方差为:</strong></p>
@@ -179,7 +179,7 @@
 <p><strong>以回归任务为例, 学习算法的平方预测误差期望为：</strong></p>
 <p>$$<br>Err(x)=E_D[(y_D-f(x;D))^2]<br>$$</p>
 <p><strong>对算法的期望泛化误差进行分解，就会发现 泛化误差=偏差的平方+方差+噪声:</strong></p>
-<p><strong><img src="https://www.keyanjie.net/wp-content/uploads/2018/11/bias-variance-proof-1024x615.png" alt> <img src="https://www.keyanjie.net/wp-content/uploads/2018/11/bias-variance-1024x418.png" alt></strong></p>
+<p><strong><img src="./科大软院 - 人工智能期中考试复习/bias-variance-proof-1024x615.png" alt> <img src="./科大软院 - 人工智能期中考试复习/bias-variance.png" alt></strong></p>
 <h2 id="8、欠拟合和过拟合"><a href="#8、欠拟合和过拟合" class="headerlink" title="8、欠拟合和过拟合"></a><strong>8、欠拟合和过拟合</strong></h2><p><strong>欠拟合：模型拟合不够，在训练集上拟合情况很差。往往会出现偏差大、方差小的情况；</strong></p>
 <p><strong>过拟合：模型过度拟合，在训练集上拟合情况很好，但是在测试集上拟合情况很差。往往会出现偏差小、方差大的情况。</strong></p>
 <p><strong>出现欠拟合时，解决办法有：</strong></p>
@@ -194,9 +194,9 @@
 <p><strong>但是吴恩达教授、李宏毅教授课上讲的版本，以及我在学校课上（我们学校的课不就是照搬李宏毅教授的课嘛）所记录的版本，都是写的L2范数为各个元素的平方和，不再求平方根，即：</strong></p>
 <p>$$<br>\left | \theta \right |_2=\sum_{i=1}^{n}\theta_i^2<br>$$</p>
 <p><strong>吴恩达教授：</strong></p>
-<p><strong><img src="https://www.keyanjie.net/wp-content/uploads/2018/11/QQ20181109-215528@2x-300x53.png" alt></strong></p>
+<p><img align="middle" src="./科大软院 - 人工智能期中考试复习/吴恩达教授.png" width="500"></p>
 <p><strong>李宏毅教授：</strong></p>
-<p><strong><img src="https://www.keyanjie.net/wp-content/uploads/2018/11/QQ20181109-215600@2x-300x87.png" alt></strong></p>
+<p><img align="middle" src="./科大软院 - 人工智能期中考试复习/李宏毅教授.png" width="450"></p>
 <p><strong>我的笔记就不拿出来了，和前两位的差不多。在这里我还是使用这个不开根号的版本。</strong></p>
 <h3 id="1-L1范数的作用"><a href="#1-L1范数的作用" class="headerlink" title="(1) L1范数的作用"></a><strong>(1) L1范数的作用</strong></h3><p><strong>L1范数可以产生稀疏权值矩阵，一定程度上也可以防止过拟合。</strong></p>
 <p><strong>稀疏权值矩阵的意思是，这个矩阵中大部分元素都是0，只有很小一部分元素不为0。试想一下当我们在看周杰伦演唱会时，只会把注意力放在周董身上，不太会关注伴舞小姐姐，更不可能去关注旁边又矮又胖的音响（这一句考试别写）。而在计算机视觉领域也一样，传进来一张图片，这个图片有很多很多的像素，但是机器真正要关注的只有其中一部分元素，比如一张田地里的农民，或是草地里的狗狗之类的，其他不重要的信息就直接不看了，所以和主题无关的信息都会乘上0，有意义的信息才会保留。自然语言处理也是一样，有很多无意义的词都会乘上0，只挑选有意义的信息保留下来。关于具体怎么实现的不讲了，去看周老师的西瓜书吧。</strong></p>
@@ -206,20 +206,19 @@
 <p><strong>当使用梯度下降时，得出的式子是这样的：</strong><br>$$<br>\theta_j’ \leftarrow (1-\eta\frac{\lambda}{m})\theta_j - \eta\frac{1}{m} \sum_{i=1}^{m}(h_{\theta}(x^{(i)}) - \hat{y}^{(i)})x^{(i)}<br>$$</p>
 <p><strong>每次参数更新时，都要先把原来的参数乘上一个介于0和1的数，所以参数都会先缩小一点点，再进行更新。一般来说$1-\eta\frac{\lambda}{m}$都会是一个很接近1的数，别看一个数打九九折后没什么变化，可是迭代次数多了后，这个权值是会衰减的很严重的。通过这种方法会有效降低权值，使得函数更为平滑，使得模型的泛化能力更强。</strong></p>
 <h2 id="10、优化技巧"><a href="#10、优化技巧" class="headerlink" title="10、优化技巧"></a><strong>10、优化技巧</strong></h2><p><strong>训练集中常常有些特征的范围差别很大，这样会导致在优化时，不同的参数优化速度差别很大。比如房子的大小从10~2000平米都有可能，而房间数只能处在1~10这个范围内，在进行优化时，房间数的参数很快就找到了最低点，而房子大小的参数还离最低点很远，这样的话，房间数的参数就在最低点来回波动，等待房子大小的参数优化好。如果能尽量让所有参数同时优化好，那么会大大提高优化速度。</strong></p>
-<p><strong><img src="https://www.keyanjie.net/wp-content/uploads/2018/11/QQ20181112-104427@2x-1024x564.png" alt></strong></p>
+<p><img align="middle" src="./科大软院 - 人工智能期中考试复习/优化.png" width="700"></p>
 <h3 id="1-Feature-Scaling-特征缩放-归一化"><a href="#1-Feature-Scaling-特征缩放-归一化" class="headerlink" title="(1) Feature Scaling - 特征缩放/归一化"></a><strong>(1) Feature Scaling - 特征缩放/归一化</strong></h3><p><strong>归一化的思路是：让输入的值减去样本中最小的值，然后除以样本范围（也就是样本最大值减去样本最小值），这样会使得结果永远在0~1的范围内，所有特征参数差不多一个速度优化到最低点。式子如下：</strong></p>
 <p>$$<br>x’=\frac{x-min}{max-min}<br>$$</p>
-<h3 id="2-Mean-Normalization-均值标准化"><a href="#2-Mean-Normalization-均值标准化" class="headerlink" title="(2) Mean Normalization - 均值标准化"></a><strong>(2) Mean Normalization - 均值标准化</strong></h3><p><strong>均值标准化的思路是：让输入的值减去样本平均数μ，再除以样本标准差σ。经过这样的处理，数据的均值会是0，大小在-1~1之间。均值标准化和归一化一样，也有去除不同特征量纲不同的问题，另外机器学习中很多函数如Sigmoid、Tanh、Softmax等都以0为中心左右分布，所以数据以0为中心左右分布会带来很多便利。</strong></p>
-<p>$$<br>{x}’=\frac{x-\mu}{\sigma}<br>$$</p>
+<h3 id="2-Mean-Normalization-均值标准化"><a href="#2-Mean-Normalization-均值标准化" class="headerlink" title="(2) Mean Normalization - 均值标准化"></a><strong>(2) Mean Normalization - 均值标准化</strong></h3><p><strong>均值标准化的思路是：让输入的值减去样本平均数μ，再除以样本标准差σ。经过这样的处理，数据的均值会是0，大小在-1~1之间。均值标准化和归一化一样，也有去除不同特征量纲不同的问题，另外机器学习中很多函数如Sigmoid、Tanh、Softmax等都以0为中心左右分布，所以数据以0为中心左右分布会带来很多便利。</strong><br>$$<br>{x}’=\frac{x-\mu}{\sigma}<br>$$</p>
 <h2 id="11、怎么调节学习率"><a href="#11、怎么调节学习率" class="headerlink" title="11、怎么调节学习率"></a><strong>11、怎么调节学习率</strong></h2><p><strong>当我们在训练过程中，发现loss下降的很慢时，可以适当增大学习率；发现loss不降反增的时候，要降低学习率。</strong></p>
 <p><strong>如果我们使用的是Adagrad算法，那么一开始学习率可以设置的相对大一点。</strong></p>
 <h2 id="12、逻辑回归的局限性-深度神经网络的兴起导火索"><a href="#12、逻辑回归的局限性-深度神经网络的兴起导火索" class="headerlink" title="12、逻辑回归的局限性 - 深度神经网络的兴起导火索"></a><strong>12、逻辑回归的局限性 - 深度神经网络的兴起导火索</strong></h2><p><strong>逻辑回归不可以直接处理线性不可分的问题，例如下图所示的异或问题。处理方法是先通过一个函数，将原来的值投影转换，变成线性可分问题，再使用逻辑回归来处理。这一步叫做特征变换，先进行特征变换，再进行逻辑回归，这就是两层神经网络的雏形，也是神经网络的兴起的导火索。</strong></p>
-<p><strong><img src="https://www.keyanjie.net/wp-content/uploads/2018/11/72B42457-9C70-419B-B5FF-5C7D5858436E-1024x735.jpg" alt></strong></p>
+<p><img align="middle" src="./科大软院 - 人工智能期中考试复习/深度学习导火索.jpg" width="700"></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/27/科大软院 - 人工智能期中考试复习/" data-id="cjts1krqy0002ym0pfnt1ln61" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/27/科大软院 - 人工智能期中考试复习/" data-id="cjtskovsv00025b0ps2z9c1i9" class="article-share-link">Share</a>
       
       
     </footer>
