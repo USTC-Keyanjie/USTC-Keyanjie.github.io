@@ -7,18 +7,18 @@
   
   <title>分布式lab1：Ubuntu16.04上Hadoop环境安装 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="hostname的配置操作 修改hosts文件，如下： 12sudo su rootgedit /etc/hosts 修改内容如下： 123192.168.1.11	master192.168.1.12	slave1192.168.1.13	slave2  修改hostname，namenode上修改为master，datanode分别修改为slave1、slave2 1hostname mast">
+  <meta name="description" content="Parallels虚拟机桥接模式设置参考这个文章，IP的起始地址设为192.168.1.11，结束地址设为192.168.1.31 hostname的配置操作 修改hosts文件，如下： 12sudo su rootgedit /etc/hosts 修改内容如下： 123192.168.1.11	master192.168.1.12	slave1192.168.1.13	slave2  修改ho">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分布式lab1：Ubuntu16.04上Hadoop环境安装">
 <meta property="og:url" content="http://yoursite.com/2019/03/29/分布式lab1：Ubuntu16-04上Hadoop环境安装/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="hostname的配置操作 修改hosts文件，如下： 12sudo su rootgedit /etc/hosts 修改内容如下： 123192.168.1.11	master192.168.1.12	slave1192.168.1.13	slave2  修改hostname，namenode上修改为master，datanode分别修改为slave1、slave2 1hostname mast">
+<meta property="og:description" content="Parallels虚拟机桥接模式设置参考这个文章，IP的起始地址设为192.168.1.11，结束地址设为192.168.1.31 hostname的配置操作 修改hosts文件，如下： 12sudo su rootgedit /etc/hosts 修改内容如下： 123192.168.1.11	master192.168.1.12	slave1192.168.1.13	slave2  修改ho">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2019/03/29/分布式lab1：Ubuntu16-04上Hadoop环境安装/分布式lab1：Ubuntu16-04上Hadoop环境安装/ssh%20slave1结果展示.png">
-<meta property="og:updated_time" content="2019-03-28T18:20:39.270Z">
+<meta property="og:updated_time" content="2019-03-28T18:26:08.238Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式lab1：Ubuntu16.04上Hadoop环境安装">
-<meta name="twitter:description" content="hostname的配置操作 修改hosts文件，如下： 12sudo su rootgedit /etc/hosts 修改内容如下： 123192.168.1.11	master192.168.1.12	slave1192.168.1.13	slave2  修改hostname，namenode上修改为master，datanode分别修改为slave1、slave2 1hostname mast">
+<meta name="twitter:description" content="Parallels虚拟机桥接模式设置参考这个文章，IP的起始地址设为192.168.1.11，结束地址设为192.168.1.31 hostname的配置操作 修改hosts文件，如下： 12sudo su rootgedit /etc/hosts 修改内容如下： 123192.168.1.11	master192.168.1.12	slave1192.168.1.13	slave2  修改ho">
 <meta name="twitter:image" content="http://yoursite.com/2019/03/29/分布式lab1：Ubuntu16-04上Hadoop环境安装/分布式lab1：Ubuntu16-04上Hadoop环境安装/ssh%20slave1结果展示.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -88,7 +88,9 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="hostname的配置操作"><a href="#hostname的配置操作" class="headerlink" title="hostname的配置操作"></a>hostname的配置操作</h2><ol>
+        <a id="more"></a>
+<h2 id="Parallels虚拟机桥接模式设置"><a href="#Parallels虚拟机桥接模式设置" class="headerlink" title="Parallels虚拟机桥接模式设置"></a>Parallels虚拟机桥接模式设置</h2><p>参考这个<a href="https://blog.csdn.net/wuxiangmujingli/article/details/52671448" target="_blank" rel="noopener">文章</a>，IP的起始地址设为192.168.1.11，结束地址设为192.168.1.31</p>
+<h2 id="hostname的配置操作"><a href="#hostname的配置操作" class="headerlink" title="hostname的配置操作"></a>hostname的配置操作</h2><ol>
 <li><p>修改hosts文件，如下：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo su root</span><br><span class="line">gedit /etc/hosts</span><br></pre></td></tr></table></figure>
 <p>修改内容如下：</p>
@@ -216,7 +218,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/29/分布式lab1：Ubuntu16-04上Hadoop环境安装/" data-id="cjtsyrlrw0001r42zyfdxvtsp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/29/分布式lab1：Ubuntu16-04上Hadoop环境安装/" data-id="cjtsyyhnp0003sl2zrpk4fvby" class="article-share-link">Share</a>
       
       
     </footer>
@@ -323,22 +325,5 @@
 
 
   </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-<!--<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
 </body>
 </html>
