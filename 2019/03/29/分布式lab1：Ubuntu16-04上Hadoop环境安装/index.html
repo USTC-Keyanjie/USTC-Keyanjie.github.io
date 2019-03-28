@@ -15,7 +15,7 @@
 <meta property="og:description" content="分布式第一次实验，怎么坑这么多！🤯">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2019/03/29/分布式lab1：Ubuntu16-04上Hadoop环境安装/分布式lab1：Ubuntu16-04上Hadoop环境安装/ssh%20slave1结果展示.png">
-<meta property="og:updated_time" content="2019-03-28T18:28:42.002Z">
+<meta property="og:updated_time" content="2019-03-28T18:29:47.302Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式lab1：Ubuntu16.04上Hadoop环境安装">
 <meta name="twitter:description" content="分布式第一次实验，怎么坑这么多！🤯">
@@ -102,7 +102,7 @@
 <p>这样不能彻底修改hostname（主机名），重启后还会还原到默认的Ubuntu，要彻底修改要修改/etc/hostname，namenode和datanode各自修改为自己的hostname</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gedit /etc/hostname master</span><br></pre></td></tr></table></figure>
 <p>把原来的名称<strong>删掉</strong>，<strong>不要用#注释，直接删掉，因为#没用，修改内容</strong>：</p>
-<p><code>master</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">master</span><br></pre></td></tr></table></figure>
 <p>退出shell客户端，重新进入，并且换成root操作</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br><span class="line">sudo su root</span><br></pre></td></tr></table></figure>
 </li>
@@ -219,7 +219,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/29/分布式lab1：Ubuntu16-04上Hadoop环境安装/" data-id="cjtsz1sjy0003z22zpw5l0g7y" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/29/分布式lab1：Ubuntu16-04上Hadoop环境安装/" data-id="cjtsz36zt0003zv2znd3t1qdc" class="article-share-link">Share</a>
       
       
     </footer>
