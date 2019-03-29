@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+
+
+
+
+
+
+
+
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="description">
+    <meta name="author" content="Alan Ke">
+    <meta name="keywords" content>
+    <title>高图实验1 图像灰度变换 ~ Alan&#39;s Notebook</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.7.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.7.4/css/mdb.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1067060_vr10bjtg3us.css">
+    
+        <link rel="stylesheet" href="/css/Prettify/tomorrow-night-eighties.min.css">
+    
+</head>
+
+<body>
+  <header style="height: 50vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+<div class="container">
+    <a class="navbar-brand" href="/"><strong>Alan&#39;s Notebook</strong></a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto text-center">
+            
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="/archives/">Archives</a>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="/about/">About</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+</nav>
+    <div class="view intro-2" style='background: url("https://i.imgur.com/oADD1Ip.jpg")no-repeat center center;background-size: cover;'>
+    <div class="full-bg-img">
+        <div class="mask rgba-black-light flex-center">
+        <div class="container text-center white-text wow fadeInUp">
+            <p class="h2">高图实验1 图像灰度变换</p>
+            <br>
+            
+            <p>Wednesday, March 27th 2019, 3:13 pm</p>
+            
+        </div>
+        </div>
+    </div>
+    </div>
+  </header>
+
+  <main>
+  
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 ">
+            <div class="post-content py-5 z-depth-3 main">
+                <a id="more"></a>
+<h2 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容:"></a>实验内容:</h2><p><strong>1、利用 OpenCV 读取图像</strong><br><strong>具体内容:用打开 OpenCV 打开图像，并在窗口中显示</strong></p>
+<p><strong>2、灰度图像二值化处理</strong><br><strong>具体内容:设置并调整阈值对图像进行二值化处理。</strong></p>
+<p><strong>3、灰度图像的对数变换</strong><br><strong>具体内容:设置并调整 r 值对图像进行对数变换。</strong></p>
+<p><strong>4、灰度图像的伽马变换</strong><br><strong>具体内容:设置并调整γ值对图像进行伽马变换。</strong></p>
+<p><strong>5、彩色图像的补色变换</strong><br><strong>具体内容:对彩色图像进行补色变换。</strong></p>
+<p><strong>第一次实验比较简单，所有讲解就用注释标注在代码中啦~</strong></p>
+<pre><code class="c++">#include &lt;iostream&gt;
+#include &lt;opencv2/opencv.hpp&gt;
+#include &lt;opencv2/highgui/highgui.hpp&gt;
+#include &lt;opencv2/core/core.hpp&gt;
+#include &lt;opencv2/imgcodecs/imgcodecs.hpp&gt;
+
+using namespace std;
+using namespace cv;
+
+void showImg(Mat&amp;, string);
+void Threshold(Mat&amp;, double);
+void logTransform(Mat&amp;, int);
+void gammaTransform(Mat&amp;, int, double);
+void ComplementaryColorTransform(Mat&amp;);
+
+int main(int argc, char** argv) {
+
+    // 以黑白方式载入图像
+    Mat img = imread(&quot;/Users/alan.ke/Pictures/image.jpg&quot;, 0);
+    // 检测图像是否真的被载入
+    if(img.empty())
+        return -1;
+
+    showImg(img, &quot;original&quot;);
+    Threshold(img, 30);
+    logTransform(img, 1);
+    gammaTransform(img, 1, 0.5);
+
+    // 返回一个3通道的彩色图像
+    img = imread(&quot;/Users/alan.ke/Pictures/image.jpg&quot;, 1);
+    ComplementaryColorTransform(img);
+
+    return 0;
+}
+
+// 显示一张图片
+void showImg(Mat &amp;srcImg, string title) {
+
+    // 新建一个标题为&quot;Example1&quot;的窗口，WINDOW_AUTOSIZE表示窗口的大小会根据载入图像的大小进行调整
+    namedWindow(title, WINDOW_AUTOSIZE);
+    // 将所选图片绘制到窗口上，且显示
+    imshow(title, srcImg);
+    // 无限等待直到用户按下某个键
+    waitKey(0);
+    // 销毁窗口
+    destroyWindow(title);
+}
+
+// 灰度图像二值化处理
+void Threshold(Mat &amp;srcImg, double thresh) {
+    Mat resultImg;
+    resultImg = srcImg.clone();
+
+    // InputArray src,  源图像
+    // OutputArray dst, 输出图像
+    // double thresh,   门限值
+    // double maxval,   最大值
+    // int type,        函数类型选择，THRESH_BINARY，THRESH_BINARY_INV，THRESH_TRUNC，THRESH_TOZERO，THRESH_TOZERO_INV
+    threshold(srcImg, resultImg, thresh, 200.0, THRESH_BINARY);
+
+    showImg(resultImg, &quot;Threshold&quot;);
+}
+
+// 灰度图像的对数变换
+void logTransform(Mat &amp;srcImg, int c) {
+    Mat resultImg = srcImg.clone();
+
+    // OpenCV有为Mat提供了与STL相兼容的迭代器
+    Mat_&lt;uchar&gt;::iterator it = resultImg.begin&lt;uchar&gt;();
+    Mat_&lt;uchar&gt;::iterator itend = resultImg.end&lt;uchar&gt;();
+    for(; it!=itend; it++){
+        // 依据log变换公式: c * log(1 + data)
+        (*it) = c * log(1 + (*it));
+    }
+
+    // 归一化处理
+    normalize(resultImg, resultImg, 0, 255, cv::NORM_MINMAX);
+    showImg(resultImg, &quot;logTransform&quot;);
+}
+
+// 灰度图像的伽马变换
+void gammaTransform(Mat &amp;srcImg, int c, double gamma) {
+    Mat resultImg = srcImg.clone();
+
+    Mat_&lt;uchar&gt;::iterator it = resultImg.begin&lt;uchar&gt;();
+    Mat_&lt;uchar&gt;::iterator itend = resultImg.end&lt;uchar&gt;();
+    for(; it!=itend; it++) {
+        // 依据gamma变换公式: c * pow(data, gamma)
+        (*it) = c * pow((*it), gamma);
+    }
+
+    // 归一化处理
+    normalize(resultImg, resultImg, 0, 255, cv::NORM_MINMAX);
+    showImg(resultImg, &quot;gammaTransform&quot;);
+}
+
+// 彩色图像的补色变换
+void ComplementaryColorTransform(Mat &amp;srcImg) {
+    Mat resultImg = srcImg.clone();
+
+    Mat_&lt;Vec3b&gt;::iterator it = resultImg.begin&lt;Vec3b&gt;();
+    Mat_&lt;Vec3b&gt;::iterator itend = resultImg.end&lt;Vec3b&gt;();
+    for(;it!=itend;it++){
+        (*it)[0] = 255 - (*it)[0];
+        (*it)[1] = 255 - (*it)[1];
+        (*it)[2] = 255 - (*it)[2];
+    }
+
+    showImg(resultImg, &quot;ComplementaryColorTransform&quot;);
+}
+</code></pre>
+
+                <hr>
+                <div>
+                    <p>
+                        
+                    </p>
+                </div>
+                <br>
+                
+                    <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+                
+            </div>
+        </div>
+        <div class="d-none d-md-block col-md-2">
+            
+  <div id="toc" class="py-5">
+    <p class="h6"><i class="iconfont icon-toc" style="vertical-align:middle"></i> Toc:</p> 
+    <div id="tocbot"></div>
+  </div>
+
+        </div>
+    </div>        
+</div>
+
+<br><br><br>
+
+<!-- Comments -->
+<div class="comments" id="comments">
+
+    
+    
+ 
+</div>
+  
+  </main>
+
+<footer class="mt-5">
+  <div class="text-center py-3">
+    <a href="https://hexo.io" target="_blank"><b>HEXO</b></a>
+    <i class="iconfont icon-love"></i>
+    <a href="https://github.com/0x2e/Material-T" target="_blank"> <b>Material-T</b></a>
+  </div>
+</footer>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.7.4/js/jquery-3.3.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.7.4/js/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.7.4/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.7.4/js/mdb.min.js"></script>
+  <script src="/js/main.js"></script>
+  
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    
+    <script src="/js/post.js"></script>
+    
+      <script src="/js/plugins/prettify.js"></script>
+      <script>
+          $(document).ready(function(){
+              $('pre').addClass('prettyprint linenums');
+              prettyPrint();
+          })
+      </script>
+    
+  
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<!--<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+</body>
+</html>
