@@ -184,7 +184,7 @@ cat /home/parallels/id_rsa.pub &gt;&gt; /root/.ssh/authorized_keys
 </li>
 </ol>
 <h3 id="在master节点上测试："><a href="#在master节点上测试：" class="headerlink" title="在master节点上测试："></a>在master节点上测试：</h3><p>执行<code>ssh slave1</code>，会有这样的结果：</p>
-<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/3_1.png">
+<img src="http://cdn.keyanjie.net/static/images/3_1.png">
 <p>那么说明成功了，再执行<code>ssh slave2</code>看看。</p>
 <h2 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h2><p><strong>所有节点上</strong>，执行<code>ufw disable</code>就好。</p>
 <h2 id="安装Hadoop"><a href="#安装Hadoop" class="headerlink" title="安装Hadoop"></a>安装Hadoop</h2><h3 id="在master节点上：-1"><a href="#在master节点上：-1" class="headerlink" title="在master节点上："></a>在master节点上：</h3><p>[注]全程在root账户下运行</p>
@@ -323,21 +323,21 @@ hadoop namenode -format
 ./start-all.sh
 mr-jobhistory-daemon.sh start historyserver
 </code></pre>
-<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/3_5.png">
+<img src="http://cdn.keyanjie.net/static/images/3_5.png">
 <p>通过命令 <code>jps</code> 可以查看各个节点所启动的进程。正确的话，在 Master 节点上可以看到 NameNode、ResourceManager、SecondrryNameNode、JobHistoryServer 进程。</p>
-<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/3_2.png">
+<img src="http://cdn.keyanjie.net/static/images/3_2.png">
 </li>
 <li><p>分别进入slave1节点和slave2节点，使用<code>jps</code>命令查看运行情况</p>
-<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/3_6.png">
+<img src="http://cdn.keyanjie.net/static/images/3_6.png">
 </li>
 </ol>
-   <img src="http://pp41mkw5b.bkt.clouddn.com/static/images/3_8.png">
+   <img src="http://cdn.keyanjie.net/static/images/3_8.png">
 <ol start="6">
 <li><p>在namenode上查看集群状态</p>
 <pre><code class="shell">hadoop dfsadmin -report
 </code></pre>
 <p>此时可以通过在浏览器中打开<a href="http://master:50070" target="_blank" rel="noopener">http://master:50070</a>查看。</p>
-<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/3_3.png"></li>
+<img src="http://cdn.keyanjie.net/static/images/3_3.png"></li>
 </ol>
 
                 <hr>
