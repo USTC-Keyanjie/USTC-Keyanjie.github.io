@@ -14,18 +14,17 @@
 <meta property="og:site_name" content="Alan&#39;s Notebook">
 <meta property="og:description" content="分布式第一次实验，怎么坑这么多！🤯 图挂了有点尴尬，明天就换七牛云的图床。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_4.jpg">
 <meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_1.png">
 <meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_5.png">
 <meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_2.png">
 <meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_6.png">
 <meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_7.png">
 <meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_3.png">
-<meta property="og:updated_time" content="2019-03-29T08:36:55.830Z">
+<meta property="og:updated_time" content="2019-03-29T08:54:06.830Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式lab1：Ubuntu16.04上Hadoop环境安装">
 <meta name="twitter:description" content="分布式第一次实验，怎么坑这么多！🤯 图挂了有点尴尬，明天就换七牛云的图床。">
-<meta name="twitter:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_4.jpg">
+<meta name="twitter:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_1.png">
   
     <link rel="alternate" href="/atom.xml" title="Alan&#39;s Notebook" type="application/atom+xml">
   
@@ -99,29 +98,24 @@
 <a id="more"></a>
 <h2 id="Parallels虚拟机桥接模式设置"><a href="#Parallels虚拟机桥接模式设置" class="headerlink" title="Parallels虚拟机桥接模式设置"></a>Parallels虚拟机桥接模式设置</h2><p>参考这个<a href="https://blog.csdn.net/wuxiangmujingli/article/details/52671448" target="_blank" rel="noopener">文章</a>，IP的起始地址设为192.168.1.11，结束地址设为192.168.1.31</p>
 <h2 id="hostname的配置操作"><a href="#hostname的配置操作" class="headerlink" title="hostname的配置操作"></a>hostname的配置操作</h2><ol>
-<li><p>修改hosts文件，如下：</p>
+<li><p>修改hosts文件，如下（master节点、slave1节点、slave2节点都做）：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo su root</span><br><span class="line">gedit /etc/hosts</span><br></pre></td></tr></table></figure>
 <p>修改内容如下：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">192.168.1.11	master</span><br><span class="line">192.168.1.12	slave1</span><br><span class="line">192.168.1.13	slave2</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>修改hostname，namenode上修改为master，datanode分别修改为slave1、slave2</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostname master</span><br></pre></td></tr></table></figure>
+<li><p>修改hostname，master节点上修改为master，salve1节点和slave2节点上分别修改为slave1、slave2</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostname master/slave1/slave2</span><br></pre></td></tr></table></figure>
 <p>这样不能彻底修改hostname（主机名），重启后还会还原到默认的Ubuntu，要彻底修改要修改/etc/hostname，namenode和datanode各自修改为自己的hostname</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gedit /etc/hostname master</span><br></pre></td></tr></table></figure>
-<p>这里应该会出现这个问题：</p>
-<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/3_4.jpg">
-<p><a href="https://blog.csdn.net/wuyao721/article/details/3678859" target="_blank" rel="noopener">解决方法</a>（致谢苏璐岩同学）：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br><span class="line">xhost +</span><br><span class="line">sudo su root</span><br></pre></td></tr></table></figure>
-<p>或者直接用编辑器打开<strong>/etc/hostname**</strong>这个文件<strong>，把原来的名称</strong>删掉<strong>，</strong>不要用#注释，直接删掉，因为#没用，<strong>修改内容</strong>：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">master</span><br></pre></td></tr></table></figure>
+<p>直接用编辑器打开<strong>/etc/hostname</strong>这个文件<strong>，把原来的名称</strong>删掉<strong>，</strong>不要用#注释，直接删掉，因为#没用，<strong>修改内容</strong>：(master节点上修改为master，salve1节点和slave2节点上分别修改为slave1、slave2)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">master/slave1/slave2</span><br></pre></td></tr></table></figure>
 <p>退出shell客户端，重新进入，并且换成root操作</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br><span class="line">sudo su root</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>这些工作都做好了，ping一下看看能不能ping通，用节点名称ping</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping slave1</span><br></pre></td></tr></table></figure>
+<li><p>这些工作都做好了，互相ping一下看看能不能ping通，ping 节点名称</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping master/slave1/slave2</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h2 id="不能用他的方法安装jdk，换一个"><a href="#不能用他的方法安装jdk，换一个" class="headerlink" title="不能用他的方法安装jdk，换一个"></a>不能用他的方法安装jdk，换一个</h2><ol>
+<h2 id="安装jdk-所有节点都做"><a href="#安装jdk-所有节点都做" class="headerlink" title="安装jdk(所有节点都做)"></a>安装jdk(所有节点都做)</h2><ol>
 <li><p>前往<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="noopener">oracle Java官网</a>下载JDK</p>
 </li>
 <li><p>确保当前是系统账户</p>
@@ -158,20 +152,21 @@
 <li><p>让 Master 节点需能无密码 SSH 本机，在 Master 节点上执行：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ./id_rsa.pub &gt;&gt; ./authorized_keys</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>完成后可执行 <code>ssh Master</code> 验证一下（可能需要输入 yes，成功后执行 <code>exit</code> 返回原来的终端）。接着在 master 节点将上公匙传输到 slave1 节点（slave2同理）：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp ./id_rsa.pub parallels@slave1:/home/parallels/</span><br></pre></td></tr></table></figure>
+<li><p>完成后可执行 <code>ssh Master</code> 验证一下（可能需要输入 yes，成功后执行 <code>exit</code> 返回原来的终端）。接着在 master 节点将上公匙传输到 slave1 节点和slave2节点：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp ./id_rsa.pub parallels@slave1:/home/parallels/  # 向slave1节点传</span><br><span class="line">scp ./id_rsa.pub parallels@slave2:/home/parallels/  # 向slave2节点传</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h3 id="在slave1节点上："><a href="#在slave1节点上：" class="headerlink" title="在slave1节点上："></a>在slave1节点上：</h3><ol>
+<h3 id="在slave1节点上（slave2同理）："><a href="#在slave1节点上（slave2同理）：" class="headerlink" title="在slave1节点上（slave2同理）："></a>在slave1节点上（slave2同理）：</h3><ol>
 <li><p>将 ssh 公匙加入授权：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /root/.ssh       # 如果不存在该文件夹需先创建，若已存在则忽略</span><br><span class="line">cat /home/parallels/id_rsa.pub &gt;&gt; /root/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h3 id="在master节点上测试："><a href="#在master节点上测试：" class="headerlink" title="在master节点上测试："></a>在master节点上测试：</h3><p>执行<code>ssh slave1</code>，会有这样的结果：</p>
 <img src="http://pp41mkw5b.bkt.clouddn.com/static/images/3_1.png">
-<p>那么说明成功了，slave2也这样干一下就好。</p>
-<h2 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h2><p>执行<code>ufw disable</code>就好。</p>
-<h2 id="安装Hadoop"><a href="#安装Hadoop" class="headerlink" title="安装Hadoop"></a>安装Hadoop</h2><h3 id="在master节点上：-1"><a href="#在master节点上：-1" class="headerlink" title="在master节点上："></a>在master节点上：</h3><ol>
+<p>那么说明成功了，再执行<code>ssh slave2</code>看看。</p>
+<h2 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h2><p><strong>所有节点上</strong>，执行<code>ufw disable</code>就好。</p>
+<h2 id="安装Hadoop"><a href="#安装Hadoop" class="headerlink" title="安装Hadoop"></a>安装Hadoop</h2><h3 id="在master节点上：-1"><a href="#在master节点上：-1" class="headerlink" title="在master节点上："></a>在master节点上：</h3><p>[注]全程在root账户下运行</p>
+<ol>
 <li><p>到Hadoop<a href="https://hadoop.apache.org/releases.html" target="_blank" rel="noopener">官网</a>下载binary的hadoop，我下载的是<strong>hadoop-2.8.5.tar.gz</strong>文件</p>
 </li>
 <li><p>在/usr/local目录下建立hadoop目录</p>
@@ -209,7 +204,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local</span><br><span class="line">sudo rm -r ./hadoop/tmp     # 删除 Hadoop 临时文件</span><br><span class="line">tar -zcf ~/hadoop.master.tar.gz ./hadoop   # 先压缩再复制</span><br><span class="line">cd ~</span><br><span class="line">scp ./hadoop.master.tar.gz slave1:/home/parallels</span><br><span class="line">scp ./hadoop.master.tar.gz slave2:/home/parallels</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h3 id="在slave1节点上：-1"><a href="#在slave1节点上：-1" class="headerlink" title="在slave1节点上："></a>在slave1节点上：</h3><ol>
+<h3 id="在slave1节点上："><a href="#在slave1节点上：" class="headerlink" title="在slave1节点上："></a>在slave1节点上：</h3><ol>
 <li><p>解压文件，并修改<strong>owner</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo rm -r /usr/local/hadoop    # 删掉旧的（如果存在）</span><br><span class="line">sudo tar -zxf /home/parallels/hadoop.master.tar.gz -C /usr/local</span><br><span class="line">sudo chown -R parallels /usr/local/hadoop</span><br></pre></td></tr></table></figure>
 </li>
@@ -243,7 +238,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/29/分布式lab1：Ubuntu16-04上Hadoop环境安装/" data-id="cjtttglgz00026q2zwuk5p4e3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/29/分布式lab1：Ubuntu16-04上Hadoop环境安装/" data-id="cjtttzaw500028f2zckk0wrks" class="article-share-link">Share</a>
       
       
     </footer>
