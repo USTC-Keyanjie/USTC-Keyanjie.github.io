@@ -16,9 +16,12 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_4.jpg">
 <meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_1.png">
+<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_5.png">
 <meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_2.png">
+<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_6.png">
+<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_7.png">
 <meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_3.png">
-<meta property="og:updated_time" content="2019-03-29T08:11:49.043Z">
+<meta property="og:updated_time" content="2019-03-29T08:35:00.370Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式lab1：Ubuntu16.04上Hadoop环境安装">
 <meta name="twitter:description" content="分布式第一次实验，怎么坑这么多！🤯 图挂了有点尴尬，明天就换七牛云的图床。">
@@ -220,8 +223,13 @@
 </li>
 <li><p>接着可以启动 hadoop 了，启动需要在 <strong>Master</strong> 节点的<strong>sbin</strong>文件夹中进行：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/hadoop/hadoop-2.8.5/sbin</span><br><span class="line">./start-all.sh</span><br><span class="line">mr-jobhistory-daemon.sh start historyserver</span><br></pre></td></tr></table></figure>
+<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/3_5.png">
 <p>通过命令 <code>jps</code> 可以查看各个节点所启动的进程。正确的话，在 Master 节点上可以看到 NameNode、ResourceManager、SecondrryNameNode、JobHistoryServer 进程。</p>
 <img src="http://pp41mkw5b.bkt.clouddn.com/static/images/3_2.png">
+</li>
+<li><p>分别进入slave1节点和slave2节点，使用<code>jps</code>命令查看运行情况</p>
+<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/3_6.png">
+<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/3_7.png">
 </li>
 <li><p>在namenode上查看集群状态</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop dfsadmin -report</span><br></pre></td></tr></table></figure>
@@ -232,7 +240,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/29/分布式lab1：Ubuntu16-04上Hadoop环境安装/" data-id="cjttsgr2s00021z2zsuux6zz9" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/29/分布式lab1：Ubuntu16-04上Hadoop环境安装/" data-id="cjttta6zj0002412zvuozd4a5" class="article-share-link">Share</a>
       
       
     </footer>
