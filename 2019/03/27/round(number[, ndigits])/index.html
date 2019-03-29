@@ -19,7 +19,7 @@
     <meta name="description" content="description">
     <meta name="author" content="Alan Ke">
     <meta name="keywords" content>
-    <title>LeetCode 17. Letter Combinations of a Phone Number ~ Alan&#39;s Notebook</title>
+    <title>round(number[, ndigits]) ~ Alan&#39;s Notebook</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.7.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.7.4/css/mdb.min.css">
@@ -66,10 +66,10 @@
     <div class="full-bg-img">
         <div class="mask rgba-black-light flex-center">
         <div class="container text-center white-text wow fadeInUp">
-            <p class="h2">LeetCode 17. Letter Combinations of a Phone Number</p>
+            <p class="h2">round(number[, ndigits])</p>
             <br>
             
-            <p>Wednesday, March 27th 2019, 3:16 pm</p>
+            <p>Wednesday, March 27th 2019, 3:11 pm</p>
             
         </div>
         </div>
@@ -83,40 +83,27 @@
     <div class="row">
         <div class="col-md-8 offset-md-2 ">
             <div class="post-content py-5 z-depth-3 main">
-                <a id="more"></a>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Given a string containing digits from <code>2-9</code> inclusive, return all possible letter combinations that the number could represent.</p>
-<p>A mapping of digit to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.</p>
-<p><img src="http://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Telephone-keypad2.svg/200px-Telephone-keypad2.svg.png" alt="img"></p>
-<p><strong>Example:</strong></p>
-<pre><code>Input: &quot;23&quot;
-Output: [&quot;ad&quot;, &quot;ae&quot;, &quot;af&quot;, &quot;bd&quot;, &quot;be&quot;, &quot;bf&quot;, &quot;cd&quot;, &quot;ce&quot;, &quot;cf&quot;].
-</code></pre><p><strong>Note:</strong></p>
-<p>Although the above answer is in lexicographical order, your answer could be in any order you want.</p>
-<h2 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a><strong>题目大意：</strong></h2><p>以一定顺序按下手机上的2~9数字，输出所有的字符组合。</p>
-<p>##分析：<br>每个数字都代表了3-4个字母，依照顺序按下数字后所产生的字符串，就是一个树的搜索问题，可使用dfs搜索此树。</p>
-<pre><code class="c++">class Solution {
-public:
-    vector&lt;string&gt; result;
-    vector&lt;string&gt; table = {&quot;abc&quot;, &quot;def&quot;, &quot;ghi&quot;, &quot;jkl&quot;, &quot;mno&quot;, &quot;pqrs&quot;, &quot;tuv&quot;, &quot;wxyz&quot;};
-    vector&lt;string&gt; letterCombinations(string digits) {
-        if (digits == &quot;&quot;)
-            return result;
-        dfs(digits, &quot;&quot;);
-        return result;
-    }
-
-    void dfs(string digits, string recur) {
-        if (digits == &quot;&quot;) {
-            result.push_back(recur);
-        } else {
-            int num = digits[0] - &#39;2&#39;;
-            for (char c : table[num]) {
-                f(digits.substr(1), recur + c);
-            }
-        }
-    }
-};
-</code></pre>
+                <p><strong>round函数是Python中常用的四舍五入的函数，但是今天试用了一下发现有点小坑。对0.5进行四舍五入，结果应该为1，可是Python解释器给的结果是：</strong></p>
+<pre><code>&gt;&gt;&gt; round(0.5)
+0
+</code></pre><p><strong>紧接着我又试了几个数，发现：</strong></p>
+<pre><code>&gt;&gt;&gt; round(1.5)
+2
+&gt;&gt;&gt; round(2.5)
+2
+</code></pre><p><strong>round(1.5)还算正常，round(2.5)又很奇怪了，然后看了看Python文档，里面这样解释round函数：</strong></p>
+<blockquote>
+<p><strong>For the built-in types supporting round(), values are rounded to the closest multiple of 10 to the power minus ndigits; if two multiples are equally close, rounding is done toward the even choice (so, for example, both round(0.5) and round(-0.5) are 0, and round(1.5) is 2). Any integer value is valid for ndigits (positive, zero, or negative). The return value is an integer if ndigits is omitted or None. Otherwise the return value has the same type as number.</strong></p>
+</blockquote>
+<p><strong>意思是会把这个输入的数保留到小数点后指定的ndigit位数，并且按照一定规则圆整。规则就是看看这个数更靠近左右两端中哪一端，然后就将这个数圆整为这一端，比如0.4就圆整为0，0.6就圆整为1。那如果是像0.5这样的到左右两端距离一样的情况，就圆整到偶数的一端，比如0.5就圆整到0，1.5就圆整到2。</strong></p>
+<p><strong>文档里还写了这么一句话：</strong></p>
+<blockquote>
+<p><strong>Note: The behavior of round() for floats can be surprising: for example, round(2.675, 2) gives 2.67instead of the expected 2.68. This is not a bug: it’s a result of the fact that most decimal fractions can’t be represented exactly as a float. See Floating Point Arithmetic: Issues and Limitations for more information.</strong></p>
+</blockquote>
+<p><strong>就是按照上述规则，round(2.675, 2)的结果应该是2.68，可是实际结果是：</strong></p>
+<pre><code>&gt;&gt;&gt; round(2.675, 2)
+2.67
+</code></pre><p><strong>这不是我们写了个bug，这是因为机器在存储浮点数2.675的时候，不会存储到这么精确，存储的数比2.675小一点点，应该差不多是2.674999999这样，所以才会被圆整到2.67，这个问题没法解决。</strong></p>
 
                 <hr>
                 <div>

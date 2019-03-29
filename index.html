@@ -146,6 +146,33 @@ Output: [&quot;...</p>
 <div class="row mb-3">
 
 <div class="col-12 col-md-8 offset-md-2">
+    <a href="/2019/03/27/round(number[, ndigits])/" class="h4" style="font-weight: 700;">round(number[, ndigits])</a>
+    
+      <p class="mb-1">round函数是Python中常用的四舍五入的函数，但是今天试用了一下发现有点小坑。对0.5进行四舍五入，结果应该为1，可是Python解释器给的结果是：
+&gt;&gt;&gt; round(0.5)
+0
+紧接着我又试了几个数，发现：
+&gt;&gt;&gt; round(1.5)
+2
+&gt;&gt;&gt; round(2.5)
+2
+round(1.5)还算正常，round(2.5)又很奇怪了，然后看了看Python文档，里面这样解释round函数：
+
+For the built-in types supporting round(), values are rounded to the...</p>
+    
+    
+      <p>
+        <i class="iconfont icon-riqi2"></i>&nbsp;2019-03-27
+        &nbsp;
+        
+      </p>
+    
+</div>
+</div>
+
+<div class="row mb-3">
+
+<div class="col-12 col-md-8 offset-md-2">
     <a href="/2019/03/27/CTC Loss学习笔记/" class="h4" style="font-weight: 700;">CTC Loss学习笔记</a>
     
       <p class="mb-1">背景语音识别时，人说一句“Hello”，尽管发音很标准，但是由于有停顿、换气或是其他原因，音频信息中的“H”音很容易对不上文本信息中的“H”。这就需要预处理对齐问题，但是用人工的方法手动对齐比较音频信息和文本信息，需要耗费大量的人力财力。CTC就是处理这一类对齐问题而生的技术。
@@ -224,5 +251,22 @@ Those who cannot remember the past are condemned to repeat.
   <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.7.4/js/mdb.min.js"></script>
   <script src="/js/main.js"></script>
   
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<!--<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
 </body>
 </html>

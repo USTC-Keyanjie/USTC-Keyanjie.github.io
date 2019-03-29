@@ -43,6 +43,19 @@
     
     
     <entry>
+      <title>round(number[, ndigits])</title>
+      <link href="/2019/03/27/round(number%5B,%20ndigits%5D)/"/>
+      <url>/2019/03/27/round(number%5B,%20ndigits%5D)/</url>
+      
+        <content type="html"><![CDATA[<p><strong>round函数是Python中常用的四舍五入的函数，但是今天试用了一下发现有点小坑。对0.5进行四舍五入，结果应该为1，可是Python解释器给的结果是：</strong></p><pre><code>&gt;&gt;&gt; round(0.5)0</code></pre><p><strong>紧接着我又试了几个数，发现：</strong></p><pre><code>&gt;&gt;&gt; round(1.5)2&gt;&gt;&gt; round(2.5)2</code></pre><p><strong>round(1.5)还算正常，round(2.5)又很奇怪了，然后看了看Python文档，里面这样解释round函数：</strong></p><blockquote><p><strong>For the built-in types supporting round(), values are rounded to the closest multiple of 10 to the power minus ndigits; if two multiples are equally close, rounding is done toward the even choice (so, for example, both round(0.5) and round(-0.5) are 0, and round(1.5) is 2). Any integer value is valid for ndigits (positive, zero, or negative). The return value is an integer if ndigits is omitted or None. Otherwise the return value has the same type as number.</strong></p></blockquote><p><strong>意思是会把这个输入的数保留到小数点后指定的ndigit位数，并且按照一定规则圆整。规则就是看看这个数更靠近左右两端中哪一端，然后就将这个数圆整为这一端，比如0.4就圆整为0，0.6就圆整为1。那如果是像0.5这样的到左右两端距离一样的情况，就圆整到偶数的一端，比如0.5就圆整到0，1.5就圆整到2。</strong></p><p><strong>文档里还写了这么一句话：</strong></p><blockquote><p><strong>Note: The behavior of round() for floats can be surprising: for example, round(2.675, 2) gives 2.67instead of the expected 2.68. This is not a bug: it’s a result of the fact that most decimal fractions can’t be represented exactly as a float. See Floating Point Arithmetic: Issues and Limitations for more information.</strong></p></blockquote><p><strong>就是按照上述规则，round(2.675, 2)的结果应该是2.68，可是实际结果是：</strong></p><pre><code>&gt;&gt;&gt; round(2.675, 2)2.67</code></pre><p><strong>这不是我们写了个bug，这是因为机器在存储浮点数2.675的时候，不会存储到这么精确，存储的数比2.675小一点点，应该差不多是2.674999999这样，所以才会被圆整到2.67，这个问题没法解决。</strong></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>CTC Loss学习笔记</title>
       <link href="/2019/03/27/CTC%20Loss%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
       <url>/2019/03/27/CTC%20Loss%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
