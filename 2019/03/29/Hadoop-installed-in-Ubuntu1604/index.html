@@ -329,10 +329,8 @@ mr-jobhistory-daemon.sh start historyserver
 </li>
 <li><p>分别进入slave1节点和slave2节点，使用<code>jps</code>命令查看运行情况</p>
 <img src="http://pp41mkw5b.bkt.clouddn.com/static/images/3_6.png">
+<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/3_8.png">
 </li>
-</ol>
-   <img src="http://pp41mkw5b.bkt.clouddn.com/static/images/3_8.png">
-<ol start="6">
 <li><p>在namenode上查看集群状态</p>
 <pre><code class="shell">hadoop dfsadmin -report
 </code></pre>
@@ -401,22 +399,5 @@ mr-jobhistory-daemon.sh start historyserver
       </script>
     
   
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-<!--<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
 </body>
 </html>

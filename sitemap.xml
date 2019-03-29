@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2019/03/29/Hadoop-installed-in-Ubuntu1604/</loc>
+    
+    <lastmod>2019-03-29T14:18:24.303Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2019/03/27/CTC%20Loss%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
     
     <lastmod>2019-03-29T14:05:05.679Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://yoursite.com/2019/03/27/LeetCode%2017.%20Letter%20Combinations%20of%20a%20Phone%20Number/</loc>
     
     <lastmod>2019-03-29T13:15:48.447Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2019/03/29/Hadoop-installed-in-Ubuntu1604/</loc>
-    
-    <lastmod>2019-03-29T11:38:00.476Z</lastmod>
     
   </url>
   
