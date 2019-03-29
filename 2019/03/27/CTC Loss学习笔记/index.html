@@ -98,7 +98,7 @@
 <p>如果再用π来表示一个序列的集合，这个集合中所有的序列和seq一样，经过ctc处理过后，都可以变为标签数据。那么将这个集合中所有序列的概率加起来，就是P(lable|x)。</p>
 <p>$$<br>P(lable|x)=\sum_{\pi}P(\pi|x)<br>$$</p>
 <p>可是，π集合中有多少序列呢，茫茫多的序列都可以转为lable。如果lable是“cat”的话，那么可以转为“cat”的序列数，可以通过下图可以看出来，白色节点表示识别为字母，黑色节点表示识别不出来是个啥，标记为“ϵ”（图片来自网络）：</p>
-<img src="http://cdn.keyanjie.net/static/images/ctc_loss_1.png">
+<img src="https://cdn.keyanjie.net/static/images/ctc_loss_1.png">
 <p>每一条路径都是一种语音识别的结果，而且此结果可以经由ctc处理后转换为标签数据。这才3个字母，就这么条路径，如果成百上千的单词，一一计算每种可能的话，这个计算量很大。</p>
 <h2 id="使用动态规划优化"><a href="#使用动态规划优化" class="headerlink" title="使用动态规划优化"></a>使用动态规划优化</h2><p>动态规划的思想是自顶向下写一个递归式，然后自底向上算出来。</p>
 <p>如上文所述，在t个时间步走到字符“u”的路线有很多条，如果seq是其中一条路线，那么其概率为：</p>
@@ -120,14 +120,14 @@ $$
 <ol>
 <li>如果“Hello”的第一个“l”，也就是”Hello”标红的那个“l”，那么在第t-1个时间步上，可以是“e”、“ϵ”、“l”三种情况；</li>
 </ol>
-<img src="http://cdn.keyanjie.net/static/images/ctc_loss_2.png">
+<img src="https://cdn.keyanjie.net/static/images/ctc_loss_2.png">
 <p>所以要求第t个时间步走到“l”的概率，就要先求出在t-1个时间步走到“e”、“ϵ”、“l”的概率，求和之后，再乘以$y_c^t$，即：</p>
 <p>$$<br>\alpha(t,u)=y_u^t[\alpha(t-1,u)+\alpha(t-1,u-1)+\alpha(t-1,u-2)]<br>$$</p>
 <p>这里u-1和u-2表示字符u的上一个字符和上两个字符。</p>
 <ol>
 <li>如果是“Hello”的第二个“l”，也就是“Hello”标红的那个“l”，那么在第t-1个时间步上，只可以是“ϵ”、“l”两种情况。要是算上上面的“l”，那么这两个“l”会合并成1个；如果是在t个时间步上走到了“ϵ”这个字符，那么在t-1个时间步上，也只能是“l”、“ϵ”两种情况。要是也算上上面一个“ϵ”，那么会跨过中间这个“l”，这个字符就不输出了。</li>
 </ol>
-<img src="http://cdn.keyanjie.net/static/images/ctc_loss_3.png">
+<img src="https://cdn.keyanjie.net/static/images/ctc_loss_3.png">
 <p>所以第t个时间步走到“l”或”ϵ”，只能横着走过来，或从上一个字符过来，概率即：</p>
 <p>$$<br>\alpha(t,u)=y_u^t[\alpha(t-1,u)+\alpha(t-1,u-1)]<br>$$</p>
 <p>这样递归公式就定义好了，再算一下递归式子的底：</p>
