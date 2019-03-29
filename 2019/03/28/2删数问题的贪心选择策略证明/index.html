@@ -139,11 +139,11 @@
 <p>(2) 现在已经证明了如果A中只有一个山，那么删除山顶元素是最合适的。如果A中有多个山峰该如何处理？</p>
 <p>换句话说，如果A中不止有2段单调子区间，而是由很多不同的单调子区间所组成，那应该如何处理？</p>
 <p>这个问题看上去有点复杂了，我画个图吧：</p>
-<img src="https://cdn.keyanjie.net/static/images/2_1.jpg">
+<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/2_1.jpg">
 <p>其实把图画出来后，我尝试着删除第一个山的山顶元素，删完后发现，现在的$a_6=a_5$，而$a_7=a_7$：</p>
-<img src="https://cdn.keyanjie.net/static/images/2_2.jpg">
+<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/2_2.jpg">
 <p>但如果删除第一个山之后的任意一个元素的话，删完后发现$a_6=a_5$，而现在的$a_7=a_6$。</p>
-<img src="https://cdn.keyanjie.net/static/images/2_3.jpg">
+<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/2_3.jpg">
 <p>由于$a_6&gt;a_7​$，所以不管后面删哪个元素，都会比删除$a_6​$所得到的数要大。</p>
 <p>数学证明如下：</p>
 <p>假设在A中，有3个连在一起的数$a_i,a_j,a_k(1\leq i&lt; j&lt; k\leq n)​$，还有另一个数$a_r(k \leq r &lt; n)​$，，其中$(a_1,a_j)​$是递增序列，$(a_j,a_r)​$是递减序列。</p>
