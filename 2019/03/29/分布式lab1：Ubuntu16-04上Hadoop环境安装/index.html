@@ -21,7 +21,7 @@
 <meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_6.png">
 <meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_7.png">
 <meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_3.png">
-<meta property="og:updated_time" content="2019-03-29T08:35:00.370Z">
+<meta property="og:updated_time" content="2019-03-29T08:36:55.830Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式lab1：Ubuntu16.04上Hadoop环境安装">
 <meta name="twitter:description" content="分布式第一次实验，怎么坑这么多！🤯 图挂了有点尴尬，明天就换七牛云的图床。">
@@ -124,14 +124,17 @@
 <h2 id="不能用他的方法安装jdk，换一个"><a href="#不能用他的方法安装jdk，换一个" class="headerlink" title="不能用他的方法安装jdk，换一个"></a>不能用他的方法安装jdk，换一个</h2><ol>
 <li><p>前往<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="noopener">oracle Java官网</a>下载JDK</p>
 </li>
+<li><p>确保当前是系统账户</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo su root</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>解压缩到指定目录（以jdk-8u201-linux-x64.tar.gz为例）</p>
 <p>创建目录:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir /usr/lib/jvm</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir /usr/lib/jvm</span><br></pre></td></tr></table></figure>
 <p>解压缩到该目录:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo tar -zxvf jdk-8u201-linux-x64.tar.gz -C /usr/lib/jvm</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf jdk-8u201-linux-x64.tar.gz -C /usr/lib/jvm</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>修改环境变量:　　</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi ~/.bashrc</span><br></pre></td></tr></table></figure>
+<li><p>修改环境变量，如果提示没有装vim就使用<code>apt install vim</code>装一个:　　</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bashrc</span><br></pre></td></tr></table></figure>
 <p>在文件末尾追加下面内容：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>set oracle jdk environment</span><br><span class="line">export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_201  ## 这里要注意目录要换成自己解压的jdk 目录</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre  </span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib  </span><br><span class="line">export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH</span><br></pre></td></tr></table></figure>
 </li>
@@ -139,7 +142,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>系统注册此jdk</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk1.8.0_201/bin/java 300</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk1.8.0_201/bin/java 300</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>查看java版本，看看是否安装成功：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
@@ -240,7 +243,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/29/分布式lab1：Ubuntu16-04上Hadoop环境安装/" data-id="cjttta6zj0002412zvuozd4a5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/29/分布式lab1：Ubuntu16-04上Hadoop环境安装/" data-id="cjtttcq1u00024z2zjhk6hvja" class="article-share-link">Share</a>
       
       
     </footer>
