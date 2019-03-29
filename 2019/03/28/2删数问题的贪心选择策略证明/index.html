@@ -10,18 +10,18 @@
   <meta name="description" content="题目：在一个n位的正整数A[1…n]中删除其中任意k(k≤n)个数字后，剩下的数字按原次序组成一个新的正整数。对于给定的n位正整数A和k，设计一个贪心算法，使得剩下的数字组成的新数最小。如：A=278693，k=4时最小新数为23，k=3时为263">
 <meta property="og:type" content="article">
 <meta property="og:title" content="删数问题的贪心选择策略证明">
-<meta property="og:url" content="http://yoursite.com/2019/03/28/删数问题的贪心选择策略证明/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/03/28/2删数问题的贪心选择策略证明/index.html">
 <meta property="og:site_name" content="Alan&#39;s Notebook">
 <meta property="og:description" content="题目：在一个n位的正整数A[1…n]中删除其中任意k(k≤n)个数字后，剩下的数字按原次序组成一个新的正整数。对于给定的n位正整数A和k，设计一个贪心算法，使得剩下的数字组成的新数最小。如：A=278693，k=4时最小新数为23，k=3时为263">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2019/03/28/删数问题的贪心选择策略证明/删数问题的贪心选择策略证明/image1.jpg">
-<meta property="og:image" content="http://yoursite.com/2019/03/28/删数问题的贪心选择策略证明/删数问题的贪心选择策略证明/image2.jpg">
-<meta property="og:image" content="http://yoursite.com/2019/03/28/删数问题的贪心选择策略证明/删数问题的贪心选择策略证明/image3.jpg">
-<meta property="og:updated_time" content="2019-03-28T13:41:19.801Z">
+<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/2_1.jpg">
+<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/2_2.jpg">
+<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/2_3.jpg">
+<meta property="og:updated_time" content="2019-03-29T06:22:50.507Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="删数问题的贪心选择策略证明">
 <meta name="twitter:description" content="题目：在一个n位的正整数A[1…n]中删除其中任意k(k≤n)个数字后，剩下的数字按原次序组成一个新的正整数。对于给定的n位正整数A和k，设计一个贪心算法，使得剩下的数字组成的新数最小。如：A=278693，k=4时最小新数为23，k=3时为263">
-<meta name="twitter:image" content="http://yoursite.com/2019/03/28/删数问题的贪心选择策略证明/删数问题的贪心选择策略证明/image1.jpg">
+<meta name="twitter:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/2_1.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Alan&#39;s Notebook" type="application/atom+xml">
   
@@ -68,9 +68,9 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-删数问题的贪心选择策略证明" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-2删数问题的贪心选择策略证明" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/03/28/删数问题的贪心选择策略证明/" class="article-date">
+    <a href="/2019/03/28/2删数问题的贪心选择策略证明/" class="article-date">
   <time datetime="2019-03-28T12:39:18.000Z" itemprop="datePublished">2019-03-28</time>
 </a>
     
@@ -146,11 +146,11 @@
 <p>(2) 现在已经证明了如果A中只有一个山，那么删除山顶元素是最合适的。如果A中有多个山峰该如何处理？</p>
 <p>换句话说，如果A中不止有2段单调子区间，而是由很多不同的单调子区间所组成，那应该如何处理？</p>
 <p>这个问题看上去有点复杂了，我画个图吧：</p>
-<p><img src="/2019/03/28/删数问题的贪心选择策略证明/./删数问题的贪心选择策略证明/image1.jpg" alt="image1"></p>
+<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/2_1.jpg">
 <p>其实把图画出来后，我尝试着删除第一个山的山顶元素，删完后发现，现在的$a_6=a_5$，而$a_7=a_7$：</p>
-<p><img src="/2019/03/28/删数问题的贪心选择策略证明/./删数问题的贪心选择策略证明/image2.jpg" alt="image2"></p>
+<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/2_2.jpg">
 <p>但如果删除第一个山之后的任意一个元素的话，删完后发现$a_6=a_5$，而现在的$a_7=a_6$。</p>
-<p><img src="/2019/03/28/删数问题的贪心选择策略证明/./删数问题的贪心选择策略证明/image3.jpg" alt="image3"></p>
+<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/2_3.jpg">
 <p>由于$a_6&gt;a_7​$，所以不管后面删哪个元素，都会比删除$a_6​$所得到的数要大。</p>
 <p>数学证明如下：</p>
 <p>假设在A中，有3个连在一起的数$a_i,a_j,a_k(1\leq i&lt; j&lt; k\leq n)​$，还有另一个数$a_r(k \leq r &lt; n)​$，，其中$(a_1,a_j)​$是递增序列，$(a_j,a_r)​$是递减序列。</p>
@@ -166,7 +166,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/28/删数问题的贪心选择策略证明/" data-id="cjttog4ph0000842zevj5j4d8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/28/2删数问题的贪心选择策略证明/" data-id="cjttok7kf0001902zy6jpnlg0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -175,7 +175,7 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/03/29/分布式lab1：Ubuntu16-04上Hadoop环境安装/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/03/29/3分布式lab1：Ubuntu16-04上Hadoop环境安装/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
@@ -185,7 +185,7 @@
     </a>
   
   
-    <a href="/2019/03/27/科大软院 - 人工智能期中考试复习/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/03/27/1科大软院 - 人工智能期中考试复习/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">科大软院 - 人工智能期中考试复习</div>
     </a>
@@ -224,19 +224,19 @@
       <ul>
         
           <li>
-            <a href="/2019/03/29/分布式lab1：Ubuntu16-04上Hadoop环境安装/">分布式lab1：Ubuntu16.04上Hadoop环境安装</a>
+            <a href="/2019/03/29/3分布式lab1：Ubuntu16-04上Hadoop环境安装/">分布式lab1：Ubuntu16.04上Hadoop环境安装</a>
           </li>
         
           <li>
-            <a href="/2019/03/28/删数问题的贪心选择策略证明/">删数问题的贪心选择策略证明</a>
+            <a href="/2019/03/28/2删数问题的贪心选择策略证明/">删数问题的贪心选择策略证明</a>
           </li>
         
           <li>
-            <a href="/2019/03/27/科大软院 - 人工智能期中考试复习/">科大软院 - 人工智能期中考试复习</a>
+            <a href="/2019/03/27/1科大软院 - 人工智能期中考试复习/">科大软院 - 人工智能期中考试复习</a>
           </li>
         
           <li>
-            <a href="/2019/03/27/动态规划 - Dynamic Programming/">动态规划 - Dynamic Programming</a>
+            <a href="/2019/03/27/4动态规划 - Dynamic Programming/">动态规划 - Dynamic Programming</a>
           </li>
         
       </ul>
