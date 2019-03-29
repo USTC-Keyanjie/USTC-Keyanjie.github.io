@@ -15,7 +15,9 @@
 <meta property="og:description" content="分布式第一次实验，怎么坑这么多！🤯 图挂了有点尴尬，明天就换七牛云的图床。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_1.png">
-<meta property="og:updated_time" content="2019-03-29T07:40:05.963Z">
+<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_2.png">
+<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_3.png">
+<meta property="og:updated_time" content="2019-03-29T07:52:05.317Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式lab1：Ubuntu16.04上Hadoop环境安装">
 <meta name="twitter:description" content="分布式第一次实验，怎么坑这么多！🤯 图挂了有点尴尬，明天就换七牛云的图床。">
@@ -214,17 +216,18 @@
 <li><p>接着可以启动 hadoop 了，启动需要在 <strong>Master</strong> 节点的<strong>sbin</strong>文件夹中进行：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/hadoop/hadoop-2.8.5/sbin</span><br><span class="line">./start-all.sh</span><br><span class="line">mr-jobhistory-daemon.sh start historyserver</span><br></pre></td></tr></table></figure>
 <p>通过命令 <code>jps</code> 可以查看各个节点所启动的进程。正确的话，在 Master 节点上可以看到 NameNode、ResourceManager、SecondrryNameNode、JobHistoryServer 进程。</p>
+<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/3_2.png">
 </li>
 <li><p>在namenode上查看集群状态</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop dfsadmin -report</span><br></pre></td></tr></table></figure>
 <p>此时可以通过在浏览器中打开<a href="http://master:50070" target="_blank" rel="noopener">http://master:50070</a>查看。</p>
-</li>
+<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/3_3.png"></li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/29/分布式lab1：Ubuntu16-04上Hadoop环境安装/" data-id="cjttrbqcn0002x72ztslf8yh2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/29/分布式lab1：Ubuntu16-04上Hadoop环境安装/" data-id="cjttrr2ze0001z12zhdsalbak" class="article-share-link">Share</a>
       
       
     </footer>
