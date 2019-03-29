@@ -15,7 +15,7 @@
 <meta property="og:description" content="分布式第一次实验，怎么坑这么多！🤯 图挂了有点尴尬，明天就换七牛云的图床。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_1.png">
-<meta property="og:updated_time" content="2019-03-29T06:07:16.092Z">
+<meta property="og:updated_time" content="2019-03-29T07:37:36.912Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式lab1：Ubuntu16.04上Hadoop环境安装">
 <meta name="twitter:description" content="分布式第一次实验，怎么坑这么多！🤯 图挂了有点尴尬，明天就换七牛云的图床。">
@@ -192,18 +192,21 @@
 <li><p>修改hadoop-2.8.5/etc/hadoop/<strong>yarn-site.xml</strong>文件</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.hostname<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>master<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.aux-services<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>mapreduce_shuffle<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
-<li><p>将配置好的文件复制到各个slave节点上：</p>
+<li><p>将配置好的文件复制到<strong>各个slave</strong>节点上：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local</span><br><span class="line">sudo rm -r ./hadoop/tmp     # 删除 Hadoop 临时文件</span><br><span class="line">tar -zcf ~/hadoop.master.tar.gz ./hadoop   # 先压缩再复制</span><br><span class="line">cd ~</span><br><span class="line">scp ./hadoop.master.tar.gz slave1:/home/parallels</span><br><span class="line">scp ./hadoop.master.tar.gz slave2:/home/parallels</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h3 id="在slave1节点上：-1"><a href="#在slave1节点上：-1" class="headerlink" title="在slave1节点上："></a>在slave1节点上：</h3><ol>
-<li><p>解压文件，并修改owner</p>
+<li><p>解压文件，并修改<strong>owner</strong></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo rm -r /usr/local/hadoop    # 删掉旧的（如果存在）</span><br><span class="line">sudo tar -zxf /home/parallels/hadoop.master.tar.gz -C /usr/local</span><br><span class="line">sudo chown -R parallels /usr/local/hadoop</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h3 id="回到master节点"><a href="#回到master节点" class="headerlink" title="回到master节点"></a>回到master节点</h3><ol>
-<li><p>到/etc/目录下找到<strong>profile</strong>文件，添加以下语句：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export HADOOP_HOME_BIN=/usr/local/hadoop/hadoop-2.8.5/bin</span><br><span class="line">export PATH=$PATH:$HADOOP_HOME_BIN</span><br></pre></td></tr></table></figure>
+<li><p>到/<strong>etc</strong>目录下找到<strong>profile</strong>文件，添加以下语句：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export HADOOP_HOME=/usr/local/hadoop/hadoop-2.8.5/bin</span><br><span class="line">export PATH=$PATH:$HADOOP_HOME:$PATH</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>再执行一条语句，将文件进行重载</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>到/usr/local/hadoop/hadoop-2.8.5/<strong>bin</strong>文件夹下，在 Master 节点执行 NameNode 的格式化</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/hadoop/hadoop-2.8.5/bin</span><br><span class="line">hadoop namenode -format</span><br></pre></td></tr></table></figure>
@@ -221,7 +224,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/29/分布式lab1：Ubuntu16-04上Hadoop环境安装/" data-id="cjttolev900029s2ze6rd3o81" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/29/分布式lab1：Ubuntu16-04上Hadoop环境安装/" data-id="cjttr8kwo0002vg2zzpg596cg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -324,22 +327,5 @@
 
 
   </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-
-<!--<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
 </body>
 </html>
