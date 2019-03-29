@@ -14,14 +14,15 @@
 <meta property="og:site_name" content="Alan&#39;s Notebook">
 <meta property="og:description" content="分布式第一次实验，怎么坑这么多！🤯 图挂了有点尴尬，明天就换七牛云的图床。">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_4.jpg">
 <meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_1.png">
 <meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_2.png">
 <meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_3.png">
-<meta property="og:updated_time" content="2019-03-29T07:52:05.317Z">
+<meta property="og:updated_time" content="2019-03-29T08:11:49.043Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式lab1：Ubuntu16.04上Hadoop环境安装">
 <meta name="twitter:description" content="分布式第一次实验，怎么坑这么多！🤯 图挂了有点尴尬，明天就换七牛云的图床。">
-<meta name="twitter:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_1.png">
+<meta name="twitter:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_4.jpg">
   
     <link rel="alternate" href="/atom.xml" title="Alan&#39;s Notebook" type="application/atom+xml">
   
@@ -104,7 +105,11 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostname master</span><br></pre></td></tr></table></figure>
 <p>这样不能彻底修改hostname（主机名），重启后还会还原到默认的Ubuntu，要彻底修改要修改/etc/hostname，namenode和datanode各自修改为自己的hostname</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gedit /etc/hostname master</span><br></pre></td></tr></table></figure>
-<p>把原来的名称<strong>删掉</strong>，<strong>不要用#注释，直接删掉，因为#没用，修改内容</strong>：</p>
+<p>这里应该会出现这个问题：</p>
+<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/3_4.jpg">
+<p><a href="https://blog.csdn.net/wuyao721/article/details/3678859" target="_blank" rel="noopener">解决方法</a>（致谢苏璐岩同学）：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br><span class="line">xhost +</span><br><span class="line">sudo su root</span><br></pre></td></tr></table></figure>
+<p>或者直接用编辑器打开<strong>/etc/hostname**</strong>这个文件<strong>，把原来的名称</strong>删掉<strong>，</strong>不要用#注释，直接删掉，因为#没用，<strong>修改内容</strong>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">master</span><br></pre></td></tr></table></figure>
 <p>退出shell客户端，重新进入，并且换成root操作</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br><span class="line">sudo su root</span><br></pre></td></tr></table></figure>
@@ -227,7 +232,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/29/分布式lab1：Ubuntu16-04上Hadoop环境安装/" data-id="cjttrr2ze0001z12zhdsalbak" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/29/分布式lab1：Ubuntu16-04上Hadoop环境安装/" data-id="cjttsgr2s00021z2zsuux6zz9" class="article-share-link">Share</a>
       
       
     </footer>
