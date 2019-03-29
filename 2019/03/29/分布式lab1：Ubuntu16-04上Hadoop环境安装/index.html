@@ -15,7 +15,7 @@
 <meta property="og:description" content="分布式第一次实验，怎么坑这么多！🤯 图挂了有点尴尬，明天就换七牛云的图床。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2019/03/29/分布式lab1：Ubuntu16-04上Hadoop环境安装/分布式lab1：Ubuntu16-04上Hadoop环境安装/ssh%20slave1结果展示.png">
-<meta property="og:updated_time" content="2019-03-28T18:50:01.827Z">
+<meta property="og:updated_time" content="2019-03-29T02:11:17.996Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式lab1：Ubuntu16.04上Hadoop环境安装">
 <meta name="twitter:description" content="分布式第一次实验，怎么坑这么多！🤯 图挂了有点尴尬，明天就换七牛云的图床。">
@@ -111,8 +111,6 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping slave1</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h3 id="【坑】无法修改hostname文件，因为hostname文件只读"><a href="#【坑】无法修改hostname文件，因为hostname文件只读" class="headerlink" title="【坑】无法修改hostname文件，因为hostname文件只读"></a>【坑】无法修改hostname文件，因为hostname文件只读</h3><p>解决办法：<code>sudo vim /etc/hostname</code></p>
-<p>建议在每个虚拟机装一个sublime，后面要改的文件很多，sublime比较好用。</p>
 <h2 id="不能用他的方法安装jdk，换一个"><a href="#不能用他的方法安装jdk，换一个" class="headerlink" title="不能用他的方法安装jdk，换一个"></a>不能用他的方法安装jdk，换一个</h2><ol>
 <li><p>前往<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="noopener">oracle Java官网</a>下载JDK</p>
 </li>
@@ -138,8 +136,11 @@
 </li>
 </ol>
 <h2 id="SSH无密码验证配置"><a href="#SSH无密码验证配置" class="headerlink" title="SSH无密码验证配置"></a>SSH无密码验证配置</h2><h3 id="在master节点上："><a href="#在master节点上：" class="headerlink" title="在master节点上："></a>在master节点上：</h3><ol>
+<li><p>先安装ssh</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install ssh</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>先创建本地公钥：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.ssh               # 如果没有该目录，先执行一次ssh localhost</span><br><span class="line">rm ./id_rsa*            # 删除之前生成的公匙（如果有）</span><br><span class="line">ssh-keygen -t rsa       # 一直按回车就可以</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/.ssh</span><br><span class="line">cd ~/.ssh               </span><br><span class="line">rm ./id_rsa*            # 删除之前生成的公匙（如果有）</span><br><span class="line">ssh-keygen -t rsa       # 一直按回车就可以</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>让 Master 节点需能无密码 SSH 本机，在 Master 节点上执行：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ./id_rsa.pub &gt;&gt; ./authorized_keys</span><br></pre></td></tr></table></figure>
@@ -220,7 +221,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/29/分布式lab1：Ubuntu16-04上Hadoop环境安装/" data-id="cjtsztewx0003fj2zdkz7p89z" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/03/29/分布式lab1：Ubuntu16-04上Hadoop环境安装/" data-id="cjttfkzz10003pz2z93riiwf4" class="article-share-link">Share</a>
       
       
     </footer>
