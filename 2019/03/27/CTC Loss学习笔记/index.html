@@ -105,20 +105,20 @@
 
 
 
-<meta name="description" content="背景语音识别时，人说一句“Hello”，尽管发音很标准，但是由于有停顿、换气或是其他原因，音频信息中的“H”音很容易对不上文本信息中的“H”。这就需要预处理对齐问题，但是用人工的方法手动对齐比较音频信息和文本信息，需要耗费大量的人力财力。CTC就是处理这一类对齐问题而生的技术。 基本过程在语音识别中，CTC会逐帧辨别发的什么音。如果通过发音辨别出了一个字母，那么这一帧就标记为这个字母；如果没声音就">
+<meta name="description" content="谨以此文纪念一下我那次晚上11点半查完的实验。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CTC Loss学习笔记">
 <meta property="og:url" content="https://www.keyanjie.net/2019/03/27/CTC Loss学习笔记/index.html">
 <meta property="og:site_name" content="Alan&#39;s Notebook🦍">
-<meta property="og:description" content="背景语音识别时，人说一句“Hello”，尽管发音很标准，但是由于有停顿、换气或是其他原因，音频信息中的“H”音很容易对不上文本信息中的“H”。这就需要预处理对齐问题，但是用人工的方法手动对齐比较音频信息和文本信息，需要耗费大量的人力财力。CTC就是处理这一类对齐问题而生的技术。 基本过程在语音识别中，CTC会逐帧辨别发的什么音。如果通过发音辨别出了一个字母，那么这一帧就标记为这个字母；如果没声音就">
+<meta property="og:description" content="谨以此文纪念一下我那次晚上11点半查完的实验。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/ctc_loss_1.png">
 <meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/ctc_loss_2.png">
 <meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/ctc_loss_3.png">
-<meta property="og:updated_time" content="2019-03-29T14:05:05.679Z">
+<meta property="og:updated_time" content="2019-03-30T07:41:49.034Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CTC Loss学习笔记">
-<meta name="twitter:description" content="背景语音识别时，人说一句“Hello”，尽管发音很标准，但是由于有停顿、换气或是其他原因，音频信息中的“H”音很容易对不上文本信息中的“H”。这就需要预处理对齐问题，但是用人工的方法手动对齐比较音频信息和文本信息，需要耗费大量的人力财力。CTC就是处理这一类对齐问题而生的技术。 基本过程在语音识别中，CTC会逐帧辨别发的什么音。如果通过发音辨别出了一个字母，那么这一帧就标记为这个字母；如果没声音就">
+<meta name="twitter:description" content="谨以此文纪念一下我那次晚上11点半查完的实验。">
 <meta name="twitter:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/ctc_loss_1.png">
 
 
@@ -329,7 +329,9 @@
       
 
       
-        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>语音识别时，人说一句“Hello”，尽管发音很标准，但是由于有停顿、换气或是其他原因，音频信息中的“H”音很容易对不上文本信息中的“H”。这就需要预处理对齐问题，但是用人工的方法手动对齐比较音频信息和文本信息，需要耗费大量的人力财力。CTC就是处理这一类对齐问题而生的技术。</p>
+        <p>谨以此文纪念一下我那次晚上11点半查完的实验。</p>
+<a id="more"></a>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>语音识别时，人说一句“Hello”，尽管发音很标准，但是由于有停顿、换气或是其他原因，音频信息中的“H”音很容易对不上文本信息中的“H”。这就需要预处理对齐问题，但是用人工的方法手动对齐比较音频信息和文本信息，需要耗费大量的人力财力。CTC就是处理这一类对齐问题而生的技术。</p>
 <h2 id="基本过程"><a href="#基本过程" class="headerlink" title="基本过程"></a>基本过程</h2><p>在语音识别中，CTC会逐帧辨别发的什么音。如果通过发音辨别出了一个字母，那么这一帧就标记为这个字母；如果没声音就标记为blank，表示这是两个单词中间的空格；如果分辨不出来是啥，就标记为ϵ (ctc blank)。所以将“Hello”的音频信息进行辨别后，会得到的结果可能会是：“ϵϵHellϵϵlloϵ”，也可能是“Heeϵϵllϵϵlooϵϵ”，还有其他很多种可能。</p>
 <p>ctc的处理过程分为2步：</p>
 <ol>
