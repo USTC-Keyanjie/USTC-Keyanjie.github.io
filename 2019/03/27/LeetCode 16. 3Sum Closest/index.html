@@ -45,6 +45,32 @@
 
 
 
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
 
 
 
@@ -79,17 +105,17 @@
 
 
 
-<meta name="description" content="Given an array nums of n integers and an integer target, find three integers in nums such that the sum is closest to target. Return the sum of the three integers. You may assume that each input would">
+<meta name="description" content="LeetCode 16 题解">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode 16. 3Sum Closest">
 <meta property="og:url" content="https://www.keyanjie.net/2019/03/27/LeetCode 16. 3Sum Closest/index.html">
 <meta property="og:site_name" content="Alan&#39;s Notebook🦍">
-<meta property="og:description" content="Given an array nums of n integers and an integer target, find three integers in nums such that the sum is closest to target. Return the sum of the three integers. You may assume that each input would">
+<meta property="og:description" content="LeetCode 16 题解">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-30T07:29:25.383Z">
+<meta property="og:updated_time" content="2019-03-30T07:32:19.800Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode 16. 3Sum Closest">
-<meta name="twitter:description" content="Given an array nums of n integers and an integer target, find three integers in nums such that the sum is closest to target. Return the sum of the three integers. You may assume that each input would">
+<meta name="twitter:description" content="LeetCode 16 题解">
 
 
 
@@ -299,10 +325,12 @@
       
 
       
-        <p>Given an array <code>nums</code> of <em>n</em> integers and an integer <code>target</code>, find three integers in <code>nums</code> such that the sum is closest to <code>target</code>. Return the sum of the three integers. You may assume that each input would have exactly one solution.</p>
+        <p>LeetCode 16 题解</p>
+<a id="more"></a>
+<h2 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h2><p>Given an array <code>nums</code> of <em>n</em> integers and an integer <code>target</code>, find three integers in <code>nums</code> such that the sum is closest to <code>target</code>. Return the sum of the three integers. You may assume that each input would have exactly one solution.</p>
 <p><strong>Example:</strong></p>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Given array nums = [-1, 2, 1, -4], and target = 1.</span><br><span class="line"></span><br><span class="line">The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).</span><br></pre></td></tr></table></figure></div>
-<p><strong>思路：和15题差不多，先排序，然后定好三个数中一个数，再搜索剩下两个数。</strong></p>
+<h2 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h2><p>先排序，然后定好三个数中一个数，再搜索剩下两个数。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">threeSumClosest</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> closed_sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> min_dis = INT_MAX;</span><br><span class="line">        sort(nums.begin(), nums.end());</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size() - <span class="number">2</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i == <span class="number">0</span> || (i &gt; <span class="number">0</span> &amp;&amp; nums[i] != nums[i - <span class="number">1</span>])) &#123;</span><br><span class="line">                <span class="keyword">int</span> l = i + <span class="number">1</span>, r = nums.size() - <span class="number">1</span>, sum = target - nums[i];</span><br><span class="line">                <span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (nums[l] + nums[r] == sum) &#123;</span><br><span class="line">                        <span class="keyword">return</span> target;</span><br><span class="line">                    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (nums[l] + nums[r] &lt; sum) &#123;</span><br><span class="line">                        <span class="keyword">if</span> (-(nums[l] + nums[r] - sum) &lt; min_dis) &#123;</span><br><span class="line">                            min_dis = -(nums[l] + nums[r] - sum);</span><br><span class="line">                            closed_sum = nums[l] + nums[r] + nums[i];</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">do</span> &#123;</span><br><span class="line">                            l++;</span><br><span class="line">                        &#125; <span class="keyword">while</span> (l &lt; r &amp;&amp; nums[l] == nums[l<span class="number">-1</span>]);</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        <span class="keyword">if</span> (nums[l] + nums[r] - sum &lt; min_dis) &#123;</span><br><span class="line">                            min_dis = nums[l] + nums[r] - sum;</span><br><span class="line">                            closed_sum = nums[l] + nums[r] + nums[i];</span><br><span class="line">                        &#125;</span><br><span class="line">                        <span class="keyword">do</span> &#123;</span><br><span class="line">                            r--;</span><br><span class="line">                        &#125;<span class="keyword">while</span> (l &lt; r &amp;&amp; nums[r] == nums[r+<span class="number">1</span>]);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> closed_sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
       
@@ -395,8 +423,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -438,6 +475,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目："><span class="nav-number">1.</span> <span class="nav-text">题目：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析："><span class="nav-number">2.</span> <span class="nav-text">分析：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
