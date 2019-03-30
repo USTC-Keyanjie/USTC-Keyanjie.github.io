@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_1067060_vr10bjtg3us.css">
     
-        <link rel="stylesheet" href="/css/Prettify/tomorrow-night.min.css">
+        <link rel="stylesheet" href="/css/Prettify/github.min.css">
     
 </head>
 
@@ -86,50 +86,12 @@
                 <p>Write a function to find the longest common prefix string amongst an array of strings.</p>
 <p>If there is no common prefix, return an empty string <code>&quot;&quot;</code>.</p>
 <p><strong>Example 1:</strong></p>
-<pre><code>Input: [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;]
-Output: &quot;fl&quot;
-</code></pre><p><strong>Example 2:</strong></p>
-<pre><code>Input: [&quot;dog&quot;,&quot;racecar&quot;,&quot;car&quot;]
-Output: &quot;&quot;
-Explanation: There is no common prefix among the input strings.
-</code></pre><p><strong>Note:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: [&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;]</span><br><span class="line">Output: &quot;fl&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>Example 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Input: [&quot;dog&quot;,&quot;racecar&quot;,&quot;car&quot;]</span><br><span class="line">Output: &quot;&quot;</span><br><span class="line">Explanation: There is no common prefix among the input strings.</span><br></pre></td></tr></table></figure>
+<p><strong>Note:</strong></p>
 <p>All given inputs are in lowercase letters <code>a-z</code>.</p>
-<pre><code class="c++">class Solution {
-public:
-    string longestCommonPrefix(vector&lt;string&gt;&amp; strs) {
-        if (strs.size() == 0) {
-            return &quot;&quot;;
-        }
-
-        vector&lt;char*&gt; points;
-        for (int i = 0; i &lt; strs.size(); i++) {
-            points.push_back(&amp;strs[i][0]);
-        }
-        string result = &quot;&quot;;
-
-        char cur = &#39;\0&#39;;
-        while (true) {
-            if (*points[0] == &#39;\0&#39;)
-                return result;
-            else {
-                cur = *points[0];
-                points[0]++;
-            }
-
-            for (int i = 1; i &lt; points.size(); i++) {
-                if (*points[i] != cur) {
-                    return result;
-                } else {
-                    points[i]++;
-                }
-            }
-            result += cur;
-        }
-        return result;
-    }
-};
-</code></pre>
-
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">longestCommonPrefix</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; strs)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (strs.size() == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">char</span>*&gt; points;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; strs.size(); i++) &#123;</span><br><span class="line">            points.push_back(&amp;strs[i][<span class="number">0</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">string</span> result = <span class="string">""</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">char</span> cur = <span class="string">'\0'</span>;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (*points[<span class="number">0</span>] == <span class="string">'\0'</span>)</span><br><span class="line">                <span class="keyword">return</span> result;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                cur = *points[<span class="number">0</span>];</span><br><span class="line">                points[<span class="number">0</span>]++;</span><br><span class="line">            &#125;</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; points.size(); i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (*points[i] != cur) &#123;</span><br><span class="line">                    <span class="keyword">return</span> result;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    points[i]++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            result += cur;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
                 <hr>
                 <div>
                     <p>

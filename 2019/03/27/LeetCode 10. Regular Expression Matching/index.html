@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_1067060_vr10bjtg3us.css">
     
-        <link rel="stylesheet" href="/css/Prettify/tomorrow-night.min.css">
+        <link rel="stylesheet" href="/css/Prettify/github.min.css">
     
 </head>
 
@@ -87,67 +87,15 @@
 <p>Flag就此立下！</p>
 <p>这次就来看看LeetCode的第10题，题目如下：</p>
 <p>Given an input string (<code>s</code>) and a pattern (<code>p</code>), implement regular expression matching with support for <code>&#39;.&#39;</code> and <code>&#39;*&#39;</code>.</p>
-<pre><code>&#39;.&#39; Matches any single character.
-&#39;*&#39; Matches zero or more of the preceding element.
-</code></pre><p>The matching should cover the <strong>entire</strong> input string (not partial).</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&apos;.&apos; Matches any single character.</span><br><span class="line">&apos;*&apos; Matches zero or more of the preceding element.</span><br></pre></td></tr></table></figure>
+<p>The matching should cover the <strong>entire</strong> input string (not partial).</p>
 <p><strong>Note:</strong></p>
 <ul>
 <li><code>s</code> could be empty and contains only lowercase letters <code>a-z</code>.</li>
 <li><code>p</code> could be empty and contains only lowercase letters <code>a-z</code>, and characters like <code>.</code> or <code>*</code>.</li>
 </ul>
 <p>这一题我在刚做的时候使用的是字符串处理的思路，但是后来发现”.*”这种情况没办法处理，最后使用的是上学期的动态规划的思想才得以解决。</p>
-<pre><code class="c++">#include &lt;iostream&gt;
-#include &lt;algorithm&gt;
-using namespace std;
-
-class Solution {
-public:
-
-    bool isMatch(string s, string p) {
-        s = &quot;0&quot; + s;
-        p = &quot;0&quot; + p;
-
-        bool dp[p.length()][s.length()];
-
-        dp[0][0] = true;
-        for (int j = 1; j &lt; s.length(); j++) {
-            dp[0][j] = false;
-        }
-        for (int i = 1; i &lt; p.length(); i++) {
-            dp[i][0] = false;
-        }
-
-        for (int i = 2; i &lt; p.length() &amp;&amp; p[i] == &#39;*&#39;; i += 2) {
-            dp[i][0] = true;
-        }
-
-        // 最后一行单独考虑
-        for(int i = 1; i &lt; p.length() - 1;) {
-            // 下一个不是&#39;*&#39;
-            if (p[i + 1] != &#39;*&#39;) {
-                for(int j = 1; j &lt; s.length(); j++) {
-                    dp[i][j] = (p[i] == s[j] || p[i] == &#39;.&#39;) ? dp[i-1][j-1] : false;
-                }
-                i++;
-            } else {
-                for(int j = 1; j &lt; s.length(); j++) {
-                    dp[i+1][j] = (p[i] == s[j] || p[i] == &#39;.&#39;) ? (dp[i+1][j-1] || dp[i-1][j]) : dp[i-1][j];
-                }
-                i += 2;
-            }
-        }
-
-        if (p[p.length() - 1] != &#39;*&#39;) {
-            for (int j = 1; j &lt; s.length(); j++) {
-                dp[p.length() - 1][j] = (p[p.length() - 1] == s[j] || p[p.length() - 1] == &#39;.&#39;) ? dp[p.length() - 2][j-1] : false;
-            }
-        }
-        cout &lt;&lt; endl;
-
-        return dp[p.length() - 1][s.length() - 1];
-    }
-};
-</code></pre>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isMatch</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> p)</span> </span>&#123;</span><br><span class="line">        s = <span class="string">"0"</span> + s;</span><br><span class="line">        p = <span class="string">"0"</span> + p;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">bool</span> dp[p.length()][s.length()];</span><br><span class="line">        </span><br><span class="line">        dp[<span class="number">0</span>][<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; s.length(); j++) &#123;</span><br><span class="line">            dp[<span class="number">0</span>][j] = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; p.length(); i++) &#123;</span><br><span class="line">            dp[i][<span class="number">0</span>] = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; p.length() &amp;&amp; p[i] == <span class="string">'*'</span>; i += <span class="number">2</span>) &#123;</span><br><span class="line">            dp[i][<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 最后一行单独考虑</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; p.length() - <span class="number">1</span>;) &#123;</span><br><span class="line">            <span class="comment">// 下一个不是'*'</span></span><br><span class="line">            <span class="keyword">if</span> (p[i + <span class="number">1</span>] != <span class="string">'*'</span>) &#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; s.length(); j++) &#123;</span><br><span class="line">                    dp[i][j] = (p[i] == s[j] || p[i] == <span class="string">'.'</span>) ? dp[i<span class="number">-1</span>][j<span class="number">-1</span>] : <span class="literal">false</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                i++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; s.length(); j++) &#123;</span><br><span class="line">                    dp[i+<span class="number">1</span>][j] = (p[i] == s[j] || p[i] == <span class="string">'.'</span>) ? (dp[i+<span class="number">1</span>][j<span class="number">-1</span>] || dp[i<span class="number">-1</span>][j]) : dp[i<span class="number">-1</span>][j];</span><br><span class="line">                &#125;</span><br><span class="line">                i += <span class="number">2</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (p[p.length() - <span class="number">1</span>] != <span class="string">'*'</span>) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; s.length(); j++) &#123;</span><br><span class="line">                dp[p.length() - <span class="number">1</span>][j] = (p[p.length() - <span class="number">1</span>] == s[j] || p[p.length() - <span class="number">1</span>] == <span class="string">'.'</span>) ? dp[p.length() - <span class="number">2</span>][j<span class="number">-1</span>] : <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> dp[p.length() - <span class="number">1</span>][s.length() - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
                 <hr>
                 <div>

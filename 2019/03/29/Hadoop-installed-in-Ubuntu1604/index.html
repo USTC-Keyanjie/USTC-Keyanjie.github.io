@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_1067060_vr10bjtg3us.css">
     
-        <link rel="stylesheet" href="/css/Prettify/tomorrow-night.min.css">
+        <link rel="stylesheet" href="/css/Prettify/github.min.css">
     
 </head>
 
@@ -89,100 +89,66 @@
 <h2 id="Parallels虚拟机桥接模式设置"><a href="#Parallels虚拟机桥接模式设置" class="headerlink" title="Parallels虚拟机桥接模式设置"></a>Parallels虚拟机桥接模式设置</h2><p>参考这个<a href="https://blog.csdn.net/wuxiangmujingli/article/details/52671448" target="_blank" rel="noopener">文章</a>，IP的起始地址设为192.168.1.11，结束地址设为192.168.1.31</p>
 <h2 id="hostname的配置操作"><a href="#hostname的配置操作" class="headerlink" title="hostname的配置操作"></a>hostname的配置操作</h2><ol>
 <li><p>修改hosts文件，如下（master节点、slave1节点、slave2节点都做）：</p>
-<pre><code class="shell">sudo su root # 若当前不是root就进入root账户
-gedit /etc/hosts
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo su root # 若当前不是root就进入root账户</span><br><span class="line">gedit /etc/hosts</span><br></pre></td></tr></table></figure>
 <p>修改内容如下：</p>
-<pre><code class="shell">192.168.1.11    master
-192.168.1.12    slave1
-192.168.1.13    slave2
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">192.168.1.11	master</span><br><span class="line">192.168.1.12	slave1</span><br><span class="line">192.168.1.13	slave2</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>修改hostname</p>
-<pre><code class="shell"># master节点上修改为master，salve1节点和slave2节点上分别修改为slave1、slave2
-hostname master/slave1/slave2
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> master节点上修改为master，salve1节点和slave2节点上分别修改为slave1、slave2</span><br><span class="line">hostname master/slave1/slave2</span><br></pre></td></tr></table></figure>
 <p>这样不能彻底修改hostname（主机名），重启后还会还原到默认的Ubuntu，要彻底修改要修改/etc/hostname，namenode和datanode各自修改为自己的hostname</p>
 <p>直接用编辑器打开<strong>/etc/hostname</strong>这个文件<strong>，把原来的名称</strong>删掉<strong>，</strong>不要用#注释，直接删掉，因为#没用，<strong>修改内容</strong>：</p>
-<pre><code class="shell"># master节点上修改为master，salve1节点和slave2节点上分别修改为slave1、slave2
-master/slave1/slave2
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> master节点上修改为master，salve1节点和slave2节点上分别修改为slave1、slave2</span><br><span class="line">master/slave1/slave2</span><br></pre></td></tr></table></figure>
 <p>退出shell客户端，重新进入，并且换成root操作(这是教程上的一步，没看懂这是什么操作)</p>
-<pre><code class="shell">exit
-sudo su root
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br><span class="line">sudo su root</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>这些工作都做好了，互相ping一下看看能不能ping通，ping 节点名称</p>
-<pre><code class="shell">ping master/slave1/slave2
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping master/slave1/slave2</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h2 id="安装jdk-所有节点都做"><a href="#安装jdk-所有节点都做" class="headerlink" title="安装jdk(所有节点都做)"></a>安装jdk(所有节点都做)</h2><ol>
 <li><p>前往<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="noopener">oracle Java官网</a>下载JDK</p>
 </li>
 <li><p>确保当前是系统账户</p>
-<pre><code class="shell">sudo su root
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo su root</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>解压缩到指定目录（以jdk-8u201-linux-x64.tar.gz为例）</p>
 <p>创建目录:</p>
-<pre><code class="shell">mkdir /usr/lib/jvm
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir /usr/lib/jvm</span><br></pre></td></tr></table></figure>
 <p>解压缩到该目录:</p>
-<pre><code class="shell">tar -zxvf jdk-8u201-linux-x64.tar.gz -C /usr/lib/jvm
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf jdk-8u201-linux-x64.tar.gz -C /usr/lib/jvm</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>修改环境变量，如果提示没有装vim就使用<code>apt install vim</code>装一个:　　</p>
-<pre><code class="shell">vim ~/.bashrc
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bashrc</span><br></pre></td></tr></table></figure>
 <p>在文件末尾追加下面内容：</p>
-<pre><code class="shell">#set oracle jdk environment
-export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_201  # 这里要注意目录要换成自己解压的jdk 目录
-export JRE_HOME=${JAVA_HOME}/jre  
-export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib  
-export PATH=${JAVA_HOME}/bin:$PATH 
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>set oracle jdk environment</span><br><span class="line">export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_201  # 这里要注意目录要换成自己解压的jdk 目录</span><br><span class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre  </span><br><span class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib  </span><br><span class="line">export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>使环境变量马上生效：</p>
-<pre><code class="shell">source ~/.bashrc
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>系统注册此jdk</p>
-<pre><code class="shell">update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk1.8.0_201/bin/java 300
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk1.8.0_201/bin/java 300</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>查看java版本，看看是否安装成功：</p>
-<pre><code class="shell">java -version
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -version</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h2 id="SSH无密码验证配置"><a href="#SSH无密码验证配置" class="headerlink" title="SSH无密码验证配置"></a>SSH无密码验证配置</h2><h3 id="在master节点上："><a href="#在master节点上：" class="headerlink" title="在master节点上："></a>在master节点上：</h3><ol>
 <li><p>先安装ssh</p>
-<pre><code class="shell">sudo apt-get install ssh
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install ssh</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>先创建本地公钥：</p>
-<pre><code class="shell">mkdir ~/.ssh
-cd ~/.ssh               
-rm ./id_rsa*            # 删除之前生成的公匙（如果有）
-ssh-keygen -t rsa       # 一直按回车就可以
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/.ssh</span><br><span class="line">cd ~/.ssh               </span><br><span class="line">rm ./id_rsa*            # 删除之前生成的公匙（如果有）</span><br><span class="line">ssh-keygen -t rsa       # 一直按回车就可以</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>让 Master 节点需能无密码 SSH 本机，在 Master 节点上执行：</p>
-<pre><code class="shell">cat ./id_rsa.pub &gt;&gt; ./authorized_keys
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ./id_rsa.pub &gt;&gt; ./authorized_keys</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>完成后可执行 <code>ssh Master</code> 验证一下（可能需要输入 yes，成功后执行 <code>exit</code> 返回原来的终端）。接着在 master 节点将上公匙传输到 slave1 节点和slave2节点：</p>
-<pre><code class="shell">scp ./id_rsa.pub parallels@slave1:/home/parallels/  # 向slave1节点传
-scp ./id_rsa.pub parallels@slave2:/home/parallels/  # 向slave2节点传
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp ./id_rsa.pub parallels@slave1:/home/parallels/  # 向slave1节点传</span><br><span class="line">scp ./id_rsa.pub parallels@slave2:/home/parallels/  # 向slave2节点传</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h3 id="在slave1节点上（slave2同理）："><a href="#在slave1节点上（slave2同理）：" class="headerlink" title="在slave1节点上（slave2同理）："></a>在slave1节点上（slave2同理）：</h3><ol>
 <li><p>将 ssh 公匙加入授权：</p>
-<pre><code class="shell">mkdir /root/.ssh       # 如果不存在该文件夹需先创建，若已存在则忽略
-cat /home/parallels/id_rsa.pub &gt;&gt; /root/.ssh/authorized_keys
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir /root/.ssh       # 如果不存在该文件夹需先创建，若已存在则忽略</span><br><span class="line">cat /home/parallels/id_rsa.pub &gt;&gt; /root/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h3 id="在master节点上测试："><a href="#在master节点上测试：" class="headerlink" title="在master节点上测试："></a>在master节点上测试：</h3><p>执行<code>ssh slave1</code>，会有这样的结果：</p>
@@ -190,136 +156,56 @@ cat /home/parallels/id_rsa.pub &gt;&gt; /root/.ssh/authorized_keys
 <p>那么说明成功了，再执行<code>ssh slave2</code>看看。</p>
 <h2 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h2><p><strong>所有节点上</strong>，执行<code>ufw disable</code>就好。</p>
 <h2 id="安装Hadoop"><a href="#安装Hadoop" class="headerlink" title="安装Hadoop"></a>安装Hadoop</h2><h3 id="在master节点上：-1"><a href="#在master节点上：-1" class="headerlink" title="在master节点上："></a>在master节点上：</h3><p>[注]全程在root账户下运行</p>
-<pre><code class="shell">sudo su root # 若当前不是root就进入root账户
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo su root # 若当前不是root就进入root账户</span><br></pre></td></tr></table></figure>
 <ol>
 <li><p>到Hadoop<a href="https://hadoop.apache.org/releases.html" target="_blank" rel="noopener">官网</a>下载binary的hadoop，我下载的是<strong>hadoop-2.8.5.tar.gz</strong>文件</p>
 </li>
 <li><p>在/usr/local目录下建立hadoop目录</p>
-<pre><code class="shell">mkdir /usr/local/hadoop
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir /usr/local/hadoop</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>把<strong>hadoop-2.8.5.tar.gz</strong>拷贝到/usr/local/<strong>hadoop</strong>目录下，然后解压，这里的<code>&lt;path&gt;</code>写自己的下载位置</p>
-<pre><code class="shell">cp &lt;path&gt;/hadoop-2.8.5.tar.gz /usr/local/hadoop
-cd /usr/local/hadoop
-tar –zxvf hadoop-2.8.5.tar.gz
-cd hadoop-2.8.5
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cp &lt;path&gt;/hadoop-2.8.5.tar.gz /usr/local/hadoop</span><br><span class="line">cd /usr/local/hadoop</span><br><span class="line">tar –zxvf hadoop-2.8.5.tar.gz</span><br><span class="line">cd hadoop-2.8.5</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>在/usr/local/<strong>hadoop</strong>目录下新建tmp文件夹和hdfs文件夹</p>
-<pre><code class="shell">cd /usr/local/hadoop
-mkdir tmp
-mkdir hdfs
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/hadoop</span><br><span class="line">mkdir tmp</span><br><span class="line">mkdir hdfs</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>编辑（可用<code>vim hadoop-env.sh</code>也可双击打开编辑）hadoop-2.8.5/etc/hadoop/<strong>hadoop-env.sh</strong>文件，把JAVA_HOME设置成Java安装根路径，如下：</p>
-<pre><code class="shell">cd /usr/local/hadoop/hadoop-2.8.5/etc/hadoop
-export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_201
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/hadoop/hadoop-2.8.5/etc/hadoop</span><br><span class="line">export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_201</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>新建<strong>slaves</strong>文件</p>
-<pre><code class="shell">vi slaves
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi slaves</span><br></pre></td></tr></table></figure>
 <p>添加这两条</p>
-<pre><code>slave1
-slave2
-</code></pre></li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">slave1</span><br><span class="line">slave2</span><br></pre></td></tr></table></figure>
+</li>
 <li><p>编辑<strong>master</strong>文件，全文改为<code>master</code></p>
 </li>
 <li><p>修改hadoop-2.8.5/etc/hadoop/<strong>core-site.xml</strong>文件(我在文件系统里使用的sublime修改的文件，也可以直接双击使用gedit打开)</p>
-<pre><code class="xml">&lt;configuration&gt;
-    &lt;property&gt;
-        &lt;name&gt;fs.defaultFS&lt;/name&gt;
-        &lt;value&gt;hdfs://master:9000&lt;/value&gt;
-    &lt;/property&gt;
-    &lt;property&gt;
-        &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;
-        &lt;value&gt;file:/usr/local/hadoop/tmp&lt;/value&gt;
-        &lt;description&gt;Abase for other temporary directories.&lt;/description&gt;
-    &lt;/property&gt;
-&lt;/configuration&gt;
-</code></pre>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.defaultFS<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://master:9000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.tmp.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>file:/usr/local/hadoop/tmp<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">description</span>&gt;</span>Abase for other temporary directories.<span class="tag">&lt;/<span class="name">description</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>修改hadoop-2.8.5/etc/hadoop/<strong>hdfs-site.xml</strong>文件</p>
-<pre><code class="xml">&lt;configuration&gt;
-    &lt;property&gt;
-        &lt;name&gt;dfs.namenode.secondary.http-address&lt;/name&gt;
-        &lt;value&gt;master:50090&lt;/value&gt;
-    &lt;/property&gt;
-    &lt;property&gt;
-        &lt;name&gt;dfs.replication&lt;/name&gt;
-        &lt;value&gt;3&lt;/value&gt;
-    &lt;/property&gt;
-    &lt;property&gt;
-        &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;
-        &lt;value&gt;file:/usr/local/hadoop/hdfs/name&lt;/value&gt;
-    &lt;/property&gt;
-    &lt;property&gt;
-        &lt;name&gt;dfs.datanode.data.dir&lt;/name&gt;
-        &lt;value&gt;file:/usr/local/hadoop/hdfs/data&lt;/value&gt;
-    &lt;/property&gt;
-&lt;/configuration&gt;
-</code></pre>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.secondary.http-address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>master:50090<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.replication<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>3<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.name.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>file:/usr/local/hadoop/hdfs/name<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.datanode.data.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>file:/usr/local/hadoop/hdfs/data<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>修改hadoop-2.8.5/etc/hadoop/<strong>mapred-site.xml</strong>文件(可能需要先重命名，默认文件名为 mapred-site.xml.template)</p>
-<pre><code class="xml">&lt;configuration&gt;
-  &lt;property&gt;
-      &lt;name&gt;mapreduce.framework.name&lt;/name&gt;
-      &lt;value&gt;yarn&lt;/value&gt;
-  &lt;/property&gt;
-  &lt;property&gt;
-      &lt;name&gt;mapreduce.jobhistory.address&lt;/name&gt;
-      &lt;value&gt;master:10020&lt;/value&gt;
-  &lt;/property&gt;
-  &lt;property&gt;
-      &lt;name&gt;mapreduce.jobhistory.webapp.address&lt;/name&gt;
-      &lt;value&gt;master:19888&lt;/value&gt;
-  &lt;/property&gt;
-&lt;/configuration&gt;
-</code></pre>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.framework.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>yarn<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.jobhistory.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>master:10020<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.jobhistory.webapp.address<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>master:19888<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>修改hadoop-2.8.5/etc/hadoop/<strong>yarn-site.xml</strong>文件</p>
-<pre><code class="xml">&lt;configuration&gt;
-    &lt;property&gt;
-        &lt;name&gt;yarn.resourcemanager.hostname&lt;/name&gt;
-        &lt;value&gt;master&lt;/value&gt;
-    &lt;/property&gt;
-    &lt;property&gt;
-        &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;
-        &lt;value&gt;mapreduce_shuffle&lt;/value&gt;
-    &lt;/property&gt;
-&lt;/configuration&gt;
-</code></pre>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.resourcemanager.hostname<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>master<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.aux-services<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">value</span>&gt;</span>mapreduce_shuffle<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>将配置好的文件复制到<strong>各个slave</strong>节点上：</p>
-<pre><code class="shell">cd /usr/local
-sudo rm -r ./hadoop/tmp     # 删除 Hadoop 临时文件
-tar -zcf ~/hadoop.master.tar.gz ./hadoop   # 先压缩再复制
-cd ~
-scp ./hadoop.master.tar.gz slave1:/home/parallels
-scp ./hadoop.master.tar.gz slave2:/home/parallels
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local</span><br><span class="line">sudo rm -r ./hadoop/tmp     # 删除 Hadoop 临时文件</span><br><span class="line">tar -zcf ~/hadoop.master.tar.gz ./hadoop   # 先压缩再复制</span><br><span class="line">cd ~</span><br><span class="line">scp ./hadoop.master.tar.gz slave1:/home/parallels</span><br><span class="line">scp ./hadoop.master.tar.gz slave2:/home/parallels</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h3 id="在slave1节点上："><a href="#在slave1节点上：" class="headerlink" title="在slave1节点上："></a>在slave1节点上：</h3><ol>
 <li><p>解压文件，并修改<strong>owner</strong></p>
-<pre><code class="shell">sudo su root # 若当前不是root就进入root账户
-rm -r /usr/local/hadoop    # 删掉旧的（如果存在）
-tar -zxf /home/parallels/hadoop.master.tar.gz -C /usr/local
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo su root # 若当前不是root就进入root账户</span><br><span class="line">rm -r /usr/local/hadoop    # 删掉旧的（如果存在）</span><br><span class="line">tar -zxf /home/parallels/hadoop.master.tar.gz -C /usr/local</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <h3 id="回到master节点"><a href="#回到master节点" class="headerlink" title="回到master节点"></a>回到master节点</h3><ol>
 <li><p>到/usr/local/hadoop/hadoop-2.8.5/<strong>bin</strong>文件夹下，在 Master 节点执行 NameNode 的格式化</p>
-<pre><code class="shell">cd /usr/local/hadoop/hadoop-2.8.5/bin
-./hadoop namenode -format
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/hadoop/hadoop-2.8.5/bin</span><br><span class="line">./hadoop namenode -format</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>接着可以启动 hadoop 了，启动需要在 <strong>Master</strong> 节点的<strong>sbin</strong>文件夹中进行：</p>
-<pre><code class="shell">cd /usr/local/hadoop/hadoop-2.8.5/sbin
-./start-all.sh
-mr-jobhistory-daemon.sh start historyserver
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/hadoop/hadoop-2.8.5/sbin</span><br><span class="line">./start-all.sh</span><br><span class="line">mr-jobhistory-daemon.sh start historyserver</span><br></pre></td></tr></table></figure>
 <img src="http://pp41mkw5b.bkt.clouddn.com/static/images/3_5.png">
 <p>通过命令 <code>jps</code> 可以查看各个节点所启动的进程。正确的话，在 Master 节点上可以看到 NameNode、ResourceManager、SecondrryNameNode、JobHistoryServer 进程。</p>
 <img src="http://pp41mkw5b.bkt.clouddn.com/static/images/3_2.png">
@@ -329,9 +215,7 @@ mr-jobhistory-daemon.sh start historyserver
 <img src="http://pp41mkw5b.bkt.clouddn.com/static/images/3_8.png">
 </li>
 <li><p>在namenode上查看集群状态</p>
-<pre><code class="shell">cd /usr/local/hadoop/hadoop-2.8.5/bin
-./hadoop dfsadmin -report
-</code></pre>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/hadoop/hadoop-2.8.5/bin</span><br><span class="line">./hadoop dfsadmin -report</span><br></pre></td></tr></table></figure>
 <p>此时可以通过在浏览器中打开<a href="http://master:50070" target="_blank" rel="noopener">http://master:50070</a>查看。</p>
 <img src="http://pp41mkw5b.bkt.clouddn.com/static/images/3_3.png">
 </li>
