@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.keyanjie.net/2019/03/29/Hadoop-installed-in-Ubuntu1604/</loc>
+    
+    <lastmod>2019-03-30T05:03:00.740Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.keyanjie.net/2019/03/27/%E9%AB%98%E5%9B%BE%E5%AE%9E%E9%AA%8C1%20%E5%9B%BE%E5%83%8F%E7%81%B0%E5%BA%A6%E5%8F%98%E6%8D%A2/</loc>
     
     <lastmod>2019-03-29T14:34:21.098Z</lastmod>
@@ -54,13 +61,6 @@
     <loc>https://www.keyanjie.net/2019/03/27/round(number%5B,%20ndigits%5D)/</loc>
     
     <lastmod>2019-03-29T14:26:01.964Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.keyanjie.net/2019/03/29/Hadoop-installed-in-Ubuntu1604/</loc>
-    
-    <lastmod>2019-03-29T14:18:24.303Z</lastmod>
     
   </url>
   
