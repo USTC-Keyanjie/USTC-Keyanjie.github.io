@@ -1,98 +1,310 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
 
 
 
+  
 
 
-
-
-
-
-
+<html class="theme-next mist use-motion" lang>
 <head><meta name="generator" content="Hexo 3.8.0">
-    <meta charset="utf-8">
-    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="description" content="description">
-    <meta name="author" content="Alan Ke">
-    <meta name="keywords" content>
-    <title>round(number[, ndigits]) ~ Alan&#39;s Notebook🦍</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.7.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.7.4/css/mdb.min.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1067060_vr10bjtg3us.css">
-    
-        <link rel="stylesheet" href="/css/Prettify/github.min.css">
-    
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="round函数是Python中常用的四舍五入的函数，但是今天试用了一下发现有点小坑。对0.5进行四舍五入，结果应该为1，可是Python解释器给的结果是： 12&amp;gt;&amp;gt;&amp;gt; round(0.5)0">
+<meta property="og:type" content="article">
+<meta property="og:title" content="round(number[, ndigits])">
+<meta property="og:url" content="https://www.keyanjie.net/2019/03/27/round(number[, ndigits])/index.html">
+<meta property="og:site_name" content="Alan&#39;s Notebook🦍">
+<meta property="og:description" content="round函数是Python中常用的四舍五入的函数，但是今天试用了一下发现有点小坑。对0.5进行四舍五入，结果应该为1，可是Python解释器给的结果是： 12&amp;gt;&amp;gt;&amp;gt; round(0.5)0">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-29T14:26:01.964Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="round(number[, ndigits])">
+<meta name="twitter:description" content="round函数是Python中常用的四舍五入的函数，但是今天试用了一下发现有点小坑。对0.5进行四舍五入，结果应该为1，可是Python解释器给的结果是： 12&amp;gt;&amp;gt;&amp;gt; round(0.5)0">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.keyanjie.net/2019/03/27/round(number[, ndigits])/">
+
+
+
+
+
+  <title>round(number[, ndigits]) | Alan's Notebook🦍</title>
+  
+
+
+
+
+
+
+
+
 </head>
 
-<body>
-  <header style="height: 40vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-<div class="container">
-    <a class="navbar-brand" href="/"><strong>Alan&#39;s Notebook🦍</strong></a>
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
+  
+  
+    
+  
 
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto text-center">
-            
-            <li class="nav-item">
-                <a class="nav-link" href="/">Home🍹</a>
-            </li>
-            
-            <li class="nav-item">
-                <a class="nav-link" href="/archives/">Archives🍭</a>
-            </li>
-            
-            <li class="nav-item">
-                <a class="nav-link" href="/about/">About🍧</a>
-            </li>
-            
-        </ul>
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Alan's Notebook🦍</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
+      
+        <p class="site-subtitle">Expecto Patronum!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
-
-</nav>
-    <div class="view intro-2" style='background: url("http://pp41mkw5b.bkt.clouddn.com/static/images/0_post.jpg")no-repeat center center;background-size: cover;'>
-    <div class="full-bg-img">
-        <div class="mask rgba-black-light flex-center">
-        <div class="container text-center white-text wow fadeInUp">
-            <p class="h2">round(number[, ndigits])</p>
-            <br>
-            
-            <p>Wednesday, March 27th 2019, 3:11 pm</p>
-            
-        </div>
-        </div>
-    </div>
-    </div>
-  </header>
-
-  <main>
+<nav class="site-nav">
   
-  <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-8 offset-md-2 ">
-            <div class="post-content py-5 z-depth-3 main">
-                <p><strong>round函数是Python中常用的四舍五入的函数，但是今天试用了一下发现有点小坑。对0.5进行四舍五入，结果应该为1，可是Python解释器给的结果是：</strong></p>
-<pre><code>&gt;&gt;&gt; round(0.5)
-0
-</code></pre><a id="more"></a>
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.keyanjie.net/2019/03/27/round(number[, ndigits])/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alan Ke">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alan's Notebook🦍">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">round(number[, ndigits])</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-27T15:11:39+08:00">
+                2019-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong>round函数是Python中常用的四舍五入的函数，但是今天试用了一下发现有点小坑。对0.5进行四舍五入，结果应该为1，可是Python解释器给的结果是：</strong></p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; round(0.5)</span><br><span class="line">0</span><br></pre></td></tr></table></figure></div>
+<a id="more"></a>
 <p><strong>紧接着我又试了几个数，发现：</strong></p>
-<pre><code>&gt;&gt;&gt; round(1.5)
-2
-&gt;&gt;&gt; round(2.5)
-2
-</code></pre><p><strong>round(1.5)还算正常，round(2.5)又很奇怪了，然后看了看Python文档，里面这样解释round函数：</strong></p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; round(1.5)</span><br><span class="line">2</span><br><span class="line">&gt;&gt;&gt; round(2.5)</span><br><span class="line">2</span><br></pre></td></tr></table></figure></div>
+<p><strong>round(1.5)还算正常，round(2.5)又很奇怪了，然后看了看Python文档，里面这样解释round函数：</strong></p>
 <blockquote>
 <p><strong>For the built-in types supporting round(), values are rounded to the closest multiple of 10 to the power minus ndigits; if two multiples are equally close, rounding is done toward the even choice (so, for example, both round(0.5) and round(-0.5) are 0, and round(1.5) is 2). Any integer value is valid for ndigits (positive, zero, or negative). The return value is an integer if ndigits is omitted or None. Otherwise the return value has the same type as number.</strong></p>
 </blockquote>
@@ -102,96 +314,342 @@
 <p><strong>Note: The behavior of round() for floats can be surprising: for example, round(2.675, 2) gives 2.67instead of the expected 2.68. This is not a bug: it’s a result of the fact that most decimal fractions can’t be represented exactly as a float. See Floating Point Arithmetic: Issues and Limitations for more information.</strong></p>
 </blockquote>
 <p><strong>就是按照上述规则，round(2.675, 2)的结果应该是2.68，可是实际结果是：</strong></p>
-<pre><code>&gt;&gt;&gt; round(2.675, 2)
-2.67
-</code></pre><p><strong>这不是我们写了个bug，这是因为机器在存储浮点数2.675的时候，不会存储到这么精确，存储的数比2.675小一点点，应该差不多是2.674999999这样，所以才会被圆整到2.67，这个问题没法解决。</strong></p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; round(2.675, 2)</span><br><span class="line">2.67</span><br></pre></td></tr></table></figure></div>
+<p><strong>这不是我们写了个bug，这是因为机器在存储浮点数2.675的时候，不会存储到这么精确，存储的数比2.675小一点点，应该差不多是2.674999999这样，所以才会被圆整到2.67，这个问题没法解决。</strong></p>
 
-                <hr>
-                <div>
-                    <p>
-                        
-                    </p>
-                </div>
-                <br>
-                
-                    <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
-                
-            </div>
-        </div>
-        <div class="d-none d-md-block col-md-2">
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-  <div id="toc" class="py-5">
-    <p class="h6"><i class="iconfont icon-toc" style="vertical-align:middle"></i> Toc:</p> 
-    <div id="tocbot"></div>
+              <a href="/2019/03/27/CTC Loss学习笔记/" rel="next" title="CTC Loss学习笔记">
+                <i class="fa fa-chevron-left"></i> CTC Loss学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/27/LeetCode 10. Regular Expression Matching/" rel="prev" title="LeetCode 10. Regular Expression Matching">
+                LeetCode 10. Regular Expression Matching <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
-    </div>        
-</div>
-
-<br><br><br>
-
-<!-- Comments -->
-<div class="comments" id="comments">
-
-    
-    
-<div id="vcomments" style="width: 80%;margin: 0 auto;"></div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-<script>
-   var notify = 'false' == true ? true : false;
-   var verify = 'false' == true ? true : false;
-    window.onload = function() {
-        new Valine({
-            el: '#vcomments',
-            notify: notify,
-            verify: verify,
-            app_id: "PLu5Kuwb1g68XrJHrzyCLtKY-gzGzoHsz",
-            app_key: "KvAe30NuziJaOBuwsu5OMR5l",
-            placeholder: "说点什么",
-            avatar:"retro",
-            meta: ['nick','mail','link'],
-            pageSize: "10",
-            visitor: "false"
-        });
-    };
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://valine.js.org">comments powered by Valine.</a></noscript>
-
- 
-</div>
+        
+          
   
-  </main>
-
-<footer class="mt-5">
-  <div class="text-center py-3">
-    <a href="https://hexo.io" target="_blank"><b>HEXO</b></a>
-    <i class="iconfont icon-love"></i>
-    <a href="https://github.com/0x2e/Material-T" target="_blank"> <b>Material-T</b></a>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
   </div>
-</footer>
 
-  <!-- SCRIPTS -->
-  <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.7.4/js/jquery-3.3.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.7.4/js/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.7.4/js/bootstrap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.7.4/js/mdb.min.js"></script>
-  <script src="/js/main.js"></script>
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Alan Ke</p>
+              <p class="site-description motion-element" itemprop="description">description</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alan Ke</span>
+
   
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
     
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
-    <script src="/js/post.js"></script>
+
     
-      <script src="/js/plugins/prettify.js"></script>
-      <script>
-          $(document).ready(function(){
-              $('pre').addClass('prettyprint linenums');
-              prettyPrint();
-          })
-      </script>
-    
+
+  </div>
+
   
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
 </body>
 </html>

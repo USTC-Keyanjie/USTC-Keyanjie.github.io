@@ -1,89 +1,305 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
 
 
 
+  
 
 
-
-
-
-
-
+<html class="theme-next mist use-motion" lang>
 <head><meta name="generator" content="Hexo 3.8.0">
-    <meta charset="utf-8">
-    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="description" content="description">
-    <meta name="author" content="Alan Ke">
-    <meta name="keywords" content>
-    <title>高图实验1 图像灰度变换 ~ Alan&#39;s Notebook🦍</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.7.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.7.4/css/mdb.min.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1067060_vr10bjtg3us.css">
-    
-        <link rel="stylesheet" href="/css/Prettify/github.min.css">
-    
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="高图第一次实验。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高图实验1 图像灰度变换">
+<meta property="og:url" content="https://www.keyanjie.net/2019/03/27/高图实验1 图像灰度变换/index.html">
+<meta property="og:site_name" content="Alan&#39;s Notebook🦍">
+<meta property="og:description" content="高图第一次实验。">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-03-29T14:34:21.098Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="高图实验1 图像灰度变换">
+<meta name="twitter:description" content="高图第一次实验。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.keyanjie.net/2019/03/27/高图实验1 图像灰度变换/">
+
+
+
+
+
+  <title>高图实验1 图像灰度变换 | Alan's Notebook🦍</title>
+  
+
+
+
+
+
+
+
+
 </head>
 
-<body>
-  <header style="height: 40vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-<div class="container">
-    <a class="navbar-brand" href="/"><strong>Alan&#39;s Notebook🦍</strong></a>
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
+  
+  
+    
+  
 
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto text-center">
-            
-            <li class="nav-item">
-                <a class="nav-link" href="/">Home🍹</a>
-            </li>
-            
-            <li class="nav-item">
-                <a class="nav-link" href="/archives/">Archives🍭</a>
-            </li>
-            
-            <li class="nav-item">
-                <a class="nav-link" href="/about/">About🍧</a>
-            </li>
-            
-        </ul>
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Alan's Notebook🦍</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
+      
+        <p class="site-subtitle">Expecto Patronum!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
-
-</nav>
-    <div class="view intro-2" style='background: url("http://pp41mkw5b.bkt.clouddn.com/static/images/0_post.jpg")no-repeat center center;background-size: cover;'>
-    <div class="full-bg-img">
-        <div class="mask rgba-black-light flex-center">
-        <div class="container text-center white-text wow fadeInUp">
-            <p class="h2">高图实验1 图像灰度变换</p>
-            <br>
-            
-            <p>Wednesday, March 27th 2019, 3:13 pm</p>
-            
-        </div>
-        </div>
-    </div>
-    </div>
-  </header>
-
-  <main>
+<nav class="site-nav">
   
-  <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-8 offset-md-2 ">
-            <div class="post-content py-5 z-depth-3 main">
-                <p>高图第一次实验。</p>
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.keyanjie.net/2019/03/27/高图实验1 图像灰度变换/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alan Ke">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alan's Notebook🦍">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">高图实验1 图像灰度变换</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-27T15:13:00+08:00">
+                2019-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>高图第一次实验。</p>
 <a id="more"></a>
 <h2 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容:"></a>实验内容:</h2><p><strong>1、利用 OpenCV 读取图像</strong><br><strong>具体内容:用打开 OpenCV 打开图像，并在窗口中显示</strong></p>
 <p><strong>2、灰度图像二值化处理</strong><br><strong>具体内容:设置并调整阈值对图像进行二值化处理。</strong></p>
@@ -91,204 +307,366 @@
 <p><strong>4、灰度图像的伽马变换</strong><br><strong>具体内容:设置并调整γ值对图像进行伽马变换。</strong></p>
 <p><strong>5、彩色图像的补色变换</strong><br><strong>具体内容:对彩色图像进行补色变换。</strong></p>
 <p><strong>第一次实验比较简单，所有讲解就用注释标注在代码中啦~</strong></p>
-<pre><code class="c++">#include &lt;iostream&gt;
-#include &lt;opencv2/opencv.hpp&gt;
-#include &lt;opencv2/highgui/highgui.hpp&gt;
-#include &lt;opencv2/core/core.hpp&gt;
-#include &lt;opencv2/imgcodecs/imgcodecs.hpp&gt;
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/opencv.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/highgui/highgui.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/core/core.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;opencv2/imgcodecs/imgcodecs.hpp&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> cv;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">showImg</span><span class="params">(Mat&amp;, <span class="built_in">string</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Threshold</span><span class="params">(Mat&amp;, <span class="keyword">double</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">logTransform</span><span class="params">(Mat&amp;, <span class="keyword">int</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">gammaTransform</span><span class="params">(Mat&amp;, <span class="keyword">int</span>, <span class="keyword">double</span>)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ComplementaryColorTransform</span><span class="params">(Mat&amp;)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 以黑白方式载入图像</span></span><br><span class="line">    Mat img = imread(<span class="string">"/Users/alan.ke/Pictures/image.jpg"</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="comment">// 检测图像是否真的被载入</span></span><br><span class="line">    <span class="keyword">if</span>(img.empty())</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    </span><br><span class="line">    showImg(img, <span class="string">"original"</span>);</span><br><span class="line">    Threshold(img, <span class="number">30</span>);</span><br><span class="line">    logTransform(img, <span class="number">1</span>);</span><br><span class="line">    gammaTransform(img, <span class="number">1</span>, <span class="number">0.5</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 返回一个3通道的彩色图像</span></span><br><span class="line">    img = imread(<span class="string">"/Users/alan.ke/Pictures/image.jpg"</span>, <span class="number">1</span>);</span><br><span class="line">    ComplementaryColorTransform(img);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 显示一张图片</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">showImg</span><span class="params">(Mat &amp;srcImg, <span class="built_in">string</span> title)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 新建一个标题为"Example1"的窗口，WINDOW_AUTOSIZE表示窗口的大小会根据载入图像的大小进行调整</span></span><br><span class="line">    namedWindow(title, WINDOW_AUTOSIZE);</span><br><span class="line">    <span class="comment">// 将所选图片绘制到窗口上，且显示</span></span><br><span class="line">    imshow(title, srcImg);</span><br><span class="line">    <span class="comment">// 无限等待直到用户按下某个键</span></span><br><span class="line">    waitKey(<span class="number">0</span>);</span><br><span class="line">    <span class="comment">// 销毁窗口</span></span><br><span class="line">    destroyWindow(title);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 灰度图像二值化处理</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Threshold</span><span class="params">(Mat &amp;srcImg, <span class="keyword">double</span> thresh)</span> </span>&#123;</span><br><span class="line">    Mat resultImg;</span><br><span class="line">    resultImg = srcImg.clone();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// InputArray src,  源图像</span></span><br><span class="line">    <span class="comment">// OutputArray dst, 输出图像</span></span><br><span class="line">    <span class="comment">// double thresh,   门限值</span></span><br><span class="line">    <span class="comment">// double maxval,   最大值</span></span><br><span class="line">    <span class="comment">// int type,        函数类型选择，THRESH_BINARY，THRESH_BINARY_INV，THRESH_TRUNC，THRESH_TOZERO，THRESH_TOZERO_INV</span></span><br><span class="line">    threshold(srcImg, resultImg, thresh, <span class="number">200.0</span>, THRESH_BINARY);</span><br><span class="line">    </span><br><span class="line">    showImg(resultImg, <span class="string">"Threshold"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 灰度图像的对数变换</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">logTransform</span><span class="params">(Mat &amp;srcImg, <span class="keyword">int</span> c)</span> </span>&#123;</span><br><span class="line">    Mat resultImg = srcImg.clone();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// OpenCV有为Mat提供了与STL相兼容的迭代器</span></span><br><span class="line">    Mat_&lt;uchar&gt;::iterator it = resultImg.begin&lt;uchar&gt;();</span><br><span class="line">    Mat_&lt;uchar&gt;::iterator itend = resultImg.end&lt;uchar&gt;();</span><br><span class="line">    <span class="keyword">for</span>(; it!=itend; it++)&#123;</span><br><span class="line">        <span class="comment">// 依据log变换公式: c * log(1 + data)</span></span><br><span class="line">        (*it) = c * <span class="built_in">log</span>(<span class="number">1</span> + (*it));</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 归一化处理</span></span><br><span class="line">    normalize(resultImg, resultImg, <span class="number">0</span>, <span class="number">255</span>, cv::NORM_MINMAX);</span><br><span class="line">    showImg(resultImg, <span class="string">"logTransform"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 灰度图像的伽马变换</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">gammaTransform</span><span class="params">(Mat &amp;srcImg, <span class="keyword">int</span> c, <span class="keyword">double</span> gamma)</span> </span>&#123;</span><br><span class="line">    Mat resultImg = srcImg.clone();</span><br><span class="line">    </span><br><span class="line">    Mat_&lt;uchar&gt;::iterator it = resultImg.begin&lt;uchar&gt;();</span><br><span class="line">    Mat_&lt;uchar&gt;::iterator itend = resultImg.end&lt;uchar&gt;();</span><br><span class="line">    <span class="keyword">for</span>(; it!=itend; it++) &#123;</span><br><span class="line">        <span class="comment">// 依据gamma变换公式: c * pow(data, gamma)</span></span><br><span class="line">        (*it) = c * <span class="built_in">pow</span>((*it), gamma);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 归一化处理</span></span><br><span class="line">    normalize(resultImg, resultImg, <span class="number">0</span>, <span class="number">255</span>, cv::NORM_MINMAX);</span><br><span class="line">    showImg(resultImg, <span class="string">"gammaTransform"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 彩色图像的补色变换</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ComplementaryColorTransform</span><span class="params">(Mat &amp;srcImg)</span> </span>&#123;</span><br><span class="line">    Mat resultImg = srcImg.clone();</span><br><span class="line"></span><br><span class="line">    Mat_&lt;Vec3b&gt;::iterator it = resultImg.begin&lt;Vec3b&gt;();</span><br><span class="line">    Mat_&lt;Vec3b&gt;::iterator itend = resultImg.end&lt;Vec3b&gt;();</span><br><span class="line">    <span class="keyword">for</span>(;it!=itend;it++)&#123;</span><br><span class="line">        (*it)[<span class="number">0</span>] = <span class="number">255</span> - (*it)[<span class="number">0</span>];</span><br><span class="line">        (*it)[<span class="number">1</span>] = <span class="number">255</span> - (*it)[<span class="number">1</span>];</span><br><span class="line">        (*it)[<span class="number">2</span>] = <span class="number">255</span> - (*it)[<span class="number">2</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    showImg(resultImg, <span class="string">"ComplementaryColorTransform"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-using namespace std;
-using namespace cv;
+      
+    </div>
+    
+    
+    
 
-void showImg(Mat&amp;, string);
-void Threshold(Mat&amp;, double);
-void logTransform(Mat&amp;, int);
-void gammaTransform(Mat&amp;, int, double);
-void ComplementaryColorTransform(Mat&amp;);
+    
 
-int main(int argc, char** argv) {
+    
 
-    // 以黑白方式载入图像
-    Mat img = imread(&quot;/Users/alan.ke/Pictures/image.jpg&quot;, 0);
-    // 检测图像是否真的被载入
-    if(img.empty())
-        return -1;
+    
 
-    showImg(img, &quot;original&quot;);
-    Threshold(img, 30);
-    logTransform(img, 1);
-    gammaTransform(img, 1, 0.5);
+    <footer class="post-footer">
+      
 
-    // 返回一个3通道的彩色图像
-    img = imread(&quot;/Users/alan.ke/Pictures/image.jpg&quot;, 1);
-    ComplementaryColorTransform(img);
+      
+      
+      
 
-    return 0;
-}
-
-// 显示一张图片
-void showImg(Mat &amp;srcImg, string title) {
-
-    // 新建一个标题为&quot;Example1&quot;的窗口，WINDOW_AUTOSIZE表示窗口的大小会根据载入图像的大小进行调整
-    namedWindow(title, WINDOW_AUTOSIZE);
-    // 将所选图片绘制到窗口上，且显示
-    imshow(title, srcImg);
-    // 无限等待直到用户按下某个键
-    waitKey(0);
-    // 销毁窗口
-    destroyWindow(title);
-}
-
-// 灰度图像二值化处理
-void Threshold(Mat &amp;srcImg, double thresh) {
-    Mat resultImg;
-    resultImg = srcImg.clone();
-
-    // InputArray src,  源图像
-    // OutputArray dst, 输出图像
-    // double thresh,   门限值
-    // double maxval,   最大值
-    // int type,        函数类型选择，THRESH_BINARY，THRESH_BINARY_INV，THRESH_TRUNC，THRESH_TOZERO，THRESH_TOZERO_INV
-    threshold(srcImg, resultImg, thresh, 200.0, THRESH_BINARY);
-
-    showImg(resultImg, &quot;Threshold&quot;);
-}
-
-// 灰度图像的对数变换
-void logTransform(Mat &amp;srcImg, int c) {
-    Mat resultImg = srcImg.clone();
-
-    // OpenCV有为Mat提供了与STL相兼容的迭代器
-    Mat_&lt;uchar&gt;::iterator it = resultImg.begin&lt;uchar&gt;();
-    Mat_&lt;uchar&gt;::iterator itend = resultImg.end&lt;uchar&gt;();
-    for(; it!=itend; it++){
-        // 依据log变换公式: c * log(1 + data)
-        (*it) = c * log(1 + (*it));
-    }
-
-    // 归一化处理
-    normalize(resultImg, resultImg, 0, 255, cv::NORM_MINMAX);
-    showImg(resultImg, &quot;logTransform&quot;);
-}
-
-// 灰度图像的伽马变换
-void gammaTransform(Mat &amp;srcImg, int c, double gamma) {
-    Mat resultImg = srcImg.clone();
-
-    Mat_&lt;uchar&gt;::iterator it = resultImg.begin&lt;uchar&gt;();
-    Mat_&lt;uchar&gt;::iterator itend = resultImg.end&lt;uchar&gt;();
-    for(; it!=itend; it++) {
-        // 依据gamma变换公式: c * pow(data, gamma)
-        (*it) = c * pow((*it), gamma);
-    }
-
-    // 归一化处理
-    normalize(resultImg, resultImg, 0, 255, cv::NORM_MINMAX);
-    showImg(resultImg, &quot;gammaTransform&quot;);
-}
-
-// 彩色图像的补色变换
-void ComplementaryColorTransform(Mat &amp;srcImg) {
-    Mat resultImg = srcImg.clone();
-
-    Mat_&lt;Vec3b&gt;::iterator it = resultImg.begin&lt;Vec3b&gt;();
-    Mat_&lt;Vec3b&gt;::iterator itend = resultImg.end&lt;Vec3b&gt;();
-    for(;it!=itend;it++){
-        (*it)[0] = 255 - (*it)[0];
-        (*it)[1] = 255 - (*it)[1];
-        (*it)[2] = 255 - (*it)[2];
-    }
-
-    showImg(resultImg, &quot;ComplementaryColorTransform&quot;);
-}
-</code></pre>
-
-                <hr>
-                <div>
-                    <p>
-                        
-                    </p>
-                </div>
-                <br>
-                
-                    <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
-                
-            </div>
-        </div>
-        <div class="d-none d-md-block col-md-2">
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-  <div id="toc" class="py-5">
-    <p class="h6"><i class="iconfont icon-toc" style="vertical-align:middle"></i> Toc:</p> 
-    <div id="tocbot"></div>
+              <a href="/2019/03/27/LeetCode 10. Regular Expression Matching/" rel="next" title="LeetCode 10. Regular Expression Matching">
+                <i class="fa fa-chevron-left"></i> LeetCode 10. Regular Expression Matching
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/27/LeetCode 13. Roman to Integer/" rel="prev" title="LeetCode 13. Roman to Integer">
+                LeetCode 13. Roman to Integer <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
-    </div>        
-</div>
-
-<br><br><br>
-
-<!-- Comments -->
-<div class="comments" id="comments">
-
-    
-    
-<div id="vcomments" style="width: 80%;margin: 0 auto;"></div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-<script>
-   var notify = 'false' == true ? true : false;
-   var verify = 'false' == true ? true : false;
-    window.onload = function() {
-        new Valine({
-            el: '#vcomments',
-            notify: notify,
-            verify: verify,
-            app_id: "PLu5Kuwb1g68XrJHrzyCLtKY-gzGzoHsz",
-            app_key: "KvAe30NuziJaOBuwsu5OMR5l",
-            placeholder: "说点什么",
-            avatar:"retro",
-            meta: ['nick','mail','link'],
-            pageSize: "10",
-            visitor: "false"
-        });
-    };
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://valine.js.org">comments powered by Valine.</a></noscript>
-
- 
-</div>
+        
+          
   
-  </main>
-
-<footer class="mt-5">
-  <div class="text-center py-3">
-    <a href="https://hexo.io" target="_blank"><b>HEXO</b></a>
-    <i class="iconfont icon-love"></i>
-    <a href="https://github.com/0x2e/Material-T" target="_blank"> <b>Material-T</b></a>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
   </div>
-</footer>
 
-  <!-- SCRIPTS -->
-  <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.7.4/js/jquery-3.3.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.7.4/js/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.7.4/js/bootstrap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.7.4/js/mdb.min.js"></script>
-  <script src="/js/main.js"></script>
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Alan Ke</p>
+              <p class="site-description motion-element" itemprop="description">description</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#实验内容"><span class="nav-number">1.</span> <span class="nav-text">实验内容:</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alan Ke</span>
+
   
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
     
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
-    <script src="/js/post.js"></script>
+
     
-      <script src="/js/plugins/prettify.js"></script>
-      <script>
-          $(document).ready(function(){
-              $('pre').addClass('prettyprint linenums');
-              prettyPrint();
-          })
-      </script>
-    
+
+  </div>
+
   
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
 </body>
 </html>

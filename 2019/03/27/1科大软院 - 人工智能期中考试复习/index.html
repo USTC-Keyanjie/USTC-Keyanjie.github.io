@@ -1,89 +1,316 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
 
 
 
+  
 
 
-
-
-
-
-
+<html class="theme-next mist use-motion" lang>
 <head><meta name="generator" content="Hexo 3.8.0">
-    <meta charset="utf-8">
-    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="description" content="description">
-    <meta name="author" content="Alan Ke">
-    <meta name="keywords" content>
-    <title>科大软院 - 人工智能期中考试复习 ~ Alan&#39;s Notebook🦍</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/all.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.7.4/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.7.4/css/mdb.min.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1067060_vr10bjtg3us.css">
-    
-        <link rel="stylesheet" href="/css/Prettify/github.min.css">
-    
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="中国科学技术大学软件学院 人工智能2018年秋课程期中考试复习🍰">
+<meta property="og:type" content="article">
+<meta property="og:title" content="科大软院 - 人工智能期中考试复习">
+<meta property="og:url" content="https://www.keyanjie.net/2019/03/27/1科大软院 - 人工智能期中考试复习/index.html">
+<meta property="og:site_name" content="Alan&#39;s Notebook🦍">
+<meta property="og:description" content="中国科学技术大学软件学院 人工智能2018年秋课程期中考试复习🍰">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/1_1.png">
+<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/1_2.png">
+<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/1_3.png">
+<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/1_4.png">
+<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/1_5.png">
+<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/1_6.png">
+<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/1_7.png">
+<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/1_8.png">
+<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/1_优化.png">
+<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/1深度学习导火索.jpg">
+<meta property="og:updated_time" content="2019-03-29T06:19:38.362Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="科大软院 - 人工智能期中考试复习">
+<meta name="twitter:description" content="中国科学技术大学软件学院 人工智能2018年秋课程期中考试复习🍰">
+<meta name="twitter:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/1_1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.keyanjie.net/2019/03/27/1科大软院 - 人工智能期中考试复习/">
+
+
+
+
+
+  <title>科大软院 - 人工智能期中考试复习 | Alan's Notebook🦍</title>
+  
+
+
+
+
+
+
+
+
 </head>
 
-<body>
-  <header style="height: 40vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-<div class="container">
-    <a class="navbar-brand" href="/"><strong>Alan&#39;s Notebook🦍</strong></a>
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
 
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
+  
+  
+    
+  
 
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto text-center">
-            
-            <li class="nav-item">
-                <a class="nav-link" href="/">Home🍹</a>
-            </li>
-            
-            <li class="nav-item">
-                <a class="nav-link" href="/archives/">Archives🍭</a>
-            </li>
-            
-            <li class="nav-item">
-                <a class="nav-link" href="/about/">About🍧</a>
-            </li>
-            
-        </ul>
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Alan's Notebook🦍</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
+      
+        <p class="site-subtitle">Expecto Patronum!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
 </div>
 
-
-</nav>
-    <div class="view intro-2" style='background: url("http://pp41mkw5b.bkt.clouddn.com/static/images/0_post.jpg")no-repeat center center;background-size: cover;'>
-    <div class="full-bg-img">
-        <div class="mask rgba-black-light flex-center">
-        <div class="container text-center white-text wow fadeInUp">
-            <p class="h2">科大软院 - 人工智能期中考试复习</p>
-            <br>
-            
-            <p>Wednesday, March 27th 2019, 2:05 pm</p>
-            
-        </div>
-        </div>
-    </div>
-    </div>
-  </header>
-
-  <main>
+<nav class="site-nav">
   
-  <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-8 offset-md-2 ">
-            <div class="post-content py-5 z-depth-3 main">
-                <p>中国科学技术大学软件学院 人工智能2018年秋课程期中考试复习🍰</p>
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.keyanjie.net/2019/03/27/1科大软院 - 人工智能期中考试复习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alan Ke">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alan's Notebook🦍">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">科大软院 - 人工智能期中考试复习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-27T14:05:30+08:00">
+                2019-03-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>中国科学技术大学软件学院 人工智能2018年秋课程期中考试复习🍰</p>
 <a id="more"></a>
 <h2 id="1、机器学习的定义"><a href="#1、机器学习的定义" class="headerlink" title="1、机器学习的定义"></a><strong>1、机器学习的定义</strong></h2><p><strong>对于某类任务T和性能度量P，一个计算机程序被认为可以从经验E中学习是指，经过经验E改进后，它在任务T上由性能度量P衡量的性能有所提升。</strong></p>
 <p><strong>任务T：Testing Set - 测试集</strong></p>
@@ -201,92 +428,384 @@
 <p><strong>如果我们使用的是Adagrad算法，那么一开始学习率可以设置的相对大一点。</strong></p>
 <h2 id="12、逻辑回归的局限性-深度神经网络的兴起导火索"><a href="#12、逻辑回归的局限性-深度神经网络的兴起导火索" class="headerlink" title="12、逻辑回归的局限性 - 深度神经网络的兴起导火索"></a><strong>12、逻辑回归的局限性 - 深度神经网络的兴起导火索</strong></h2><p><strong>逻辑回归不可以直接处理线性不可分的问题，例如下图所示的异或问题。处理方法是先通过一个函数，将原来的值投影转换，变成线性可分问题，再使用逻辑回归来处理。这一步叫做特征变换，先进行特征变换，再进行逻辑回归，这就是两层神经网络的雏形，也是神经网络的兴起的导火索。</strong></p>
 <img src="http://pp41mkw5b.bkt.clouddn.com/static/images/1深度学习导火索.jpg">
-                <hr>
-                <div>
-                    <p>
-                        
-                    </p>
-                </div>
-                <br>
-                
-                    <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
-                
-            </div>
-        </div>
-        <div class="d-none d-md-block col-md-2">
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-  <div id="toc" class="py-5">
-    <p class="h6"><i class="iconfont icon-toc" style="vertical-align:middle"></i> Toc:</p> 
-    <div id="tocbot"></div>
+              <a href="/2019/03/27/4动态规划 - Dynamic Programming/" rel="next" title="动态规划 - Dynamic Programming">
+                <i class="fa fa-chevron-left"></i> 动态规划 - Dynamic Programming
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/27/CTC Loss学习笔记/" rel="prev" title="CTC Loss学习笔记">
+                CTC Loss学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
 
         </div>
-    </div>        
-</div>
-
-<br><br><br>
-
-<!-- Comments -->
-<div class="comments" id="comments">
-
-    
-    
-<div id="vcomments" style="width: 80%;margin: 0 auto;"></div>
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-<script>
-   var notify = 'false' == true ? true : false;
-   var verify = 'false' == true ? true : false;
-    window.onload = function() {
-        new Valine({
-            el: '#vcomments',
-            notify: notify,
-            verify: verify,
-            app_id: "PLu5Kuwb1g68XrJHrzyCLtKY-gzGzoHsz",
-            app_key: "KvAe30NuziJaOBuwsu5OMR5l",
-            placeholder: "说点什么",
-            avatar:"retro",
-            meta: ['nick','mail','link'],
-            pageSize: "10",
-            visitor: "false"
-        });
-    };
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://valine.js.org">comments powered by Valine.</a></noscript>
-
- 
-</div>
+        
+          
   
-  </main>
-
-<footer class="mt-5">
-  <div class="text-center py-3">
-    <a href="https://hexo.io" target="_blank"><b>HEXO</b></a>
-    <i class="iconfont icon-love"></i>
-    <a href="https://github.com/0x2e/Material-T" target="_blank"> <b>Material-T</b></a>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
   </div>
-</footer>
 
-  <!-- SCRIPTS -->
-  <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.7.4/js/jquery-3.3.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.7.4/js/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.7.4/js/bootstrap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.7.4/js/mdb.min.js"></script>
-  <script src="/js/main.js"></script>
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Alan Ke</p>
+              <p class="site-description motion-element" itemprop="description">description</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、机器学习的定义"><span class="nav-number">1.</span> <span class="nav-text">1、机器学习的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、Loss-Function-Cost-Function-损失函数"><span class="nav-number">2.</span> <span class="nav-text">2、Loss Function/Cost Function - 损失函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、Sigmoid-Function和Softmax-Function"><span class="nav-number">3.</span> <span class="nav-text">3、Sigmoid Function和Softmax Function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、在Logistic-Regression中，为何使用Cross-Entropy作为损失函数而不使用MSE"><span class="nav-number">4.</span> <span class="nav-text">4、在Logistic Regression中，为何使用Cross Entropy作为损失函数而不使用MSE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、一堆优化方法"><span class="nav-number">5.</span> <span class="nav-text">5、一堆优化方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Gradient-Descent-梯度下降"><span class="nav-number">5.1.</span> <span class="nav-text">(1) Gradient Descent - 梯度下降</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么要以梯度的反方向为更新方向？"><span class="nav-number">5.1.1.</span> <span class="nav-text">为什么要以梯度的反方向为更新方向？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Stochastic-Gradient-Descent-随机梯度下降"><span class="nav-number">5.2.</span> <span class="nav-text">(2) Stochastic Gradient Descent - 随机梯度下降</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Mini-batch-Gradient-Descent-Mini-batch梯度下降"><span class="nav-number">5.3.</span> <span class="nav-text">(3) Mini-batch Gradient Descent - Mini-batch梯度下降</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Adagrad算法"><span class="nav-number">5.4.</span> <span class="nav-text">(4) Adagrad算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-RMSprop算法"><span class="nav-number">5.5.</span> <span class="nav-text">(5) *RMSprop算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、Cross-Validation-交叉验证"><span class="nav-number">6.</span> <span class="nav-text">6、Cross Validation - 交叉验证</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要用交叉验证-Cross-Validation）"><span class="nav-number">6.1.</span> <span class="nav-text">为什么要用交叉验证(Cross-Validation）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7、偏差、方差、噪声以及泛化误差"><span class="nav-number">7.</span> <span class="nav-text">7、偏差、方差、噪声以及泛化误差</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-偏差"><span class="nav-number">7.1.</span> <span class="nav-text">(1) 偏差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-方差"><span class="nav-number">7.2.</span> <span class="nav-text">(2) 方差</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-噪声"><span class="nav-number">7.3.</span> <span class="nav-text">(3) *噪声</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-泛化误差"><span class="nav-number">7.4.</span> <span class="nav-text">(4) *泛化误差</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8、欠拟合和过拟合"><span class="nav-number">8.</span> <span class="nav-text">8、欠拟合和过拟合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9、L1范数和L2范数"><span class="nav-number">9.</span> <span class="nav-text">9、L1范数和L2范数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-L1范数的作用"><span class="nav-number">9.1.</span> <span class="nav-text">(1) L1范数的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-L2范数的作用"><span class="nav-number">9.2.</span> <span class="nav-text">(2) L2范数的作用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10、优化技巧"><span class="nav-number">10.</span> <span class="nav-text">10、优化技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Feature-Scaling-特征缩放-归一化"><span class="nav-number">10.1.</span> <span class="nav-text">(1) Feature Scaling - 特征缩放/归一化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Mean-Normalization-均值标准化"><span class="nav-number">10.2.</span> <span class="nav-text">(2) Mean Normalization - 均值标准化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11、怎么调节学习率"><span class="nav-number">11.</span> <span class="nav-text">11、怎么调节学习率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12、逻辑回归的局限性-深度神经网络的兴起导火索"><span class="nav-number">12.</span> <span class="nav-text">12、逻辑回归的局限性 - 深度神经网络的兴起导火索</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alan Ke</span>
+
   
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
     
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
     
-    <script src="/js/post.js"></script>
+
     
-      <script src="/js/plugins/prettify.js"></script>
-      <script>
-          $(document).ready(function(){
-              $('pre').addClass('prettyprint linenums');
-              prettyPrint();
-          })
-      </script>
-    
+
+  </div>
+
   
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
 </body>
 </html>
