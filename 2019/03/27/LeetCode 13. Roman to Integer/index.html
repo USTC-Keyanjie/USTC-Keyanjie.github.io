@@ -85,8 +85,15 @@
             <div class="post-content py-5 z-depth-3 main">
                 <a id="more"></a>
 <p>Roman numerals are represented by seven different symbols: <code>I</code>, <code>V</code>, <code>X</code>, <code>L</code>, <code>C</code>, <code>D</code> and <code>M</code>.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Symbol       Value</span><br><span class="line">I             1</span><br><span class="line">V             5</span><br><span class="line">X             10</span><br><span class="line">L             50</span><br><span class="line">C             100</span><br><span class="line">D             500</span><br><span class="line">M             1000</span><br></pre></td></tr></table></figure>
-<p>For example, two is written as <code>II</code> in Roman numeral, just two one’s added together. Twelve is written as, <code>XII</code>, which is simply <code>X</code> + <code>II</code>. The number twenty seven is written as <code>XXVII</code>, which is <code>XX</code> + <code>V</code> + <code>II</code>.</p>
+<pre><code>Symbol       Value
+I             1
+V             5
+X             10
+L             50
+C             100
+D             500
+M             1000
+</code></pre><p>For example, two is written as <code>II</code> in Roman numeral, just two one’s added together. Twelve is written as, <code>XII</code>, which is simply <code>X</code> + <code>II</code>. The number twenty seven is written as <code>XXVII</code>, which is <code>XX</code> + <code>V</code> + <code>II</code>.</p>
 <p>Roman numerals are usually written largest to smallest from left to right. However, the numeral for four is not <code>IIII</code>. Instead, the number four is written as <code>IV</code>. Because the one is before the five we subtract it making four. The same principle applies to the number nine, which is written as <code>IX</code>. There are six instances where subtraction is used:</p>
 <ul>
 <li><code>I</code> can be placed before <code>V</code> (5) and <code>X</code> (10) to make 4 and 9.</li>
@@ -94,7 +101,65 @@
 <li><code>C</code> can be placed before <code>D</code> (500) and <code>M</code> (1000) to make 400 and 900.</li>
 </ul>
 <p>Given a roman numeral, convert it to an integer. Input is guaranteed to be within the range from 1 to 3999.</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">romanToInt</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">switch</span>(s[i]) &#123;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'M'</span>:  </span><br><span class="line">                    num += <span class="number">1000</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'D'</span>:</span><br><span class="line">                    num += <span class="number">500</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'L'</span>:</span><br><span class="line">                    num += <span class="number">50</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'V'</span>:</span><br><span class="line">                    num += <span class="number">5</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'C'</span>:</span><br><span class="line">                    <span class="keyword">if</span> (s[i+<span class="number">1</span>] == <span class="string">'M'</span>) &#123;</span><br><span class="line">                        num += <span class="number">900</span>;</span><br><span class="line">                        i++;</span><br><span class="line">                    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (s[i+<span class="number">1</span>] == <span class="string">'D'</span>)&#123;</span><br><span class="line">                        num += <span class="number">400</span>;</span><br><span class="line">                        i++;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        num += <span class="number">100</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'X'</span>:</span><br><span class="line">                    <span class="keyword">if</span> (s[i+<span class="number">1</span>] == <span class="string">'C'</span>) &#123;</span><br><span class="line">                        num += <span class="number">90</span>;</span><br><span class="line">                        i++;</span><br><span class="line">                    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (s[i+<span class="number">1</span>] == <span class="string">'L'</span>)&#123;</span><br><span class="line">                        num += <span class="number">40</span>;</span><br><span class="line">                        i++;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        num += <span class="number">10</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">case</span> <span class="string">'I'</span>:</span><br><span class="line">                    <span class="keyword">if</span> (s[i+<span class="number">1</span>] == <span class="string">'X'</span>) &#123;</span><br><span class="line">                        num += <span class="number">9</span>;</span><br><span class="line">                        i++;</span><br><span class="line">                    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (s[i+<span class="number">1</span>] == <span class="string">'V'</span>)&#123;</span><br><span class="line">                        num += <span class="number">4</span>;</span><br><span class="line">                        i++;</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        num += <span class="number">1</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">default</span>:</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> num;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<pre><code class="c++">class Solution {
+public:
+    int romanToInt(string s) {
+        int num = 0;
+        for(int i = 0; i &lt; s.length(); i++) {
+            switch(s[i]) {
+                case &#39;M&#39;:  
+                    num += 1000;
+                    break;
+                case &#39;D&#39;:
+                    num += 500;
+                    break;
+                case &#39;L&#39;:
+                    num += 50;
+                    break;
+                case &#39;V&#39;:
+                    num += 5;
+                    break;
+                case &#39;C&#39;:
+                    if (s[i+1] == &#39;M&#39;) {
+                        num += 900;
+                        i++;
+                    } else if (s[i+1] == &#39;D&#39;){
+                        num += 400;
+                        i++;
+                    } else {
+                        num += 100;
+                    }
+                    break;
+                case &#39;X&#39;:
+                    if (s[i+1] == &#39;C&#39;) {
+                        num += 90;
+                        i++;
+                    } else if (s[i+1] == &#39;L&#39;){
+                        num += 40;
+                        i++;
+                    } else {
+                        num += 10;
+                    }
+                    break;
+                case &#39;I&#39;:
+                    if (s[i+1] == &#39;X&#39;) {
+                        num += 9;
+                        i++;
+                    } else if (s[i+1] == &#39;V&#39;){
+                        num += 4;
+                        i++;
+                    } else {
+                        num += 1;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+        return num;
+    }
+};
+</code></pre>
 
                 <hr>
                 <div>
