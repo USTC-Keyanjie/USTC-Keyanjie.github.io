@@ -105,17 +105,17 @@
 
 
 
-<meta name="description" content="round函数是Python中常用的四舍五入的函数，但是今天试用了一下发现有点小坑。对0.5进行四舍五入，结果应该为1，可是Python解释器给的结果是： 12&amp;gt;&amp;gt;&amp;gt; round(0.5)0">
+<meta name="description" content="round函数是Python中常用的四舍五入的函数，但是今天试用了一下发现有点小坑。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="round(number[, ndigits])">
 <meta property="og:url" content="https://www.keyanjie.net/2019/03/27/round(number[, ndigits])/index.html">
 <meta property="og:site_name" content="Alan&#39;s Notebook🦍">
-<meta property="og:description" content="round函数是Python中常用的四舍五入的函数，但是今天试用了一下发现有点小坑。对0.5进行四舍五入，结果应该为1，可是Python解释器给的结果是： 12&amp;gt;&amp;gt;&amp;gt; round(0.5)0">
+<meta property="og:description" content="round函数是Python中常用的四舍五入的函数，但是今天试用了一下发现有点小坑。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-29T14:26:01.964Z">
+<meta property="og:updated_time" content="2019-03-30T07:40:49.434Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="round(number[, ndigits])">
-<meta name="twitter:description" content="round函数是Python中常用的四舍五入的函数，但是今天试用了一下发现有点小坑。对0.5进行四舍五入，结果应该为1，可是Python解释器给的结果是： 12&amp;gt;&amp;gt;&amp;gt; round(0.5)0">
+<meta name="twitter:description" content="round函数是Python中常用的四舍五入的函数，但是今天试用了一下发现有点小坑。">
 
 
 
@@ -325,11 +325,12 @@
       
 
       
-        <p><strong>round函数是Python中常用的四舍五入的函数，但是今天试用了一下发现有点小坑。对0.5进行四舍五入，结果应该为1，可是Python解释器给的结果是：</strong></p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; round(0.5)</span><br><span class="line">0</span><br></pre></td></tr></table></figure></div>
+        <p><strong>round函数是Python中常用的四舍五入的函数，但是今天试用了一下发现有点小坑</strong>。</p>
 <a id="more"></a>
+<p><strong>对0.5进行四舍五入，结果应该为1，可是Python解释器给的结果是：</strong></p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span>&gt;&gt; round(0.5)</span><br><span class="line">0</span><br></pre></td></tr></table></figure></div>
 <p><strong>紧接着我又试了几个数，发现：</strong></p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; round(1.5)</span><br><span class="line">2</span><br><span class="line">&gt;&gt;&gt; round(2.5)</span><br><span class="line">2</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span>&gt;&gt; round(1.5)</span><br><span class="line">2</span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; round(2.5)</span><br><span class="line">2</span><br></pre></td></tr></table></figure></div>
 <p><strong>round(1.5)还算正常，round(2.5)又很奇怪了，然后看了看Python文档，里面这样解释round函数：</strong></p>
 <blockquote>
 <p><strong>For the built-in types supporting round(), values are rounded to the closest multiple of 10 to the power minus ndigits; if two multiples are equally close, rounding is done toward the even choice (so, for example, both round(0.5) and round(-0.5) are 0, and round(1.5) is 2). Any integer value is valid for ndigits (positive, zero, or negative). The return value is an integer if ndigits is omitted or None. Otherwise the return value has the same type as number.</strong></p>
@@ -340,7 +341,7 @@
 <p><strong>Note: The behavior of round() for floats can be surprising: for example, round(2.675, 2) gives 2.67instead of the expected 2.68. This is not a bug: it’s a result of the fact that most decimal fractions can’t be represented exactly as a float. See Floating Point Arithmetic: Issues and Limitations for more information.</strong></p>
 </blockquote>
 <p><strong>就是按照上述规则，round(2.675, 2)的结果应该是2.68，可是实际结果是：</strong></p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; round(2.675, 2)</span><br><span class="line">2.67</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span>&gt;&gt; round(2.675, 2)</span><br><span class="line">2.67</span><br></pre></td></tr></table></figure></div>
 <p><strong>这不是我们写了个bug，这是因为机器在存储浮点数2.675的时候，不会存储到这么精确，存储的数比2.675小一点点，应该差不多是2.674999999这样，所以才会被圆整到2.67，这个问题没法解决。</strong></p>
 
       
