@@ -105,17 +105,17 @@
 
 
 
-<meta name="description" content="round函数是Python中常用的四舍五入的函数，但是今天试用了一下发现有点小坑。">
+<meta name="description" content="首先使用master节点进行操作。 启动hadoop123sudo su root  # 先进入root账户cd /usr/local/hadoop/hadoop-2.8.5/sbin/./start-all.sh ##HDFS命令 进入bin目录。 1cd /usr/local/hadoop/hadoop-2.8.5/bin/ 查看HDFS上当前目录下所有文件1./hadoop fs -ls /">
 <meta property="og:type" content="article">
-<meta property="og:title" content="round(number[, ndigits])">
-<meta property="og:url" content="https://www.keyanjie.net/2019/03/27/round(number[, ndigits])/index.html">
+<meta property="og:title" content="分布式lab2：Hadoop Distributed File System(HDFS)上的基本操作">
+<meta property="og:url" content="https://www.keyanjie.net/2019/03/30/Basic-operations-on-HDFS/index.html">
 <meta property="og:site_name" content="Alan&#39;s Notebook🦍">
-<meta property="og:description" content="round函数是Python中常用的四舍五入的函数，但是今天试用了一下发现有点小坑。">
+<meta property="og:description" content="首先使用master节点进行操作。 启动hadoop123sudo su root  # 先进入root账户cd /usr/local/hadoop/hadoop-2.8.5/sbin/./start-all.sh ##HDFS命令 进入bin目录。 1cd /usr/local/hadoop/hadoop-2.8.5/bin/ 查看HDFS上当前目录下所有文件1./hadoop fs -ls /">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-30T07:40:49.434Z">
+<meta property="og:updated_time" content="2019-03-30T10:39:16.150Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="round(number[, ndigits])">
-<meta name="twitter:description" content="round函数是Python中常用的四舍五入的函数，但是今天试用了一下发现有点小坑。">
+<meta name="twitter:title" content="分布式lab2：Hadoop Distributed File System(HDFS)上的基本操作">
+<meta name="twitter:description" content="首先使用master节点进行操作。 启动hadoop123sudo su root  # 先进入root账户cd /usr/local/hadoop/hadoop-2.8.5/sbin/./start-all.sh ##HDFS命令 进入bin目录。 1cd /usr/local/hadoop/hadoop-2.8.5/bin/ 查看HDFS上当前目录下所有文件1./hadoop fs -ls /">
 
 
 
@@ -145,13 +145,13 @@
 
 
 
-  <link rel="canonical" href="https://www.keyanjie.net/2019/03/27/round(number[, ndigits])/">
+  <link rel="canonical" href="https://www.keyanjie.net/2019/03/30/Basic-operations-on-HDFS/">
 
 
 
 
 
-  <title>round(number[, ndigits]) | Alan's Notebook🦍</title>
+  <title>分布式lab2：Hadoop Distributed File System(HDFS)上的基本操作 | Alan's Notebook🦍</title>
   
 
 
@@ -290,7 +290,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.keyanjie.net/2019/03/27/round(number[, ndigits])/">
+    <link itemprop="mainEntityOfPage" href="https://www.keyanjie.net/2019/03/30/Basic-operations-on-HDFS/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Alan Ke">
@@ -307,7 +307,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">round(number[, ndigits])</h1>
+          <h1 class="post-title" itemprop="name headline">分布式lab2：Hadoop Distributed File System(HDFS)上的基本操作</h1>
         
 
         <div class="post-meta">
@@ -319,8 +319,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-27T15:11:39+08:00">
-                2019-03-27
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-30T17:53:16+08:00">
+                2019-03-30
               </time>
             
 
@@ -338,8 +338,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/03/27/round(number[, ndigits])/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/27/round(number[, ndigits])/" itemprop="commentCount"></span>
+                <a href="/2019/03/30/Basic-operations-on-HDFS/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/30/Basic-operations-on-HDFS/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -367,24 +367,27 @@
       
 
       
-        <p><strong>round函数是Python中常用的四舍五入的函数，但是今天试用了一下发现有点小坑</strong>。</p>
-<a id="more"></a>
-<p><strong>对0.5进行四舍五入，结果应该为1，可是Python解释器给的结果是：</strong></p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span>&gt;&gt; round(0.5)</span><br><span class="line">0</span><br></pre></td></tr></table></figure></div>
-<p><strong>紧接着我又试了几个数，发现：</strong></p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span>&gt;&gt; round(1.5)</span><br><span class="line">2</span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; round(2.5)</span><br><span class="line">2</span><br></pre></td></tr></table></figure></div>
-<p><strong>round(1.5)还算正常，round(2.5)又很奇怪了，然后看了看Python文档，里面这样解释round函数：</strong></p>
-<blockquote>
-<p><strong>For the built-in types supporting round(), values are rounded to the closest multiple of 10 to the power minus ndigits; if two multiples are equally close, rounding is done toward the even choice (so, for example, both round(0.5) and round(-0.5) are 0, and round(1.5) is 2). Any integer value is valid for ndigits (positive, zero, or negative). The return value is an integer if ndigits is omitted or None. Otherwise the return value has the same type as number.</strong></p>
-</blockquote>
-<p><strong>意思是会把这个输入的数保留到小数点后指定的ndigit位数，并且按照一定规则圆整。规则就是看看这个数更靠近左右两端中哪一端，然后就将这个数圆整为这一端，比如0.4就圆整为0，0.6就圆整为1。那如果是像0.5这样的到左右两端距离一样的情况，就圆整到偶数的一端，比如0.5就圆整到0，1.5就圆整到2。</strong></p>
-<p><strong>文档里还写了这么一句话：</strong></p>
-<blockquote>
-<p><strong>Note: The behavior of round() for floats can be surprising: for example, round(2.675, 2) gives 2.67instead of the expected 2.68. This is not a bug: it’s a result of the fact that most decimal fractions can’t be represented exactly as a float. See Floating Point Arithmetic: Issues and Limitations for more information.</strong></p>
-</blockquote>
-<p><strong>就是按照上述规则，round(2.675, 2)的结果应该是2.68，可是实际结果是：</strong></p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span>&gt;&gt; round(2.675, 2)</span><br><span class="line">2.67</span><br></pre></td></tr></table></figure></div>
-<p><strong>这不是我们写了个bug，这是因为机器在存储浮点数2.675的时候，不会存储到这么精确，存储的数比2.675小一点点，应该差不多是2.674999999这样，所以才会被圆整到2.67，这个问题没法解决。</strong></p>
+        <h2 id="首先"><a href="#首先" class="headerlink" title="首先"></a>首先</h2><p>使用master节点进行操作。</p>
+<h2 id="启动hadoop"><a href="#启动hadoop" class="headerlink" title="启动hadoop"></a>启动hadoop</h2><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo su root  # 先进入root账户</span><br><span class="line">cd /usr/local/hadoop/hadoop-2.8.5/sbin/</span><br><span class="line">./start-all.sh</span><br></pre></td></tr></table></figure></div>
+<p>##HDFS命令</p>
+<p>进入bin目录。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/hadoop/hadoop-2.8.5/bin/</span><br></pre></td></tr></table></figure></div>
+<h3 id="查看HDFS上当前目录下所有文件"><a href="#查看HDFS上当前目录下所有文件" class="headerlink" title="查看HDFS上当前目录下所有文件"></a>查看HDFS上当前目录下所有文件</h3><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./hadoop fs -ls /</span><br></pre></td></tr></table></figure></div>
+<h3 id="递归查看HDFS上当前目录下所有文件"><a href="#递归查看HDFS上当前目录下所有文件" class="headerlink" title="递归查看HDFS上当前目录下所有文件"></a>递归查看HDFS上当前目录下所有文件</h3><p>这条命令会递归进入每个文件夹，展示出所有文件。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./hadoop fs -ls -R /</span><br></pre></td></tr></table></figure></div>
+<h3 id="在HDFS上新建文件夹"><a href="#在HDFS上新建文件夹" class="headerlink" title="在HDFS上新建文件夹"></a>在HDFS上新建文件夹</h3><h4 id="方式1-逐个建立文件夹"><a href="#方式1-逐个建立文件夹" class="headerlink" title="方式1 逐个建立文件夹"></a>方式1 逐个建立文件夹</h4><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./hadoop fs -mkdir /user</span><br><span class="line">./hadoop fs -mkdir /user/hadoop-user/</span><br></pre></td></tr></table></figure></div>
+<h4 id="方式2-递归建立文件夹"><a href="#方式2-递归建立文件夹" class="headerlink" title="方式2 递归建立文件夹"></a>方式2 递归建立文件夹</h4><p>这种方式下，如果要建立的文件夹父目录不存在则同时建立父目录的文件夹。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./hadoop fs -mkdir -p /user/hadoop-user/</span><br></pre></td></tr></table></figure></div>
+<h3 id="本地准备一份文件"><a href="#本地准备一份文件" class="headerlink" title="本地准备一份文件"></a>本地准备一份文件</h3><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd /tmp/</span><br><span class="line">mkdir charles1</span><br><span class="line">mkdir charles2   # 为后续操作做准备</span><br><span class="line">cd charles1</span><br><span class="line">vim ds2019.txt</span><br></pre></td></tr></table></figure></div>
+<p>写入：</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Distributed System 2019Spring</span><br></pre></td></tr></table></figure></div>
+<p>然后按下<code>esc</code>，输入<code>:wq</code>写入文件。</p>
+<h3 id="向HDFS上传文件"><a href="#向HDFS上传文件" class="headerlink" title="向HDFS上传文件"></a>向HDFS上传文件</h3><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/hadoop/hadoop-2.8.5/bin/</span><br><span class="line">./hadoop fs -put /tmp/charles1/ds2019.txt /user/hadoop-user/</span><br></pre></td></tr></table></figure></div>
+<p>###查看是否上传成功</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./hadoop fs -ls -R /</span><br></pre></td></tr></table></figure></div>
+<h3 id="在Terminal显示文件内容"><a href="#在Terminal显示文件内容" class="headerlink" title="在Terminal显示文件内容"></a>在Terminal显示文件内容</h3><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./hadoop fs -cat /user/hadoop-user/ds2019.txt</span><br></pre></td></tr></table></figure></div>
+<h3 id="下载HDFS上的文件"><a href="#下载HDFS上的文件" class="headerlink" title="下载HDFS上的文件"></a>下载HDFS上的文件</h3><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./hadoop fs -get /user/hadoop-user/ds2019.txt /tmp/charles2</span><br></pre></td></tr></table></figure></div>
+<h3 id="删除HDFS上的文件"><a href="#删除HDFS上的文件" class="headerlink" title="删除HDFS上的文件"></a>删除HDFS上的文件</h3><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./hadoop fs -rm /user/hadoop-user/ds2019.txt</span><br></pre></td></tr></table></figure></div>
 
       
     </div>
@@ -409,8 +412,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/27/CTC Loss学习笔记/" rel="next" title="CTC Loss学习笔记">
-                <i class="fa fa-chevron-left"></i> CTC Loss学习笔记
+              <a href="/2019/03/29/Hadoop-installed-in-Ubuntu1604/" rel="next" title="分布式lab1：Ubuntu16.04上Hadoop环境安装">
+                <i class="fa fa-chevron-left"></i> 分布式lab1：Ubuntu16.04上Hadoop环境安装
               </a>
             
           </div>
@@ -418,10 +421,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/27/LeetCode 10. Regular Expression Matching/" rel="prev" title="LeetCode 10. Regular Expression Matching">
-                LeetCode 10. Regular Expression Matching <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -476,8 +475,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -519,6 +527,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#首先"><span class="nav-number">1.</span> <span class="nav-text">首先</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动hadoop"><span class="nav-number">2.</span> <span class="nav-text">启动hadoop</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看HDFS上当前目录下所有文件"><span class="nav-number">2.1.</span> <span class="nav-text">查看HDFS上当前目录下所有文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#递归查看HDFS上当前目录下所有文件"><span class="nav-number">2.2.</span> <span class="nav-text">递归查看HDFS上当前目录下所有文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在HDFS上新建文件夹"><span class="nav-number">2.3.</span> <span class="nav-text">在HDFS上新建文件夹</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方式1-逐个建立文件夹"><span class="nav-number">2.3.1.</span> <span class="nav-text">方式1 逐个建立文件夹</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方式2-递归建立文件夹"><span class="nav-number">2.3.2.</span> <span class="nav-text">方式2 递归建立文件夹</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地准备一份文件"><span class="nav-number">2.4.</span> <span class="nav-text">本地准备一份文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#向HDFS上传文件"><span class="nav-number">2.5.</span> <span class="nav-text">向HDFS上传文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在Terminal显示文件内容"><span class="nav-number">2.6.</span> <span class="nav-text">在Terminal显示文件内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下载HDFS上的文件"><span class="nav-number">2.7.</span> <span class="nav-text">下载HDFS上的文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除HDFS上的文件"><span class="nav-number">2.8.</span> <span class="nav-text">删除HDFS上的文件</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
