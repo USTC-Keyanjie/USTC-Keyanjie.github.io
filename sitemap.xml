@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.keyanjie.net/friendLinks/index.html</loc>
+    
+    <lastmod>2019-03-31T06:08:50.585Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.keyanjie.net/tags/index.html</loc>
+    
+    <lastmod>2019-03-31T06:05:18.369Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.keyanjie.net/categories/index.html</loc>
+    
+    <lastmod>2019-03-31T06:05:10.252Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.keyanjie.net/2019/03/29/Hadoop-installed-in-Ubuntu1604/</loc>
     
     <lastmod>2019-03-31T05:05:13.656Z</lastmod>
