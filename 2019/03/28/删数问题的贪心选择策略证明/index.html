@@ -96,19 +96,21 @@
 
 
 
-  <meta name="description" content="I am a first-year M.S. student in School of Software Engineering at University of Science and Technology of China. I received my Bachelor Degree in Computer Science of Nantong University. I like co">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Alan&#39;s Notebook🦍">
-<meta property="og:url" content="https://www.keyanjie.net/about/index.html">
+  <meta name="description" content="题目：在一个n位的正整数A[1…n]中删除其中任意k(k≤n)个数字后，剩下的数字按原次序组成一个新的正整数。对于给定的n位正整数A和k，设计一个贪心算法，使得剩下的数字组成的新数最小。如：A=278693，k=4时最小新数为23，k=3时为263">
+<meta property="og:type" content="article">
+<meta property="og:title" content="删数问题的贪心选择策略证明">
+<meta property="og:url" content="https://www.keyanjie.net/2019/03/28/删数问题的贪心选择策略证明/index.html">
 <meta property="og:site_name" content="Alan&#39;s Notebook🦍">
-<meta property="og:description" content="I am a first-year M.S. student in School of Software Engineering at University of Science and Technology of China. I received my Bachelor Degree in Computer Science of Nantong University. I like co">
+<meta property="og:description" content="题目：在一个n位的正整数A[1…n]中删除其中任意k(k≤n)个数字后，剩下的数字按原次序组成一个新的正整数。对于给定的n位正整数A和k，设计一个贪心算法，使得剩下的数字组成的新数最小。如：A=278693，k=4时最小新数为23，k=3时为263">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/avatar.png?imageView2/2/w/400">
-<meta property="og:updated_time" content="2019-03-31T14:03:48.155Z">
+<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/2_1.jpg">
+<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/2_2.jpg">
+<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/2_3.jpg">
+<meta property="og:updated_time" content="2019-04-01T05:50:11.836Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Alan&#39;s Notebook🦍">
-<meta name="twitter:description" content="I am a first-year M.S. student in School of Software Engineering at University of Science and Technology of China. I received my Bachelor Degree in Computer Science of Nantong University. I like co">
-<meta name="twitter:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/avatar.png?imageView2/2/w/400">
+<meta name="twitter:title" content="删数问题的贪心选择策略证明">
+<meta name="twitter:description" content="题目：在一个n位的正整数A[1…n]中删除其中任意k(k≤n)个数字后，剩下的数字按原次序组成一个新的正整数。对于给定的n位正整数A和k，设计一个贪心算法，使得剩下的数字组成的新数最小。如：A=278693，k=4时最小新数为23，k=3时为263">
+<meta name="twitter:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/2_1.jpg">
 
 
 
@@ -116,7 +118,7 @@
 
   
   
-  <link rel="canonical" href="https://www.keyanjie.net/about/">
+  <link rel="canonical" href="https://www.keyanjie.net/2019/03/28/删数问题的贪心选择策略证明/">
 
 
 
@@ -126,7 +128,7 @@
   };
 </script>
 
-  <title> | Alan's Notebook🦍</title>
+  <title>删数问题的贪心选择策略证明 | Alan's Notebook🦍</title>
   
 
 
@@ -231,7 +233,7 @@
         
         
           
-          <li class="menu-item menu-item-about🥤 menu-item-active">
+          <li class="menu-item menu-item-about🥤">
 
     
     
@@ -318,31 +320,6 @@
   
     
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
   
 
   
@@ -390,55 +367,270 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.keyanjie.net/2019/03/28/删数问题的贪心选择策略证明/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alan Ke">
+      <meta itemprop="description" content="Have a nice coding!🍻">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alan's Notebook🦍">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">
-
-</h1>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <img style="text-align" src="http://pp41mkw5b.bkt.clouddn.com/static/images/avatar.png?imageView2/2/w/400">
-<hr>
+          <h1 class="post-title" itemprop="name headline">删数问题的贪心选择策略证明
 
-<p>I am a first-year M.S. student in School of Software Engineering at University of Science and Technology of China. I received my Bachelor Degree in Computer Science of Nantong University.</p>
-<p>I like computer vision, machine learning, deep learning, distributed system and algorithm research.  I am also interested in jogging, enjoying music and movies.</p>
-
+              
+            
+          </h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-03-28 20:39:18" itemprop="dateCreated datePublished" datetime="2019-03-28T20:39:18+08:00">2019-03-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-01 13:50:11" itemprop="dateModified" datetime="2019-04-01T13:50:11+08:00">2019-04-01</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/2019/03/28/删数问题的贪心选择策略证明/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/28/删数问题的贪心选择策略证明/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <blockquote>
+<p><strong>题目：在一个n位的正整数A[1…n]中删除其中任意k(k≤n)个数字后，剩下的数字按原次序组成一个新的正整数。对于给定的n位正整数A和k，设计一个贪心算法，使得剩下的数字组成的新数最小。</strong><br><strong>如：A=278693，k=4时最小新数为23，k=3时为263</strong></p>
+</blockquote>
+<a id="more"></a>
+<p>刚刚证明出来贪心选择性质，先写下，之后再慢慢补充全部思路。</p>
+<h2 id="贪心选择策略"><a href="#贪心选择策略" class="headerlink" title="贪心选择策略"></a><strong>贪心选择策略</strong></h2><p>从高位向低位进行搜索：</p>
+<ol>
+<li>如果A[1…n]是一条递增序列，那么就删除最后一个数；</li>
+<li>如果A[1…n]含有严格递减子序列，那么就删除第一个严格递减子序列的首字符。</li>
+</ol>
+<h2 id="贪心选择性质证明"><a href="#贪心选择性质证明" class="headerlink" title="贪心选择性质证明"></a>贪心选择性质证明</h2><p>假设A中有n个元素，将A中的每个元素进行编号为$a_x(1\leq x\leq n)​$：<br>$$<br>A=[a_1,a_2,…,a_{n-1},a_n]<br>$$</p>
+<ol>
+<li>如果A[1…n]是一条递增序列，那么就删除最后一个数；</li>
+</ol>
+<p>记原本A所代表的数值为$T_A​$，则有：<br>$$<br>T_A=a_1 \times 10^{n-1}+a_2\times10^{n-2}+…+a_{n-1}\times10+a_n<br>$$</p>
+<p>记删除最后一个数后，A变为A’，A’所代表的数值为$T_{A’}$，则有：</p>
+<p>$$<br>T_{A’}=a_1\times10^{n-2}+a_2 \times 10^{n-3}+…+a_{n-2} \times 10+a_{n-1}<br>$$</p>
+<p>如果不删除最后一个数，而是删除另一个数$a_q(1\leq q&lt; n)$，此时A变为A’’，A’’所代表的数值为$T_{A’’}$，则有： </p>
+<p>$$<br>T_{A’’}=a_1 \times 10^{n-2}+a_2 \times 10^{n-3}+…+a_{q-1} \times 10^{n-q}+a_{q+1} \times 10^{n-q-1}+…+a_{n-1} \times 10+a_n<br>$$</p>
+<p>用作差法来比较$T_{A’}$和$T_{A’’}$的大小：</p>
+<p>$$<br>T_{A’}-T_{A’’}=(a_q-a_{q+1}) \times 10^{n-q-1}+(a_{q+1}-a_{q+2}) \times 10^{n-q-2}+…+(a_{n-2}-a_{n-1}) \times 10+(a_{n-1}-a_{n})<br>$$</p>
+<p>由于A是一条递增序列，所以有：</p>
+<p>$$<br>a_{q}\leq a_{q+1},a_{q+1}\leq a_{q+2},…,a_{n-2}\leq a_{n-1},a_{n-1}\leq a_{n}<br>$$</p>
+<p>即：</p>
+<p>$$<br>a_{q}-a_{q+1}\leq 0,a_{q+1}-a_{q+2}\leq 0,…,a_{n-2}-a_{n-1}\leq 0,a_{n-1}-a_{n}\leq 0<br>$$</p>
+<p>所以有$T_{A’}-T_{A’’}\leq 0$，那么$T_{A’}$是A删完一个数后，所组成的最小数值。贪心选择是安全的。</p>
+<ol start="2">
+<li>如果A[1…n]含有严格递减子序列，那么就删除第一个严格递减子序列的首字符。</li>
+</ol>
+<p>(1) 先考虑一种情况，A中只有两段单调子区间，且高位部分是递增子区间，低位部分是递减子区间。那么A中的数就是先上升再下降，像一座山一样。如果删除第一个递减子序列的首字符是安全的，也就是删除山顶的数是安全的。</p>
+<p>假设在A中，有3个连在一起的数$a_i,a_j,a_k(1\leq i&lt; j&lt; k\leq n)$，其中$(a_1,a_j)$是递增序列，$(a_j,a_n)$是递减序列。</p>
+<p>记原本A所代表的数值为$T_A$，则有：</p>
+<p>$$<br>T_A=a_1 \times 10^{n-1}+a_2 \times 10^{n-2}+…+a_i \times 10^{n-i}+a_j \times 10^{n-j}+a_k \times 10^{n-k}+…+a_{n-1} \times 10+a_n<br>$$</p>
+<p>删除$a_j$后，A变为A’，A’所代表的数值为$T_{A’}$，则有：</p>
+<p>$$<br>T_{A’}=a_1 \times 10^{n-2}+a_2 \times 10^{n-3}+…+a_i \times 10^{n-i-1}+a_k \times 10^{n-k}+…+a_{n-1} \times 10+a_{n}<br>$$</p>
+<p>如果不删除$a_j$，而是删除另一个数$a_q$。</p>
+<p>a) 当$1\leq q&lt; j$时，此时A变为A’’，A’’所代表的数值为$T_{A’’}$，则有：<br>$$<br>T_{A’’}=a_1 \times 10^{n-2}+a_2 \times 10^{n-3}+…+a_{q-1} \times 10^{n-q}+a_{q+1} \times 10^{n-q-1}+…+a_j \times 10^{n-j}+…+a_{n-1} \times 10+a_{n}<br>$$</p>
+<p>用作差法来比较$T_{A’}$和$T_{A’’}$的大小：</p>
+<p>$$<br>T_{A’}-T_{A’’}=(a_q-a_{q+1}) \times 10^{n-q-1}+(a_{q+1}-a_{q+2}) \times 10^{n-q-2}+…+(a_{i}-a_{j}) \times 10^{n-j}<br>$$</p>
+<p>由于$(a_1,a_j)$是一条递增序列，所以有：</p>
+<p>$$<br>a_{q}\leq a_{q+1},a_{q+1}\leq a_{q+2},…,a_{i}\leq a_{j}<br>$$</p>
+<p>即：</p>
+<p>$$<br>a_{q}-a_{q+1}\leq 0,a_{q+1}-a_{q+2}\leq 0,…,a_{i}-a_{j}\leq 0<br>$$</p>
+<p>所以有$T_{A’}-T_{A’’}\leq 0$，那么$T_{A’}$是A删完$a_q(1\leq q &lt; j)$后，所组成的最小数值。贪心选择是安全的。</p>
+<p>(b) 当$j &lt; q\leq n$时，此时A变为A’’’，A’’’所代表的数值为$T_{A’’’}$，则有： </p>
+<p>$$<br>T_{A’’’}=a_1 \times 10^{n-2}+a_2 \times 10^{n-3}+…+a_j \times 10^{n-j-1}+…+a_{q-1} \times 10^{n-q}+a_{q+1} \times 10^{n-q-1}…+a_{n-1} \times 10+a_{n}<br>$$</p>
+<p>用作差法来比较$T_{A’}$和$T_{A’’’}$的大小：</p>
+<p>$$<br>T_{A’}-T_{A’’}=(a_k-a_j) \times 10^{n-k}+…+(a_{q-1}-a_{q-2}) \times 10^{n-q+1}+(a_{q}-a_{q-1}) \times 10^{n-q}<br>$$</p>
+<p>由于$(a_j,a_{n})$是一条递减序列，所以有：</p>
+<p>$$<br>a_{k}\leq a_{j},a_{q-1}\leq a_{q-2},…,a_{q}\leq a_{q-1}<br>$$</p>
+<p>即：</p>
+<p>$$<br>a_{k}-a_{j}\leq 0,a_{q-1}-a_{q-2}\leq 0,a_{q}-a_{q-1}\leq 0<br>$$</p>
+<p>所以有$T_{A’}-T_{A’’’}\leq 0$，那么$T_{A’}$是A删完$a_q(j&lt; q \leq n)$后，所组成的最小数值。贪心选择是安全的。<br>综上(a)(b)所述，若A中只有两段单调子区间，且高位部分是递增子区间，低位部分是递减子区间，那么删去此递减子区间的首字符后，所组成的数是最小数值。贪心选择是安全的。</p>
+<p>(2) 现在已经证明了如果A中只有一个山，那么删除山顶元素是最合适的。如果A中有多个山峰该如何处理？</p>
+<p>换句话说，如果A中不止有2段单调子区间，而是由很多不同的单调子区间所组成，那应该如何处理？</p>
+<p>这个问题看上去有点复杂了，我画个图吧：</p>
+<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/2_1.jpg">
+<p>其实把图画出来后，我尝试着删除第一个山的山顶元素，删完后发现，现在的$a_6=a_5$，而$a_7=a_7$：</p>
+<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/2_2.jpg">
+<p>但如果删除第一个山之后的任意一个元素的话，删完后发现$a_6=a_5$，而现在的$a_7=a_6$。</p>
+<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/2_3.jpg">
+<p>由于$a_6&gt;a_7​$，所以不管后面删哪个元素，都会比删除$a_6​$所得到的数要大。</p>
+<p>数学证明如下：</p>
+<p>假设在A中，有3个连在一起的数$a_i,a_j,a_k(1\leq i&lt; j&lt; k\leq n)​$，还有另一个数$a_r(k \leq r &lt; n)​$，，其中$(a_1,a_j)​$是递增序列，$(a_j,a_r)​$是递减序列。</p>
+<p>记原本A所代表的数值为$T_A$，则有：</p>
+<p>$$<br>T_A=a_1 \times 10^{n-1}+a_2 \times 10^{n-2}+…+a_i \times 10^{n-i}+a_j \times 10^{n-j}+a_k \times 10^{n-k}+…+a_{n-1} \times 10+a_n<br>$$</p>
+<p>删除$a_j​$后，A变为A’，A’所代表的数值为$T_{A’}​$，则有：</p>
+<p>$$<br>T_{A’}=a_1 \times 10^{n-2}+a_2 \times 10^{n-3}+…+a_i \times 10^{n-i-1}+a_k \times 10^{n-k}+…<br>$$</p>
+<p>如果不删除$a_j$，而是删除另一个数$a_q(r \leq q \leq n)$。此时A变为A’’，A’’所代表的数值为$T_{A’’}$，则有： </p>
+<p>$$<br>T_{A’’}=a_1 \times 10^{n-2}+a_2 \times 10^{n-3}+…+a_i \times 10^{n-i-1}+a_j \times 10^{n-j-1}+…<br>$$</p>
+<p>发现$T_{A’}$中的$10^{n-k}$的系数是$a_k$，而$T_{A’’}$中的$10^{n-k}$的系数是$a_j$，由于$a_k&lt; a_j$，那么必有$T_{A’}&lt; T_{A’’}$，所以删除第一个山峰的峰值是安全的。也就是如果A[1…n]含有严格递减子序列，那么就删除第一个严格递减子序列的首字符。贪心选择是安全的。</p>
+<p>综上，贪心选择性质成立。</p>
+
       
     </div>
-    
-
-
 
     
+
     
     
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/27/round(number[, ndigits])/" rel="next" title="round(number[, ndigits])">
+                <i class="fa fa-chevron-left"></i> round(number[, ndigits])
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/29/Hadoop-installed-in-Ubuntu1604/" rel="prev" title="分布式lab1：Ubuntu16.04上Hadoop环境安装">
+                分布式lab1：Ubuntu16.04上Hadoop环境安装 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
 
         </div>
         
@@ -458,8 +650,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -581,6 +782,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#贪心选择策略"><span class="nav-number">1.</span> <span class="nav-text">贪心选择策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#贪心选择性质证明"><span class="nav-number">2.</span> <span class="nav-text">贪心选择性质证明</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -759,6 +977,8 @@
 
 
 
+
+  
 
 
   
@@ -1097,6 +1317,46 @@
   
 
   
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
 
 
   
@@ -1119,7 +1379,7 @@
   <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
   <script>
   
-    bookmark.loadBookmark();
+    bookmark.scrollToMark('auto', "#more");
   
   </script>
 

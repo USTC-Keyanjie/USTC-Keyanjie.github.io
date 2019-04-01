@@ -96,16 +96,20 @@
 
 
 
-  <meta name="description" content="Have a nice coding!🍻">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Alan&#39;s Notebook🦍">
-<meta property="og:url" content="https://www.keyanjie.net/index.html">
+  <meta name="description" content="实验任务：使用TensorFlow实现CAPTCHA注册码的识别  基本思路：采用 Captcha 库生成验证码，将验证码识别问题转化为分类问题，采用 CNN 网络模型进行训练，最终实现对验证码的破解。  实验步骤：获取验证码训练集 → 构建卷积神经网络和全连接神经网络 → 定义损失函数以及优化方式 → 进行训练并保存训练结果。   获取验证码训练集使用captcha库来生成验证码，captch">
+<meta name="keywords" content="lab,tensorflow,cnn,dnn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于TensorFlow的CAPTCHA注册码识别实验">
+<meta property="og:url" content="https://www.keyanjie.net/2019/03/27/基于TensorFlow的CAPTCHA注册码识别实验/index.html">
 <meta property="og:site_name" content="Alan&#39;s Notebook🦍">
-<meta property="og:description" content="Have a nice coding!🍻">
+<meta property="og:description" content="实验任务：使用TensorFlow实现CAPTCHA注册码的识别  基本思路：采用 Captcha 库生成验证码，将验证码识别问题转化为分类问题，采用 CNN 网络模型进行训练，最终实现对验证码的破解。  实验步骤：获取验证码训练集 → 构建卷积神经网络和全连接神经网络 → 定义损失函数以及优化方式 → 进行训练并保存训练结果。   获取验证码训练集使用captcha库来生成验证码，captch">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://www.keyanjie.net/wp-content/uploads/2018/10/130130133532536469_new-300x186.jpg">
+<meta property="og:updated_time" content="2019-03-31T17:18:15.707Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Alan&#39;s Notebook🦍">
-<meta name="twitter:description" content="Have a nice coding!🍻">
+<meta name="twitter:title" content="基于TensorFlow的CAPTCHA注册码识别实验">
+<meta name="twitter:description" content="实验任务：使用TensorFlow实现CAPTCHA注册码的识别  基本思路：采用 Captcha 库生成验证码，将验证码识别问题转化为分类问题，采用 CNN 网络模型进行训练，最终实现对验证码的破解。  实验步骤：获取验证码训练集 → 构建卷积神经网络和全连接神经网络 → 定义损失函数以及优化方式 → 进行训练并保存训练结果。   获取验证码训练集使用captcha库来生成验证码，captch">
+<meta name="twitter:image" content="http://www.keyanjie.net/wp-content/uploads/2018/10/130130133532536469_new-300x186.jpg">
 
 
 
@@ -113,7 +117,7 @@
 
   
   
-  <link rel="canonical" href="https://www.keyanjie.net/">
+  <link rel="canonical" href="https://www.keyanjie.net/2019/03/27/基于TensorFlow的CAPTCHA注册码识别实验/">
 
 
 
@@ -123,7 +127,7 @@
   };
 </script>
 
-  <title>Alan's Notebook🦍</title>
+  <title>基于TensorFlow的CAPTCHA注册码识别实验 | Alan's Notebook🦍</title>
   
 
 
@@ -171,8 +175,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,7 +217,7 @@
         
         
           
-          <li class="menu-item menu-item-home🧀 menu-item-active">
+          <li class="menu-item menu-item-home🧀">
 
     
     
@@ -360,1013 +363,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.keyanjie.net/2019/03/30/Basic-operations-on-HDFS/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Alan Ke">
-      <meta itemprop="description" content="Have a nice coding!🍻">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alan's Notebook🦍">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/30/Basic-operations-on-HDFS/" class="post-title-link" itemprop="url">分布式lab2：Hadoop Distributed File System(HDFS)上的基本操作</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-03-30 17:53:16" itemprop="dateCreated datePublished" datetime="2019-03-30T17:53:16+08:00">2019-03-30</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-04-01 01:13:51" itemprop="dateModified" datetime="2019-04-01T01:13:51+08:00">2019-04-01</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/distributed-System/" itemprop="url" rel="index"><span itemprop="name">distributed System</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>分布式第二次实验。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/30/Basic-operations-on-HDFS/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.keyanjie.net/2019/03/29/Hadoop-installed-in-Ubuntu1604/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Alan Ke">
-      <meta itemprop="description" content="Have a nice coding!🍻">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alan's Notebook🦍">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/29/Hadoop-installed-in-Ubuntu1604/" class="post-title-link" itemprop="url">分布式lab1：Ubuntu16.04上Hadoop环境安装</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-03-29 02:18:31" itemprop="dateCreated datePublished" datetime="2019-03-29T02:18:31+08:00">2019-03-29</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-04-01 01:13:58" itemprop="dateModified" datetime="2019-04-01T01:13:58+08:00">2019-04-01</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/distributed-system/" itemprop="url" rel="index"><span itemprop="name">distributed system</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>分布式第一次实验，怎么坑这么多！🤯</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/29/Hadoop-installed-in-Ubuntu1604/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.keyanjie.net/2019/03/28/删数问题的贪心选择策略证明/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Alan Ke">
-      <meta itemprop="description" content="Have a nice coding!🍻">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alan's Notebook🦍">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/28/删数问题的贪心选择策略证明/" class="post-title-link" itemprop="url">删数问题的贪心选择策略证明</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-03-28 20:39:18" itemprop="dateCreated datePublished" datetime="2019-03-28T20:39:18+08:00">2019-03-28</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-04-01 13:50:11" itemprop="dateModified" datetime="2019-04-01T13:50:11+08:00">2019-04-01</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p><strong>题目：在一个n位的正整数A[1…n]中删除其中任意k(k≤n)个数字后，剩下的数字按原次序组成一个新的正整数。对于给定的n位正整数A和k，设计一个贪心算法，使得剩下的数字组成的新数最小。</strong><br><strong>如：A=278693，k=4时最小新数为23，k=3时为263</strong></p>
-</blockquote>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/28/删数问题的贪心选择策略证明/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.keyanjie.net/2019/03/27/round(number[, ndigits])/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Alan Ke">
-      <meta itemprop="description" content="Have a nice coding!🍻">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alan's Notebook🦍">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/27/round(number[, ndigits])/" class="post-title-link" itemprop="url">round(number[, ndigits])</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-03-27 15:11:39" itemprop="dateCreated datePublished" datetime="2019-03-27T15:11:39+08:00">2019-03-27</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-03-30 15:40:49" itemprop="dateModified" datetime="2019-03-30T15:40:49+08:00">2019-03-30</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><strong>round函数是Python中常用的四舍五入的函数，但是今天试用了一下发现有点小坑</strong>。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/27/round(number[, ndigits])/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.keyanjie.net/2019/03/27/CTC Loss学习笔记/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Alan Ke">
-      <meta itemprop="description" content="Have a nice coding!🍻">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alan's Notebook🦍">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/27/CTC Loss学习笔记/" class="post-title-link" itemprop="url">CTC Loss学习笔记</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-03-27 15:09:56" itemprop="dateCreated datePublished" datetime="2019-03-27T15:09:56+08:00">2019-03-27</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-03-30 15:41:49" itemprop="dateModified" datetime="2019-03-30T15:41:49+08:00">2019-03-30</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>谨以此文纪念一下我那次晚上11点半查完的实验。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/27/CTC Loss学习笔记/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.keyanjie.net/2019/03/27/科大软院 - 人工智能期中考试复习/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Alan Ke">
-      <meta itemprop="description" content="Have a nice coding!🍻">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alan's Notebook🦍">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/27/科大软院 - 人工智能期中考试复习/" class="post-title-link" itemprop="url">科大软院 - 人工智能期中考试复习</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-03-27 14:05:30" itemprop="dateCreated datePublished" datetime="2019-03-27T14:05:30+08:00">2019-03-27</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-03-29 14:19:38" itemprop="dateModified" datetime="2019-03-29T14:19:38+08:00">2019-03-29</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>中国科学技术大学软件学院 人工智能2018年秋课程期中考试复习🍰</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/27/科大软院 - 人工智能期中考试复习/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
 
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -1398,10 +397,8 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/27/基于TensorFlow的CAPTCHA注册码识别实验/" class="post-title-link" itemprop="url">基于TensorFlow的CAPTCHA注册码识别实验</a>
+          <h1 class="post-title" itemprop="name headline">基于TensorFlow的CAPTCHA注册码识别实验
+
               
             
           </h1>
@@ -1471,6 +468,19 @@
           
             
             
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/2019/03/27/基于TensorFlow的CAPTCHA注册码识别实验/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/27/基于TensorFlow的CAPTCHA注册码识别实验/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -1495,9 +505,7 @@
       
 
       
-        
-          
-            <ul>
+        <ul>
 <li><p>实验任务：使用TensorFlow实现CAPTCHA注册码的识别</p>
 </li>
 <li><p>基本思路：采用 Captcha 库生成验证码，将验证码识别问题转化为分类问题，采用 CNN 网络模型进行训练，最终实现对验证码的破解。</p>
@@ -1600,8 +608,6 @@
 <p>4、predict_captcha.py</p>
 <p>我们把训练好的模型保存起来，之后可以使用此代码去识别任意的验证码，只要图片输入的要求符合高60宽160且1通道黑白图片即可。这个类上面我没讲解，我也没机会试，因为训练时间太久了我还没训出来呢，据说GPU训练需要4~5个小时，CPU训练的话需要20小时，大家训练好了可以拿去试试。</p>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> generate_captcha</span><br><span class="line"><span class="keyword">import</span> captcha_model</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    captcha = generate_captcha.GenerateCaptcha()</span><br><span class="line">    width, height, char_num, characters, classes = captcha.get_parameter()</span><br><span class="line"></span><br><span class="line">    gray_image = Image.open(sys.argv[<span class="number">1</span>]).convert(<span class="string">'L'</span>)</span><br><span class="line">    img = np.array(gray_image.getdata())</span><br><span class="line">    test_x = np.reshape(img, [height, width, <span class="number">1</span>]) / <span class="number">255.0</span></span><br><span class="line">    x = tf.placeholder(tf.float32, [<span class="literal">None</span>, height, width, <span class="number">1</span>])</span><br><span class="line">    keep_prob = tf.placeholder(tf.float32)</span><br><span class="line"></span><br><span class="line">    model = captcha_model.CaptchaModel(width, height, char_num, classes)</span><br><span class="line">    y_conv = model.create_model(x,keep_prob)</span><br><span class="line">    predict = tf.argmax(tf.reshape(y_conv, [<span class="number">-1</span>,char_num, classes]),<span class="number">2</span>)</span><br><span class="line">    init_op = tf.global_variables_initializer()</span><br><span class="line">    saver = tf.train.Saver()</span><br><span class="line">    gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=<span class="number">0.95</span>)</span><br><span class="line">    <span class="keyword">with</span> tf.Session(config=tf.ConfigProto(log_device_placement=<span class="literal">False</span>, gpu_options=gpu_options)) <span class="keyword">as</span> sess:</span><br><span class="line">        sess.run(init_op)</span><br><span class="line">        saver.restore(sess, <span class="string">"capcha_model.ckpt"</span>)</span><br><span class="line">        pre_list = sess.run(predict, feed_dict=&#123;x: [test_x], keep_prob: <span class="number">1</span>&#125;)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> pre_list:</span><br><span class="line">            s = <span class="string">''</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> i:</span><br><span class="line">                s += characters[j]</span><br><span class="line">            print(s)</span><br></pre></td></tr></table></figure></div>
-          
-        
       
     </div>
 
@@ -1622,178 +628,46 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.keyanjie.net/2019/03/27/动态规划 - Dynamic Programming/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Alan Ke">
-      <meta itemprop="description" content="Have a nice coding!🍻">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Alan's Notebook🦍">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/27/动态规划 - Dynamic Programming/" class="post-title-link" itemprop="url">动态规划 - Dynamic Programming</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-03-27 13:39:36" itemprop="dateCreated datePublished" datetime="2019-03-27T13:39:36+08:00">2019-03-27</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-03-30 15:51:50" itemprop="dateModified" datetime="2019-03-30T15:51:50+08:00">2019-03-30</time>
-              
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/lab/" rel="tag"># lab</a>
           
-            
-            
+            <a href="/tags/tensorflow/" rel="tag"># tensorflow</a>
           
-
+            <a href="/tags/cnn/" rel="tag"># cnn</a>
           
+            <a href="/tags/dnn/" rel="tag"># dnn</a>
           
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          <blockquote>
-<p>Those who cannot remember the past are condemned to repeat.</p>
-<p>-Dynamic Programming</p>
-</blockquote>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/27/动态规划 - Dynamic Programming/#more" rel="contents">
-                Read more &raquo;
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/27/动态规划 - Dynamic Programming/" rel="next" title="动态规划 - Dynamic Programming">
+                <i class="fa fa-chevron-left"></i> 动态规划 - Dynamic Programming
               </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
+            
+          </div>
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/27/科大软院 - 人工智能期中考试复习/" rel="prev" title="科大软院 - 人工智能期中考试复习">
+                科大软院 - 人工智能期中考试复习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
       
 
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -1803,14 +677,19 @@
   </article>
 
 
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
 
         </div>
         
@@ -1830,8 +709,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1953,6 +841,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#获取验证码训练集"><span class="nav-number">1.</span> <span class="nav-text">获取验证码训练集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建卷积神经网络和全连接神经网络"><span class="nav-number">2.</span> <span class="nav-text">构建卷积神经网络和全连接神经网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、定义损失函数以及优化方式"><span class="nav-number">3.</span> <span class="nav-text">三、定义损失函数以及优化方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、进行训练并保存训练结果"><span class="nav-number">4.</span> <span class="nav-text">四、进行训练并保存训练结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、完整代码"><span class="nav-number">5.</span> <span class="nav-text">六、完整代码</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -2082,6 +987,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
 
   
 
@@ -2127,6 +1036,8 @@
 
 
 
+
+  
 
 
   
@@ -2463,26 +1374,6 @@
 
   
   
-    
-      
-    
-      
-    
-      
-        
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-  
 
   
     
@@ -2547,7 +1438,7 @@
   <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
   <script>
   
-    bookmark.loadBookmark();
+    bookmark.scrollToMark('auto', "#more");
   
   </script>
 
