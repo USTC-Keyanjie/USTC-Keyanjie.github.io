@@ -1443,7 +1443,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-01 16:15:03" itemprop="dateModified" datetime="2019-04-01T16:15:03+08:00">2019-04-01</time>
+                <time title="Modified: 2019-04-01 16:17:35" itemprop="dateModified" datetime="2019-04-01T16:17:35+08:00">2019-04-01</time>
               
             
           </span>
@@ -1537,8 +1537,6 @@
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">conv2d</span><span class="params">(self, x, W)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> tf.nn.conv2d(x, W, strides=[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>], padding=<span class="string">'SAME'</span>)</span><br></pre></td></tr></table></figure></div>
 <p>这是2维卷积函数。x表示传入的待处理图片，W表示卷积核，strides=[1, 1, 1, 1]，其中第二个和第三个1分别表示x方向步长和y方向步长，padding=’SAME’表示边界处理策略设为’SAME’，这样卷积处理完图片大小不变。</p>
 </li>
-</ol>
-<ol start="2">
 <li><p>max_pool_2x2</p>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">max_pool_2x2</span><span class="params">(self, x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> tf.nn.max_pool(x, ksize=[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>], strides=[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>], padding=<span class="string">'SAME'</span>)</span><br></pre></td></tr></table></figure></div>
 <p>这是2x2最大值池化函数。x表示待被池化处理的图片，ksize=[1, 2, 2, 1]，其中第二个和第三个2分别表示池化窗口高度和池化窗口宽度，strides和padding意义同上。</p>
@@ -1550,7 +1548,7 @@
 <p>横轴区间（μ-2σ，μ+2σ）内的面积为95.449974%。</p>
 <p>横轴区间（μ-3σ，μ+3σ）内的面积为99.730020%。</p>
 <p>X落在（μ-3σ，μ+3σ）以外的概率小于千分之三，在实际问题中常认为相应的事件是不会发生的，基本上可以把区间（μ-3σ，μ+3σ）看作是随机变量X实际可能的取值区间，这称之为正态分布的“3σ”原则。</p>
-<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/captcha_1.jpg">
+<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/captcha_1.jpg?/imagemore2/gravity/center">
 <p>而从<strong>截断</strong>的正态分布中输出随机值的意思就是，同样也是随机生成的值，但是生成的值必须服从具有指定平均值和标准偏差的正态分布，如果生成的值大于平均值2个标准偏差的值则丢弃重新选择。换句话说，就是如果随机生成的值如果落在了(μ-2σ,μ+2σ)之外，就重新生成值，这样就保证了随机生成的值都在均值附近。</p>
 <p>扯了这么多，其实就是随机生成一组数，要求不要离中心点μ太远。</p>
 </li>
