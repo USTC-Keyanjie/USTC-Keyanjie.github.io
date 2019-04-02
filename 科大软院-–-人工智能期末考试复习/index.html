@@ -110,7 +110,7 @@
 <meta property="og:image" content="https://www.keyanjie.net/科大软院-–-人工智能期末考试复习/cross%20validation.png">
 <meta property="og:image" content="https://www.keyanjie.net/科大软院-–-人工智能期末考试复习/RNN梯度消失与梯度爆炸.jpg">
 <meta property="og:image" content="https://www.keyanjie.net/科大软院-–-人工智能期末考试复习/LSTM3-focus-C.png">
-<meta property="og:updated_time" content="2019-04-02T09:03:59.199Z">
+<meta property="og:updated_time" content="2019-04-02T09:05:34.935Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="科大软院 – 人工智能期末考试复习">
 <meta name="twitter:description" content="但愿看我博客复习的同学不会被8%的概率dropout吧~">
@@ -445,7 +445,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-02 17:03:59" itemprop="dateModified" datetime="2019-04-02T17:03:59+08:00">2019-04-02</time>
+                <time title="Modified: 2019-04-02 17:05:34" itemprop="dateModified" datetime="2019-04-02T17:05:34+08:00">2019-04-02</time>
               
             
           </span>
@@ -604,7 +604,7 @@
 <li>Dropout，Dropout也是一种正则化手段，指暂时丢弃一部分神经元及其连接。随机丢弃神经元可以防止过拟合，同时可以高效地连接不同网络架构。</li>
 </ol>
 <h1 id="误差来源分析"><a href="#误差来源分析" class="headerlink" title="误差来源分析"></a>误差来源分析</h1><h2 id="偏差bias"><a href="#偏差bias" class="headerlink" title="偏差bias"></a>偏差bias</h2><p>期望预测与真实标记的误差，偏差越大偏离理论值越大。</p>
-<p>在一个训练集$D$上模型$f$对测试样本$x$预测输出为$f(x;D)$, 那么学习算法$f$对测试样本$x$的期望预测为（这里的$\bar{f}(x)$上面有一横线，表示均值或者期望，但是显示效果不好）：<br>$$<br>\bar{f}(x)=E_D[f(x;D)]<br>$$<br>这里用偏差的平方来表示偏差的计算公式：<br>$$<br>Bias^2(x)=(\bar{f}(x)-\hat{y})^2<br>$$</p>
+<p>在一个训练集$D$上模型$f$对测试样本$x$预测输出为$f(x;D)$, 那么学习算法$f$对测试样本$x$的期望预测为：<br>$$<br>\bar{f}(x)=E_D[f(x;D)]<br>$$<br>这里用偏差的平方来表示偏差的计算公式：<br>$$<br>Bias^2(x)=(\bar{f}(x)-\hat{y})^2<br>$$</p>
 <h2 id="方差variance"><a href="#方差variance" class="headerlink" title="方差variance"></a>方差variance</h2><p>预测模型的离散程度，方差越大离散程度越大。使用样本数相同的不同训练集产生的方差为:<br>$$<br>var(x)=E_D[(f(x;D)-\bar{f}(x))^2<br>$$</p>
 <h2 id="噪声noise"><a href="#噪声noise" class="headerlink" title="噪声noise"></a>噪声noise</h2><p>真实标记与数据集中的实际标记间的偏差（$y_D$表示在数据集中的标记，$\hat{y}$表示真实标记，这两个可能不等）：</p>
 <p>$$<br>\epsilon=E_D[(y_D-\hat{y})^2]<br>$$</p>
