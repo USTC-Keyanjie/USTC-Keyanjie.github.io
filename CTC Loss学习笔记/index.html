@@ -96,17 +96,21 @@
 
 
 
-  <meta name="description" content="round函数是Python中常用的四舍五入的函数，但是今天试用了一下发现有点小坑。">
+  <meta name="description" content="谨以此文纪念一下我那次晚上11点半查完的实验。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="round(number[, ndigits])">
-<meta property="og:url" content="https://www.keyanjie.net/2019/03/27/round(number[, ndigits])/index.html">
+<meta property="og:title" content="CTC Loss学习笔记">
+<meta property="og:url" content="https://www.keyanjie.net/CTC Loss学习笔记/index.html">
 <meta property="og:site_name" content="Alan&#39;s Notebook🦍">
-<meta property="og:description" content="round函数是Python中常用的四舍五入的函数，但是今天试用了一下发现有点小坑。">
+<meta property="og:description" content="谨以此文纪念一下我那次晚上11点半查完的实验。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-30T07:40:49.434Z">
+<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/ctc_loss_1.png">
+<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/ctc_loss_2.png">
+<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/ctc_loss_3.png">
+<meta property="og:updated_time" content="2019-03-30T07:41:49.034Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="round(number[, ndigits])">
-<meta name="twitter:description" content="round函数是Python中常用的四舍五入的函数，但是今天试用了一下发现有点小坑。">
+<meta name="twitter:title" content="CTC Loss学习笔记">
+<meta name="twitter:description" content="谨以此文纪念一下我那次晚上11点半查完的实验。">
+<meta name="twitter:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/ctc_loss_1.png">
 
 
 
@@ -114,7 +118,7 @@
 
   
   
-  <link rel="canonical" href="https://www.keyanjie.net/2019/03/27/round(number[, ndigits])/">
+  <link rel="canonical" href="https://www.keyanjie.net/CTC Loss学习笔记/">
 
 
 
@@ -124,7 +128,7 @@
   };
 </script>
 
-  <title>round(number[, ndigits]) | Alan's Notebook🦍</title>
+  <title>CTC Loss学习笔记 | Alan's Notebook🦍</title>
   
 
 
@@ -377,7 +381,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.keyanjie.net/2019/03/27/round(number[, ndigits])/">
+    <link itemprop="mainEntityOfPage" href="https://www.keyanjie.net/CTC Loss学习笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Alan Ke">
@@ -394,7 +398,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">round(number[, ndigits])
+          <h1 class="post-title" itemprop="name headline">CTC Loss学习笔记
 
               
             
@@ -420,7 +424,7 @@
                 
               
 
-              <time title="Created: 2019-03-27 15:11:39" itemprop="dateCreated datePublished" datetime="2019-03-27T15:11:39+08:00">2019-03-27</time>
+              <time title="Created: 2019-03-27 15:09:56" itemprop="dateCreated datePublished" datetime="2019-03-27T15:09:56+08:00">2019-03-27</time>
             
 
             
@@ -437,7 +441,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-03-30 15:40:49" itemprop="dateModified" datetime="2019-03-30T15:40:49+08:00">2019-03-30</time>
+                <time title="Modified: 2019-03-30 15:41:49" itemprop="dateModified" datetime="2019-03-30T15:41:49+08:00">2019-03-30</time>
               
             
           </span>
@@ -455,8 +459,8 @@
                 </span>
             
                 <span class="post-meta-item-text">Comments: </span>
-                <a href="/2019/03/27/round(number[, ndigits])/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/03/27/round(number[, ndigits])/" itemprop="commentCount"></span>
+                <a href="/CTC Loss学习笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/CTC Loss学习笔记/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -484,24 +488,60 @@
       
 
       
-        <p><strong>round函数是Python中常用的四舍五入的函数，但是今天试用了一下发现有点小坑</strong>。</p>
+        <p>谨以此文纪念一下我那次晚上11点半查完的实验。</p>
 <a id="more"></a>
-<p><strong>对0.5进行四舍五入，结果应该为1，可是Python解释器给的结果是：</strong></p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span>&gt;&gt; round(0.5)</span><br><span class="line">0</span><br></pre></td></tr></table></figure></div>
-<p><strong>紧接着我又试了几个数，发现：</strong></p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span>&gt;&gt; round(1.5)</span><br><span class="line">2</span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; round(2.5)</span><br><span class="line">2</span><br></pre></td></tr></table></figure></div>
-<p><strong>round(1.5)还算正常，round(2.5)又很奇怪了，然后看了看Python文档，里面这样解释round函数：</strong></p>
-<blockquote>
-<p><strong>For the built-in types supporting round(), values are rounded to the closest multiple of 10 to the power minus ndigits; if two multiples are equally close, rounding is done toward the even choice (so, for example, both round(0.5) and round(-0.5) are 0, and round(1.5) is 2). Any integer value is valid for ndigits (positive, zero, or negative). The return value is an integer if ndigits is omitted or None. Otherwise the return value has the same type as number.</strong></p>
-</blockquote>
-<p><strong>意思是会把这个输入的数保留到小数点后指定的ndigit位数，并且按照一定规则圆整。规则就是看看这个数更靠近左右两端中哪一端，然后就将这个数圆整为这一端，比如0.4就圆整为0，0.6就圆整为1。那如果是像0.5这样的到左右两端距离一样的情况，就圆整到偶数的一端，比如0.5就圆整到0，1.5就圆整到2。</strong></p>
-<p><strong>文档里还写了这么一句话：</strong></p>
-<blockquote>
-<p><strong>Note: The behavior of round() for floats can be surprising: for example, round(2.675, 2) gives 2.67instead of the expected 2.68. This is not a bug: it’s a result of the fact that most decimal fractions can’t be represented exactly as a float. See Floating Point Arithmetic: Issues and Limitations for more information.</strong></p>
-</blockquote>
-<p><strong>就是按照上述规则，round(2.675, 2)的结果应该是2.68，可是实际结果是：</strong></p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span>&gt;&gt; round(2.675, 2)</span><br><span class="line">2.67</span><br></pre></td></tr></table></figure></div>
-<p><strong>这不是我们写了个bug，这是因为机器在存储浮点数2.675的时候，不会存储到这么精确，存储的数比2.675小一点点，应该差不多是2.674999999这样，所以才会被圆整到2.67，这个问题没法解决。</strong></p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>语音识别时，人说一句“Hello”，尽管发音很标准，但是由于有停顿、换气或是其他原因，音频信息中的“H”音很容易对不上文本信息中的“H”。这就需要预处理对齐问题，但是用人工的方法手动对齐比较音频信息和文本信息，需要耗费大量的人力财力。CTC就是处理这一类对齐问题而生的技术。</p>
+<h2 id="基本过程"><a href="#基本过程" class="headerlink" title="基本过程"></a>基本过程</h2><p>在语音识别中，CTC会逐帧辨别发的什么音。如果通过发音辨别出了一个字母，那么这一帧就标记为这个字母；如果没声音就标记为blank，表示这是两个单词中间的空格；如果分辨不出来是啥，就标记为ϵ (ctc blank)。所以将“Hello”的音频信息进行辨别后，会得到的结果可能会是：“ϵϵHellϵϵlloϵ”，也可能是“Heeϵϵllϵϵlooϵϵ”，还有其他很多种可能。</p>
+<p>ctc的处理过程分为2步：</p>
+<ol>
+<li>将识别结果中相邻的重复字符删掉，那么“ϵϵHellϵϵlloϵ”就变成了“ϵHelϵloϵ”，“Heeϵϵllϵϵlooϵϵ”就变成了“Heϵlϵloϵ”；</li>
+<li>删去ϵ，“ϵHelϵloϵ”和“Heϵlϵloϵ”就都变成了“Hello”。</li>
+</ol>
+<p>我们的目的是求出P(lable|x)，其中x是输入的数据，lable是标签数据，即正确的输出。P(lable|x)表示的是，如果在输入数据为x的条件下，能够正确输出标签数据的概率有多大，这个概率肯定是越大越好，如果P(lable|x)=1，那么就说明百分之百可以正确输出。</p>
+<p>Loss的定义如下，如果P(lable|x)越接近1，Loss就接近于0；如果P(lable|x)越接近0，Loss就会越大：</p>
+<p>$$<br>Loss=-\ln P(lable|x)<br>$$</p>
+<p>P(lable|x)如何计算呢？从上面ctc的处理过程可以看出来，有很多种序列最终都可以处理为标签数据，“ϵϵHellϵϵlloϵ”就是一条可以被处理为“Hello”的序列，记其为seq，那么产生seq的概率有多少呢？这里$y_c^t$表示在第t时间步生成字符c的概率有多少，那么要生成seq这么长的序列，就要把生成每个字符的概率乘起来。</p>
+<p>$$<br>P(seq|x)=y_\epsilon^1 \times y_\epsilon^2 \times y_H^3 \times y_e^4 \times y_l^5 \times y_l^6 \times y_\epsilon^7 \times y_\epsilon^8 \times y_l^9 \times y_l^{10} \times y_o^{11} \times y_\epsilon^{12}<br>$$</p>
+<p>如果再用π来表示一个序列的集合，这个集合中所有的序列和seq一样，经过ctc处理过后，都可以变为标签数据。那么将这个集合中所有序列的概率加起来，就是P(lable|x)。</p>
+<p>$$<br>P(lable|x)=\sum_{\pi}P(\pi|x)<br>$$</p>
+<p>可是，π集合中有多少序列呢，茫茫多的序列都可以转为lable。如果lable是“cat”的话，那么可以转为“cat”的序列数，可以通过下图可以看出来，白色节点表示识别为字母，黑色节点表示识别不出来是个啥，标记为“ϵ”（图片来自网络）：</p>
+<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/ctc_loss_1.png">
+<p>每一条路径都是一种语音识别的结果，而且此结果可以经由ctc处理后转换为标签数据。这才3个字母，就这么条路径，如果成百上千的单词，一一计算每种可能的话，这个计算量很大。</p>
+<h2 id="使用动态规划优化"><a href="#使用动态规划优化" class="headerlink" title="使用动态规划优化"></a>使用动态规划优化</h2><p>动态规划的思想是自顶向下写一个递归式，然后自底向上算出来。</p>
+<p>如上文所述，在t个时间步走到字符“u”的路线有很多条，如果seq是其中一条路线，那么其概率为：</p>
+
+$$
+P(seq|x)=\prod_{i=1}^{t} y^i_{{seq}_i}
+$$
+
+
+<p>这里定义一个函数α(t,u)，表示在t个时间步走到字符“u”的概率。用π表示所有可以在t个时间步走到字符“u”的路线集合，那么有：</p>
+
+$$
+\alpha(t,u)=\sum_{\pi}\prod_{i=1}^{t} y^i_{\pi_i}
+$$
+
+
+<p>再看看刚刚开始那个例子“Hello”，如果当前在第t个时间步，判别成了一个字符“l”，那么在第t-1个时间步上，可以是哪些字符呢？</p>
+<p>这要分2种情况讨论：</p>
+<ol>
+<li>如果“Hello”的第一个“l”，也就是”Hello”标红的那个“l”，那么在第t-1个时间步上，可以是“e”、“ϵ”、“l”三种情况；</li>
+</ol>
+<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/ctc_loss_2.png">
+<p>所以要求第t个时间步走到“l”的概率，就要先求出在t-1个时间步走到“e”、“ϵ”、“l”的概率，求和之后，再乘以$y_c^t$，即：</p>
+<p>$$<br>\alpha(t,u)=y_u^t[\alpha(t-1,u)+\alpha(t-1,u-1)+\alpha(t-1,u-2)]<br>$$</p>
+<p>这里u-1和u-2表示字符u的上一个字符和上两个字符。</p>
+<ol>
+<li>如果是“Hello”的第二个“l”，也就是“Hello”标红的那个“l”，那么在第t-1个时间步上，只可以是“ϵ”、“l”两种情况。要是算上上面的“l”，那么这两个“l”会合并成1个；如果是在t个时间步上走到了“ϵ”这个字符，那么在t-1个时间步上，也只能是“l”、“ϵ”两种情况。要是也算上上面一个“ϵ”，那么会跨过中间这个“l”，这个字符就不输出了。</li>
+</ol>
+<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/ctc_loss_3.png">
+<p>所以第t个时间步走到“l”或”ϵ”，只能横着走过来，或从上一个字符过来，概率即：</p>
+<p>$$<br>\alpha(t,u)=y_u^t[\alpha(t-1,u)+\alpha(t-1,u-1)]<br>$$</p>
+<p>这样递归公式就定义好了，再算一下递归式子的底：</p>
+<p>$$<br>\alpha(1,1)=y_\epsilon^1<br>$$</p>
+<p>$$<br>\alpha(1,2)=y_h^1<br>$$</p>
+<p>$$<br>\alpha(1,u)=0 \quad u&gt;2<br>$$</p>
+<p>从这个底开始，使用递推公式自底向上的计算，直至算出$\alpha(T,lable)+\alpha(T,lable-1)$，T表示总时间步，所有可以经过ctc转化为“Hello”的序列，最后一个字符可以是“ϵ”也可以是“o”。label表示所最后一个字符是“ϵ”，label-1表示最后一个字符是“o”，这样走出的路线都可以经过ctc转化为“Hello”。</p>
 
       
     </div>
@@ -532,8 +572,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/27/CTC Loss学习笔记/" rel="next" title="CTC Loss学习笔记">
-                <i class="fa fa-chevron-left"></i> CTC Loss学习笔记
+              <a href="/科大软院 - 人工智能期中考试复习/" rel="next" title="科大软院 - 人工智能期中考试复习">
+                <i class="fa fa-chevron-left"></i> 科大软院 - 人工智能期中考试复习
               </a>
             
           </div>
@@ -542,8 +582,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/28/删数问题的贪心选择策略证明/" rel="prev" title="删数问题的贪心选择策略证明">
-                删数问题的贪心选择策略证明 <i class="fa fa-chevron-right"></i>
+              <a href="/round(number[, ndigits])/" rel="prev" title="round(number[, ndigits])">
+                round(number[, ndigits]) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -592,8 +632,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -713,6 +762,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本过程"><span class="nav-number">2.</span> <span class="nav-text">基本过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用动态规划优化"><span class="nav-number">3.</span> <span class="nav-text">使用动态规划优化</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -1230,6 +1296,46 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
   
 
 
