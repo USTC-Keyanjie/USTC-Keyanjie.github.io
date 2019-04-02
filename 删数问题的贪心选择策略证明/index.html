@@ -103,14 +103,14 @@
 <meta property="og:site_name" content="Alan&#39;s Notebook🦍">
 <meta property="og:description" content="题目：在一个n位的正整数A[1…n]中删除其中任意k(k≤n)个数字后，剩下的数字按原次序组成一个新的正整数。对于给定的n位正整数A和k，设计一个贪心算法，使得剩下的数字组成的新数最小。如：A=278693，k=4时最小新数为23，k=3时为263">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/2_1.jpg">
-<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/2_2.jpg">
-<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/2_3.jpg">
-<meta property="og:updated_time" content="2019-04-02T10:47:54.981Z">
+<meta property="og:image" content="https://www.keyanjie.net/删数问题的贪心选择策略证明/2_1.jpg">
+<meta property="og:image" content="https://www.keyanjie.net/删数问题的贪心选择策略证明/2_2.jpg">
+<meta property="og:image" content="https://www.keyanjie.net/删数问题的贪心选择策略证明/2_3.jpg">
+<meta property="og:updated_time" content="2019-04-02T11:02:33.648Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="删数问题的贪心选择策略证明">
 <meta name="twitter:description" content="题目：在一个n位的正整数A[1…n]中删除其中任意k(k≤n)个数字后，剩下的数字按原次序组成一个新的正整数。对于给定的n位正整数A和k，设计一个贪心算法，使得剩下的数字组成的新数最小。如：A=278693，k=4时最小新数为23，k=3时为263">
-<meta name="twitter:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/2_1.jpg">
+<meta name="twitter:image" content="https://www.keyanjie.net/删数问题的贪心选择策略证明/2_1.jpg">
 
 
 
@@ -441,7 +441,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-02 18:47:54" itemprop="dateModified" datetime="2019-04-02T18:47:54+08:00">2019-04-02</time>
+                <time title="Modified: 2019-04-02 19:02:33" itemprop="dateModified" datetime="2019-04-02T19:02:33+08:00">2019-04-02</time>
               
             
           </span>
@@ -544,11 +544,11 @@
 <p>(2) 现在已经证明了如果A中只有一个山，那么删除山顶元素是最合适的。如果A中有多个山峰该如何处理？</p>
 <p>换句话说，如果A中不止有2段单调子区间，而是由很多不同的单调子区间所组成，那应该如何处理？</p>
 <p>这个问题看上去有点复杂了，我画个图吧：</p>
-<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/2_1.jpg">
+<p><img src="/删数问题的贪心选择策略证明/2_1.jpg" alt="2_1"></p>
 <p>其实把图画出来后，我尝试着删除第一个山的山顶元素，删完后发现，现在的$a_6=a_5$，而$a_7=a_7$：</p>
-<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/2_2.jpg">
+<p><img src="/删数问题的贪心选择策略证明/2_2.jpg" alt="2_2"></p>
 <p>但如果删除第一个山之后的任意一个元素的话，删完后发现$a_6=a_5$，而现在的$a_7=a_6$。</p>
-<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/2_3.jpg">
+<p><img src="/删数问题的贪心选择策略证明/2_3.jpg" alt="2_3"></p>
 <p>由于$a_6&gt;a_7​$，所以不管后面删哪个元素，都会比删除$a_6​$所得到的数要大。</p>
 <p>数学证明如下：</p>
 <p>假设在A中，有3个连在一起的数$a_i,a_j,a_k(1\leq i&lt; j&lt; k\leq n)​$，还有另一个数$a_r(k \leq r &lt; n)​$，，其中$(a_1,a_j)​$是递增序列，$(a_j,a_r)​$是递减序列。</p>

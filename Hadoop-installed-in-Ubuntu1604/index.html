@@ -104,17 +104,17 @@
 <meta property="og:site_name" content="Alan&#39;s Notebook🦍">
 <meta property="og:description" content="分布式第一次实验，怎么坑这么多！🤯">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_1.png">
-<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_5.png">
-<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_2.png">
-<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_6.png">
-<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_8.png">
-<meta property="og:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_3.png">
-<meta property="og:updated_time" content="2019-04-01T09:28:43.491Z">
+<meta property="og:image" content="https://www.keyanjie.net/Hadoop-installed-in-Ubuntu1604/3_1.png">
+<meta property="og:image" content="https://www.keyanjie.net/Hadoop-installed-in-Ubuntu1604/3_5.png">
+<meta property="og:image" content="https://www.keyanjie.net/Hadoop-installed-in-Ubuntu1604/3_2.png">
+<meta property="og:image" content="https://www.keyanjie.net/Hadoop-installed-in-Ubuntu1604/3_6.png">
+<meta property="og:image" content="https://www.keyanjie.net/Hadoop-installed-in-Ubuntu1604/3_8.png">
+<meta property="og:image" content="https://www.keyanjie.net/Hadoop-installed-in-Ubuntu1604/3_3.png">
+<meta property="og:updated_time" content="2019-04-02T11:06:40.237Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式lab1：Ubuntu16.04上Hadoop环境安装">
 <meta name="twitter:description" content="分布式第一次实验，怎么坑这么多！🤯">
-<meta name="twitter:image" content="http://pp41mkw5b.bkt.clouddn.com/static/images/3_1.png">
+<meta name="twitter:image" content="https://www.keyanjie.net/Hadoop-installed-in-Ubuntu1604/3_1.png">
 
 
 
@@ -445,7 +445,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-01 17:28:43" itemprop="dateModified" datetime="2019-04-01T17:28:43+08:00">2019-04-01</time>
+                <time title="Modified: 2019-04-02 19:06:40" itemprop="dateModified" datetime="2019-04-02T19:06:40+08:00">2019-04-02</time>
               
             
           </span>
@@ -580,7 +580,7 @@
 </li>
 </ol>
 <h3 id="在master节点上测试："><a href="#在master节点上测试：" class="headerlink" title="在master节点上测试："></a>在master节点上测试：</h3><p>执行<code>ssh slave1</code>，会有这样的结果：</p>
-<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/3_1.png">
+<p><img src="/Hadoop-installed-in-Ubuntu1604/3_1.png" alt="ssh slave1"></p>
 <p>那么说明成功了，再执行<code>ssh slave2</code>看看。</p>
 <h2 id="关闭防火墙"><a href="#关闭防火墙" class="headerlink" title="关闭防火墙"></a>关闭防火墙</h2><p><strong>所有节点上</strong>，执行<code>ufw disable</code>就好。</p>
 <h2 id="安装Hadoop"><a href="#安装Hadoop" class="headerlink" title="安装Hadoop"></a>安装Hadoop</h2><h3 id="在master节点上：-1"><a href="#在master节点上：-1" class="headerlink" title="在master节点上："></a>在master节点上：</h3><p>[注]全程在root账户下运行</p>
@@ -640,18 +640,18 @@
 </li>
 <li><p>接着可以启动 hadoop 了，启动需要在 <strong>Master</strong> 节点的<strong>sbin</strong>文件夹中进行：</p>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">start-all.sh</span><br><span class="line">mr-jobhistory-daemon.sh start historyserver</span><br></pre></td></tr></table></figure></div>
-<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/3_5.png">
+<p><img src="/Hadoop-installed-in-Ubuntu1604/3_5.png" alt="hadoop启动"></p>
 <p>通过命令 <code>jps</code> 可以查看各个节点所启动的进程。正确的话，在 Master 节点上可以看到 NameNode、ResourceManager、SecondrryNameNode、JobHistoryServer 进程。</p>
-<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/3_2.png">
+<p><img src="/Hadoop-installed-in-Ubuntu1604/3_2.png" alt="Master节点上的进程"></p>
 </li>
 <li><p>分别进入slave1节点和slave2节点，使用<code>jps</code>命令查看运行情况</p>
-<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/3_6.png">
-<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/3_8.png">
+<p><img src="/Hadoop-installed-in-Ubuntu1604/3_6.png" alt="slave1运行情况"></p>
+<p><img src="/Hadoop-installed-in-Ubuntu1604/3_8.png" alt="slave2运行情况"></p>
 </li>
 <li><p>在namenode上查看集群状态</p>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop dfsadmin -report</span><br></pre></td></tr></table></figure></div>
 <p>此时可以通过在浏览器中打开<a href="http://master:50070" target="_blank" rel="noopener">http://master:50070</a>查看。</p>
-<img src="http://pp41mkw5b.bkt.clouddn.com/static/images/3_3.png">
+<p><img src="/Hadoop-installed-in-Ubuntu1604/3_3.png" alt="浏览器查看结果"></p>
 </li>
 </ol>
 <h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>如各位同学发现问题欢迎评论指正，评论功能终于打开了233333！</p>
