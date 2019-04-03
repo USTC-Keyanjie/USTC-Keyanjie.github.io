@@ -100,16 +100,16 @@
 <meta name="keywords" content="algorithm,leetcode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode 79. Word Search（非递归算法）">
-<meta property="og:url" content="https://www.keyanjie.net/LeetCode 79. Word Search(非递归算法)/index.html">
+<meta property="og:url" content="https://www.keyanjie.net/LeetCode 79. Word Search - 非递归算法/index.html">
 <meta property="og:site_name" content="Alan&#39;s Notebook🦍">
 <meta property="og:description" content="上次算法实验课的时候，助教问我可不可以用非递归的方式实现，回去之后折腾了好一会儿终于在LeetCode上AC了我的非递归版本，在这里分享一下。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://www.keyanjie.net/LeetCode%2079.%20Word%20Search(非递归算法)/LeetCode%2079.%20Word%20Search(非递归算法">
-<meta property="og:updated_time" content="2019-04-03T08:00:54.561Z">
+<meta property="og:image" content="https://www.keyanjie.net/LeetCode%2079.%20Word%20Search%20-%20非递归算法/递归模板.png">
+<meta property="og:updated_time" content="2019-04-03T08:02:44.482Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode 79. Word Search（非递归算法）">
 <meta name="twitter:description" content="上次算法实验课的时候，助教问我可不可以用非递归的方式实现，回去之后折腾了好一会儿终于在LeetCode上AC了我的非递归版本，在这里分享一下。">
-<meta name="twitter:image" content="https://www.keyanjie.net/LeetCode%2079.%20Word%20Search(非递归算法)/LeetCode%2079.%20Word%20Search(非递归算法">
+<meta name="twitter:image" content="https://www.keyanjie.net/LeetCode%2079.%20Word%20Search%20-%20非递归算法/递归模板.png">
 
 
 
@@ -117,7 +117,7 @@
 
   
   
-  <link rel="canonical" href="https://www.keyanjie.net/LeetCode 79. Word Search(非递归算法)/">
+  <link rel="canonical" href="https://www.keyanjie.net/LeetCode 79. Word Search - 非递归算法/">
 
 
 
@@ -380,7 +380,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.keyanjie.net/LeetCode 79. Word Search(非递归算法)/">
+    <link itemprop="mainEntityOfPage" href="https://www.keyanjie.net/LeetCode 79. Word Search - 非递归算法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Alan Ke">
@@ -440,7 +440,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-03 16:00:54" itemprop="dateModified" datetime="2019-04-03T16:00:54+08:00">2019-04-03</time>
+                <time title="Modified: 2019-04-03 16:02:44" itemprop="dateModified" datetime="2019-04-03T16:02:44+08:00">2019-04-03</time>
               
             
           </span>
@@ -476,8 +476,8 @@
                 </span>
             
                 <span class="post-meta-item-text">Comments: </span>
-                <a href="/LeetCode 79. Word Search(非递归算法)/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/LeetCode 79. Word Search(非递归算法)/" itemprop="commentCount"></span>
+                <a href="/LeetCode 79. Word Search - 非递归算法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/LeetCode 79. Word Search - 非递归算法/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -526,7 +526,7 @@
 <li>保存之前所选择的路口，以便于下一次进入另一个路口进行搜索。</li>
 </ol>
 <p>所以，当我们使用dfs的非递归算法时，就需要手动来保存这两类信息。现在我们来看看dfs非递归版本的伪代码模板，但是下面的编码思路不会完全按照这个模板进行，会根据本题情况做适当改动：</p>
-<p><img src="/LeetCode 79. Word Search(非递归算法)/LeetCode 79. Word Search(非递归算法" alt="递归模板">/递归模板.png)</p>
+<p><img src="/LeetCode 79. Word Search - 非递归算法/递归模板.png" alt="递归模板"></p>
 <h2 id="step-1"><a href="#step-1" class="headerlink" title="step 1"></a>step 1</h2><p>将栈初始化，同时也要将visitded访问标记数据初始化：<br>  <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="CPP"><figure class="iseeu highlight /cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (!s.empty())</span><br><span class="line">    s.pop();</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; board.size(); i++) &#123;</span><br><span class="line">    fill(visited[i].begin(), visited[i].end(), <span class="literal">false</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div></p>
 <p>  在本题中，还需要设立一个count变量<code>int count = 0;</code> ，表示目前已经搜索到word字符串的第几个字符。</p>
 <h2 id="step-2"><a href="#step-2" class="headerlink" title="step 2"></a>step 2</h2><p>访问起始顶点，在本题中，如果起始顶点和word字符串第一个字符对不上，那么可以直接返回false<code>if (board[i][j] != word[count]) return false;</code>；如果起始顶点是word字符串的第一个字符，那么才将起始顶点改为“已访问”标志，将起始顶点进栈，此时还需要将count变量加一。</p>
