@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.keyanjie.net/friendLinks/index.html</loc>
+    
+    <lastmod>2019-04-04T01:57:41.487Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.keyanjie.net/about/index.html</loc>
     
     <lastmod>2019-04-04T01:55:04.588Z</lastmod>
@@ -82,13 +89,6 @@
     <loc>https://www.keyanjie.net/tags/index.html</loc>
     
     <lastmod>2019-04-02T11:17:20.543Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.keyanjie.net/friendLinks/index.html</loc>
-    
-    <lastmod>2019-04-01T08:48:38.466Z</lastmod>
     
   </url>
   
