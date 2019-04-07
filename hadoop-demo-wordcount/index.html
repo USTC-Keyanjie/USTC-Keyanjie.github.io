@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="分布式lab3：词频统计使用hadoop写一次词频统计的demo。">
+  <meta name="description" content="使用hadoop写一次词频统计的demo。">
 <meta name="keywords" content="distributed system,demo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hadoop-demo-wordcount">
+<meta property="og:title" content="分布式lab3：词频统计">
 <meta property="og:url" content="https://www.keyanjie.net/hadoop-demo-wordcount/index.html">
 <meta property="og:site_name" content="Alan&#39;s Notebook🦍">
-<meta property="og:description" content="分布式lab3：词频统计使用hadoop写一次词频统计的demo。">
+<meta property="og:description" content="使用hadoop写一次词频统计的demo。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-07T11:30:09.549Z">
+<meta property="og:updated_time" content="2019-04-07T11:30:51.078Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hadoop-demo-wordcount">
-<meta name="twitter:description" content="分布式lab3：词频统计使用hadoop写一次词频统计的demo。">
+<meta name="twitter:title" content="分布式lab3：词频统计">
+<meta name="twitter:description" content="使用hadoop写一次词频统计的demo。">
 
 
 
@@ -125,7 +125,7 @@
   };
 </script>
 
-  <title>hadoop-demo-wordcount | Alan's Notebook🦍</title>
+  <title>分布式lab3：词频统计 | Alan's Notebook🦍</title>
   
 
 
@@ -395,7 +395,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">hadoop-demo-wordcount
+          <h1 class="post-title" itemprop="name headline">分布式lab3：词频统计
 
               
             
@@ -421,7 +421,7 @@
                 
               
 
-              <time title="Created: 2019-04-07 17:53:35 / Modified: 19:30:09" itemprop="dateCreated datePublished" datetime="2019-04-07T17:53:35+08:00">2019-04-07</time>
+              <time title="Created: 2019-04-07 17:53:35 / Modified: 19:30:51" itemprop="dateCreated datePublished" datetime="2019-04-07T17:53:35+08:00">2019-04-07</time>
             
 
             
@@ -491,7 +491,7 @@
       
 
       
-        <h1 id="分布式lab3：词频统计"><a href="#分布式lab3：词频统计" class="headerlink" title="分布式lab3：词频统计"></a>分布式lab3：词频统计</h1><p>使用hadoop写一次词频统计的demo。</p>
+        <p>使用hadoop写一次词频统计的demo。</p>
 <a id="more"></a>
 <p>具体的操作细节有大佬已经写好了<a href="https://github.com/wangyu-/files/wiki/ds_lab3" target="_blank" rel="noopener">wiki</a>，有需要请移步，我这里只分析java代码细节。</p>
 <h1 id="全部代码"><a href="#全部代码" class="headerlink" title="全部代码"></a>全部代码</h1><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="JAVA"><figure class="iseeu highlight /java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.util.StringTokenizer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.conf.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.fs.Path;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.IntWritable;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.Text;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Job;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Mapper;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.Reducer;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.lib.input.FileInputFormat;</span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WordCount</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">TokenizerMapper</span> <span class="keyword">extends</span> <span class="title">Mapper</span>&lt;<span class="title">Object</span>, <span class="title">Text</span>, <span class="title">Text</span>, <span class="title">IntWritable</span>&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> IntWritable one = <span class="keyword">new</span> IntWritable(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">private</span> Text word = <span class="keyword">new</span> Text();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">map</span><span class="params">(Object key, Text value, Context context)</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">      StringTokenizer itr = <span class="keyword">new</span> StringTokenizer(value.toString());</span><br><span class="line">      <span class="keyword">while</span> (itr.hasMoreTokens()) &#123;</span><br><span class="line">        word.set(itr.nextToken());</span><br><span class="line">        context.write(word, one);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">IntSumReducer</span> <span class="keyword">extends</span> <span class="title">Reducer</span>&lt;<span class="title">Text</span>, <span class="title">IntWritable</span>, <span class="title">Text</span>, <span class="title">IntWritable</span>&gt; </span>&#123;</span><br><span class="line">  	<span class="keyword">private</span> IntWritable result = <span class="keyword">new</span> IntWritable();</span><br><span class="line"></span><br><span class="line">  	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reduce</span><span class="params">(Text key, Iterable&lt;IntWritable&gt; values, Context context)</span> <span class="keyword">throws</span> IOException, InterruptedException </span>&#123;</span><br><span class="line">  		<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">  		<span class="keyword">for</span> (IntWritable val : values) &#123;</span><br><span class="line">  			sum += val.get();</span><br><span class="line">  		&#125;</span><br><span class="line">  		result.set(sum);</span><br><span class="line">  		context.write(key, result);</span><br><span class="line">  	&#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">    Configuration conf = <span class="keyword">new</span> Configuration();</span><br><span class="line">    Job job = Job.getInstance(conf, <span class="string">"word count"</span>);</span><br><span class="line">    job.setJarByClass(WordCount.class);</span><br><span class="line">    job.setMapperClass(TokenizerMapper.class);</span><br><span class="line">    job.setCombinerClass(IntSumReducer.class);</span><br><span class="line">    job.setReducerClass(IntSumReducer.class);</span><br><span class="line">    job.setOutputKeyClass(Text.class);</span><br><span class="line">    job.setOutputValueClass(IntWritable.class);</span><br><span class="line">    FileInputFormat.addInputPath(job, <span class="keyword">new</span> Path(args[<span class="number">0</span>]));</span><br><span class="line">    FileOutputFormat.setOutputPath(job, <span class="keyword">new</span> Path(args[<span class="number">1</span>]));</span><br><span class="line">    System.exit(job.waitForCompletion(<span class="keyword">true</span>) ? <span class="number">0</span> : <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
@@ -798,7 +798,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#分布式lab3：词频统计"><span class="nav-number">1.</span> <span class="nav-text">分布式lab3：词频统计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#全部代码"><span class="nav-number">2.</span> <span class="nav-text">全部代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Map操作"><span class="nav-number">3.</span> <span class="nav-text">Map操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reduce操作"><span class="nav-number">4.</span> <span class="nav-text">Reduce操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#main函数"><span class="nav-number">5.</span> <span class="nav-text">main函数</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#全部代码"><span class="nav-number">1.</span> <span class="nav-text">全部代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Map操作"><span class="nav-number">2.</span> <span class="nav-text">Map操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reduce操作"><span class="nav-number">3.</span> <span class="nav-text">Reduce操作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#main函数"><span class="nav-number">4.</span> <span class="nav-text">main函数</span></a></li></ol></div>
             
 
           </div>
