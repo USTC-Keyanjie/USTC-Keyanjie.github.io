@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.keyanjie.net/hadoop-demo-wordcount/</loc>
+    
+    <lastmod>2019-04-07T11:27:43.429Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.keyanjie.net/friendLinks/index.html</loc>
     
     <lastmod>2019-04-04T01:58:44.434Z</lastmod>
