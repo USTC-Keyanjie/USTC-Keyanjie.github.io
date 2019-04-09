@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>分布式与云计算复习笔记(updating)</title>
+      <link href="/studynote-of-distributed-system/"/>
+      <url>/studynote-of-distributed-system/</url>
+      
+        <content type="html"><![CDATA[<p>分布式与云计算2019春季课程笔记</p><blockquote><p>这个东西吧，太简单了，我们这里不讲了</p><p>这个东西吧，比较难，后续我们在讲吧(后续后续。。。)</p><p>这里吧，(喝口水，ppt翻页)，直接跳过了</p><p>天文地理鲁迅balabala，石竹老师先退票再买票，最后没抢到票我感到非常高兴233333</p></blockquote><p>end</p><a id="more"></a><h1 id="Chapter-1-概述"><a href="#Chapter-1-概述" class="headerlink" title="Chapter 1 概述"></a>Chapter 1 概述</h1><h2 id="分布式系统的定义"><a href="#分布式系统的定义" class="headerlink" title="分布式系统的定义"></a>分布式系统的定义</h2><blockquote><p>分布式系统是若干独立计算机的集合，这些计算机对于用户来说就像是单个相关的系统。</p></blockquote><p>为了使种类各异的计算机和网络都呈现为单个的系统，分布式系统常常通过一个”软件层”组织起来，该”软件层”在逻辑上位于有用户和应用程序组成的高层与有操作系统组成的低层之间。这样的分布式系统又称为<strong>中间件(middleware)</strong>。</p><p><img src="/studynote-of-distributed-system/中间件.png" alt="中间件"></p><h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><h3 id="使资源可访问"><a href="#使资源可访问" class="headerlink" title="使资源可访问"></a>使资源可访问</h3><p>分布式系统最<strong>主要</strong>的目标是使用户能够方便地访问远程资源，并且以一种受控的方式与其他用户共享这些资源。</p><h3 id="透明性"><a href="#透明性" class="headerlink" title="透明性"></a>透明性</h3><p>分布式系统的<strong>重要</strong>目标之一是将它的进程和资源实际上在多台计算机上分布这样一个事实隐藏起来。如果一个分布式系统在用户和应用程序面前呈现为单个计算机系统，这样的分布式系统就称为是<strong>透明的</strong>。</p><h4 id="透明的类型"><a href="#透明的类型" class="headerlink" title="透明的类型"></a>透明的类型</h4><ul><li>访问透明性：对不同数据表示形式以及资源访问方式的隐藏；</li><li>位置透明性：用户无法判别资源在系统中的物理位置；</li><li>迁移透明性：如果分布式系统中的资源移动不会影响该资源的访问方式，就可以说这种分布式系统能提供；</li><li>重定位透明性：如果资源可以在接受访问的同时进行重新定位，而不引起用户和应用程序的注意，拥有这种资源的系统能提供。</li><li>复制透明性：对同一个资源存在多个副本这样一个事实的隐藏；</li><li>并发透明性：隐藏资源是否由若干相互竞争的用户共享这一事实；</li><li>故障透明性：隐藏资源的故障与恢复。</li></ul><h4 id="透明度"><a href="#透明度" class="headerlink" title="透明度"></a>透明度</h4><p>在设计并实现分布式系统时，把实现分布的透明性作为目标是正确的，但是应该将它和其他方面的问题（比如性能)结合起来考虑。</p><h3 id="开放性"><a href="#开放性" class="headerlink" title="开放性"></a>开放性</h3><p>开放式的分布式系统：根据一系列准则来提供服务，这些准则描述了所提供服务的语法和语义。</p><h3 id="可扩展性"><a href="#可扩展性" class="headerlink" title="可扩展性"></a>可扩展性</h3><p>系统的可扩展性至少可以通过三个方面来度量：</p><ol><li>规模可扩展：可方便向系统里加入更多用户和资源；</li><li>地域可扩展：可使系统中的用户与资源相隔十分遥远；</li><li>管理可扩展：即使分布式系统跨越多个独立的管理机构，仍然可以方便的对其进行管理。</li></ol><h4 id="可扩展性问题"><a href="#可扩展性问题" class="headerlink" title="可扩展性问题"></a>可扩展性问题</h4><p>分布式算法：</p><ol><li>没有任何计算机拥有整个系统的全局信息；</li><li>计算机只根据本地信息做出决策；</li><li>某台计算机的故障不会使算法崩溃；</li><li>不存在<strong>全局时钟</strong>。</li></ol><h4 id="扩展技术"><a href="#扩展技术" class="headerlink" title="扩展技术"></a>扩展技术</h4><h5 id="隐藏通信等待时间"><a href="#隐藏通信等待时间" class="headerlink" title="隐藏通信等待时间"></a>隐藏通信等待时间</h5><p>使用<strong>异步通信</strong>，但有许多应用程序不适用此方式。</p><ol><li>分布技术；</li><li>复制技术。</li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> distributed system </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> distributed system </tag>
+            
+            <tag> study note </tag>
+            
+            <tag> cloud computing </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>分布式lab3：词频统计</title>
       <link href="/hadoop-demo-wordcount/"/>
       <url>/hadoop-demo-wordcount/</url>
