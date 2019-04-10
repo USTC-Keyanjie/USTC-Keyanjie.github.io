@@ -72,7 +72,7 @@
     root: '/',
     scheme: 'Mist',
     version: '7.0.1',
-    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false,"dimmer":false},
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
     back2top: true,
     back2top_sidebar: false,
     fancybox: false,
@@ -117,7 +117,7 @@
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/把因特网看做是由一系列便捷服务器组成的.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/BitTorrent的工作原理.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/反馈控制系统的逻辑组织结构.png">
-<meta property="og:updated_time" content="2019-04-10T02:34:43.749Z">
+<meta property="og:updated_time" content="2019-04-10T02:38:06.118Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式与云计算复习笔记(updating)">
 <meta name="twitter:description" content="分布式与云计算2019春季课程笔记  这个东西吧，太简单了，我们这里不讲了 这个东西吧，比较难，后续我们在讲吧(后续后续。。。) 这里吧，(喝口水，ppt翻页)，直接跳过了 天文地理鲁迅balabala，石竹老师先退票再买票，最后没抢到票我感到非常高兴233333  end">
@@ -448,7 +448,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-10 10:34:43" itemprop="dateModified" datetime="2019-04-10T10:34:43+08:00">2019-04-10</time>
+                <time title="Modified: 2019-04-10 10:38:06" itemprop="dateModified" datetime="2019-04-10T10:38:06+08:00">2019-04-10</time>
               
             
           </span>
@@ -567,7 +567,9 @@
 <p>例：DNS、万维网WWW</p>
 <h5 id="复制技术"><a href="#复制技术" class="headerlink" title="复制技术"></a>复制技术</h5><p>对组件进行复制并将副本分部到系统各处。</p>
 <p><strong>缓存</strong>是复制的一种特殊形式。缓存一般是在访问资源的客户<strong>附近</strong>制作该资源的副本。</p>
-<h2 id="分布式系统的类型"><a href="#分布式系统的类型" class="headerlink" title="分布式系统的类型"></a>分布式系统的类型</h2><h3 id="分布式计算系统"><a href="#分布式计算系统" class="headerlink" title="分布式计算系统"></a>分布式计算系统</h3><p>用于高性能计算任务的系统。</p>
+<h2 id="分布式系统的类型"><a href="#分布式系统的类型" class="headerlink" title="分布式系统的类型"></a>分布式系统的类型</h2><h3 id="分布式计算系统"><a href="#分布式计算系统" class="headerlink" title="分布式计算系统"></a>分布式计算系统</h3><blockquote>
+<p>用于高性能计算任务的系统。</p>
+</blockquote>
 <h4 id="集群计算系统"><a href="#集群计算系统" class="headerlink" title="集群计算系统"></a>集群计算系统</h4><p>底层硬件是由类似的工作站或PC集组成，通过高速的局域网紧密连接起来的。而且，每个节点运行的是相同的操作系统。</p>
 <p>集群计算系统的特点是同构性，大多数情况下，集群中的计算机都是相同的：</p>
 <ul>
@@ -618,7 +620,7 @@
 </li>
 </ol>
 <h2 id="系统体系结构"><a href="#系统体系结构" class="headerlink" title="系统体系结构"></a>系统体系结构</h2><h3 id="集中式体系结构"><a href="#集中式体系结构" class="headerlink" title="集中式体系结构"></a>集中式体系结构</h3><p><strong>客户-服务器</strong>的交互方式，又被称为<strong>请求-回复</strong>行为。</p>
-<p>如果某个操作可以重复多次而无害处，那么称它是<strong>幂等</strong>的。</p>
+<p><strong>幂等操作</strong>：如果某个操作可以重复多次而无害处，那么称它是<strong>幂等</strong>的。</p>
 <h4 id="应用分层"><a href="#应用分层" class="headerlink" title="应用分层"></a>应用分层</h4><p><strong>客户-服务器</strong>模型分为三层：</p>
 <ol>
 <li>用户接口层，用于与用户交互；</li>
