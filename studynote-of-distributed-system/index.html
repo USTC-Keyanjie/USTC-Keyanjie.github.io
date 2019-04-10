@@ -149,7 +149,12 @@
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/把因特网看做是由一系列便捷服务器组成的.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/BitTorrent的工作原理.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/反馈控制系统的逻辑组织结构.png">
-<meta property="og:updated_time" content="2019-04-10T02:47:45.661Z">
+<meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/以分发器%20工作者模型组织起来的多线程服务器.png">
+<meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/4个不同层次的界面.png">
+<meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/进程虚拟机.png">
+<meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/虚拟机监视器.png">
+<meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/Docker与Openstark.png">
+<meta property="og:updated_time" content="2019-04-10T08:19:37.265Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式与云计算复习笔记(updating)">
 <meta name="twitter:description" content="分布式与云计算2019春季课程笔记  这个东西吧，太简单了，我们这里不讲了 这个东西吧，比较难，后续我们在讲吧(后续后续。。。) 这里吧，(喝口水，ppt翻页)，直接跳过了 天文地理鲁迅balabala，石竹老师先退票再买票，最后没抢到票我感到非常高兴233333  end">
@@ -478,7 +483,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-10 10:47:45" itemprop="dateModified" datetime="2019-04-10T10:47:45+08:00">2019-04-10</time>
+                <time title="Modified: 2019-04-10 16:19:37" itemprop="dateModified" datetime="2019-04-10T16:19:37+08:00">2019-04-10</time>
               
             
           </span>
@@ -681,7 +686,75 @@
 <p>系统本身需要被监视，因此需要对系统各个方面进行测量。但是实际测量很难做到，就需要一个逻辑<strong>尺度预测组件</strong>。</p>
 <p>控制循环的核心部分是反馈分析组件，分析上述测量值，并把它们与参考值进行比较。包含了决定自适应的各种算法。</p>
 <hr>
-<h1 id="Chapter-3-进程"><a href="#Chapter-3-进程" class="headerlink" title="Chapter 3 进程"></a>Chapter 3 进程</h1><h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p>感谢<strong>从嘉小仙女</strong>在此门课程上对我的帮助~</p>
+<h1 id="Chapter-3-进程"><a href="#Chapter-3-进程" class="headerlink" title="Chapter 3 进程"></a>Chapter 3 进程</h1><h2 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h2><p><strong>为什么</strong>要使用线程？</p>
+<p>虽然进程构成了分布式系统中的基本组成单元，但是实践表明，操作系统提供的用于构建分布式系统的进程在粒度上还是太大了。而就粒度而言，将每个进程细分为若干控制线程的形式则更加合适，可以使构建分布式应用程序变得更加方便，获得更好的性能。</p>
+<p>线程与进程<strong>不同</strong>之处？</p>
+<ul>
+<li>线程不会以性能降低为代价，换取高度的并发透明性。</li>
+<li>线程上下文一般只包含存储在寄存器和存储器中的尽可能少的信息，仅仅用于执行一系列指令。</li>
+</ul>
+<h3 id="分布式系统中的线程"><a href="#分布式系统中的线程" class="headerlink" title="分布式系统中的线程"></a>分布式系统中的线程</h3><h4 id="多线程客户端"><a href="#多线程客户端" class="headerlink" title="多线程客户端"></a>多线程客户端</h4><p>多线程客户端最大的问题是如何隐藏网络延时。常规方法是启动网络通信线程后，立即进行其他工作。</p>
+<h4 id="多线程服务器"><a href="#多线程服务器" class="headerlink" title="多线程服务器"></a>多线程服务器</h4><p>在服务器上使用多线程技术有很多好处：</p>
+<ol>
+<li><p>可以提升性能</p>
+<ul>
+<li>启动一个线程处理请求比启动进程开销更小</li>
+<li>可以隐藏网络延时。当有请求到来时，也可以做其他工作。</li>
+</ul>
+</li>
+<li><p>结构更优</p>
+<p>多线程编程会更简单。</p>
+<p><img src="/studynote-of-distributed-system/以分发器 工作者模型组织起来的多线程服务器.png" alt="以分发器/工作者模型组织起来的多线程服务器"></p>
+<p>上图中，<strong>分发器线程</strong>读取文件操作请求，随后选择一个空闲的<strong>工作者线程</strong>来处理请求。</p>
+</li>
+</ol>
+<h2 id="虚拟化-瞎猜的重点⚡️"><a href="#虚拟化-瞎猜的重点⚡️" class="headerlink" title="虚拟化(瞎猜的重点⚡️)"></a>虚拟化(瞎猜的重点⚡️)</h2><h3 id="虚拟机体系结构"><a href="#虚拟机体系结构" class="headerlink" title="虚拟机体系结构"></a>虚拟机体系结构</h3><p>计算机系统通常在4个不同层次提供4个不同的界面：</p>
+<ol>
+<li><p>由<strong>机器指令</strong>组成，任何程序都可激起的，介于硬件软件之间的界面；</p>
+<p>Interface between hardware and software, non-privileged.</p>
+</li>
+<li><p>由<strong>机器指令</strong>组成，只有特权程序(e.g 操作系统)才可激起的界面；</p>
+<p>Interface between hardware and software, privileged.</p>
+</li>
+<li><p>有操作系统提供的<strong>系统调用</strong>组成的界面；</p>
+<p>System calls.</p>
+</li>
+<li><p>由库调用组成的界面，通常形成了所谓的<strong>应用程序编程接口(API)</strong>。</p>
+<p>Libraries functions.</p>
+</li>
+</ol>
+<p><strong>而虚拟化的实质就是模仿这些界面的行为。</strong></p>
+<p><img src="/studynote-of-distributed-system/4个不同层次的界面.png" alt="4个不同层次的界面"></p>
+<h3 id="虚拟机的两种方式"><a href="#虚拟机的两种方式" class="headerlink" title="虚拟机的两种方式"></a>虚拟机的两种方式</h3><ol>
+<li><p>构建一个运行时（runtime）系统，实质上提供了一套抽象指令集来执行程序。例如Java虚拟机，讲指令进行翻译。</p>
+<p><img src="/studynote-of-distributed-system/进程虚拟机.png" alt></p>
+</li>
+<li><p>使用<strong>虚拟机监视器（VMM）</strong>这一层，虚拟机监视器完全屏蔽硬件，但提供一个同样指令集（或其他硬件）的界面。这个界面可以同时提供给多个程序，可以有多个不同的操作系统独立并发地运行在同一平台。</p>
+<p><img src="/studynote-of-distributed-system/虚拟机监视器.png" alt="虚拟机监视器"></p>
+</li>
+</ol>
+<h3 id="虚拟化-v-s-容器"><a href="#虚拟化-v-s-容器" class="headerlink" title="虚拟化 v.s. 容器"></a>虚拟化 v.s. 容器</h3><h4 id="虚拟化：OpenStack"><a href="#虚拟化：OpenStack" class="headerlink" title="虚拟化：OpenStack"></a>虚拟化：OpenStack</h4><p>使用OpenStack做虚拟化时，它可以将操作系统都一并打包好，各个虚拟机之间完全隔离，互不干涉。</p>
+<p>层次结构：</p>
+<ul>
+<li>最顶层应用</li>
+<li>操作系统(任意的操作系统)</li>
+<li>OpenStack</li>
+<li>底层硬件</li>
+</ul>
+<h4 id="容器：Docker"><a href="#容器：Docker" class="headerlink" title="容器：Docker"></a>容器：Docker</h4><p>Docker是基于<strong>进程容器(Process container)</strong>的轻量级VM解决方案，用比虚拟机技术少很多的资源消耗实现了类似于虚拟机的对CPU、磁盘、网络的隔离。</p>
+<p>层次结构：</p>
+<ul>
+<li>最顶层应用</li>
+<li>Docker</li>
+<li>操作系统(仅限Linux)</li>
+<li>底层硬件</li>
+</ul>
+<h4 id="OpenStack与Docker的区别"><a href="#OpenStack与Docker的区别" class="headerlink" title="OpenStack与Docker的区别"></a>OpenStack与Docker的区别</h4><p><img src="/studynote-of-distributed-system/Docker与Openstark.png" alt></p>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ol>
+<li><a href="http://www.chinastor.com/s/openstack/10093K202017.html" target="_blank" rel="noopener">http://www.chinastor.com/s/openstack/10093K202017.html</a></li>
+<li><a href="https://blog.csdn.net/controllerha/article/details/78766840" target="_blank" rel="noopener">https://blog.csdn.net/controllerha/article/details/78766840</a></li>
+</ol>
+<h1 id="致谢"><a href="#致谢" class="headerlink" title="致谢"></a>致谢</h1><p>感谢<strong>从嘉小仙女</strong>在此门课程上对我的帮助~</p>
 
       
     </div>
@@ -951,7 +1024,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-1-概述"><span class="nav-number">1.</span> <span class="nav-text">Chapter 1 概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式系统的定义"><span class="nav-number">1.1.</span> <span class="nav-text">分布式系统的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目标"><span class="nav-number">1.2.</span> <span class="nav-text">目标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使资源可访问"><span class="nav-number">1.2.1.</span> <span class="nav-text">使资源可访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#透明性"><span class="nav-number">1.2.2.</span> <span class="nav-text">透明性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#透明的类型"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">透明的类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#透明度"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">透明度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开放性"><span class="nav-number">1.2.3.</span> <span class="nav-text">开放性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可扩展性"><span class="nav-number">1.2.4.</span> <span class="nav-text">可扩展性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#可扩展性问题"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">可扩展性问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展技术"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">扩展技术</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#隐藏通信等待时间"><span class="nav-number">1.2.4.2.1.</span> <span class="nav-text">隐藏通信等待时间</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#分布技术"><span class="nav-number">1.2.4.2.2.</span> <span class="nav-text">分布技术</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#复制技术"><span class="nav-number">1.2.4.2.3.</span> <span class="nav-text">复制技术</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式系统的类型"><span class="nav-number">1.3.</span> <span class="nav-text">分布式系统的类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式计算系统"><span class="nav-number">1.3.1.</span> <span class="nav-text">分布式计算系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#集群计算系统"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">集群计算系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网格计算系统"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">网格计算系统</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式信息系统"><span class="nav-number">1.3.2.</span> <span class="nav-text">分布式信息系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式普适系统"><span class="nav-number">1.3.3.</span> <span class="nav-text">分布式普适系统</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-2-体系结构"><span class="nav-number">2.</span> <span class="nav-text">Chapter 2 体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#体系结构的样式"><span class="nav-number">2.1.</span> <span class="nav-text">体系结构的样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统体系结构"><span class="nav-number">2.2.</span> <span class="nav-text">系统体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#集中式体系结构"><span class="nav-number">2.2.1.</span> <span class="nav-text">集中式体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#应用分层"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">应用分层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多层体系结构"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">多层体系结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非集中式体系结构"><span class="nav-number">2.2.2.</span> <span class="nav-text">非集中式体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#结构化的点对点体系结构"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">结构化的点对点体系结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非结构化的点对点体系结构"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">非结构化的点对点体系结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#超级对等体"><span class="nav-number">2.2.2.3.</span> <span class="nav-text">超级对等体</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#混合体系结构"><span class="nav-number">2.2.3.</span> <span class="nav-text">混合体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#边界服务器系统"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">边界服务器系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#协作分布式系统"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">协作分布式系统</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式系统的自我管理"><span class="nav-number">2.3.</span> <span class="nav-text">分布式系统的自我管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#反馈控制模型"><span class="nav-number">2.3.1.</span> <span class="nav-text">反馈控制模型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-3-进程"><span class="nav-number">3.</span> <span class="nav-text">Chapter 3 进程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#致谢"><span class="nav-number">4.</span> <span class="nav-text">致谢</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-1-概述"><span class="nav-number">1.</span> <span class="nav-text">Chapter 1 概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式系统的定义"><span class="nav-number">1.1.</span> <span class="nav-text">分布式系统的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目标"><span class="nav-number">1.2.</span> <span class="nav-text">目标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使资源可访问"><span class="nav-number">1.2.1.</span> <span class="nav-text">使资源可访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#透明性"><span class="nav-number">1.2.2.</span> <span class="nav-text">透明性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#透明的类型"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">透明的类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#透明度"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">透明度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开放性"><span class="nav-number">1.2.3.</span> <span class="nav-text">开放性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可扩展性"><span class="nav-number">1.2.4.</span> <span class="nav-text">可扩展性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#可扩展性问题"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">可扩展性问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展技术"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">扩展技术</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#隐藏通信等待时间"><span class="nav-number">1.2.4.2.1.</span> <span class="nav-text">隐藏通信等待时间</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#分布技术"><span class="nav-number">1.2.4.2.2.</span> <span class="nav-text">分布技术</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#复制技术"><span class="nav-number">1.2.4.2.3.</span> <span class="nav-text">复制技术</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式系统的类型"><span class="nav-number">1.3.</span> <span class="nav-text">分布式系统的类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式计算系统"><span class="nav-number">1.3.1.</span> <span class="nav-text">分布式计算系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#集群计算系统"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">集群计算系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网格计算系统"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">网格计算系统</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式信息系统"><span class="nav-number">1.3.2.</span> <span class="nav-text">分布式信息系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式普适系统"><span class="nav-number">1.3.3.</span> <span class="nav-text">分布式普适系统</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-2-体系结构"><span class="nav-number">2.</span> <span class="nav-text">Chapter 2 体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#体系结构的样式"><span class="nav-number">2.1.</span> <span class="nav-text">体系结构的样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统体系结构"><span class="nav-number">2.2.</span> <span class="nav-text">系统体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#集中式体系结构"><span class="nav-number">2.2.1.</span> <span class="nav-text">集中式体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#应用分层"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">应用分层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多层体系结构"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">多层体系结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非集中式体系结构"><span class="nav-number">2.2.2.</span> <span class="nav-text">非集中式体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#结构化的点对点体系结构"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">结构化的点对点体系结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非结构化的点对点体系结构"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">非结构化的点对点体系结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#超级对等体"><span class="nav-number">2.2.2.3.</span> <span class="nav-text">超级对等体</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#混合体系结构"><span class="nav-number">2.2.3.</span> <span class="nav-text">混合体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#边界服务器系统"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">边界服务器系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#协作分布式系统"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">协作分布式系统</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式系统的自我管理"><span class="nav-number">2.3.</span> <span class="nav-text">分布式系统的自我管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#反馈控制模型"><span class="nav-number">2.3.1.</span> <span class="nav-text">反馈控制模型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-3-进程"><span class="nav-number">3.</span> <span class="nav-text">Chapter 3 进程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#线程"><span class="nav-number">3.1.</span> <span class="nav-text">线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式系统中的线程"><span class="nav-number">3.1.1.</span> <span class="nav-text">分布式系统中的线程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#多线程客户端"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">多线程客户端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多线程服务器"><span class="nav-number">3.1.1.2.</span> <span class="nav-text">多线程服务器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟化-瞎猜的重点⚡️"><span class="nav-number">3.2.</span> <span class="nav-text">虚拟化(瞎猜的重点⚡️)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机体系结构"><span class="nav-number">3.2.1.</span> <span class="nav-text">虚拟机体系结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机的两种方式"><span class="nav-number">3.2.2.</span> <span class="nav-text">虚拟机的两种方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟化-v-s-容器"><span class="nav-number">3.2.3.</span> <span class="nav-text">虚拟化 v.s. 容器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟化：OpenStack"><span class="nav-number">3.2.3.1.</span> <span class="nav-text">虚拟化：OpenStack</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#容器：Docker"><span class="nav-number">3.2.3.2.</span> <span class="nav-text">容器：Docker</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OpenStack与Docker的区别"><span class="nav-number">3.2.3.3.</span> <span class="nav-text">OpenStack与Docker的区别</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#References"><span class="nav-number">4.</span> <span class="nav-text">References</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#致谢"><span class="nav-number">5.</span> <span class="nav-text">致谢</span></a></li></ol></div>
             
 
           </div>

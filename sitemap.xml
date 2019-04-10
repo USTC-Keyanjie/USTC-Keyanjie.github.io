@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.keyanjie.net/studynote-of-distributed-system/</loc>
+    
+    <lastmod>2019-04-10T08:19:37.265Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.keyanjie.net/tags/index.html</loc>
     
     <lastmod>2019-04-10T05:11:42.809Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>https://www.keyanjie.net/about/index.html</loc>
     
     <lastmod>2019-04-10T04:29:56.705Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.keyanjie.net/studynote-of-distributed-system/</loc>
-    
-    <lastmod>2019-04-10T02:47:45.661Z</lastmod>
     
   </url>
   
