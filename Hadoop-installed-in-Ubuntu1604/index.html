@@ -142,7 +142,7 @@
 <meta property="og:image" content="https://www.keyanjie.net/Hadoop-installed-in-Ubuntu1604/3_6.png">
 <meta property="og:image" content="https://www.keyanjie.net/Hadoop-installed-in-Ubuntu1604/3_8.png">
 <meta property="og:image" content="https://www.keyanjie.net/Hadoop-installed-in-Ubuntu1604/3_3.png">
-<meta property="og:updated_time" content="2019-04-03T08:12:14.368Z">
+<meta property="og:updated_time" content="2019-04-11T07:59:15.791Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式lab1：Ubuntu16.04上Hadoop环境安装">
 <meta name="twitter:description" content="分布式第一次实验，怎么坑这么多！🤯">
@@ -471,7 +471,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-03 16:12:14" itemprop="dateModified" datetime="2019-04-03T16:12:14+08:00">2019-04-03</time>
+                <time title="Modified: 2019-04-11 15:59:15" itemprop="dateModified" datetime="2019-04-11T15:59:15+08:00">2019-04-11</time>
               
             
           </span>
@@ -548,10 +548,10 @@
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">192.168.1.11	master</span><br><span class="line">192.168.1.12	slave1</span><br><span class="line">192.168.1.13	slave2</span><br></pre></td></tr></table></figure></div>
 </li>
 <li><p>修改hostname</p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> master节点上修改为master，salve1节点和slave2节点上分别修改为slave1、slave2</span><br><span class="line">hostname master/slave1/slave2</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> master节点上修改为master，slave1节点和slave2节点上分别修改为slave1、slave2</span><br><span class="line">hostname master/slave1/slave2</span><br></pre></td></tr></table></figure></div>
 <p>这样不能彻底修改hostname（主机名），重启后还会还原到默认的Ubuntu，要彻底修改要修改/etc/hostname，namenode和datanode各自修改为自己的hostname</p>
 <p>直接用编辑器打开<strong>/etc/hostname</strong>这个文件<strong>，把原来的名称</strong>删掉<strong>，</strong>不要用#注释，直接删掉，因为#没用，<strong>修改内容</strong>：</p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> master节点上修改为master，salve1节点和slave2节点上分别修改为slave1、slave2</span><br><span class="line">master/slave1/slave2</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> master节点上修改为master，slave1节点和slave2节点上分别修改为slave1、slave2</span><br><span class="line">master/slave1/slave2</span><br></pre></td></tr></table></figure></div>
 <p>退出shell客户端，重新进入，并且换成root操作(这是教程上的一步，没看懂这是什么操作)</p>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br><span class="line">sudo su root</span><br></pre></td></tr></table></figure></div>
 </li>
