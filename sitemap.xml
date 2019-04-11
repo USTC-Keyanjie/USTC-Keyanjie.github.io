@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.keyanjie.net/friendLinks/index.html</loc>
+    
+    <lastmod>2019-04-11T08:00:43.155Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://www.keyanjie.net/tags/index.html</loc>
+    
+    <lastmod>2019-04-11T08:00:30.089Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.keyanjie.net/Hadoop-installed-in-Ubuntu1604/</loc>
     
     <lastmod>2019-04-11T07:59:15.791Z</lastmod>
@@ -16,13 +30,6 @@
   </url>
   
   <url>
-    <loc>https://www.keyanjie.net/tags/index.html</loc>
-    
-    <lastmod>2019-04-10T05:11:42.809Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://www.keyanjie.net/about/index.html</loc>
     
     <lastmod>2019-04-10T04:29:56.705Z</lastmod>
@@ -33,13 +40,6 @@
     <loc>https://www.keyanjie.net/hadoop-demo-wordcount/</loc>
     
     <lastmod>2019-04-07T11:30:51.078Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.keyanjie.net/friendLinks/index.html</loc>
-    
-    <lastmod>2019-04-04T01:58:44.434Z</lastmod>
     
   </url>
   
