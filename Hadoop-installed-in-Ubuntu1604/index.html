@@ -142,7 +142,7 @@
 <meta property="og:image" content="https://www.keyanjie.net/Hadoop-installed-in-Ubuntu1604/3_6.png">
 <meta property="og:image" content="https://www.keyanjie.net/Hadoop-installed-in-Ubuntu1604/3_8.png">
 <meta property="og:image" content="https://www.keyanjie.net/Hadoop-installed-in-Ubuntu1604/3_3.png">
-<meta property="og:updated_time" content="2019-04-11T07:59:15.791Z">
+<meta property="og:updated_time" content="2019-04-14T07:47:11.479Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式lab1：Ubuntu16.04上Hadoop环境安装">
 <meta name="twitter:description" content="分布式第一次实验，怎么坑这么多！🤯">
@@ -471,7 +471,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-11 15:59:15" itemprop="dateModified" datetime="2019-04-11T15:59:15+08:00">2019-04-11</time>
+                <time title="Modified: 2019-04-14 15:47:11" itemprop="dateModified" datetime="2019-04-14T15:47:11+08:00">2019-04-14</time>
               
             
           </span>
@@ -660,6 +660,9 @@
 <p>按下<code>i</code>，在最后添加一行：</p>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$PATH:/usr/local/hadoop/hadoop-2.8.5/sbin:/usr/local/hadoop/hadoop-2.8.5/bin</span><br></pre></td></tr></table></figure></div>
 <p>然后按下<code>esc</code>，输入<code>:wq</code>写入文件。</p>
+</li>
+<li><p>使环境变量马上生效：</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure></div>
 </li>
 <li><p>在 Master 节点执行 NameNode 的格式化</p>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop namenode -format</span><br></pre></td></tr></table></figure></div>

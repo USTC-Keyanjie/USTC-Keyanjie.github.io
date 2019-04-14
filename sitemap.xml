@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.keyanjie.net/Hadoop-installed-in-Ubuntu1604/</loc>
+    
+    <lastmod>2019-04-14T07:47:11.479Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.keyanjie.net/studynote-of-distributed-system/</loc>
     
-    <lastmod>2019-04-11T14:21:55.936Z</lastmod>
+    <lastmod>2019-04-14T07:45:46.821Z</lastmod>
     
   </url>
   
@@ -19,13 +26,6 @@
     <loc>https://www.keyanjie.net/tags/index.html</loc>
     
     <lastmod>2019-04-11T08:00:30.089Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.keyanjie.net/Hadoop-installed-in-Ubuntu1604/</loc>
-    
-    <lastmod>2019-04-11T07:59:15.791Z</lastmod>
     
   </url>
   
