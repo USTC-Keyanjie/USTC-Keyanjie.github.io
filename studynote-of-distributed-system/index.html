@@ -170,7 +170,7 @@
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/使用缓冲区减少抖动.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/交错传输.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/Chord.png">
-<meta property="og:updated_time" content="2019-04-16T16:18:12.743Z">
+<meta property="og:updated_time" content="2019-04-16T16:30:02.285Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式与云计算复习笔记(updating)">
 <meta name="twitter:description" content="分布式与云计算2019春季课程笔记  这个东西吧，太简单了，我们这里不讲了 这个东西吧，比较难，后续我们在讲吧(后续后续。。。) 这里吧，(喝口水，ppt翻页)，直接跳过了 天文地理鲁迅balabala，石竹老师先退票再买票，最后没抢到票我感到非常高兴233333  end">
@@ -499,7 +499,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-17 00:18:12" itemprop="dateModified" datetime="2019-04-17T00:18:12+08:00">2019-04-17</time>
+                <time title="Modified: 2019-04-17 00:30:02" itemprop="dateModified" datetime="2019-04-17T00:30:02+08:00">2019-04-17</time>
               
             
           </span>
@@ -1059,19 +1059,9 @@
 <p><strong>例：</strong></p>
 <p>还是上面那个图</p>
 <p>从结点1开始解析k=26：</p>
-<ol>
-<li>结点1的指状表里，$FT_1[5]=18 \leq 26$，将请求转发给18；</li>
-<li>结点18的指状表里，$FT_{18}[2]=20 \leq 26 &lt; FT_{18}[3]=28$，将请求转发给20；</li>
-<li>结点20的指状表里，$FT_{20}[1]=21 \leq 26 &lt; FT_{20}[2]=28$，将请求转发给21；</li>
-<li>结点21的指状表里，$21 &lt; 26 &lt; FT_{21}[1]=28$，将请求转发给28，该结点负责解析k=26；</li>
-</ol>
+<p>1.结点1的指状表里，$FT_1[5]=18 \leq 26$，将请求转发给18；<br>2.结点18的指状表里，$FT_{18}[2]=20 \leq 26 &lt; FT_{18}[3]=28$，将请求转发给20；<br>3.结点20的指状表里，$FT_{20}[1]=21 \leq 26 &lt; FT_{20}[2]=28$，将请求转发给21；<br>4.结点21的指状表里，$21 &lt; 26 &lt; FT_{21}[1]=28$，将请求转发给28，该结点负责解析k=26；</p>
 <p>从结点28开始解析k=12：</p>
-<ol>
-<li>结点28的指状表里，$FT_{28}[4]=4 \leq 12 &lt; FT_{28}[5]=14$，将请求转发给4；</li>
-<li>结点4的指状表里，$FT_{4}[3]=9 \leq 12 &lt; FT_{4}[4]=14$，将请求转发给9；</li>
-<li>结点9的指状表里，$FT_{9}[2]=11 \leq 12 &lt; FT_{9}[3]=14$，将请求转发给11；</li>
-<li>结点11的指状表里，$11 &lt; 12 &lt; FT_{11}[1]=14$，将请求转发给14，该结点负责解析k=12；</li>
-</ol>
+<p>1.结点28的指状表里，$FT_{28}[4]=4 \leq 12 &lt; FT_{28}[5]=14$，将请求转发给4；<br>2.结点4的指状表里，$FT_{4}[3]=9 \leq 12 &lt; FT_{4}[4]=14$，将请求转发给9；<br>3.结点9的指状表里，$FT_{9}[2]=11 \leq 12 &lt; FT_{9}[3]=14$，将请求转发给11；<br>4.结点11的指状表里，$11 &lt; 12 &lt; FT_{11}[1]=14$，将请求转发给14，该结点负责解析k=12；</p>
 <h2 id="⚡️HLS"><a href="#⚡️HLS" class="headerlink" title="⚡️HLS"></a>⚡️HLS</h2><h2 id="⚡️LDAP"><a href="#⚡️LDAP" class="headerlink" title="⚡️LDAP"></a>⚡️LDAP</h2><h2 id="⚡️DNS"><a href="#⚡️DNS" class="headerlink" title="⚡️DNS"></a>⚡️DNS</h2><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
 <li><a href="http://www.chinastor.com/s/openstack/10093K202017.html" target="_blank" rel="noopener">http://www.chinastor.com/s/openstack/10093K202017.html</a></li>
 <li><a href="https://blog.csdn.net/controllerha/article/details/78766840" target="_blank" rel="noopener">https://blog.csdn.net/controllerha/article/details/78766840</a></li>
