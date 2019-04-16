@@ -160,7 +160,16 @@
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/TCP转发的原理.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/分布式服务器路径优化.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/代码迁移的各种不同方法.png">
-<meta property="og:updated_time" content="2019-04-14T13:40:25.623Z">
+<meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/客户与服务器之间的RPC原理.png">
+<meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/通过RPC进行远程计算.png">
+<meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/传统RPC和异步RPC.png">
+<meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/延迟的同步RPC.png">
+<meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/TCP:IP.png">
+<meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/使用套接字的面向连接通信模式.png">
+<meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/MPI源语.png">
+<meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/使用缓冲区减少抖动.png">
+<meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/交错传输.png">
+<meta property="og:updated_time" content="2019-04-16T13:27:17.030Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式与云计算复习笔记(updating)">
 <meta name="twitter:description" content="分布式与云计算2019春季课程笔记  这个东西吧，太简单了，我们这里不讲了 这个东西吧，比较难，后续我们在讲吧(后续后续。。。) 这里吧，(喝口水，ppt翻页)，直接跳过了 天文地理鲁迅balabala，石竹老师先退票再买票，最后没抢到票我感到非常高兴233333  end">
@@ -489,7 +498,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-14 21:40:25" itemprop="dateModified" datetime="2019-04-14T21:40:25+08:00">2019-04-14</time>
+                <time title="Modified: 2019-04-16 21:27:17" itemprop="dateModified" datetime="2019-04-16T21:27:17+08:00">2019-04-16</time>
               
             
           </span>
@@ -566,7 +575,7 @@
 <iframe frameborder="no" border="0" marginwidth="50" marginheight="0" width="250" height="86" src="//music.163.com/outchain/player?type=3&id=902907641&auto=1&height=66"></iframe>
 
 <hr>
-<h1 id="丁大神啊画画重点好不好-ヽ-。-gt-д-lt-p"><a href="#丁大神啊画画重点好不好-ヽ-。-gt-д-lt-p" class="headerlink" title="丁大神啊画画重点好不好 ヽ(。&gt;д&lt;)ｐ"></a>丁大神啊画画重点好不好 ヽ(。&gt;д&lt;)ｐ</h1><h1 id="Chapter-1-概述"><a href="#Chapter-1-概述" class="headerlink" title="Chapter 1 概述"></a>Chapter 1 概述</h1><h2 id="分布式系统的定义"><a href="#分布式系统的定义" class="headerlink" title="分布式系统的定义"></a>分布式系统的定义</h2><blockquote>
+<h1 id="Chapter-1-概述"><a href="#Chapter-1-概述" class="headerlink" title="Chapter 1 概述"></a>Chapter 1 概述</h1><h2 id="分布式系统的定义"><a href="#分布式系统的定义" class="headerlink" title="分布式系统的定义"></a>分布式系统的定义</h2><blockquote>
 <p>分布式系统是若干独立计算机的集合，这些计算机对于用户来说就像是单个相关的系统。</p>
 </blockquote>
 <p>为了使种类各异的计算机和网络都呈现为单个的系统，分布式系统常常通过一个”软件层”组织起来，该”软件层”在逻辑上位于有用户和应用程序组成的高层与有操作系统组成的低层之间。这样的分布式系统又称为<strong>中间件(middleware)</strong>。</p>
@@ -713,7 +722,7 @@
 <p>上图中，<strong>分发器线程</strong>读取文件操作请求，随后选择一个空闲的<strong>工作者线程</strong>来处理请求。</p>
 </li>
 </ol>
-<h2 id="虚拟化-瞎猜的重点⚡️"><a href="#虚拟化-瞎猜的重点⚡️" class="headerlink" title="虚拟化(瞎猜的重点⚡️)"></a>虚拟化(瞎猜的重点⚡️)</h2><blockquote>
+<h2 id="虚拟化⚡️"><a href="#虚拟化⚡️" class="headerlink" title="虚拟化⚡️"></a>虚拟化⚡️</h2><blockquote>
 <p>虚拟化：把一样东西看成另一个东西</p>
 </blockquote>
 <ul>
@@ -852,7 +861,151 @@
 <p>可以先停止运行中的进程，然后将它移到另一台机器上去，再从刚才中断的位置继续执行。</p>
 <p><img src="/studynote-of-distributed-system/代码迁移的各种不同方法.png" alt></p>
 <hr>
-<h1 id="Chapter-4-通信"><a href="#Chapter-4-通信" class="headerlink" title="Chapter 4 通信"></a>Chapter 4 通信</h1><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
+<h1 id="Chapter-4-通信-Communication"><a href="#Chapter-4-通信-Communication" class="headerlink" title="Chapter 4 通信 - Communication"></a>Chapter 4 通信 - Communication</h1><h3 id="进程间通信-Interprocess-Communication"><a href="#进程间通信-Interprocess-Communication" class="headerlink" title="进程间通信 - Interprocess Communication"></a>进程间通信 - Interprocess Communication</h3><blockquote>
+<p>进程间通信是每个分布式系统的核心。</p>
+</blockquote>
+<p>但是，不同机器的进程想相互交流是很困难的。 ☹️</p>
+<p><strong>解决方案：</strong></p>
+<p>目前主要有四种方法用于进程间通信 - IPC models:</p>
+<ul>
+<li>RPC</li>
+<li>RMI</li>
+<li>MOM</li>
+<li>Streams</li>
+</ul>
+<h2 id="分层协议-Layered-Protocols"><a href="#分层协议-Layered-Protocols" class="headerlink" title="分层协议 - Layered Protocols"></a>分层协议 - Layered Protocols</h2><p>分层协议可以解决通信的问题</p>
+<h3 id="两大类协议"><a href="#两大类协议" class="headerlink" title="两大类协议"></a>两大类协议</h3><ul>
+<li><p><strong>面向连接</strong></p>
+<p>消息发送与接收双方需要先建立连接，再传输数据；</p>
+</li>
+<li><p><strong>面向无连接</strong></p>
+<p>直接传数据</p>
+</li>
+</ul>
+<h3 id="中间件协议"><a href="#中间件协议" class="headerlink" title="中间件协议"></a>中间件协议</h3><p>中间件是一种应用程序，逻辑上位于应用层中。</p>
+<ul>
+<li>中间件通信协议支持高层通信服务；</li>
+<li>对实时数据传输进行设定并使其保持同步的协议；</li>
+<li>还提供可靠的多播服务。</li>
+</ul>
+<h2 id="远程过程调用-Remote-Procedure-Call⚡️"><a href="#远程过程调用-Remote-Procedure-Call⚡️" class="headerlink" title="远程过程调用 - Remote Procedure Call⚡️"></a>远程过程调用 - Remote Procedure Call⚡️</h2><p>RPC就是一个机器调用位于其他机器上的进程。</p>
+<p>A机器的进程调用B机器的进程：</p>
+<ol>
+<li>A将本地调用进程挂起；</li>
+<li>A通过参数将信息传递给B；</li>
+<li>B执行被调用进程；</li>
+<li>B执行结束将信息传回给A。</li>
+</ol>
+<p>一般说的RPC就是同步RPC，如上面的流程所示，机器A的调用进程：</p>
+<ul>
+<li>无需保护现场；</li>
+<li>在结果返回之前会阻塞的。</li>
+</ul>
+<h3 id="基本的RPC操作-Basic-RPC-Operation"><a href="#基本的RPC操作-Basic-RPC-Operation" class="headerlink" title="基本的RPC操作 - Basic RPC Operation"></a>基本的RPC操作 - Basic RPC Operation</h3><p>RPC操作背后隐含的思想是尽量是<strong>远程过程调用具有与本地调用相同的形式</strong>。</p>
+<p>将客户过程对客户存根发出的本地调用转换成对服务器过程的本地调用，而客户和服务器都不会意识到有中间步骤的存在。</p>
+<p><img src="/studynote-of-distributed-system/客户与服务器之间的RPC原理.png" alt></p>
+<p>使用socket进行通信，把socket通信隐藏到底层，从而实现透明性。</p>
+<p><strong>RPC的步骤</strong>：</p>
+<p><strong>总结一下就是</strong>：</p>
+<ol>
+<li><p>发送：</p>
+<p>客户过程 -&gt; 客户存根 -&gt; 客户操作系统 -&gt; 服务器操作系统 -&gt; 服务器存根 -&gt; 服务器进程</p>
+</li>
+<li><p>返回：从右向左就是了。</p>
+</li>
+</ol>
+<p><strong>具体</strong>：</p>
+<ol>
+<li>客户过程以正常的方式调用客户存根；</li>
+<li>客户存根生成一个消息，然后调用本地操作系统；</li>
+<li>客户端操作系统将消息发送给远程操作系统；</li>
+<li>远程操作系统将消息交给服务器存根；</li>
+<li>服务器存根将参数提取出来，然后调用服务器；</li>
+<li>服务器执行要求的操作，操作完成后将结果返回给服务器存根；</li>
+<li>服务器存根将结果打包成一个消息，然后调用本地操作系统；</li>
+<li>服务器操作系统将含有结果的消息发送回客户端操作系统；</li>
+<li>客户端操作系统将消息交给客户存根；</li>
+<li>客户存根将结果从消息中提取出来，返回给调用他的客户过程。</li>
+</ol>
+<p><img src="/studynote-of-distributed-system/通过RPC进行远程计算.png" alt></p>
+<h3 id="参数传递-Parameter-Passing"><a href="#参数传递-Parameter-Passing" class="headerlink" title="参数传递 - Parameter Passing"></a>参数传递 - Parameter Passing</h3><p>完整定义了RPC协议后，需要实现客户存根和服务器存根，不同点仅仅在于面向应用程序的接口。</p>
+<p>接口通常使用<strong>IDL</strong>(接口定义语言)，用IDL说明的接口可以与适当的编译时接口或者运行时接口一起编译到客户存根过程和服务器存根中。</p>
+<h3 id="异步RPC-Variations"><a href="#异步RPC-Variations" class="headerlink" title="异步RPC - Variations"></a>异步RPC - Variations</h3><p><strong>异步RPC中：</strong></p>
+<ul>
+<li>客户发出RPC请求，接受到服务器的确认信息后，不会阻塞，继续向下执行；</li>
+<li>服务器在接受到RPC请求后立即向客户送回应答，之后再调用客户请求的过程。</li>
+</ul>
+<p><img src="/studynote-of-distributed-system/传统RPC和异步RPC.png" alt></p>
+<p>异步RPC效率高，但是难编程。</p>
+<p><strong>延迟的同步RPC</strong>：</p>
+<p>就是两个异步RPC结合起来。</p>
+<p>远程服务器在处理请求时，客户同时做一些其他的事情。当服务器处理好请求时，返回结果去中断客户，服务器一端变成发送端，实现第二个异步RPC。</p>
+<p><img src="/studynote-of-distributed-system/延迟的同步RPC.png" alt></p>
+<h2 id="面向消息的通信-Message-oriented-Communication"><a href="#面向消息的通信-Message-oriented-Communication" class="headerlink" title="面向消息的通信 - Message-oriented Communication"></a>面向消息的通信 - Message-oriented Communication</h2><h3 id="套接字"><a href="#套接字" class="headerlink" title="套接字"></a>套接字</h3><p>一种通信端点。如果应用程序要通过底层网络发送某些数据，可以把这些数据写入套接字，然后从套接字读出数据。</p>
+<p><img src="/studynote-of-distributed-system/TCP:IP.png" alt="pastedGraphic.png"></p>
+<p>服务器一般执行前4个原语，一般按照图中顺序执行。调用套接字原语的时候，调用者创建一个新的通信端点，用于某种特定的传输协议的。</p>
+<p><img src="/studynote-of-distributed-system/使用套接字的面向连接通信模式.png" alt></p>
+<h3 id="消息传递接口-MPI"><a href="#消息传递接口-MPI" class="headerlink" title="消息传递接口 MPI"></a>消息传递接口 MPI</h3><p><strong>MPI</strong>的先进之处：</p>
+<p>程序的硬件独立性需要导致MPI的出台。MPI是为并行应用程序设计的，是为瞬时通信量身定做的。它直接使用的是底层网络。</p>
+<p>MPI是并行计算，一般运行于集群中。</p>
+<p><img src="/studynote-of-distributed-system/MPI源语.png" alt></p>
+<h3 id="消息队列系统"><a href="#消息队列系统" class="headerlink" title="消息队列系统"></a>消息队列系统</h3><p>面向消息的中间件服务。为持久异步通信提供多种支持。<strong>本质</strong>是，提供消息的中介存储能力，这样就不需要消息发送方和接收方在消息传输中都保持激活状态。与套接字和MPI的重要<strong>区别</strong>在于，它的设计目标一般是支持那些时间要求较为宽松的消息传输，不适合几秒甚至几微秒内要完成的传输。</p>
+<h2 id="面向流的通信-Stream-oriented-Communication⚡️"><a href="#面向流的通信-Stream-oriented-Communication⚡️" class="headerlink" title="面向流的通信 - Stream-oriented Communication⚡️"></a>面向流的通信 - Stream-oriented Communication⚡️</h2><h3 id="流的定义"><a href="#流的定义" class="headerlink" title="流的定义"></a>流的定义</h3><blockquote>
+<p>A (continuous) data stream is a connection oriented communication facility that supports isochronous data transmission</p>
+</blockquote>
+<ul>
+<li><p><strong>简单流</strong>：</p>
+<p>只包含单个数据序列；</p>
+</li>
+<li><p><strong>复杂流</strong>：</p>
+<p>简单流的组合</p>
+</li>
+</ul>
+<h3 id="传输模式"><a href="#传输模式" class="headerlink" title="传输模式"></a>传输模式</h3><ul>
+<li><p><strong>异步传输模式</strong>：</p>
+<p>流中的数据项是逐个传输的，但是对某一项在何时进行传输并没有进一步的限制。这是采用离散数据流时常见的情况。比如文件的传输。</p>
+</li>
+<li><p><strong>同步传输模式</strong>：</p>
+<p>数据流中每一个单元都定义了一个端到端的最大延迟时间，容许延迟。数据单元的传输时间是否远远小于最大允许延迟并不重要。</p>
+</li>
+<li><p><strong>等时传输模式</strong>：</p>
+<p>数据单元必须按时传输，端到端的延迟时间同时又上限和下限。这个上、下限也称为边界延迟抖动。在视频和音频方面很常用，比如音视频的同步(对口型)。</p>
+<p>流媒体就属于这个类，既有最大端到端延迟限制，又有最小的端到端延迟限制。</p>
+</li>
+</ul>
+<h3 id="流与服务质量"><a href="#流与服务质量" class="headerlink" title="流与服务质量"></a>流与服务质量</h3><h4 id="QoS服务质量："><a href="#QoS服务质量：" class="headerlink" title="QoS服务质量："></a>QoS服务质量：</h4><ol>
+<li>数据传输所要求的比特率；</li>
+<li>创建会话的最大延时(比如应用程序何时可以开始发送数据)；</li>
+<li>端到端的最大延时；</li>
+<li>最大延时抖动；</li>
+<li>最大往返延时。</li>
+</ol>
+<h4 id="QoS保证："><a href="#QoS保证：" class="headerlink" title="QoS保证："></a>QoS保证：</h4><ul>
+<li><p>使用 buffer 来减少 jitter</p>
+<p>当数据包有不同的延时，接收方先把它们存储在缓冲区，当总是有足够的数据包进入缓冲区时，接收方就可以以固定的速率把数据包传递给应用程序。</p>
+<p><img src="/studynote-of-distributed-system/使用缓冲区减少抖动.png" alt></p>
+</li>
+<li><p>针对丢包情况，interleaving，若没有交错机制，丢包时会把连续的几帧一起丢掉，视觉影响较大；而使用交错机制，会交叉丢包。</p>
+<p>如在传送音视频时，采用交错传输，丢失的帧分布较广，这样丢失的就不是一大段而是零散的帧，对于音视频的播放影响就较小。但是这样需要更大的缓冲区，因此程序的开始延时更高。</p>
+<p><img src="/studynote-of-distributed-system/交错传输.png" alt></p>
+</li>
+</ul>
+<h3 id="流同步"><a href="#流同步" class="headerlink" title="流同步"></a>流同步</h3><p><strong>音视频流同步</strong></p>
+<p>采用音视频的编解码协议：<strong>H264协议</strong></p>
+<h2 id="多播通信-Communication"><a href="#多播通信-Communication" class="headerlink" title="多播通信 -  Communication"></a>多播通信 -  Communication</h2><h3 id="Gossip-Based-Data-Dissemination"><a href="#Gossip-Based-Data-Dissemination" class="headerlink" title="Gossip-Based Data Dissemination"></a>Gossip-Based Data Dissemination</h3><p>属于p2p系统的多播。</p>
+<p>应用在自主网或是p2p，就是没有服务器的那一类网。</p>
+<h3 id="几种多播"><a href="#几种多播" class="headerlink" title="几种多播"></a>几种多播</h3><ul>
+<li><p>全序多播 Total order</p>
+</li>
+<li><p>FIFO多播</p>
+<p>先出去的应该先被受到，后出去的应该后被收到</p>
+<p>但是结果是不确定的。你不知道哪个先到哪个后到。也可以在应用层做保证，但是很难做。</p>
+</li>
+<li><p>Causal 因果序多播</p>
+</li>
+</ul>
+<hr>
+<h1 id="命名系统"><a href="#命名系统" class="headerlink" title="命名系统"></a>命名系统</h1><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
 <li><a href="http://www.chinastor.com/s/openstack/10093K202017.html" target="_blank" rel="noopener">http://www.chinastor.com/s/openstack/10093K202017.html</a></li>
 <li><a href="https://blog.csdn.net/controllerha/article/details/78766840" target="_blank" rel="noopener">https://blog.csdn.net/controllerha/article/details/78766840</a></li>
 </ol>
@@ -1126,7 +1279,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#丁大神啊画画重点好不好-ヽ-。-gt-д-lt-p"><span class="nav-number">1.</span> <span class="nav-text">丁大神啊画画重点好不好 ヽ(。&gt;д&lt;)ｐ</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-1-概述"><span class="nav-number">2.</span> <span class="nav-text">Chapter 1 概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式系统的定义"><span class="nav-number">2.1.</span> <span class="nav-text">分布式系统的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目标"><span class="nav-number">2.2.</span> <span class="nav-text">目标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使资源可访问"><span class="nav-number">2.2.1.</span> <span class="nav-text">使资源可访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#透明性"><span class="nav-number">2.2.2.</span> <span class="nav-text">透明性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#透明的类型"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">透明的类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#透明度"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">透明度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开放性"><span class="nav-number">2.2.3.</span> <span class="nav-text">开放性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可扩展性"><span class="nav-number">2.2.4.</span> <span class="nav-text">可扩展性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#可扩展性问题"><span class="nav-number">2.2.4.1.</span> <span class="nav-text">可扩展性问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展技术"><span class="nav-number">2.2.4.2.</span> <span class="nav-text">扩展技术</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#隐藏通信等待时间"><span class="nav-number">2.2.4.2.1.</span> <span class="nav-text">隐藏通信等待时间</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#分布技术"><span class="nav-number">2.2.4.2.2.</span> <span class="nav-text">分布技术</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#复制技术"><span class="nav-number">2.2.4.2.3.</span> <span class="nav-text">复制技术</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式系统的类型"><span class="nav-number">2.3.</span> <span class="nav-text">分布式系统的类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式计算系统"><span class="nav-number">2.3.1.</span> <span class="nav-text">分布式计算系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#集群计算系统"><span class="nav-number">2.3.1.1.</span> <span class="nav-text">集群计算系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网格计算系统"><span class="nav-number">2.3.1.2.</span> <span class="nav-text">网格计算系统</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式信息系统"><span class="nav-number">2.3.2.</span> <span class="nav-text">分布式信息系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式普适系统"><span class="nav-number">2.3.3.</span> <span class="nav-text">分布式普适系统</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-2-体系结构"><span class="nav-number">3.</span> <span class="nav-text">Chapter 2 体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#体系结构的样式"><span class="nav-number">3.1.</span> <span class="nav-text">体系结构的样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统体系结构"><span class="nav-number">3.2.</span> <span class="nav-text">系统体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#集中式体系结构"><span class="nav-number">3.2.1.</span> <span class="nav-text">集中式体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#应用分层"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">应用分层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多层体系结构"><span class="nav-number">3.2.1.2.</span> <span class="nav-text">多层体系结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非集中式体系结构"><span class="nav-number">3.2.2.</span> <span class="nav-text">非集中式体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#结构化的点对点体系结构"><span class="nav-number">3.2.2.1.</span> <span class="nav-text">结构化的点对点体系结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非结构化的点对点体系结构"><span class="nav-number">3.2.2.2.</span> <span class="nav-text">非结构化的点对点体系结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#超级对等体"><span class="nav-number">3.2.2.3.</span> <span class="nav-text">超级对等体</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#混合体系结构"><span class="nav-number">3.2.3.</span> <span class="nav-text">混合体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#边界服务器系统"><span class="nav-number">3.2.3.1.</span> <span class="nav-text">边界服务器系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#协作分布式系统"><span class="nav-number">3.2.3.2.</span> <span class="nav-text">协作分布式系统</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式系统的自我管理"><span class="nav-number">3.3.</span> <span class="nav-text">分布式系统的自我管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#反馈控制模型"><span class="nav-number">3.3.1.</span> <span class="nav-text">反馈控制模型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-3-进程"><span class="nav-number">4.</span> <span class="nav-text">Chapter 3 进程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#线程"><span class="nav-number">4.1.</span> <span class="nav-text">线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式系统中的线程"><span class="nav-number">4.1.1.</span> <span class="nav-text">分布式系统中的线程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#多线程客户端"><span class="nav-number">4.1.1.1.</span> <span class="nav-text">多线程客户端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多线程服务器"><span class="nav-number">4.1.1.2.</span> <span class="nav-text">多线程服务器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟化-瞎猜的重点⚡️"><span class="nav-number">4.2.</span> <span class="nav-text">虚拟化(瞎猜的重点⚡️)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机体系结构"><span class="nav-number">4.2.1.</span> <span class="nav-text">虚拟机体系结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机的两种方式"><span class="nav-number">4.2.2.</span> <span class="nav-text">虚拟机的两种方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟化-v-s-容器"><span class="nav-number">4.2.3.</span> <span class="nav-text">虚拟化 v.s. 容器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟化：OpenStack"><span class="nav-number">4.2.3.1.</span> <span class="nav-text">虚拟化：OpenStack</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#容器：Docker"><span class="nav-number">4.2.3.2.</span> <span class="nav-text">容器：Docker</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OpenStack与Docker的区别"><span class="nav-number">4.2.3.3.</span> <span class="nav-text">OpenStack与Docker的区别</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端"><span class="nav-number">4.3.</span> <span class="nav-text">客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端软件与分布透明性"><span class="nav-number">4.3.1.</span> <span class="nav-text">客户端软件与分布透明性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器"><span class="nav-number">4.4.</span> <span class="nav-text">服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器集群"><span class="nav-number">4.4.1.</span> <span class="nav-text">服务器集群</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#常见的组织"><span class="nav-number">4.4.1.1.</span> <span class="nav-text">常见的组织</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分布式服务器"><span class="nav-number">4.4.1.2.</span> <span class="nav-text">分布式服务器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码迁移"><span class="nav-number">4.5.</span> <span class="nav-text">代码迁移</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码迁移模型"><span class="nav-number">4.5.1.</span> <span class="nav-text">代码迁移模型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-4-通信"><span class="nav-number">5.</span> <span class="nav-text">Chapter 4 通信</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">6.</span> <span class="nav-text">Reference</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#致谢"><span class="nav-number">7.</span> <span class="nav-text">致谢</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-1-概述"><span class="nav-number">1.</span> <span class="nav-text">Chapter 1 概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式系统的定义"><span class="nav-number">1.1.</span> <span class="nav-text">分布式系统的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目标"><span class="nav-number">1.2.</span> <span class="nav-text">目标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使资源可访问"><span class="nav-number">1.2.1.</span> <span class="nav-text">使资源可访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#透明性"><span class="nav-number">1.2.2.</span> <span class="nav-text">透明性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#透明的类型"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">透明的类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#透明度"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">透明度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开放性"><span class="nav-number">1.2.3.</span> <span class="nav-text">开放性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可扩展性"><span class="nav-number">1.2.4.</span> <span class="nav-text">可扩展性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#可扩展性问题"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">可扩展性问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展技术"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">扩展技术</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#隐藏通信等待时间"><span class="nav-number">1.2.4.2.1.</span> <span class="nav-text">隐藏通信等待时间</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#分布技术"><span class="nav-number">1.2.4.2.2.</span> <span class="nav-text">分布技术</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#复制技术"><span class="nav-number">1.2.4.2.3.</span> <span class="nav-text">复制技术</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式系统的类型"><span class="nav-number">1.3.</span> <span class="nav-text">分布式系统的类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式计算系统"><span class="nav-number">1.3.1.</span> <span class="nav-text">分布式计算系统</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#集群计算系统"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">集群计算系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网格计算系统"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">网格计算系统</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式信息系统"><span class="nav-number">1.3.2.</span> <span class="nav-text">分布式信息系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式普适系统"><span class="nav-number">1.3.3.</span> <span class="nav-text">分布式普适系统</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-2-体系结构"><span class="nav-number">2.</span> <span class="nav-text">Chapter 2 体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#体系结构的样式"><span class="nav-number">2.1.</span> <span class="nav-text">体系结构的样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统体系结构"><span class="nav-number">2.2.</span> <span class="nav-text">系统体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#集中式体系结构"><span class="nav-number">2.2.1.</span> <span class="nav-text">集中式体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#应用分层"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">应用分层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多层体系结构"><span class="nav-number">2.2.1.2.</span> <span class="nav-text">多层体系结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非集中式体系结构"><span class="nav-number">2.2.2.</span> <span class="nav-text">非集中式体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#结构化的点对点体系结构"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">结构化的点对点体系结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非结构化的点对点体系结构"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">非结构化的点对点体系结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#超级对等体"><span class="nav-number">2.2.2.3.</span> <span class="nav-text">超级对等体</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#混合体系结构"><span class="nav-number">2.2.3.</span> <span class="nav-text">混合体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#边界服务器系统"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">边界服务器系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#协作分布式系统"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">协作分布式系统</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式系统的自我管理"><span class="nav-number">2.3.</span> <span class="nav-text">分布式系统的自我管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#反馈控制模型"><span class="nav-number">2.3.1.</span> <span class="nav-text">反馈控制模型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-3-进程"><span class="nav-number">3.</span> <span class="nav-text">Chapter 3 进程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#线程"><span class="nav-number">3.1.</span> <span class="nav-text">线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#分布式系统中的线程"><span class="nav-number">3.1.1.</span> <span class="nav-text">分布式系统中的线程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#多线程客户端"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">多线程客户端</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多线程服务器"><span class="nav-number">3.1.1.2.</span> <span class="nav-text">多线程服务器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟化⚡️"><span class="nav-number">3.2.</span> <span class="nav-text">虚拟化⚡️</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机体系结构"><span class="nav-number">3.2.1.</span> <span class="nav-text">虚拟机体系结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机的两种方式"><span class="nav-number">3.2.2.</span> <span class="nav-text">虚拟机的两种方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟化-v-s-容器"><span class="nav-number">3.2.3.</span> <span class="nav-text">虚拟化 v.s. 容器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟化：OpenStack"><span class="nav-number">3.2.3.1.</span> <span class="nav-text">虚拟化：OpenStack</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#容器：Docker"><span class="nav-number">3.2.3.2.</span> <span class="nav-text">容器：Docker</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OpenStack与Docker的区别"><span class="nav-number">3.2.3.3.</span> <span class="nav-text">OpenStack与Docker的区别</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端"><span class="nav-number">3.3.</span> <span class="nav-text">客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端软件与分布透明性"><span class="nav-number">3.3.1.</span> <span class="nav-text">客户端软件与分布透明性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器"><span class="nav-number">3.4.</span> <span class="nav-text">服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器集群"><span class="nav-number">3.4.1.</span> <span class="nav-text">服务器集群</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#常见的组织"><span class="nav-number">3.4.1.1.</span> <span class="nav-text">常见的组织</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分布式服务器"><span class="nav-number">3.4.1.2.</span> <span class="nav-text">分布式服务器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码迁移"><span class="nav-number">3.5.</span> <span class="nav-text">代码迁移</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码迁移模型"><span class="nav-number">3.5.1.</span> <span class="nav-text">代码迁移模型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-4-通信-Communication"><span class="nav-number">4.</span> <span class="nav-text">Chapter 4 通信 - Communication</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#进程间通信-Interprocess-Communication"><span class="nav-number">4.0.1.</span> <span class="nav-text">进程间通信 - Interprocess Communication</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分层协议-Layered-Protocols"><span class="nav-number">4.1.</span> <span class="nav-text">分层协议 - Layered Protocols</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#两大类协议"><span class="nav-number">4.1.1.</span> <span class="nav-text">两大类协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中间件协议"><span class="nav-number">4.1.2.</span> <span class="nav-text">中间件协议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程过程调用-Remote-Procedure-Call⚡️"><span class="nav-number">4.2.</span> <span class="nav-text">远程过程调用 - Remote Procedure Call⚡️</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本的RPC操作-Basic-RPC-Operation"><span class="nav-number">4.2.1.</span> <span class="nav-text">基本的RPC操作 - Basic RPC Operation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数传递-Parameter-Passing"><span class="nav-number">4.2.2.</span> <span class="nav-text">参数传递 - Parameter Passing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步RPC-Variations"><span class="nav-number">4.2.3.</span> <span class="nav-text">异步RPC - Variations</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向消息的通信-Message-oriented-Communication"><span class="nav-number">4.3.</span> <span class="nav-text">面向消息的通信 - Message-oriented Communication</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#套接字"><span class="nav-number">4.3.1.</span> <span class="nav-text">套接字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息传递接口-MPI"><span class="nav-number">4.3.2.</span> <span class="nav-text">消息传递接口 MPI</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息队列系统"><span class="nav-number">4.3.3.</span> <span class="nav-text">消息队列系统</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#面向流的通信-Stream-oriented-Communication⚡️"><span class="nav-number">4.4.</span> <span class="nav-text">面向流的通信 - Stream-oriented Communication⚡️</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#流的定义"><span class="nav-number">4.4.1.</span> <span class="nav-text">流的定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#传输模式"><span class="nav-number">4.4.2.</span> <span class="nav-text">传输模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流与服务质量"><span class="nav-number">4.4.3.</span> <span class="nav-text">流与服务质量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#QoS服务质量："><span class="nav-number">4.4.3.1.</span> <span class="nav-text">QoS服务质量：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#QoS保证："><span class="nav-number">4.4.3.2.</span> <span class="nav-text">QoS保证：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流同步"><span class="nav-number">4.4.4.</span> <span class="nav-text">流同步</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多播通信-Communication"><span class="nav-number">4.5.</span> <span class="nav-text">多播通信 -  Communication</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Gossip-Based-Data-Dissemination"><span class="nav-number">4.5.1.</span> <span class="nav-text">Gossip-Based Data Dissemination</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#几种多播"><span class="nav-number">4.5.2.</span> <span class="nav-text">几种多播</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#命名系统"><span class="nav-number">5.</span> <span class="nav-text">命名系统</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">6.</span> <span class="nav-text">Reference</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#致谢"><span class="nav-number">7.</span> <span class="nav-text">致谢</span></a></li></div>
             
 
           </div>
