@@ -176,7 +176,7 @@
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190417113202813.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190417113211529.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190417113836041.png">
-<meta property="og:updated_time" content="2019-04-17T03:42:09.960Z">
+<meta property="og:updated_time" content="2019-04-17T03:46:52.208Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式与云计算复习笔记(updating)">
 <meta name="twitter:description" content="分布式与云计算2019春季课程笔记  这个东西吧，太简单了，我们这里不讲了 这个东西吧，比较难，后续我们在讲吧(后续后续。。。) 这里吧，(喝口水，ppt翻页)，直接跳过了 天文地理鲁迅balabala，石竹老师先退票再买票，最后没抢到票我感到非常高兴233333  end">
@@ -505,7 +505,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-17 11:42:09" itemprop="dateModified" datetime="2019-04-17T11:42:09+08:00">2019-04-17</time>
+                <time title="Modified: 2019-04-17 11:46:52" itemprop="dateModified" datetime="2019-04-17T11:46:52+08:00">2019-04-17</time>
               
             
           </span>
@@ -1102,6 +1102,8 @@
 <p><img src="/studynote-of-distributed-system/image-20190417113211529.png" alt="image-20190417113211529"></p>
 <p>如果要插入实体E，将其所在域的目录节点加入实体E的地址，然后一路向上转发。</p>
 <p>如果这个目录结点不知道E，就存储一下子域地址，直到一个节点知道E的位置或者到根节点就终止。</p>
+<p><strong>为啥刚刚插入的实体E，可能有的结点已经知道E的位置了呢？</strong></p>
+<p>因为E可能是复制过来的，正如上面讲的有多个实体，包含两个E的最小域的目录节点会有E的两个地址，而再往上一层，就只有E的一个地址了(指向两个E的最小域的目录节点)，到这里就停止向上传递。</p>
 <p><img src="/studynote-of-distributed-system/image-20190417113836041.png" alt="image-20190417113836041"></p>
 <p>这是中文教材的配图，怎么都看不懂这两条线啥意思，原来中文教材用成查询的图了。</p>
 <p>_(:3」∠)_</p>
