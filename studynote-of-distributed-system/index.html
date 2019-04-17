@@ -164,13 +164,13 @@
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/通过RPC进行远程计算.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/传统RPC和异步RPC.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/延迟的同步RPC.png">
-<meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/TCP:IP.png">
+<meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/TCP%20IP.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/使用套接字的面向连接通信模式.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/MPI源语.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/使用缓冲区减少抖动.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/交错传输.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/Chord.png">
-<meta property="og:updated_time" content="2019-04-16T17:01:57.696Z">
+<meta property="og:updated_time" content="2019-04-17T01:32:46.751Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式与云计算复习笔记(updating)">
 <meta name="twitter:description" content="分布式与云计算2019春季课程笔记  这个东西吧，太简单了，我们这里不讲了 这个东西吧，比较难，后续我们在讲吧(后续后续。。。) 这里吧，(喝口水，ppt翻页)，直接跳过了 天文地理鲁迅balabala，石竹老师先退票再买票，最后没抢到票我感到非常高兴233333  end">
@@ -499,7 +499,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-17 01:01:57" itemprop="dateModified" datetime="2019-04-17T01:01:57+08:00">2019-04-17</time>
+                <time title="Modified: 2019-04-17 09:32:46" itemprop="dateModified" datetime="2019-04-17T09:32:46+08:00">2019-04-17</time>
               
             
           </span>
@@ -949,7 +949,7 @@
 <p>远程服务器在处理请求时，客户同时做一些其他的事情。当服务器处理好请求时，返回结果去中断客户，服务器一端变成发送端，实现第二个异步RPC。</p>
 <p><img src="/studynote-of-distributed-system/延迟的同步RPC.png" alt></p>
 <h2 id="面向消息的通信-Message-oriented-Communication"><a href="#面向消息的通信-Message-oriented-Communication" class="headerlink" title="面向消息的通信 - Message-oriented Communication"></a>面向消息的通信 - Message-oriented Communication</h2><h3 id="套接字"><a href="#套接字" class="headerlink" title="套接字"></a>套接字</h3><p>一种通信端点。如果应用程序要通过底层网络发送某些数据，可以把这些数据写入套接字，然后从套接字读出数据。</p>
-<p><img src="/studynote-of-distributed-system/TCP:IP.png" alt="pastedGraphic.png"></p>
+<p><img src="/studynote-of-distributed-system/TCP IP.png" alt="pastedGraphic.png"></p>
 <p>服务器一般执行前4个原语，一般按照图中顺序执行。调用套接字原语的时候，调用者创建一个新的通信端点，用于某种特定的传输协议的。</p>
 <p><img src="/studynote-of-distributed-system/使用套接字的面向连接通信模式.png" alt></p>
 <h3 id="消息传递接口-MPI"><a href="#消息传递接口-MPI" class="headerlink" title="消息传递接口 MPI"></a>消息传递接口 MPI</h3><p><strong>MPI</strong>的先进之处：</p>
