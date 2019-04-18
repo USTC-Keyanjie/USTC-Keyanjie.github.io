@@ -188,7 +188,7 @@
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190418104322665.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190418104501554.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190418105824022.png">
-<meta property="og:updated_time" content="2019-04-18T03:10:10.784Z">
+<meta property="og:updated_time" content="2019-04-18T05:13:25.663Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式与云计算复习笔记(updating)">
 <meta name="twitter:description" content="分布式与云计算2019春季课程笔记  这个东西吧，太简单了，我们这里不讲了 这个东西吧，比较难，后续我们在讲吧(后续后续。。。) 这里吧，(喝口水，ppt翻页)，直接跳过了 天文地理鲁迅balabala，石竹老师先退票再买票，最后没抢到票我感到非常高兴233333  end">
@@ -517,7 +517,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-18 11:10:10" itemprop="dateModified" datetime="2019-04-18T11:10:10+08:00">2019-04-18</time>
+                <time title="Modified: 2019-04-18 13:13:25" itemprop="dateModified" datetime="2019-04-18T13:13:25+08:00">2019-04-18</time>
               
             
           </span>
@@ -1264,7 +1264,12 @@
 <h4 id="强制因果序多播"><a href="#强制因果序多播" class="headerlink" title="强制因果序多播"></a>强制因果序多播</h4><p><strong>设计思想：</strong></p>
 <p>我懂的不能比你少，不然万一有其他消息还没来，你的消息就插队了，所以我不能收你的消息。</p>
 <p><strong>具体操作：</strong></p>
-<p>进程$P_i$发给进程$P_j$一个时间戳为$ts(m)$的消息m。如果不满足以下两个条件，这个消息就不交付给应用层，直到满足条件为止：<br>$$<br>\left\{\begin{matrix}<br>ts(m)[i] = VC_j[i]+1 &amp; \ <br>ts(m)[k] \leq VC_j[k] &amp; for   all   k \neq i<br>\end{matrix}\right.<br>$$<br>关于你刚刚发的消息，可以比我多知道一条消息。毕竟他发的，肯定比我多了解一条；</p>
+<p>进程$P_i$发给进程$P_j$一个时间戳为$ts(m)$的消息m。如果不满足以下两个条件，这个消息就不交付给应用层，直到满足条件为止：</p>
+<ol>
+<li>$ts(m)[i] = VC_j[i]+1$</li>
+<li>$ts(m)[k] \leq VC_j[k] \quad for   all   k \neq i$</li>
+</ol>
+<p>关于你刚刚发的消息，可以比我多知道一条消息。毕竟他发的，肯定比我多了解一条；</p>
 <p>但是关于其他消息，你知道的不可以比我多，不然我就是还有其他消息没收到，等我收到其他消息后再处理这个消息。</p>
 <p><strong>这本中文书你还能再坑一点吗？</strong></p>
 <p><img src="/studynote-of-distributed-system/image-20190418102502861.png" alt="image-20190418102502861"></p>
