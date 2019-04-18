@@ -191,7 +191,7 @@
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190418203632964.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190418203738517.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190418204013915.png">
-<meta property="og:updated_time" content="2019-04-18T13:07:52.455Z">
+<meta property="og:updated_time" content="2019-04-18T13:15:29.289Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式与云计算复习笔记(updating)">
 <meta name="twitter:description" content="分布式与云计算2019春季课程笔记  这个东西吧，太简单了，我们这里不讲了 这个东西吧，比较难，后续我们在讲吧(后续后续。。。) 这里吧，(喝口水，ppt翻页)，直接跳过了 天文地理鲁迅balabala，石竹老师先退票再买票，最后没抢到票我感到非常高兴233333  end">
@@ -520,7 +520,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-18 21:07:52" itemprop="dateModified" datetime="2019-04-18T21:07:52+08:00">2019-04-18</time>
+                <time title="Modified: 2019-04-18 21:15:29" itemprop="dateModified" datetime="2019-04-18T21:15:29+08:00">2019-04-18</time>
               
             
           </span>
@@ -1046,7 +1046,12 @@
 <h2 id="⚡️⚡️DHT"><a href="#⚡️⚡️DHT" class="headerlink" title="⚡️⚡️DHT"></a>⚡️⚡️DHT</h2><p>全称是Distributed Hash Tables，是P2P环境下最经典的解决方案</p>
 <h3 id="Chord"><a href="#Chord" class="headerlink" title="Chord"></a>Chord</h3><p>使用一个m位的标识符空间，把<strong>随机选择</strong>的标识符赋给结点，并把键值赋值给特定实体（任意的东西，比如文件、进程）。</p>
 <p><strong>构造Finger table算法：</strong></p>
-<p>每个Chord结点维护一个最多有m个实体的指状表(Finger table)，如果用$FT_p$表示结点$p$的指状表，那么有：<br>$$<br>FT_p[i]=succ(p+2^{i-1})<br>$$<br>$p$是当前结点，$i$是指状表的index，$succ$表示其后继。</p>
+<p>每个Chord结点维护一个最多有m个实体的指状表(Finger table)，如果用$FT_p$表示结点$p$的指状表，那么有：<br>$$<br>FT_p[i]=succ(p+2^{i-1})<br>$$</p>
+<ul>
+<li>$p$是当前结点</li>
+<li>$i​$是指状表的index</li>
+<li>$succ(k)$表示k（若结点k存在）或k的下一个<strong>存在</strong>的结点，即$succ(k) \geq k$</li>
+</ul>
 <p>例：</p>
 <p><img src="/studynote-of-distributed-system/Chord.png" alt></p>
 <p>根据$FT_p[i]=succ(p+2^{i-1})$公式，构造结点p=4的Finger table：</p>
