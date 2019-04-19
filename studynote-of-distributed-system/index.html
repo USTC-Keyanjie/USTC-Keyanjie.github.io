@@ -201,7 +201,7 @@
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190419153834211.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190419155014568.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190419155138555.png">
-<meta property="og:updated_time" content="2019-04-19T08:48:52.278Z">
+<meta property="og:updated_time" content="2019-04-19T08:51:31.729Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式与云计算复习笔记(updating)">
 <meta name="twitter:description" content="分布式与云计算2019春季课程笔记  这个东西吧，太简单了，我们这里不讲了 这个东西吧，比较难，后续我们在讲吧(后续后续。。。) 这里吧，(喝口水，ppt翻页)，直接跳过了 天文地理鲁迅balabala，石竹老师先退票再买票，最后没抢到票我感到非常高兴233333  end">
@@ -530,7 +530,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-19 16:48:52" itemprop="dateModified" datetime="2019-04-19T16:48:52+08:00">2019-04-19</time>
+                <time title="Modified: 2019-04-19 16:51:31" itemprop="dateModified" datetime="2019-04-19T16:51:31+08:00">2019-04-19</time>
               
             
           </span>
@@ -1405,12 +1405,11 @@
 <p><strong>例:</strong> 下图中，(a)是具有严格一致性的，(b)是没有的，因为P2出现了R(x)NIL，P1的写操作没有在P2的读操作之前传播过来。 (不要问我这根线啥意思，没看懂，懂的老哥求在底下评论赐教，不胜感激！)</p>
 <p><img src="/studynote-of-distributed-system/image-20190419143114051.png" alt="image-20190419143114051"></p>
 <h2 id="以数据为中心的一致性模型-要求知道定义，能判断"><a href="#以数据为中心的一致性模型-要求知道定义，能判断" class="headerlink" title="以数据为中心的一致性模型(要求知道定义，能判断)"></a>以数据为中心的一致性模型(要求知道定义，能判断)</h2><h3 id="持续一致性"><a href="#持续一致性" class="headerlink" title="持续一致性"></a>持续一致性</h3><p>这块没讲，老师大概提了一下，大概意思是什么是一致，怎么判断一致，以一个什么样的标准来判断一致。 </p>
-<h3 id="以数据为中心的一致性模型和以客户为中心的一致性模型的区别"><a href="#以数据为中心的一致性模型和以客户为中心的一致性模型的区别" class="headerlink" title="以数据为中心的一致性模型和以客户为中心的一致性模型的区别"></a>以数据为中心的一致性模型和以客户为中心的一致性模型的区别</h3><h4 id="所谓数据为中心的一致性模型"><a href="#所谓数据为中心的一致性模型" class="headerlink" title="所谓数据为中心的一致性模型:"></a>所谓数据为中心的一致性模型:</h4><ol>
-<li><strong>针对所有的用户，是没有区别的。</strong></li>
-<li>所有用户看到的都是同样的东西。</li>
-<li>不区分客户，所以叫以数据为中心的一致性模型。</li>
+<h3 id="以数据为中心的一致性模型和以客户为中心的一致性模型的区别"><a href="#以数据为中心的一致性模型和以客户为中心的一致性模型的区别" class="headerlink" title="以数据为中心的一致性模型和以客户为中心的一致性模型的区别"></a>以数据为中心的一致性模型和以客户为中心的一致性模型的区别</h3><h4 id="所谓数据为中心的一致性模型"><a href="#所谓数据为中心的一致性模型" class="headerlink" title="所谓数据为中心的一致性模型:"></a>所谓数据为中心的一致性模型:</h4><p>不区分客户，所以叫以数据为中心的一致性模型。</p>
+<ol>
+<li><strong>针对所有的用户，是没有区别的。所有用户看到的都是同样的东西。对所有的用户一视同仁。</strong></li>
 <li>以数据为中心的一致性模型，从大的范围来看，<strong>都是比较严格的一致性模型。</strong></li>
-<li>对所有的用户一视同仁。<strong>成本比较高。</strong></li>
+<li><strong>成本比较高。</strong></li>
 <li>常常用在大型的数据中心中，系统一般来讲不是很大，<strong>以局域网为主。</strong></li>
 </ol>
 <h4 id="以用户为中心的一致性模型"><a href="#以用户为中心的一致性模型" class="headerlink" title="以用户为中心的一致性模型:"></a>以用户为中心的一致性模型:</h4><ol>
