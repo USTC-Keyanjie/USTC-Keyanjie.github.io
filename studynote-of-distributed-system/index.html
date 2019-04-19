@@ -201,7 +201,7 @@
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190419153834211.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190419155014568.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190419155138555.png">
-<meta property="og:updated_time" content="2019-04-19T07:55:28.761Z">
+<meta property="og:updated_time" content="2019-04-19T07:57:35.819Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式与云计算复习笔记(updating)">
 <meta name="twitter:description" content="分布式与云计算2019春季课程笔记  这个东西吧，太简单了，我们这里不讲了 这个东西吧，比较难，后续我们在讲吧(后续后续。。。) 这里吧，(喝口水，ppt翻页)，直接跳过了 天文地理鲁迅balabala，石竹老师先退票再买票，最后没抢到票我感到非常高兴233333  end">
@@ -530,7 +530,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-19 15:55:28" itemprop="dateModified" datetime="2019-04-19T15:55:28+08:00">2019-04-19</time>
+                <time title="Modified: 2019-04-19 15:57:35" itemprop="dateModified" datetime="2019-04-19T15:57:35+08:00">2019-04-19</time>
               
             
           </span>
@@ -1434,8 +1434,8 @@
 <p>左边这个图（先不看红色的字）是满足<strong>顺序一致性</strong>的。P1的写a操作由于网络延迟等因素，在P2的写b操作之后发生，所以P3和P4都是先读到b，再读到a。如果要满足严格一致性的话（看红色字），那么在P2写b操作之后，所有进程应该只能读出b来，这才满足严格一致性。</p>
 <p>右边的图不满足顺序一致性，P3先读到了b再读到a，P4先读到a再读到b。进程对数据存储的读写没有按某种序列顺序进行。</p>
 <p><strong>顺序一致性也是比较难做出来的。但是是一个强一致性，顺序一致性做到了 100%的分布式透明性。</strong> </p>
-<h3 id="因果一致性"><a href="#因果一致性" class="headerlink" title="因果一致性"></a>因果一致性</h3><p>基本思想</p>
-<p><strong>从数据的产生和消费的角度去定义因果。数据总是产生在前，消费在后。</strong> </p>
+<h3 id="因果一致性"><a href="#因果一致性" class="headerlink" title="因果一致性"></a>因果一致性</h3><p><strong>基本思想</strong></p>
+<p>从数据的产生和消费的角度去定义因果。数据总是产生在前，消费在后。 </p>
 <p><strong>因果性</strong></p>
 <p>如果事件B是由事件A引起的，或受到事件A的影响，那么因果关系必然要求其他每个人先看到事件A再看到事件B。</p>
 <p>考虑一个分布式数据库的示例：</p>
