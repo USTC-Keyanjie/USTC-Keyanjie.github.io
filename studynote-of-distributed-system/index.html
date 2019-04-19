@@ -214,7 +214,7 @@
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190420020558986.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190420020615554.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190420015837821.png">
-<meta property="og:updated_time" content="2019-04-19T18:11:21.967Z">
+<meta property="og:updated_time" content="2019-04-19T18:14:11.762Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式与云计算复习笔记(updating)">
 <meta name="twitter:description" content="分布式与云计算2019春季课程笔记  这个东西吧，太简单了，我们这里不讲了 这个东西吧，比较难，后续我们在讲吧(后续后续。。。) 这里吧，(喝口水，ppt翻页)，直接跳过了 天文地理鲁迅balabala，石竹老师先退票再买票，最后没抢到票我感到非常高兴233333  end">
@@ -543,7 +543,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-20 02:11:21" itemprop="dateModified" datetime="2019-04-20T02:11:21+08:00">2019-04-20</time>
+                <time title="Modified: 2019-04-20 02:14:11" itemprop="dateModified" datetime="2019-04-20T02:14:11+08:00">2019-04-20</time>
               
             
           </span>
@@ -1666,7 +1666,7 @@
 <p><strong>举例</strong>: </p>
 <p><img src="/studynote-of-distributed-system/image-20190420015837821.png" alt="image-20190420015837821"></p>
 <p>图(a)和(c)是可行的，满足上述两个条件。只要满足$N_R+N_W&gt;N$，那么再怎样都会读到最新版本的文件，根据文件的版本号选择最新的文件即可。</p>
-<p>图(b)不行，因为不满足$N_W&gt;N/2$，如果一个进程更新{A, B, C, D, E, F}，令一个进程更新{G, H, I, J, K, L}，这样两边都是最新的版本号，但是文件是内容是不同的，读文件时发生冲突。</p>
+<p>图(b)不行，因为不满足$N_W&gt;N/2$，如果一个进程更新{A, B, C, D, E, F}，令一个进程更新{G, H, I, J, K, L}，这样两边都是最新的版本号，但是文件是内容是不同的，发生写写冲突。</p>
 <h3 id="剩下的内容喝了口水，不讲了"><a href="#剩下的内容喝了口水，不讲了" class="headerlink" title="剩下的内容喝了口水，不讲了"></a>剩下的内容喝了口水，不讲了</h3><hr>
 <p>我真的整理不动了😭</p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
