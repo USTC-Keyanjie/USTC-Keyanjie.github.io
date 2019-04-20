@@ -214,7 +214,7 @@
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190420020558986.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190420020615554.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190420015837821.png">
-<meta property="og:updated_time" content="2019-04-20T03:19:23.745Z">
+<meta property="og:updated_time" content="2019-04-20T03:20:36.637Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式与云计算复习笔记(updating)">
 <meta name="twitter:description" content="分布式与云计算2019春季课程笔记  这个东西吧，太简单了，我们这里不讲了 这个东西吧，比较难，后续我们在讲吧(后续后续。。。) 这里吧，(喝口水，ppt翻页)，直接跳过了 天文地理鲁迅balabala，石竹老师先退票再买票，最后没抢到票我感到非常高兴233333  end">
@@ -543,7 +543,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-20 11:19:23" itemprop="dateModified" datetime="2019-04-20T11:19:23+08:00">2019-04-20</time>
+                <time title="Modified: 2019-04-20 11:20:36" itemprop="dateModified" datetime="2019-04-20T11:20:36+08:00">2019-04-20</time>
               
             
           </span>
@@ -1614,10 +1614,36 @@
 <li><p>基于拉式的方法，一台服务器或客户请求其他服务器向他发送该服务器此时持有的任何更新，基于拉的协议又称为基于客户的协议 </p>
 </li>
 <li><p>比较: </p>
-<p>| Issue                   | Push-based                               | Pull-based        |<br>| ———————– | —————————————- | —————– |<br>| State of server         | List of client replicas and caches       | None              |<br>| Messages sent           | Update (and possibly fetch update later) | Poll and update   |<br>| Response time at client | Immediate (or fetch-update time)         | Fetch-update time |</p>
-<p><img src="/studynote-of-distributed-system/image-20190420013804698.png" alt="image-20190420013804698"></p>
+<p>|      |      |      |<br>| —- | —- | —- |<br>|      |      |      |<br>|      |      |      |<br>|      |      |      |</p>
 </li>
 </ol>
+<table>
+<thead>
+<tr>
+<th>Issue</th>
+<th>Push-based</th>
+<th>Pull-based</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>State of server</td>
+<td>List of client replicas and caches</td>
+<td>None</td>
+</tr>
+<tr>
+<td>Messages sent</td>
+<td>Update (and possibly fetch update later)</td>
+<td>Poll and update</td>
+</tr>
+<tr>
+<td>Response time at client</td>
+<td>Immediate (or fetch-update time)</td>
+<td>Fetch-update time</td>
+</tr>
+</tbody>
+</table>
+<p>   <img src="/studynote-of-distributed-system/image-20190420013804698.png" alt="image-20190420013804698"></p>
 <h2 id="一致性协议"><a href="#一致性协议" class="headerlink" title="一致性协议"></a>一致性协议</h2><p>讲具体如何实现前面的模型。主要讲Primary-Based Protocols基于主备份的协议和Replicated-Write </p>
 <p>Protocols复制的写协议，持续一致性(喝口水)这个不讲了。 </p>
 <h3 id="Primary-Based-Protocols-基于主备份的协议"><a href="#Primary-Based-Protocols-基于主备份的协议" class="headerlink" title="Primary-Based Protocols 基于主备份的协议"></a>Primary-Based Protocols 基于主备份的协议</h3><p>一个集中式的协议，是主从式的架构。 </p>
