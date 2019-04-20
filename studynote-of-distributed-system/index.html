@@ -214,7 +214,7 @@
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190420020558986.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190420020615554.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190420015837821.png">
-<meta property="og:updated_time" content="2019-04-20T03:23:12.320Z">
+<meta property="og:updated_time" content="2019-04-20T07:14:46.912Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式与云计算复习笔记(updating)">
 <meta name="twitter:description" content="分布式与云计算2019春季课程笔记  这个东西吧，太简单了，我们这里不讲了 这个东西吧，比较难，后续我们在讲吧(后续后续。。。) 这里吧，(喝口水，ppt翻页)，直接跳过了 天文地理鲁迅balabala，石竹老师先退票再买票，最后没抢到票我感到非常高兴233333  end">
@@ -543,7 +543,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-20 11:23:12" itemprop="dateModified" datetime="2019-04-20T11:23:12+08:00">2019-04-20</time>
+                <time title="Modified: 2019-04-20 15:14:46" itemprop="dateModified" datetime="2019-04-20T15:14:46+08:00">2019-04-20</time>
               
             
           </span>
@@ -1669,10 +1669,10 @@
 <h3 id="Replicated-Write-Protocols-复制的写协议"><a href="#Replicated-Write-Protocols-复制的写协议" class="headerlink" title="Replicated-Write Protocols 复制的写协议"></a>Replicated-Write Protocols 复制的写协议</h3><p>一种分布式的解决方案。</p>
 <p><strong>规定</strong></p>
 <p>一个服务器集群有N个机器，每个机器上都有这个文件。</p>
-<p>若要更新这个文件，客户必须先联系至少$\frac{N}{2}+1$个服务器，并得到他们同意后自行更新。一旦他们更新，该文件将被修改，这个新文件也将与一个新版本号关联，该版本号用于识别文件的版本，对于所有新更新的文件，他们的版本号是相同的。</p>
+<p>若要更新这个文件，客户必须先联系至少$\frac{N}{2}+1​$个服务器，并得到他们同意后自行更新。一旦他们更新，该文件将被修改，这个新文件也将与一个新版本号关联，该版本号用于识别文件的版本，对于所有新更新的文件，他们的版本号是相同的。</p>
 <p>在读取的时候，有两种版本 </p>
-<p>a) 联系至少N+1个服务器，请求他们返回该文件关联的版本号。 </p>
-<p>b) 根据$N_R$和$N_W$来计算，$N_W$越大，$N_R$就可以越小。(在下面详细说) </p>
+<p>a) 联系至少$\frac{N}{2}+1$个服务器，请求他们返回该文件关联的版本号。 </p>
+<p>b) 根据$N_R​$和$N_W​$来计算，$N_W​$越大，$N_R​$就可以越小。(在下面详细说) </p>
 <ol>
 <li><p>一个客户要读取一个具有N个副本的文件，必须组织一个读团体(read quorum)该读团体是任意$N_R$个以上服务器的集合。</p>
 </li>
