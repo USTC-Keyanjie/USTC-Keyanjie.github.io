@@ -223,7 +223,7 @@
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190420215708876.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190420220521993.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190420221032131.png">
-<meta property="og:updated_time" content="2019-04-20T14:12:44.928Z">
+<meta property="og:updated_time" content="2019-04-20T14:20:04.998Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式与云计算复习笔记(updating)">
 <meta name="twitter:description" content="分布式与云计算2019春季课程笔记  这个东西吧，太简单了，我们这里不讲了 这个东西吧，比较难，后续我们在讲吧(后续后续。。。) 这里吧，(喝口水，ppt翻页)，直接跳过了 天文地理鲁迅balabala，石竹老师先退票再买票，最后没抢到票我感到非常高兴233333  end">
@@ -552,7 +552,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-20 22:12:44" itemprop="dateModified" datetime="2019-04-20T22:12:44+08:00">2019-04-20</time>
+                <time title="Modified: 2019-04-20 22:20:04" itemprop="dateModified" datetime="2019-04-20T22:20:04+08:00">2019-04-20</time>
               
             
           </span>
@@ -1087,7 +1087,7 @@
 <p>每个Chord结点维护一个最多有m个实体的指状表(Finger table)，如果用$FT_p$表示结点$p$的指状表，那么有：<br>$$<br>FT_p[i]=succ(p+2^{i-1})<br>$$</p>
 <ul>
 <li>$p$是当前结点</li>
-<li>$i​$是指状表的index</li>
+<li>$i$是指状表的index</li>
 <li>$succ(k)$表示k（若结点k存在）或k的下一个<strong>存在</strong>的结点，即$succ(k) \geq k$</li>
 </ul>
 <p>例：</p>
@@ -1131,10 +1131,10 @@
 <p>还是上面那个图</p>
 <p>从结点1开始解析k=26：</p>
 <ol>
-<li>结点1的指状表里，$FT_1[5]=18 \leq 26​$，将请求转发给18；</li>
+<li>结点1的指状表里，$FT_1[5]=18 \leq 26$，将请求转发给18；</li>
 <li>结点18的指状表里，$FT_{18}[2]=20 \leq 26 &lt; FT_{18}[3]=28$，将请求转发给20；</li>
 <li>结点20的指状表里，$FT_{20}[1]=21 \leq 26 &lt; FT_{20}[2]=28$，将请求转发给21；</li>
-<li>结点21的指状表里，$21 &lt; 26 &lt; FT_{21}[1]=28​$，将请求转发给28，该结点负责解析k=26；</li>
+<li>结点21的指状表里，$21 &lt; 26 &lt; FT_{21}[1]=28$，将请求转发给28，该结点负责解析k=26；</li>
 </ol>
 <p>从结点28开始解析k=12：</p>
 <ol>
@@ -1300,14 +1300,14 @@
 <h3 id="向量时钟"><a href="#向量时钟" class="headerlink" title="向量时钟"></a>向量时钟</h3><p>但是向量时钟可以捕获<strong>因果关系</strong>。</p>
 <p>每个进程都维护一个向量$VC$，比如进程$P_i$维护的向量就是$VC_i$，有两个性质：</p>
 <ol>
-<li>$VC_i[i]​$表示目前为止，本进程$P_i​$发生了多少事件；</li>
-<li>$VC_i[j]=k​$表示进程$P_i​$知道$P_j​$已经发生了k个事件。</li>
+<li>$VC_i[i]$表示目前为止，本进程$P_i$发生了多少事件；</li>
+<li>$VC_i[j]=k$表示进程$P_i$知道$P_j$已经发生了k个事件。</li>
 </ol>
 <p>执行步骤：</p>
 <ol>
-<li>$P_i​$进程执行一个事件之前，先把自身的向量里第i个分量(也就是$VC_i[i]​$)自增1；</li>
-<li>$P_i​$进程发送一个消息m给$P_j​$时，把m的时间戳ts(m)设置为等于$VC_i​$；</li>
-<li>接受消息m时，进程$P_j$通过为每个k设置$VC_j[k] = \max(VC_j[k], ts(m)[k]$)来调整自己的向量。然后，$P_j$要执行这个事件，如步骤1所示，把$VC_j[i]​$自增1.</li>
+<li>$P_i$进程执行一个事件之前，先把自身的向量里第i个分量(也就是$VC_i[i]$)自增1；</li>
+<li>$P_i$进程发送一个消息m给$P_j$时，把m的时间戳ts(m)设置为等于$VC_i$；</li>
+<li>接受消息m时，进程$P_j$通过为每个k设置$VC_j[k] = \max(VC_j[k], ts(m)[k]$)来调整自己的向量。然后，$P_j$要执行这个事件，如步骤1所示，把$VC_j[i]$自增1.</li>
 </ol>
 <h4 id="强制因果序多播"><a href="#强制因果序多播" class="headerlink" title="强制因果序多播"></a>强制因果序多播</h4><p><strong>设计思想：</strong></p>
 <p>我懂的不能比你少，不然万一有其他消息还没来，你的消息就插队了，所以我不能收你的消息。</p>
@@ -1325,10 +1325,10 @@
 <p><strong>例：</strong></p>
 <p><img src="/studynote-of-distributed-system/image-20190418104501554.png" alt="image-20190418104501554"></p>
 <ol>
-<li>$P_0​$先发送消息m，自身先把$VC_0[0]​$自增1，消息的时间戳为(1, 0, 0)；</li>
+<li>$P_0$先发送消息m，自身先把$VC_0[0]$自增1，消息的时间戳为(1, 0, 0)；</li>
 <li>$P_1$收到消息m，当时$P_1$的向量是(0, 0, 0)，只有第一维比自己多1个，其他都和自己相同，所以满足上述条件，消息交付应用层；</li>
 <li>$P_1$发送消息m*，自身先把$VC_1[1]$自增1，消息的时间戳为(1, 1, 0)， $P_0$接收此消息；</li>
-<li>$P_2$不接收$P_1$发送的消息，因为此时$P_2$的向量是(0, 0, 0)，$P_0$的消息还没收到，所以延迟接受$P_1​$的消息；</li>
+<li>$P_2$不接收$P_1$发送的消息，因为此时$P_2$的向量是(0, 0, 0)，$P_0$的消息还没收到，所以延迟接受$P_1$的消息；</li>
 <li>等到$P_0$的消息到来，$P_2$调整过自身的向量后，才可以接收$P_1$的消息。</li>
 </ol>
 <p>例2：</p>
@@ -1336,11 +1336,11 @@
 <h2 id="互斥-Mutual-Exclusion"><a href="#互斥-Mutual-Exclusion" class="headerlink" title="互斥 - Mutual Exclusion"></a>互斥 - Mutual Exclusion</h2><p>分布式系统情况下，进程将需要同时访问相同的资源，互斥算法就是保证进程之间能够互斥访问资源。</p>
 <h3 id="集中式算法"><a href="#集中式算法" class="headerlink" title="集中式算法"></a>集中式算法</h3><p>选举一个进程作为协调者。其他进程想访问资源都要问他。</p>
 <p><img src="/studynote-of-distributed-system/image-20190418203632964.png" alt="image-20190418203632964"></p>
-<p>进程1是协调者，进程3想访问资源，问一下进程1，进程1说ok。</p>
+<p>进程3是协调者，进程1想访问资源，问一下进程3，进程3说ok。</p>
 <p><img src="/studynote-of-distributed-system/image-20190418203738517.png" alt="image-20190418203738517"></p>
-<p>进程2也想访问资源，进程1说有人了，你到队列里等一下吧。</p>
+<p>进程2也想访问资源，进程3不理进程2，但是把进程2放到等待队列里。</p>
 <p><img src="/studynote-of-distributed-system/image-20190418204013915.png" alt="image-20190418204013915"></p>
-<p>进程3用完资源后，向等待队列的队首进程说一声，可以用资源了。</p>
+<p>进程1用完资源后，向进程3说一声他用完了。进程3便向等待队列的队首进程说一声，可以用资源了。</p>
 <h3 id="非集中式算法"><a href="#非集中式算法" class="headerlink" title="非集中式算法"></a>非集中式算法</h3><blockquote>
 <p>这个Decentralized一点意义都没有！开销大！神经病！书上举这个例子就是说不要什么事都尝试Decentralized。Google云计算的也只是一个协调者，协调者挂了就选举。多协调者没好处，只会扯皮！</p>
 <p>——丁箐</p>
@@ -1419,7 +1419,7 @@
 </ul>
 <h3 id="复制带来的问题-？"><a href="#复制带来的问题-？" class="headerlink" title="复制带来的问题 ？"></a>复制带来的问题 ？</h3><p>一致性问题</p>
 <h3 id="两个术语-W-i-x-a-和-R-i-x-b"><a href="#两个术语-W-i-x-a-和-R-i-x-b" class="headerlink" title="两个术语$W_i(x)a$和$R_i(x)b$"></a>两个术语$W_i(x)a$和$R_i(x)b$</h3><ul>
-<li>$W_i(x)a$: 进程$P_i​$把数值a写入到数据项x。 </li>
+<li>$W_i(x)a$: 进程$P_i$把数值a写入到数据项x。 </li>
 <li>$R_i(x)b$: 进程$P_i$从数据项x读取数据后返回数值b。 </li>
 </ul>
 <h3 id="严格一致性"><a href="#严格一致性" class="headerlink" title="严格一致性"></a>严格一致性</h3><p><strong>就是写操作必须在读操作的前面执行 </strong></p>
@@ -1487,7 +1487,7 @@
 <p>我看到这个定义也是一脸懵逼，看几个例子就懂了。</p>
 <p><strong>例子1</strong></p>
 <p><img src="/studynote-of-distributed-system/image-20190419153834211.png" alt="image-20190419153834211"></p>
-<p>由潜在因果关系第一条，P1和P2之间，先发生$W_1(x)a​$，再发生$R_2(x)a​$，先写再读，具有潜在因果关系，所以读出来的结果必须是一致的，所有进程都必须读出a。这就是定义第一句话的意思。</p>
+<p>由潜在因果关系第一条，P1和P2之间，先发生$W_1(x)a$，再发生$R_2(x)a$，先写再读，具有潜在因果关系，所以读出来的结果必须是一致的，所有进程都必须读出a。这就是定义第一句话的意思。</p>
 <p>由潜在因果关系第四条，两个写之间没有因果关系，所以$W_2(x)b$和$W_1(x)c$没有因果关系，那么读出什么结果都满足因果一致性，这就是定义第二句话的意思。但是这里不满足严格一致性和顺序一致性。</p>
 <p>因果关系具有传递性，在P2内部发生了先读再写，由潜在因果关系第二条，满足因果关系，再由因果关系的传递性可知，$W_1(x)a$与$W_2(x)b$构成因果关系。图上原谅色箭头所示。</p>
 <p><strong>例子2：</strong></p>
@@ -1682,18 +1682,18 @@
 <h3 id="Replicated-Write-Protocols-复制的写协议"><a href="#Replicated-Write-Protocols-复制的写协议" class="headerlink" title="Replicated-Write Protocols 复制的写协议"></a>Replicated-Write Protocols 复制的写协议</h3><p>一种分布式的解决方案。</p>
 <p><strong>规定</strong></p>
 <p>一个服务器集群有N个机器，每个机器上都有这个文件。</p>
-<p>若要更新这个文件，客户必须先联系至少$\frac{N}{2}+1​$个服务器，并得到他们同意后自行更新。一旦他们更新，该文件将被修改，这个新文件也将与一个新版本号关联，该版本号用于识别文件的版本，对于所有新更新的文件，他们的版本号是相同的。</p>
+<p>若要更新这个文件，客户必须先联系至少$\frac{N}{2}+1$个服务器，并得到他们同意后自行更新。一旦他们更新，该文件将被修改，这个新文件也将与一个新版本号关联，该版本号用于识别文件的版本，对于所有新更新的文件，他们的版本号是相同的。</p>
 <p>在读取的时候，有两种版本 </p>
 <p>a) 联系至少$\frac{N}{2}+1$个服务器，请求他们返回该文件关联的版本号。 </p>
-<p>b) 根据$N_R​$和$N_W​$来计算，$N_W​$越大，$N_R​$就可以越小。(在下面详细说) </p>
+<p>b) 根据$N_R$和$N_W$来计算，$N_W$越大，$N_R$就可以越小。(在下面详细说) </p>
 <ol>
 <li><p>一个客户要读取一个具有N个副本的文件，必须组织一个读团体(read quorum)该读团体是任意$N_R$个以上服务器的集合。</p>
 </li>
-<li><p>要求改一个文件，客户必须组织一个至少有$N_W​$个服务器的写团体。 </p>
+<li><p>要求改一个文件，客户必须组织一个至少有$N_W$个服务器的写团体。 </p>
 </li>
 <li><p>$N_R$和$N_W$满足以下条件 </p>
 <ul>
-<li>$N_R+N_W&gt;N​$：防止读写操作冲突 </li>
+<li>$N_R+N_W&gt;N$：防止读写操作冲突 </li>
 <li>$N_W&gt;N/2$：防止写写操作冲突 </li>
 </ul>
 <p><img src="/studynote-of-distributed-system/image-20190420020558986.png" alt="image-20190420020558986"></p>
