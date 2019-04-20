@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.keyanjie.net/hadoop-demo-wordcount/</loc>
+    
+    <lastmod>2019-04-20T10:36:54.660Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.keyanjie.net/studynote-of-distributed-system/</loc>
     
-    <lastmod>2019-04-20T07:14:46.912Z</lastmod>
+    <lastmod>2019-04-20T10:35:29.697Z</lastmod>
     
   </url>
   
@@ -40,13 +47,6 @@
     <loc>https://www.keyanjie.net/about/index.html</loc>
     
     <lastmod>2019-04-10T04:29:56.705Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.keyanjie.net/hadoop-demo-wordcount/</loc>
-    
-    <lastmod>2019-04-07T11:30:51.078Z</lastmod>
     
   </url>
   
