@@ -246,7 +246,7 @@
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190421212506227.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190421212605526.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190421212904180.png">
-<meta property="og:updated_time" content="2019-04-21T13:29:22.791Z">
+<meta property="og:updated_time" content="2019-04-21T13:49:05.872Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式与云计算复习笔记(updated!)">
 <meta name="twitter:description" content="分布式与云计算2019春季课程笔记  这个东西吧，太简单了，我们这里不讲了 这个东西吧，比较难，后续我们在讲吧(后续后续。。。) 这里吧，(喝口水，ppt翻页)，直接跳过了 天文地理鲁迅balabala，石竹老师先退票再买票，最后没抢到票我感到非常高兴233333  end">
@@ -575,7 +575,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-21 21:29:22" itemprop="dateModified" datetime="2019-04-21T21:29:22+08:00">2019-04-21</time>
+                <time title="Modified: 2019-04-21 21:49:05" itemprop="dateModified" datetime="2019-04-21T21:49:05+08:00">2019-04-21</time>
               
             
           </span>
@@ -2427,15 +2427,17 @@
 <p>M1、M2、M3表示不同的主服务器租约期。</p>
 <p>C1、C2、C3则是客户端对主服务器租约期时长做出的一个估计。</p>
 <p><strong>图解释：</strong></p>
-<p>客户端向主服务器发出一个KeepAlive（1号消息）请求。</p>
-<p>这时服务器一般不回应客户端，如果有需要通知的事件时则主服务器会立刻做出回应。</p>
-<p>等到客户端的租约期C1快结束的时候才做出回应（2号消息）。并更新主服务器租约期为M2。</p>
-<p>客户端在接到这个回应后认为该主服务器仍处于活跃状态，于是将租约期更新为C2并立刻发出新的KeepAlive请求（3号消息）。同样地，主服务器可能不是立刻回应而是等待C2接近结束。</p>
-<p><strong>但是在这个过程中主服务器出现故障停止使用。在等待了一段时间后C2到期，由于并没有收到主服务器的回应，系统向客户端发出一个危险（Jeopardy）事件，客户端清空并暂时停用自己的缓存，从而进入一个称为宽限期</strong><br><strong>（Grace Period）的危险状态。</strong></p>
-<p><strong>这个宽限期默认是45秒。在宽限期内，客户端不会立刻断开其与服务器端的联系，而是不断地做探询。</strong></p>
-<p>新的主服务器很快被重新选出，当它接到客户端的第一个KeepAlive请求（4号消息）时会拒绝（5号消息），因<br>为这个请求的纪元号（Epoch Number）错误。</p>
-<p>不同主服务器的纪元号不相同，客户端的每次请求都需要这个号来保证处理的请求是针对当前的主服务器。客户端在主服务器拒绝之后会使用新的纪元号来发送KeepAlive请求（6号消息）。</p>
-<p>新的主服务器接受这个请求并立刻做出回应（7号消息）。如果客户端接收到这个回应的时间仍处于宽限期内，系统会恢复到安全状态，租约期更新为C3。如果在宽限期未接到主服务器的相关回应，客户端终止当前的会话。</p>
+<ol>
+<li>客户端向主服务器发出一个KeepAlive（1号消息）请求。</li>
+<li>这时服务器一般不回应客户端，如果有需要通知的事件时则主服务器会立刻做出回应。</li>
+<li>等到客户端的租约期C1快结束的时候才做出回应（2号消息）。并更新主服务器租约期为M2。</li>
+<li>客户端在接到这个回应后认为该主服务器仍处于活跃状态，于是将租约期更新为C2并立刻发出新的KeepAlive请求（3号消息）。同样地，主服务器可能不是立刻回应而是等待C2接近结束。</li>
+<li><strong>但是在这个过程中主服务器出现故障停止使用。在等待了一段时间后C2到期，由于并没有收到主服务器的回应，系统向客户端发出一个危险（Jeopardy）事件，客户端清空并暂时停用自己的缓存，从而进入一个称为宽限期（Grace Period）的危险状态。</strong></li>
+<li><strong>这个宽限期默认是45秒。在宽限期内，客户端不会立刻断开其与服务器端的联系，而是不断地做探询。</strong></li>
+<li>新的主服务器很快被重新选出，当它接到客户端的第一个KeepAlive请求（4号消息）时会拒绝（5号消息），因为这个请求的纪元号（Epoch Number）错误。</li>
+<li>不同主服务器的纪元号不相同，客户端的每次请求都需要这个号来保证处理的请求是针对当前的主服务器。客户端在主服务器拒绝之后会使用新的纪元号来发送KeepAlive请求（6号消息）。</li>
+<li>新的主服务器接受这个请求并立刻做出回应（7号消息）。如果客户端接收到这个回应的时间仍处于宽限期内，系统会恢复到安全状态，租约期更新为C3。如果在宽限期未接到主服务器的相关回应，客户端终止当前的会话。</li>
+</ol>
 <h3 id="主服务器故障"><a href="#主服务器故障" class="headerlink" title="主服务器故障"></a>主服务器故障</h3><p>在客户端和主服务器端进行通信时可能会遇到主服务器智障，哦不，故障，上图就出现了这种情况。</p>
 <p>正常情况下旧的主服务器出现故障后系统会很快地选举出新的主服务器，新选举的主服务器在完全运行前需要经历以下九个步骤：</p>
 <ol>
@@ -2652,8 +2654,9 @@
 </ul>
 <h2 id="MapReduce的作用"><a href="#MapReduce的作用" class="headerlink" title="MapReduce的作用"></a>MapReduce的作用</h2><ul>
 <li>对BigTable中的数据进行并行计算处理（如统计、归类等）</li>
-<li>使用BigTable或GFS存储计算结果  </li>
+<li>使用BigTable或GFS存储计算结果 </li>
 </ul>
+<p>master与slave的通信：用文件来做，永久异步通信。（一般CS是用socket来做的，属于瞬时阻塞通信）进程间协作更简单，容错性更强。下层用GFS来管理。</p>
 <p><img src="/studynote-of-distributed-system/image-20190421212904180.png" alt="image-20190421212904180"></p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
 <li><a href="http://www.chinastor.com/s/openstack/10093K202017.html" target="_blank" rel="noopener">http://www.chinastor.com/s/openstack/10093K202017.html</a></li>
