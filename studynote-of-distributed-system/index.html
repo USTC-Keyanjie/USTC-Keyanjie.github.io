@@ -248,7 +248,7 @@
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190421212506227.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190421212605526.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190421212904180.png">
-<meta property="og:updated_time" content="2019-04-22T05:19:39.479Z">
+<meta property="og:updated_time" content="2019-04-22T05:34:31.896Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式与云计算复习笔记(updated!)">
 <meta name="twitter:description" content="分布式与云计算2019春季课程笔记  这个东西吧，太简单了，我们这里不讲了 这个东西吧，比较难，后续我们在讲吧(后续后续。。。) 这里吧，(喝口水，ppt翻页)，直接跳过了 天文地理鲁迅balabala，石竹老师先退票再买票，最后没抢到票我感到非常高兴233333  end">
@@ -577,7 +577,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-22 13:19:39" itemprop="dateModified" datetime="2019-04-22T13:19:39+08:00">2019-04-22</time>
+                <time title="Modified: 2019-04-22 13:34:31" itemprop="dateModified" datetime="2019-04-22T13:34:31+08:00">2019-04-22</time>
               
             
           </span>
@@ -1575,7 +1575,7 @@
 <li>S表示同步，由于P2，P3没有进行S操作，所以是不保证读取结果一样的。 </li>
 <li>对于第二个(b)，P1进行了S操作，P2也在R之前进行了S操作，P2应该读取R(x)b。所以(b)这个例子是不满足弱一致性模型的。如果S在R后面，则不违反弱一致性模型。 </li>
 </ol>
-<h2 id="⚡️⚡️以客户为中心的一致性模型"><a href="#⚡️⚡️以客户为中心的一致性模型" class="headerlink" title="⚡️⚡️以客户为中心的一致性模型"></a>⚡️⚡️以客户为中心的一致性模型</h2><p>以客户为中心的一致性模型，底层上是更新的传播。 </p>
+<h2 id="⚡️⚡️以客户为中心的一致性模型"><a href="#⚡️⚡️以客户为中心的一致性模型" class="headerlink" title="⚡️⚡️以客户为中心的一致性模型"></a>⚡️⚡️以客户为中心的一致性模型</h2><p>以客户为中心的一致性模型，底层上是<strong>更新的传播</strong>。 </p>
 <h3 id="最终一致性-事件一致性"><a href="#最终一致性-事件一致性" class="headerlink" title="最终一致性/事件一致性"></a>最终一致性/事件一致性</h3><blockquote>
 <p>没有更新操作时，所有副本逐渐成为相互完全相同的副本。</p>
 </blockquote>
@@ -1613,7 +1613,7 @@
 <p><strong>解释</strong></p>
 <p>Write happens on a copy only if it’s brought up to date with preceding write operations on same data (but possibly at different copies).</p>
 <p>两个写操作，前面那个写操作写完，后面那个写操作才写</p>
-<p>每个写操作完全覆盖<em>x</em>的当前值，但是没有必要更新副本。如果现在副本要更新，必须先完成之前的写操作。</p>
+<p>每个写操作完全覆盖<em>x</em>的当前值，但是没有必要更新副本。如果现在副本也要写，必须先完成之前的写操作。</p>
 <p><strong>例</strong></p>
 <p><img src="/studynote-of-distributed-system/image-20190420010641362.png" alt="image-20190420010641362"></p>
 <p>图(a)中，在W(x2)之前，先把W(x1)的操作更新到L2(就是WS(x1))，满足单调写一致性。</p>
@@ -1647,12 +1647,12 @@
 <p>We can <strong>avoid system-wide consistency</strong>, by concentrating on what specific <strong>clients</strong> want, instead of what should be maintained by servers. Relax consistency requirements even further.</p>
 <p>根据客户端的需求来维护内容，进一步放宽了一致性。</p>
 <p><strong>个人总结</strong></p>
-<p>无论是单调读单调写，还是读写一致写读一致，都是先在一个地方发生写操作，此时其他副本发生了操作，而先前的写操作没有传播过来，就是不一致的，传播过来就一致。</p>
+<p>无论是单调读单调写，还是读写一致写读一致，都是先在一个地方发生写操作，如果以后其他副本发生了其他操作，而先前的写操作没有传播过来，就是不一致的，传播过来就一致。</p>
 <h2 id="复制管理"><a href="#复制管理" class="headerlink" title="复制管理"></a>复制管理</h2><h3 id="内容分发"><a href="#内容分发" class="headerlink" title="内容分发"></a>内容分发</h3><p>一个重要的设计问题是将要实际传播哪些信息，分三种:</p>
 <ol>
 <li>只传播更新的通知 </li>
 <li>把数据从一个副本传送到另一个副本</li>
-<li>把更新操作传播到其他副本。 </li>
+<li>把更新操作传播到其他副本</li>
 </ol>
 <h3 id="拉协议与推协议"><a href="#拉协议与推协议" class="headerlink" title="拉协议与推协议"></a>拉协议与推协议</h3><ol>
 <li><p>基于推式的方法又称为基于服务器的协议，不需要其他副本请求更新，这些更新就被传播到那些副本哪里。 </p>
@@ -1740,8 +1740,8 @@
 <p>图(b)不行，因为不满足$N_W&gt;N/2$，如果一个进程更新{A, B, C, D, E, F}，令一个进程更新{G, H, I, J, K, L}，这样两边都是最新的版本号，但是文件是内容是不同的，发生写写冲突。</p>
 <h3 id="剩下的内容喝了口水，不讲了"><a href="#剩下的内容喝了口水，不讲了" class="headerlink" title="剩下的内容喝了口水，不讲了"></a>剩下的内容喝了口水，不讲了</h3><hr>
 <h1 id="Chapter-8-容错-Fault-Tolerance"><a href="#Chapter-8-容错-Fault-Tolerance" class="headerlink" title="Chapter 8 容错 - Fault Tolerance"></a>Chapter 8 容错 - Fault Tolerance</h1><blockquote>
-<p>“Failure is not an option. It comes bundled with your software.“  </p>
-<p>–unknown </p>
+<p><em>“Failure is not an option. It comes bundled with your software.“</em>  </p>
+<p><em>–unknown</em> </p>
 </blockquote>
 <p>出错是一个大概率事件。因此几乎所有的分布式系统都要考虑容错的问题。</p>
 <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
