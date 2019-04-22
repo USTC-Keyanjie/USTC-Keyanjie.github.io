@@ -248,7 +248,7 @@
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190421212506227.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190421212605526.png">
 <meta property="og:image" content="https://www.keyanjie.net/studynote-of-distributed-system/image-20190421212904180.png">
-<meta property="og:updated_time" content="2019-04-22T05:10:02.866Z">
+<meta property="og:updated_time" content="2019-04-22T05:15:09.576Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式与云计算复习笔记(updated!)">
 <meta name="twitter:description" content="分布式与云计算2019春季课程笔记  这个东西吧，太简单了，我们这里不讲了 这个东西吧，比较难，后续我们在讲吧(后续后续。。。) 这里吧，(喝口水，ppt翻页)，直接跳过了 天文地理鲁迅balabala，石竹老师先退票再买票，最后没抢到票我感到非常高兴233333  end">
@@ -577,7 +577,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-22 13:10:02" itemprop="dateModified" datetime="2019-04-22T13:10:02+08:00">2019-04-22</time>
+                <time title="Modified: 2019-04-22 13:15:09" itemprop="dateModified" datetime="2019-04-22T13:15:09+08:00">2019-04-22</time>
               
             
           </span>
@@ -1468,7 +1468,7 @@
 <p><strong>例:</strong> 下图中，(a)是具有严格一致性的，(b)是没有的，因为P2出现了R(x)NIL，P1的写操作没有在P2的读操作之前传播过来。 (这根线的意思就是❌，表示这个图不满足要求)</p>
 <p><img src="/studynote-of-distributed-system/image-20190419143114051.png" alt="image-20190419143114051"></p>
 <h2 id="⚡️⚡️以数据为中心的一致性模型"><a href="#⚡️⚡️以数据为中心的一致性模型" class="headerlink" title="⚡️⚡️以数据为中心的一致性模型"></a>⚡️⚡️以数据为中心的一致性模型</h2><p><strong>要求知道定义，能判断！</strong></p>
-<h3 id="持续一致性"><a href="#持续一致性" class="headerlink" title="持续一致性"></a>持续一致性</h3><p>这块没讲，老师大概提了一下，大概意思是什么是一致，怎么判断一致，以一个什么样的标准来判断一致。 </p>
+<h3 id="持续一致性"><a href="#持续一致性" class="headerlink" title="持续一致性"></a>持续一致性</h3><p>这块老师大概提了一下，大概意思是什么是一致，怎么判断一致，以一个什么样的标准来判断一致。 </p>
 <h3 id="以数据为中心的一致性模型和以客户为中心的一致性模型的区别"><a href="#以数据为中心的一致性模型和以客户为中心的一致性模型的区别" class="headerlink" title="以数据为中心的一致性模型和以客户为中心的一致性模型的区别"></a>以数据为中心的一致性模型和以客户为中心的一致性模型的区别</h3><h4 id="以数据为中心的一致性模型"><a href="#以数据为中心的一致性模型" class="headerlink" title="以数据为中心的一致性模型"></a>以数据为中心的一致性模型</h4><p>不区分客户，所以叫以数据为中心的一致性模型。</p>
 <ol>
 <li><strong>针对所有的用户，是没有区别的。所有用户看到的都是同样的东西。对所有的用户一视同仁。</strong></li>
@@ -1486,18 +1486,19 @@
 <h3 id="顺序一致性"><a href="#顺序一致性" class="headerlink" title="顺序一致性"></a>顺序一致性</h3><p><strong>定义</strong></p>
 <p>数据存储满足以下条件时，称为是顺序一致的。</p>
 <blockquote>
-<p>任何执行结果都是相同的，就好像所有进程对数据存储的读、写操作是按某种序列顺序执行的，并且每个进程的操作按照程序所制定的顺序出现在这个序列中。 </p>
+<p>任何进程的执行结果都是相同的，就好像所有进程对数据存储的读、写操作是<strong>按某种序列顺序</strong>执行的，并且每个进程的操作按照程序所制定的顺序出现在这个序列中。 </p>
 </blockquote>
 <p><strong>和严格一致不同之处</strong></p>
 <p>不再要求写必须在读的前面。 </p>
 <p><strong>思想</strong></p>
-<p>允许由于种种因素出错，但是出的错得是一样的。</p>
+<p>允许由于种种因素出错，但是出的错得是一样的，所有人最后结果相同就行。</p>
 <p><strong>例：</strong></p>
 <p><img src="/studynote-of-distributed-system/image-20190419151031060.png" alt="image-20190419151031060"></p>
 <p>左边这个图（先不看红色的字）是满足<strong>顺序一致性</strong>的。P1的写a操作由于网络延迟等因素，在P2的写b操作之后发生，所以P3和P4都是先读到b，再读到a。如果要满足严格一致性的话（看红色字），那么在P2写b操作之后，所有进程应该只能读出b来，这才满足严格一致性。</p>
 <p>右边的图不满足顺序一致性，P3先读到了b再读到a，P4先读到a再读到b。进程对数据存储的读写没有按某种序列顺序进行。</p>
 <p><strong>顺序一致性也是比较难做出来的。但是是一个强一致性，顺序一致性做到了 100%的分布式透明性。</strong> </p>
 <h3 id="因果一致性"><a href="#因果一致性" class="headerlink" title="因果一致性"></a>因果一致性</h3><p><strong>基本思想</strong></p>
+<p>满足因果条件下，所有人必须是一致的，不满足因果条件可以不一致。</p>
 <p>从数据的产生和消费的角度去定义因果。数据总是产生在前，消费在后。 </p>
 <p><strong>因果性</strong></p>
 <p>如果事件B是由事件A引起的，或受到事件A的影响，那么因果关系必然要求其他每个人先看到事件A再看到事件B。</p>
