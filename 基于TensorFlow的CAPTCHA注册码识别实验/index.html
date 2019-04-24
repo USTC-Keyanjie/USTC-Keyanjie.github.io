@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Georgia:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+  
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="实验任务：使用TensorFlow实现CAPTCHA注册码的识别 基本思路：采用 Captcha 库生成验证码，将验证码识别问题转化为分类问题，采用 CNN 网络模型进行训练，最终实现对验证码的破解。 实验步骤：获取验证码训练集 → 构建卷积神经网络和全连接神经网络 → 定义损失函数以及优化方式 → 进行训练并保存训练结果。">
+<meta name="keywords" content="lab,dnn,tensorflow,cnn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于TensorFlow的CAPTCHA注册码识别实验">
+<meta property="og:url" content="https://www.keyanjie.net/基于TensorFlow的CAPTCHA注册码识别实验/index.html">
+<meta property="og:site_name" content="Alan&#39;s Notebook🦍">
+<meta property="og:description" content="实验任务：使用TensorFlow实现CAPTCHA注册码的识别 基本思路：采用 Captcha 库生成验证码，将验证码识别问题转化为分类问题，采用 CNN 网络模型进行训练，最终实现对验证码的破解。 实验步骤：获取验证码训练集 → 构建卷积神经网络和全连接神经网络 → 定义损失函数以及优化方式 → 进行训练并保存训练结果。">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://www.keyanjie.net/基于TensorFlow的CAPTCHA注册码识别实验/captcha_1.jpg">
+<meta property="og:updated_time" content="2019-04-03T08:13:22.973Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于TensorFlow的CAPTCHA注册码识别实验">
+<meta name="twitter:description" content="实验任务：使用TensorFlow实现CAPTCHA注册码的识别 基本思路：采用 Captcha 库生成验证码，将验证码识别问题转化为分类问题，采用 CNN 网络模型进行训练，最终实现对验证码的破解。 实验步骤：获取验证码训练集 → 构建卷积神经网络和全连接神经网络 → 定义损失函数以及优化方式 → 进行训练并保存训练结果。">
+<meta name="twitter:image" content="https://www.keyanjie.net/基于TensorFlow的CAPTCHA注册码识别实验/captcha_1.jpg">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="https://www.keyanjie.net/基于TensorFlow的CAPTCHA注册码识别实验/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>基于TensorFlow的CAPTCHA注册码识别实验 | Alan's Notebook🦍</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="site-title">Alan's Notebook🦍</span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home🧀">
+
+    
+    
+    
+
+    
+
+    <a href="/" rel="section">home🧀</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about🥤">
+
+    
+    
+    
+
+    
+
+    <a href="/about/" rel="section">about🥤</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories🥪">
+
+    
+    
+    
+
+    
+
+    <a href="/categories/" rel="section">categories🥪</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags🍨">
+
+    
+    
+    
+
+    
+
+    <a href="/tags/" rel="section">tags🍨</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives🍯">
+
+    
+    
+    
+
+    
+
+    <a href="/archives/" rel="section">archives🍯</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-friend-links🍻">
+
+    
+    
+    
+
+    
+
+    <a href="/friendLinks/" rel="section">friend links🍻</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.keyanjie.net/基于TensorFlow的CAPTCHA注册码识别实验/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alan Ke">
+      <meta itemprop="description" content="Have a nice coding!🍻">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alan's Notebook🦍">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">基于TensorFlow的CAPTCHA注册码识别实验
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-10-25 16:01:52" itemprop="dateCreated datePublished" datetime="2018-10-25T16:01:52+08:00">2018-10-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-03 16:13:22" itemprop="dateModified" datetime="2019-04-03T16:13:22+08:00">2019-04-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/deep-learning/" itemprop="url" rel="index"><span itemprop="name">deep learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/基于TensorFlow的CAPTCHA注册码识别实验/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/基于TensorFlow的CAPTCHA注册码识别实验/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <ul>
+<li>实验任务：使用TensorFlow实现CAPTCHA注册码的识别</li>
+<li>基本思路：采用 Captcha 库生成验证码，将验证码识别问题转化为分类问题，采用 CNN 网络模型进行训练，最终实现对验证码的破解。</li>
+<li>实验步骤：获取验证码训练集 → 构建卷积神经网络和全连接神经网络 → 定义损失函数以及优化方式 → 进行训练并保存训练结果。</li>
+</ul>
+<a id="more"></a>
+<h2 id="获取验证码训练集"><a href="#获取验证码训练集" class="headerlink" title="获取验证码训练集"></a>获取验证码训练集</h2><p>使用captcha库来生成验证码，captcha库可以使用anaconda很轻松下载，captcha库不仅可以用于生成图片验证码，还可以用来生成语音验证码。</p>
+<ol>
+<li>我们将ImageCaptcha类实例化为image对象，构造函数的参数里指定宽度和高度。</li>
+</ol>
+<p>image = ImageCaptcha(width=self.width, height=self.height)</p>
+<ol start="2">
+<li><p>存储训练数据。</p>
+<p>我们创建两个矩阵X和Y用以表示训练集的输入部分和输出部分，也就是验证码的图片数据存储以及验证码上所写的内容存储。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">X = np.zeros([batch_size, self.height, self.width, <span class="number">1</span>])</span><br><span class="line">Y = np.zeros([batch_size, self.char_num, self.classes])</span><br></pre></td></tr></table></figure></div>
+<p>这两个矩阵的第一维参数都是batch_size，表示这一组训练集的个数。</p>
+<p>X的第二和第三位参数分别表示验证码的高度和宽度，最后一个参数表示这是1通道的黑白图片。</p>
+<p>Y的第二位参数表示此验证码上写了几个字符，第三位参数表示每个字符共有多少种选择，这是一条长为self.classes的向量，以独热编码的形式记录信息。</p>
+</li>
+<li><p>生成验证码</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(batch_size):</span><br><span class="line">        captcha_str = <span class="string">''</span>.join(random.sample(self.characters, self.char_num))</span><br><span class="line">        img = image.generate_image(captcha_str).convert(<span class="string">'L'</span>)</span><br><span class="line">        img = np.array(img.getdata())</span><br><span class="line">        X[i] = np.reshape(img, [self.height, self.width, <span class="number">1</span>]) / <span class="number">255.0</span></span><br><span class="line">        <span class="keyword">for</span> j, ch <span class="keyword">in</span> enumerate(captcha_str):</span><br><span class="line">            Y[i, j, self.characters.find(ch)] = <span class="number">1</span></span><br><span class="line">    Y = np.reshape(Y, (batch_size, self.char_num * self.classes))</span><br><span class="line">    <span class="keyword">yield</span> X, Y</span><br></pre></td></tr></table></figure></div>
+<p>首先，这个总体的无限循环是一个训练集的生成器，执行此代码后，会在最后的yield语句返回训练集X和Y，然后循环结束。下次再想生成验证码训练集时，会从yield语句（最后一句）开始，回到开头再执行一次循环。</p>
+<p>这样的好处是，以前都是将所有的训练数据全部准备好，然后手动分出很多batch，一个一个的训练，这样的话要求把所有的训练数据全部装入内存，很浪费内存空间。而使用这种生成器语句，如果我训练哪一个batch的数据，就立即生成数据并装入内存，用完再撤出内存，紧接着训练下一个batch的数据时，再立即生成然后将其装入内存。分批装入内存，节省了大量的内存空间。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">random.sample(self.characters, self.char_num)</span><br></pre></td></tr></table></figure></div>
+<p>此代码生成一个验证码字符串的随机变量，self.characters为62位的字符串（0~9A~Za~z），self.char_num=4（生成4个字符）。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img = image.generate_image(captcha_str).convert(<span class="string">'L'</span>)</span><br></pre></td></tr></table></figure></div>
+<p>这句代码使用的是ImageCaptcha类的内置方法，将字符串变为图片。convert(‘L’)：表示生成的是灰度图片，就是通道数为1的黑白图片。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">X[i] = np.reshape(img, [self.height, self.width, <span class="number">1</span>]) / <span class="number">255.0</span></span><br></pre></td></tr></table></figure></div>
+<p>每个像素值都要除以255，这是为了归一化处理，因为灰度的范围是0~255，这里除以255就让每个像素的值在0~1之间，目的是为了加快收敛速度。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> j, ch <span class="keyword">in</span> enumerate(captcha_str):</span><br><span class="line">    Y[i, j, self.characters.find(ch)] = <span class="number">1</span></span><br></pre></td></tr></table></figure></div>
+<p>这里用以生成对应的测试集Y，j和ch用以遍历刚刚生成的随机字符串，j记录index（0~3，表示第几个字符），ch记录字符串中的字符。找到Y的第i条数据中的第j个字符，然后把62长度的向量和ch相关的那个置为1。</p>
+</li>
+</ol>
+<h2 id="构建卷积神经网络和全连接神经网络"><a href="#构建卷积神经网络和全连接神经网络" class="headerlink" title="构建卷积神经网络和全连接神经网络"></a>构建卷积神经网络和全连接神经网络</h2><ol>
+<li><p>conv2D</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">conv2d</span><span class="params">(self, x, W)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> tf.nn.conv2d(x, W, strides=[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>], padding=<span class="string">'SAME'</span>)</span><br></pre></td></tr></table></figure></div>
+<p>这是2维卷积函数。x表示传入的待处理图片，W表示卷积核，strides=[1, 1, 1, 1]，其中第二个和第三个1分别表示x方向步长和y方向步长，padding=’SAME’表示边界处理策略设为’SAME’，这样卷积处理完图片大小不变。</p>
+</li>
+<li><p>max_pool_2x2</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">max_pool_2x2</span><span class="params">(self, x)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> tf.nn.max_pool(x, ksize=[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>], strides=[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>], padding=<span class="string">'SAME'</span>)</span><br></pre></td></tr></table></figure></div>
+<p>这是2x2最大值池化函数。x表示待被池化处理的图片，ksize=[1, 2, 2, 1]，其中第二个和第三个2分别表示池化窗口高度和池化窗口宽度，strides和padding意义同上。</p>
+</li>
+<li><p>weight_variable</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">weight_variable</span><span class="params">(self, shape)</span>:</span></span><br><span class="line">    initial = tf.truncated_normal(shape, stddev=<span class="number">0.1</span>)</span><br><span class="line">    <span class="keyword">return</span> tf.Variable(initial)</span><br></pre></td></tr></table></figure></div>
+<p>这就是一个很有意思的函数了，用这个函数的目的是从<strong>截断</strong>的正态分布中输出随机值。听着名字就不知道是个什么鬼，我们先看看正太分布的一个性质：</p>
+<p>在正态分布的曲线中，横轴区间（μ-σ，μ+σ）内的面积为68.268949%。</p>
+<p>横轴区间（μ-2σ，μ+2σ）内的面积为95.449974%。</p>
+<p>横轴区间（μ-3σ，μ+3σ）内的面积为99.730020%。</p>
+<p>X落在（μ-3σ，μ+3σ）以外的概率小于千分之三，在实际问题中常认为相应的事件是不会发生的，基本上可以把区间（μ-3σ，μ+3σ）看作是随机变量X实际可能的取值区间，这称之为正态分布的“3σ”原则。</p>
+<p><img src="/基于TensorFlow的CAPTCHA注册码识别实验/captcha_1.jpg" alt="正态分布"></p>
+<p>而从<strong>截断</strong>的正态分布中输出随机值的意思就是，同样也是随机生成的值，但是生成的值必须服从具有指定平均值和标准偏差的正态分布，如果生成的值大于平均值2个标准偏差的值则丢弃重新选择。换句话说，就是如果随机生成的值如果落在了(μ-2σ,μ+2σ)之外，就重新生成值，这样就保证了随机生成的值都在均值附近。</p>
+<p>扯了这么多，其实就是随机生成一组数，要求不要离中心点μ太远。</p>
+</li>
+<li><p>bias_variable</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bias_variable</span><span class="params">(self, shape)</span>:</span></span><br><span class="line">    initial = tf.constant(<span class="number">0.1</span>, shape=shape)</span><br><span class="line">    <span class="keyword">return</span> tf.Variable(initial)</span><br></pre></td></tr></table></figure></div>
+<p>生成一组全部都是0.1的常量数，没啥好说的。</p>
+</li>
+<li><p>构建第一层卷积神经网络</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">w_conv1 = self.weight_variable([<span class="number">5</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">32</span>])</span><br><span class="line">b_conv1 = self.bias_variable([<span class="number">32</span>])</span><br><span class="line">h_conv1 = tf.nn.relu(tf.nn.bias_add(self.conv2d(x_images, w_conv1), b_conv1))</span><br><span class="line">h_pool1 = self.max_pool_2x2(h_conv1)</span><br><span class="line">h_dropout1 = tf.nn.dropout(h_pool1, keep_prob)</span><br><span class="line">conv_width = math.ceil(self.width / <span class="number">2</span>)</span><br><span class="line">conv_height = math.ceil(self.height / <span class="number">2</span>)</span><br></pre></td></tr></table></figure></div>
+<p>w_conv1是卷积核，可以理解为一共有32个卷积核，每个卷积核的尺寸是(5, 5, 1)，即长度和宽度都是5，通道是1。每个卷积核对图片处理完就会产生一张特征图，32个卷积核对图片处理完后就会产生32个特征图，将这些特征图叠加排列，那么原本通道数为1的图片现在通道数变为图片的个数，也就是32。图片的尺寸变化为(?, 60, 160, 1) –&gt; (?, 60, 160, 32)。</p>
+<p>随后又对图片进行一次池化处理，池化窗口为2×2，所以图片的长度和宽度都会变为原来的一半。图片的尺寸变化为(?, 60, 160, 32) → (?, 30, 80, 32)。</p>
+<p>随后又进行了一次dropout以防止过拟合，同时也是为了加大个别神经元的训练强度。</p>
+</li>
+<li><p>构建第二层卷积神经网络</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">w_conv2 = self.weight_variable([<span class="number">5</span>, <span class="number">5</span>, <span class="number">32</span>, <span class="number">64</span>])</span><br><span class="line">b_conv2 = self.bias_variable([<span class="number">64</span>])</span><br><span class="line">h_conv2 = tf.nn.relu(tf.nn.bias_add(self.conv2d(h_dropout1, w_conv2), b_conv2))</span><br><span class="line">h_pool2 = self.max_pool_2x2(h_conv2)</span><br><span class="line">h_dropout2 = tf.nn.dropout(h_pool2, keep_prob)</span><br><span class="line">conv_width = math.ceil(conv_width / <span class="number">2</span>)</span><br><span class="line">conv_height = math.ceil(conv_height / <span class="number">2</span>)</span><br></pre></td></tr></table></figure></div>
+<p>w_conv2是第二层卷积神经网络的卷积核，共有64个，每个卷积核的尺寸是(5, 5, 32)，处理之后图片的尺寸变化为(?, 30, 80, 32) → (?, 30, 80, 64)。</p>
+<p>随后又对图片进行一次池化处理，池化窗口为2×2，所以图片的长度和宽度都会变为原来的一半。图片的尺寸变化为(?, 30, 80, 64) → (?, 15, 40, 64)。</p>
+<p>再进行一次dropout以防止过拟合，同时也是为了加大个别神经元的训练强度。</p>
+</li>
+<li><p>构建第三层卷积神经网络</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">w_conv3 = self.weight_variable([<span class="number">5</span>, <span class="number">5</span>, <span class="number">64</span>, <span class="number">64</span>])</span><br><span class="line">b_conv3 = self.bias_variable([<span class="number">64</span>])</span><br><span class="line">h_conv3 = tf.nn.relu(tf.nn.bias_add(self.conv2d(h_dropout2, w_conv3), b_conv3))</span><br><span class="line">h_pool3 = self.max_pool_2x2(h_conv3)</span><br><span class="line">h_dropout3 = tf.nn.dropout(h_pool3, keep_prob)</span><br><span class="line">conv_width = math.ceil(conv_width / <span class="number">2</span>)</span><br><span class="line">conv_height = math.ceil(conv_height / <span class="number">2</span>)</span><br></pre></td></tr></table></figure></div>
+<p>w_conv3是第三层卷积神经网络的卷积核，共有64个，每个卷积核的尺寸是(5, 5, 64)，处理之后图片的尺寸变化为(?, 15, 40, 64) → (?, 15, 40, 64)。</p>
+<p>随后又对图片进行一次池化处理，池化窗口为2×2，所以图片的长度和宽度都会变为原来的一半。图片的尺寸变化为(?, 15, 40, 64) → (?, 8, 20, 64)，这里的15 / 2 = 8，是因为边界策略为SAME，那么遇到剩下还有不足4个像素的时候同样采取一次最大值池化处理。</p>
+<p>再进行一次dropout以防止过拟合，同时也是为了加大个别神经元的训练强度。</p>
+</li>
+<li><p>构建第一层全连接神经网络</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">conv_width = int(conv_width)</span><br><span class="line">conv_height = int(conv_height)</span><br><span class="line">w_fc1 = self.weight_variable([<span class="number">64</span> * conv_width * conv_height, <span class="number">1024</span>])</span><br><span class="line">b_fc1 = self.bias_variable([<span class="number">1024</span>])</span><br><span class="line">h_dropout3_flat = tf.reshape(h_dropout3, [<span class="number">-1</span>, <span class="number">64</span> * conv_width * conv_height])</span><br><span class="line">h_fc1 = tf.nn.relu(tf.nn.bias_add(tf.matmul(h_dropout3_flat, w_fc1), b_fc1))</span><br><span class="line">h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)</span><br></pre></td></tr></table></figure></div>
+<p>这里就把刚刚卷积神经网络的输出作为传统神经网络的输入了，w_fc1(10240, 1024)和b_fc1(1024)分别是这一层神经网络的参数以及bias。上面代码第五行将卷积神经网络的输出数据由(?, 8, 20, 64)转为了(?, 64 <em> 20 </em> 8)，可以很明显感觉出来把所有的数据拉成了一条一维向量，然后经过矩阵处理，这里的数据变为了(1024, 1)的形状。</p>
+</li>
+<li><p>构建第二层全连接神经网络</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">w_fc2 = self.weight_variable([<span class="number">1024</span>, self.char_num * self.classes])</span><br><span class="line">b_fc2 = self.bias_variable([self.char_num * self.classes])</span><br><span class="line">y_conv = tf.add(tf.matmul(h_fc1_drop, w_fc2), b_fc2)</span><br></pre></td></tr></table></figure></div>
+<p>再连接一次神经网络，这次不再需要添加激励函数了ReLu了，因为已经到达输出层，线性相加后直接输出就可以了，结果保存在y_conv变量里，最后将y_conv返回给调用函数。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y_conv = model.create_model(x, keep_prob)</span><br></pre></td></tr></table></figure></div>
+<p>这是外层函数调用model后所得到的训练结果。</p>
+</li>
+</ol>
+<h2 id="定义损失函数以及优化方式"><a href="#定义损失函数以及优化方式" class="headerlink" title="定义损失函数以及优化方式"></a>定义损失函数以及优化方式</h2><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cross_entropy = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(labels=y_, logits=y_conv))</span><br></pre></td></tr></table></figure></div>
+<p>由于识别验证码本质上是对验证码中的信息进行分类，所以我们这里使用cross_entropy的方法来衡量损失。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train_step = tf.train.AdamOptimizer(<span class="number">1e-4</span>).minimize(cross_entropy)</span><br></pre></td></tr></table></figure></div>
+<p>优化方式选择的是AdamOptimizer，学习率设置比较小，为1e-4，防止学习的太快而训练不好。</p>
+<h2 id="进行训练并保存训练结果"><a href="#进行训练并保存训练结果" class="headerlink" title="进行训练并保存训练结果"></a>进行训练并保存训练结果</h2><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">saver = tf.train.Saver()</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    sess.run(tf.global_variables_initializer())</span><br><span class="line">    step = <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        batch_x, batch_y = next(captcha.gen_captcha(<span class="number">64</span>))</span><br><span class="line">        _, loss = sess.run([train_step, cross_entropy], feed_dict=&#123;x: batch_x, y_: batch_y, keep_prob: <span class="number">0.75</span>&#125;)</span><br><span class="line">        print(<span class="string">'step:%d,loss:%f'</span> % (step, loss))</span><br><span class="line">        <span class="keyword">if</span> step % <span class="number">100</span> == <span class="number">0</span>:</span><br><span class="line">            batch_x_test, batch_y_test = next(captcha.gen_captcha(<span class="number">100</span>))</span><br><span class="line">            acc = sess.run(accuracy, feed_dict=&#123;x: batch_x_test, y_: batch_y_test, keep_prob: <span class="number">1.</span>&#125;)</span><br><span class="line">            print(<span class="string">'###############################################step:%d,accuracy:%f'</span> % (step, acc))</span><br><span class="line">            <span class="keyword">if</span> acc &gt; <span class="number">0.99</span>:</span><br><span class="line">                saver.save(sess, <span class="string">"capcha_model.ckpt"</span>)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        step += <span class="number">1</span></span><br></pre></td></tr></table></figure></div>
+<p>从第二行开始进入训练部分，首先我们需要初始化变量，然后进入一个循环，直到训练的准确度高于99%才会停止训练，否则会一直训练下去。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">batch_x, batch_y = next(captcha.gen_captcha(<span class="number">64</span>))</span><br></pre></td></tr></table></figure></div>
+<p>用于生成训练集，每次生成64条训练数据，输入部分保存在batch_x里，输出部分保存在batch_y里，每次循环到这里就会再次读入64条训练数据。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_, loss = sess.run([train_step, cross_entropy], feed_dict=&#123;x: batch_x, y_: batch_y, keep_prob: <span class="number">0.75</span>&#125;)</span><br></pre></td></tr></table></figure></div>
+<p>开始训练，loss记录损失，_变量不记录任何东西，我debug下来每次_里面都是空，可能只是为了语法的需要，这里必须有个变量接受点什么。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> step % <span class="number">100</span> == <span class="number">0</span>:</span><br><span class="line">    batch_x_test, batch_y_test = next(captcha.gen_captcha(<span class="number">100</span>))</span><br><span class="line">    acc = sess.run(accuracy, feed_dict=&#123;x: batch_x_test, y_: batch_y_test, keep_prob: <span class="number">1.</span>&#125;)</span><br><span class="line">    print(<span class="string">'###############################################step:%d,accuracy:%f'</span> % (step, acc))</span><br><span class="line">    <span class="keyword">if</span> acc &gt; <span class="number">0.99</span>:</span><br><span class="line">        saver.save(sess, <span class="string">"capcha_model.ckpt"</span>)</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure></div>
+<p>每训练一百次，就会进行一次Test。具体操作是，生成100条测试数据，和之前生成训练数据是一个方法，然后直接进行测试，如果准确度高于99%那么就停止训练，把训练好的模型放在”capcha_model.ckpt”这个文件里面，可以供以后使用。如果没有达到99%的准确度就继续训练。</p>
+<h2 id="六、完整代码"><a href="#六、完整代码" class="headerlink" title="六、完整代码"></a>六、完整代码</h2><h3 id="train-captcha-py"><a href="#train-captcha-py" class="headerlink" title="train_captcha.py"></a>train_captcha.py</h3><p>训练的主代码</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">import</span> generate_captcha</span><br><span class="line"><span class="keyword">import</span> captcha_model</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    captcha = generate_captcha.GenerateCaptcha()  <span class="comment"># 创建一个验证码对象</span></span><br><span class="line">    width, height, char_num, characters, classes = captcha.get_parameter()  <span class="comment"># 获取此验证码对象的各种属性</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># x：训练集输入占位符</span></span><br><span class="line">    <span class="comment"># y：训练集输出占位符</span></span><br><span class="line">    <span class="comment"># keep_prob：dropout处理保留此神经元的概率占位符</span></span><br><span class="line">    x = tf.placeholder(tf.float32, [<span class="literal">None</span>, height, width, <span class="number">1</span>])</span><br><span class="line">    y_ = tf.placeholder(tf.float32, [<span class="literal">None</span>, char_num * classes])</span><br><span class="line">    keep_prob = tf.placeholder(tf.float32)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 生成训练模型对象</span></span><br><span class="line">    model = captcha_model.CaptchaModel(width, height, char_num, classes)</span><br><span class="line">    <span class="comment"># y_conv: 模型训练完的结果</span></span><br><span class="line">    y_conv = model.create_model(x, keep_prob)</span><br><span class="line">    <span class="comment"># 损失函数，用cross_entropy来描述损失</span></span><br><span class="line">    cross_entropy = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(labels=y_, logits=y_conv))</span><br><span class="line">    <span class="comment"># 优化器，选用AdamOptimizer</span></span><br><span class="line">    train_step = tf.train.AdamOptimizer(<span class="number">1e-4</span>).minimize(cross_entropy)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 将训练完的结果reshape为(?, 4, 62)的形状</span></span><br><span class="line">    predict = tf.reshape(y_conv, [<span class="number">-1</span>, char_num, classes])</span><br><span class="line">    <span class="comment"># 将真实值也reshape为(?, 4, 62)的形状</span></span><br><span class="line">    real = tf.reshape(y_, [<span class="number">-1</span>, char_num, classes])</span><br><span class="line">    <span class="comment"># 计算预测正确的个数</span></span><br><span class="line">    correct_prediction = tf.equal(tf.argmax(predict, <span class="number">2</span>), tf.argmax(real, <span class="number">2</span>))</span><br><span class="line">    <span class="comment"># 转型为浮点数格式</span></span><br><span class="line">    correct_prediction = tf.cast(correct_prediction, tf.float32)</span><br><span class="line">    <span class="comment"># 求均值，就是准确率</span></span><br><span class="line">    accuracy = tf.reduce_mean(correct_prediction)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 等模型训练好后，可以用saver保存模型，便于以后使用</span></span><br><span class="line">    saver = tf.train.Saver()</span><br><span class="line">    <span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">        <span class="comment"># 初始化参数</span></span><br><span class="line">        sess.run(tf.global_variables_initializer())</span><br><span class="line">        step = <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            <span class="comment"># batch_x和batch_y存储64条训练数据的输入和输出值</span></span><br><span class="line">            batch_x, batch_y = next(captcha.gen_captcha(<span class="number">64</span>))</span><br><span class="line">            <span class="comment"># loss存储本次训练的损失值</span></span><br><span class="line">            _, loss = sess.run([train_step, cross_entropy], feed_dict=&#123;x: batch_x, y_: batch_y, keep_prob: <span class="number">0.75</span>&#125;)</span><br><span class="line">            print(<span class="string">'step:%d,loss:%f'</span> % (step, loss))</span><br><span class="line">            <span class="comment"># 每进行100次，就进行一次测试</span></span><br><span class="line">            <span class="keyword">if</span> step % <span class="number">100</span> == <span class="number">0</span>:</span><br><span class="line">                <span class="comment"># 获取100条测试数据</span></span><br><span class="line">                batch_x_test, batch_y_test = next(captcha.gen_captcha(<span class="number">100</span>))</span><br><span class="line">                acc = sess.run(accuracy, feed_dict=&#123;x: batch_x_test, y_: batch_y_test, keep_prob: <span class="number">1.</span>&#125;)</span><br><span class="line">                print(<span class="string">'###############################################step:%d,accuracy:%f'</span> % (step, acc))</span><br><span class="line">                <span class="comment"># 如果测试准确度在99%以上就退出，否则继续训练</span></span><br><span class="line">                <span class="keyword">if</span> acc &gt; <span class="number">0.99</span>:</span><br><span class="line">                    saver.save(sess, <span class="string">"capcha_model.ckpt"</span>)</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">            step += <span class="number">1</span></span><br></pre></td></tr></table></figure></div>
+<h3 id="generate-captcha-py"><a href="#generate-captcha-py" class="headerlink" title="generate_captcha.py"></a>generate_captcha.py</h3><p>生成验证码的类</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> captcha.image <span class="keyword">import</span> ImageCaptcha</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GenerateCaptcha</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,</span></span></span><br><span class="line"><span class="function"><span class="params">                 width=<span class="number">160</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                 height=<span class="number">60</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                 char_num=<span class="number">4</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                 characters=string.digits + string.ascii_uppercase + string.ascii_lowercase)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        GenerateCaptcha类的构造函数</span></span><br><span class="line"><span class="string">        :param width: 验证码图片的宽</span></span><br><span class="line"><span class="string">        :param height: 验证码图片的高</span></span><br><span class="line"><span class="string">        :param char_num: 验证码字符个数</span></span><br><span class="line"><span class="string">        :param characters: 验证码组成字符串，其中包含总数字串(0~9)+大写字母串(A~Z)+小写字母串(a~z)</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.width = width</span><br><span class="line">        self.height = height</span><br><span class="line">        self.char_num = char_num</span><br><span class="line">        self.characters = characters</span><br><span class="line">        self.classes = len(characters)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">gen_captcha</span><span class="params">(self, batch_size=<span class="number">50</span>)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        生成一组验证码训练数据</span></span><br><span class="line"><span class="string">        :param batch_size:用以指定这一组训练数据的个数</span></span><br><span class="line"><span class="string">        :return:X（这一组训练数据的输入X）, Y（这一组训练数据的输出Y）</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 验证码图片对象，这里只限定了尺寸，还没有写内容</span></span><br><span class="line">        image = ImageCaptcha(width=self.width, height=self.height)</span><br><span class="line">        <span class="comment"># X:用以存放训练数据的输入部分</span></span><br><span class="line">        <span class="comment"># batch_size: 这一组训练数据共有batch_size个</span></span><br><span class="line">        <span class="comment"># self.height: 每一个训练数据（验证码）的高度</span></span><br><span class="line">        <span class="comment"># self.width: 每一个训练数据（验证码）的宽度</span></span><br><span class="line">        <span class="comment"># 1: 每一个训练数据（验证码）的通道数，因为是黑白图片所以为1</span></span><br><span class="line">        X = np.zeros([batch_size, self.height, self.width, <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">        <span class="comment"># Y:用以存放训练数据的输出部分</span></span><br><span class="line">        <span class="comment"># batch_size: 这一组训练数据共有batch_size个</span></span><br><span class="line">        <span class="comment"># self.char_num: 每一个训练数据（验证码）的内容中包含几个字符</span></span><br><span class="line">        <span class="comment"># self.classes: 这个字符的内容是什么（这是一个长度为62的向量，因为10个数字加26个大写字母加26个小写字母长度为62，只有一个值为1，表示这个字符内容，其他都是0）</span></span><br><span class="line">        Y = np.zeros([batch_size, self.char_num, self.classes])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(batch_size):</span><br><span class="line">                <span class="comment"># random.sample(self.characters, self.char_num)用于生成一个验证码字符串随机变量</span></span><br><span class="line">                <span class="comment"># self.characters：62位字符串（0~9A~Za~z）</span></span><br><span class="line">                <span class="comment"># self.char_num：4（生成4个字符）</span></span><br><span class="line">                <span class="comment"># captcha_str用以将转好的随机变量转为字符串类型</span></span><br><span class="line">                captcha_str = <span class="string">''</span>.join(random.sample(self.characters, self.char_num))</span><br><span class="line"></span><br><span class="line">                <span class="comment"># 用内置方法，将字符串变为图片</span></span><br><span class="line">                <span class="comment"># convert('L')：表示生成的是灰度图片，就是通道数为1的黑白图片</span></span><br><span class="line">                img = image.generate_image(captcha_str).convert(<span class="string">'L'</span>)</span><br><span class="line">                <span class="comment"># 将生成好的图片数据转成np.array类型</span></span><br><span class="line">                img = np.array(img.getdata())</span><br><span class="line">                <span class="comment"># reshape一下此图片的格式，让他的高度和宽度符合要求</span></span><br><span class="line">                <span class="comment"># 每个像素值都要除以255，这是为了归一化处理，因为灰度的范围是0~255，这里除以255就让每个像素的值在0~1之间，加快收敛速度</span></span><br><span class="line">                <span class="comment"># 将此图片信息放入X的第i个位置，表示这是训练集的第i条数据</span></span><br><span class="line">                X[i] = np.reshape(img, [self.height, self.width, <span class="number">1</span>]) / <span class="number">255.0</span></span><br><span class="line"></span><br><span class="line">                <span class="comment"># 这里用以生成对应的测试集</span></span><br><span class="line">                <span class="comment"># j和ch用以遍历刚刚生成的随机字符串，j记录index（0~3，表示第几个字符），ch记录字符串中的字符</span></span><br><span class="line">                <span class="keyword">for</span> j, ch <span class="keyword">in</span> enumerate(captcha_str):</span><br><span class="line">                    <span class="comment"># 找到Y的第i条数据中，第j个字符，然后把62长度的向量和ch相关的那个置位1</span></span><br><span class="line">                    Y[i, j, self.characters.find(ch)] = <span class="number">1</span></span><br><span class="line">            <span class="comment"># 重新整理一下Y，第一维度依然是batch_size，后面把char_num和classes相乘，整合成一条向量</span></span><br><span class="line">            Y = np.reshape(Y, (batch_size, self.char_num * self.classes))</span><br><span class="line">            <span class="keyword">yield</span> X, Y</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_parameter</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.width, self.height, self.char_num, self.characters, self.classes</span><br></pre></td></tr></table></figure></div>
+<h3 id="captcha-model-py"><a href="#captcha-model-py" class="headerlink" title="captcha_model.py"></a>captcha_model.py</h3><p>训练模型的类</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CaptchaModel</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,</span></span></span><br><span class="line"><span class="function"><span class="params">                 width=<span class="number">160</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                 height=<span class="number">60</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                 char_num=<span class="number">4</span>,</span></span></span><br><span class="line"><span class="function"><span class="params">                 classes=<span class="number">62</span>)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        训练模型类的构造函数</span></span><br><span class="line"><span class="string">        :param width: 验证码宽度</span></span><br><span class="line"><span class="string">        :param height: 验证码高度</span></span><br><span class="line"><span class="string">        :param char_num: 验证码内字符数</span></span><br><span class="line"><span class="string">        :param classes: 验证码待选字符个数</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        self.width = width</span><br><span class="line">        self.height = height</span><br><span class="line">        self.char_num = char_num</span><br><span class="line">        self.classes = classes</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">conv2d</span><span class="params">(self, x, W)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        2维卷积函数</span></span><br><span class="line"><span class="string">        strides=[1, 1（x方向步长）, 1（y方向步长）, 1]</span></span><br><span class="line"><span class="string">        padding='SAME'（边界处理策略，设为'SAME'卷积处理完图片大小不变）</span></span><br><span class="line"><span class="string">        :param x: 被卷积处理的图片</span></span><br><span class="line"><span class="string">        :param W: 卷积核</span></span><br><span class="line"><span class="string">        :return: 卷积处理完的图片</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">return</span> tf.nn.conv2d(x, W, strides=[<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>], padding=<span class="string">'SAME'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">max_pool_2x2</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        2x2最大值池化函数</span></span><br><span class="line"><span class="string">        ksize=[1, 2（池化窗口高度）, 2(池化窗口高度), 1]</span></span><br><span class="line"><span class="string">        strides=[1, 1（x方向步长）, 1（y方向步长）, 1]</span></span><br><span class="line"><span class="string">        padding='SAME'</span></span><br><span class="line"><span class="string">        :param x: 待被池化处理的图片</span></span><br><span class="line"><span class="string">        :return: 处理好的图片</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        <span class="keyword">return</span> tf.nn.max_pool(x, ksize=[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>], strides=[<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>], padding=<span class="string">'SAME'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">weight_variable</span><span class="params">(self, shape)</span>:</span></span><br><span class="line">        <span class="comment"># 截断式正态分布生成变量</span></span><br><span class="line">        initial = tf.truncated_normal(shape, stddev=<span class="number">0.1</span>)</span><br><span class="line">        <span class="keyword">return</span> tf.Variable(initial)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">bias_variable</span><span class="params">(self, shape)</span>:</span></span><br><span class="line">        <span class="comment"># 生成一组常量</span></span><br><span class="line">        initial = tf.constant(<span class="number">0.1</span>, shape=shape)</span><br><span class="line">        <span class="keyword">return</span> tf.Variable(initial)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create_model</span><span class="params">(self, x_images, keep_prob)</span>:</span></span><br><span class="line">        <span class="comment"># first layer</span></span><br><span class="line">        w_conv1 = self.weight_variable([<span class="number">5</span>, <span class="number">5</span>, <span class="number">1</span>, <span class="number">32</span>])</span><br><span class="line">        b_conv1 = self.bias_variable([<span class="number">32</span>])</span><br><span class="line">        <span class="comment"># 第一次卷积 (?, 60, 160, 1) --&gt; (?, 60, 160, 32)</span></span><br><span class="line">        h_conv1 = tf.nn.relu(tf.nn.bias_add(self.conv2d(x_images, w_conv1), b_conv1))</span><br><span class="line">        <span class="comment"># 第一次池化 (?, 60, 160, 32) --&gt; (?, 30, 80, 32)</span></span><br><span class="line">        h_pool1 = self.max_pool_2x2(h_conv1)</span><br><span class="line">        <span class="comment"># 第一层dropout</span></span><br><span class="line">        h_dropout1 = tf.nn.dropout(h_pool1, keep_prob)</span><br><span class="line">        conv_width = math.ceil(self.width / <span class="number">2</span>)</span><br><span class="line">        conv_height = math.ceil(self.height / <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># second layer</span></span><br><span class="line">        w_conv2 = self.weight_variable([<span class="number">5</span>, <span class="number">5</span>, <span class="number">32</span>, <span class="number">64</span>])</span><br><span class="line">        b_conv2 = self.bias_variable([<span class="number">64</span>])</span><br><span class="line">        <span class="comment"># 第二次卷积 (?, 30, 80, 32) --&gt; (?, 30, 80, 64)</span></span><br><span class="line">        h_conv2 = tf.nn.relu(tf.nn.bias_add(self.conv2d(h_dropout1, w_conv2), b_conv2))</span><br><span class="line">        <span class="comment"># 第二次池化 (?, 30, 80, 64) --&gt; (?, 15, 40, 64)</span></span><br><span class="line">        h_pool2 = self.max_pool_2x2(h_conv2)</span><br><span class="line">        <span class="comment"># 第二层dropout</span></span><br><span class="line">        h_dropout2 = tf.nn.dropout(h_pool2, keep_prob)</span><br><span class="line">        conv_width = math.ceil(conv_width / <span class="number">2</span>)</span><br><span class="line">        conv_height = math.ceil(conv_height / <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># third layer</span></span><br><span class="line">        w_conv3 = self.weight_variable([<span class="number">5</span>, <span class="number">5</span>, <span class="number">64</span>, <span class="number">64</span>])</span><br><span class="line">        b_conv3 = self.bias_variable([<span class="number">64</span>])</span><br><span class="line">        <span class="comment"># 第三次卷积 (?, 15, 40, 64) --&gt; (?, 15, 40, 64)</span></span><br><span class="line">        h_conv3 = tf.nn.relu(tf.nn.bias_add(self.conv2d(h_dropout2, w_conv3), b_conv3))</span><br><span class="line">        <span class="comment"># 第三次池化 (?, 15, 40, 64) --&gt; (?, 8, 20, 64)</span></span><br><span class="line">        h_pool3 = self.max_pool_2x2(h_conv3)</span><br><span class="line">        <span class="comment"># 第三层dropout</span></span><br><span class="line">        h_dropout3 = tf.nn.dropout(h_pool3, keep_prob)</span><br><span class="line">        conv_width = math.ceil(conv_width / <span class="number">2</span>)</span><br><span class="line">        conv_height = math.ceil(conv_height / <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 第一层全连接神经网络</span></span><br><span class="line">        conv_width = int(conv_width)</span><br><span class="line">        conv_height = int(conv_height)</span><br><span class="line">        <span class="comment"># 第一层权值 (64 * 20 * 8, 1024)</span></span><br><span class="line">        w_fc1 = self.weight_variable([<span class="number">64</span> * conv_width * conv_height, <span class="number">1024</span>])</span><br><span class="line">        <span class="comment"># 第一层bias (1, 1024)</span></span><br><span class="line">        b_fc1 = self.bias_variable([<span class="number">1024</span>])</span><br><span class="line">        <span class="comment"># 将CNN的输出结果展开成一条线，shape为(64 * 20 * 8, 1)</span></span><br><span class="line">        h_dropout3_flat = tf.reshape(h_dropout3, [<span class="number">-1</span>, <span class="number">64</span> * conv_width * conv_height])</span><br><span class="line">        <span class="comment"># 神经网络处理，激发函数选择relu (64 * 20 * 8, 1) --&gt; (1024, 1)</span></span><br><span class="line">        h_fc1 = tf.nn.relu(tf.nn.bias_add(tf.matmul(h_dropout3_flat, w_fc1), b_fc1))</span><br><span class="line">        <span class="comment"># dropout处理</span></span><br><span class="line">        h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># second fully layer</span></span><br><span class="line">        w_fc2 = self.weight_variable([<span class="number">1024</span>, self.char_num * self.classes])</span><br><span class="line">        b_fc2 = self.bias_variable([self.char_num * self.classes])</span><br><span class="line">        <span class="comment"># 神经网络处理, (1024, 1) --&gt; (4 * 62, 1)</span></span><br><span class="line">        y_conv = tf.add(tf.matmul(h_fc1_drop, w_fc2), b_fc2)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> y_conv</span><br></pre></td></tr></table></figure></div>
+<h3 id="predict-captcha-py"><a href="#predict-captcha-py" class="headerlink" title="predict_captcha.py"></a>predict_captcha.py</h3><p>我们把训练好的模型保存起来，之后可以使用此代码去识别任意的验证码，只要图片输入的要求符合高60宽160且1通道黑白图片即可。这个类上面我没讲解，我也没机会试，因为训练时间太久了我还没训出来呢，据说GPU训练需要4~5个小时，CPU训练的话需要20小时，大家训练好了可以拿去试试。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PYTHON"><figure class="iseeu highlight /python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> generate_captcha</span><br><span class="line"><span class="keyword">import</span> captcha_model</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    captcha = generate_captcha.GenerateCaptcha()</span><br><span class="line">    width, height, char_num, characters, classes = captcha.get_parameter()</span><br><span class="line"></span><br><span class="line">    gray_image = Image.open(sys.argv[<span class="number">1</span>]).convert(<span class="string">'L'</span>)</span><br><span class="line">    img = np.array(gray_image.getdata())</span><br><span class="line">    test_x = np.reshape(img, [height, width, <span class="number">1</span>]) / <span class="number">255.0</span></span><br><span class="line">    x = tf.placeholder(tf.float32, [<span class="literal">None</span>, height, width, <span class="number">1</span>])</span><br><span class="line">    keep_prob = tf.placeholder(tf.float32)</span><br><span class="line"></span><br><span class="line">    model = captcha_model.CaptchaModel(width, height, char_num, classes)</span><br><span class="line">    y_conv = model.create_model(x,keep_prob)</span><br><span class="line">    predict = tf.argmax(tf.reshape(y_conv, [<span class="number">-1</span>,char_num, classes]),<span class="number">2</span>)</span><br><span class="line">    init_op = tf.global_variables_initializer()</span><br><span class="line">    saver = tf.train.Saver()</span><br><span class="line">    gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=<span class="number">0.95</span>)</span><br><span class="line">    <span class="keyword">with</span> tf.Session(config=tf.ConfigProto(log_device_placement=<span class="literal">False</span>, gpu_options=gpu_options)) <span class="keyword">as</span> sess:</span><br><span class="line">        sess.run(init_op)</span><br><span class="line">        saver.restore(sess, <span class="string">"capcha_model.ckpt"</span>)</span><br><span class="line">        pre_list = sess.run(predict, feed_dict=&#123;x: [test_x], keep_prob: <span class="number">1</span>&#125;)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> pre_list:</span><br><span class="line">            s = <span class="string">''</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> i:</span><br><span class="line">                s += characters[j]</span><br><span class="line">            print(s)</span><br></pre></td></tr></table></figure></div>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/lab/" rel="tag"># lab</a>
+          
+            <a href="/tags/dnn/" rel="tag"># dnn</a>
+          
+            <a href="/tags/tensorflow/" rel="tag"># tensorflow</a>
+          
+            <a href="/tags/cnn/" rel="tag"># cnn</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/科大软院 - 人工智能期中考试复习/" rel="prev" title="科大软院 - 人工智能期中考试复习">
+                科大软院 - 人工智能期中考试复习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="Alan Ke">
+            
+              <p class="site-author-name" itemprop="name">Alan Ke</p>
+              <div class="site-description motion-element" itemprop="description">Have a nice coding!🍻</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives">
+                
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">17</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/ustc-keyanjie" title="GitHub &rarr; https://github.com/ustc-keyanjie" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:keyanjie@mail.ustc.edu.cn" title="E-Mail &rarr; mailto:keyanjie@mail.ustc.edu.cn" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#获取验证码训练集"><span class="nav-number">1.</span> <span class="nav-text">获取验证码训练集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建卷积神经网络和全连接神经网络"><span class="nav-number">2.</span> <span class="nav-text">构建卷积神经网络和全连接神经网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义损失函数以及优化方式"><span class="nav-number">3.</span> <span class="nav-text">定义损失函数以及优化方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进行训练并保存训练结果"><span class="nav-number">4.</span> <span class="nav-text">进行训练并保存训练结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、完整代码"><span class="nav-number">5.</span> <span class="nav-text">六、完整代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#train-captcha-py"><span class="nav-number">5.1.</span> <span class="nav-text">train_captcha.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#generate-captcha-py"><span class="nav-number">5.2.</span> <span class="nav-text">generate_captcha.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#captcha-model-py"><span class="nav-number">5.3.</span> <span class="nav-text">captcha_model.py</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#predict-captcha-py"><span class="nav-number">5.4.</span> <span class="nav-text">predict_captcha.py</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Alan Ke</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: true,
+    appId: 'PLu5Kuwb1g68XrJHrzyCLtKY-gzGzoHsz',
+    appKey: 'KvAe30NuziJaOBuwsu5OMR5l',
+    placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+    <!-- 代码块复制功能 -->
+  <script type="text/javascript" src="/js/src/clipboard.min.js"></script>  
+  <script type="text/javascript" src="/js/src/clipboard-use.js"></script>
+  
+<!--   <div class="bg_content">
+    <canvas id="canvas"></canvas>
+  </div>
+  <script type="text/javascript" src="/js/src/dynamic_bg.js"></script> -->
+</body>
+</html>

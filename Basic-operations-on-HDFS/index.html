@@ -128,17 +128,18 @@
 
 
 
-  <meta name="description" content="从嘉の🎉🍄🍓🍉🍒🍓🍭🎀🍋⭐️小站 hjwang’s notebook 九流人 且听风吟 冰水鉴心 不想长大的石头">
-<meta property="og:type" content="website">
-<meta property="og:title" content="friend links">
-<meta property="og:url" content="https://www.keyanjie.net/friendLinks/index.html">
+  <meta name="description" content="分布式第二次实验。">
+<meta name="keywords" content="hadoop,distributed system,lab">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分布式lab2：Hadoop Distributed File System(HDFS)上的基本操作">
+<meta property="og:url" content="https://www.keyanjie.net/Basic-operations-on-HDFS/index.html">
 <meta property="og:site_name" content="Alan&#39;s Notebook🦍">
-<meta property="og:description" content="从嘉の🎉🍄🍓🍉🍒🍓🍭🎀🍋⭐️小站 hjwang’s notebook 九流人 且听风吟 冰水鉴心 不想长大的石头">
+<meta property="og:description" content="分布式第二次实验。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-11T08:00:43.155Z">
+<meta property="og:updated_time" content="2019-04-03T08:12:04.072Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="friend links">
-<meta name="twitter:description" content="从嘉の🎉🍄🍓🍉🍒🍓🍭🎀🍋⭐️小站 hjwang’s notebook 九流人 且听风吟 冰水鉴心 不想长大的石头">
+<meta name="twitter:title" content="分布式lab2：Hadoop Distributed File System(HDFS)上的基本操作">
+<meta name="twitter:description" content="分布式第二次实验。">
 
 
 
@@ -146,7 +147,7 @@
 
   
   
-  <link rel="canonical" href="https://www.keyanjie.net/friendLinks/">
+  <link rel="canonical" href="https://www.keyanjie.net/Basic-operations-on-HDFS/">
 
 
 
@@ -156,7 +157,7 @@
   };
 </script>
 
-  <title>friend links | Alan's Notebook🦍</title>
+  <title>分布式lab2：Hadoop Distributed File System(HDFS)上的基本操作 | Alan's Notebook🦍</title>
   
 
 
@@ -315,7 +316,7 @@
         
         
           
-          <li class="menu-item menu-item-friend-links🍻 menu-item-active">
+          <li class="menu-item menu-item-friend-links🍻">
 
     
     
@@ -341,31 +342,6 @@
 
   
     
-
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
 
   
 
@@ -414,56 +390,252 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.keyanjie.net/Basic-operations-on-HDFS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alan Ke">
+      <meta itemprop="description" content="Have a nice coding!🍻">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alan's Notebook🦍">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">friend links
-
-</h1>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <p><a href="http://cjcongjia.cn" target="_blank" rel="noopener">从嘉の🎉🍄🍓🍉🍒🍓🍭🎀🍋⭐️小站</a></p>
-<p><a href="http://wanghj.net" target="_blank" rel="noopener">hjwang’s notebook</a></p>
-<p><a href="http://www.familyhealth.top" target="_blank" rel="noopener">九流人</a></p>
-<p><a href="http://www.windsings.com" target="_blank" rel="noopener">且听风吟</a></p>
-<p><a href="http://xq99.me" target="_blank" rel="noopener">冰水鉴心</a></p>
-<p><a href="https://cjh.zone" target="_blank" rel="noopener">不想长大的石头</a></p>
+          <h1 class="post-title" itemprop="name headline">分布式lab2：Hadoop Distributed File System(HDFS)上的基本操作
 
+              
+            
+          </h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-03-30 17:53:16" itemprop="dateCreated datePublished" datetime="2019-03-30T17:53:16+08:00">2019-03-30</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-03 16:12:04" itemprop="dateModified" datetime="2019-04-03T16:12:04+08:00">2019-04-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/distributed-system/" itemprop="url" rel="index"><span itemprop="name">distributed system</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/Basic-operations-on-HDFS/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/Basic-operations-on-HDFS/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>分布式第二次实验。</p>
+<a id="more"></a>
+<h2 id="首先"><a href="#首先" class="headerlink" title="首先"></a>首先</h2><p>使用master节点进行操作，另外两个节点也要开机。</p>
+<h2 id="先进入root账户"><a href="#先进入root账户" class="headerlink" title="先进入root账户"></a>先进入root账户</h2><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo su root</span><br></pre></td></tr></table></figure></div>
+<h2 id="将bin目录和sbin目录里的命令配入环境变量"><a href="#将bin目录和sbin目录里的命令配入环境变量" class="headerlink" title="将bin目录和sbin目录里的命令配入环境变量"></a>将bin目录和sbin目录里的命令配入环境变量</h2><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bashrc</span><br></pre></td></tr></table></figure></div>
+<p>按下<code>i</code>，在最后添加一行：</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$PATH:/usr/local/hadoop/hadoop-2.8.5/sbin:/usr/local/hadoop/hadoop-2.8.5/bin</span><br></pre></td></tr></table></figure></div>
+<p>然后按下<code>esc</code>，输入<code>:wq</code>写入文件。</p>
+<h2 id="启动Hadoop"><a href="#启动Hadoop" class="headerlink" title="启动Hadoop"></a>启动Hadoop</h2><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start-all.sh</span><br></pre></td></tr></table></figure></div>
+<h2 id="HDFS命令"><a href="#HDFS命令" class="headerlink" title="HDFS命令"></a>HDFS命令</h2><h3 id="查看HDFS上当前目录下所有文件"><a href="#查看HDFS上当前目录下所有文件" class="headerlink" title="查看HDFS上当前目录下所有文件"></a>查看HDFS上当前目录下所有文件</h3><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -ls /</span><br></pre></td></tr></table></figure></div>
+<h3 id="递归查看HDFS上当前目录下所有文件"><a href="#递归查看HDFS上当前目录下所有文件" class="headerlink" title="递归查看HDFS上当前目录下所有文件"></a>递归查看HDFS上当前目录下所有文件</h3><p>这条命令会递归进入每个文件夹，展示出所有文件。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -ls -R /</span><br></pre></td></tr></table></figure></div>
+<h3 id="在HDFS上新建文件夹"><a href="#在HDFS上新建文件夹" class="headerlink" title="在HDFS上新建文件夹"></a>在HDFS上新建文件夹</h3><h4 id="方式1-逐个建立文件夹"><a href="#方式1-逐个建立文件夹" class="headerlink" title="方式1 逐个建立文件夹"></a>方式1 逐个建立文件夹</h4><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -mkdir /user</span><br><span class="line">hadoop fs -mkdir /user/hadoop-user/</span><br></pre></td></tr></table></figure></div>
+<h4 id="方式2-递归建立文件夹"><a href="#方式2-递归建立文件夹" class="headerlink" title="方式2 递归建立文件夹"></a>方式2 递归建立文件夹</h4><p>这种方式下，如果要建立的文件夹父目录不存在则同时建立父目录的文件夹。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -mkdir -p /user/hadoop-user/</span><br></pre></td></tr></table></figure></div>
+<h3 id="本地准备一份文件"><a href="#本地准备一份文件" class="headerlink" title="本地准备一份文件"></a>本地准备一份文件</h3><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd /tmp/</span><br><span class="line">mkdir charles1</span><br><span class="line">mkdir charles2   # 为后续操作做准备</span><br><span class="line">cd charles1</span><br><span class="line">vim ds2019.txt</span><br></pre></td></tr></table></figure></div>
+<p>写入：</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="PLAIN"><figure class="iseeu highlight /plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Distributed System 2019Spring</span><br></pre></td></tr></table></figure></div>
+<p>然后按下<code>esc</code>，输入<code>:wq</code>写入文件。</p>
+<h3 id="向HDFS上传文件"><a href="#向HDFS上传文件" class="headerlink" title="向HDFS上传文件"></a>向HDFS上传文件</h3><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -put /tmp/charles1/ds2019.txt /user/hadoop-user/</span><br></pre></td></tr></table></figure></div>
+<h3 id="查看是否上传成功"><a href="#查看是否上传成功" class="headerlink" title="查看是否上传成功"></a>查看是否上传成功</h3><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -ls -R /</span><br></pre></td></tr></table></figure></div>
+<h3 id="在Terminal显示文件内容"><a href="#在Terminal显示文件内容" class="headerlink" title="在Terminal显示文件内容"></a>在Terminal显示文件内容</h3><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -cat /user/hadoop-user/ds2019.txt</span><br></pre></td></tr></table></figure></div>
+<h3 id="下载HDFS上的文件"><a href="#下载HDFS上的文件" class="headerlink" title="下载HDFS上的文件"></a>下载HDFS上的文件</h3><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -get /user/hadoop-user/ds2019.txt /tmp/charles2</span><br></pre></td></tr></table></figure></div>
+<h3 id="删除HDFS上的文件"><a href="#删除HDFS上的文件" class="headerlink" title="删除HDFS上的文件"></a>删除HDFS上的文件</h3><h4 id="方式1-删除某个文件"><a href="#方式1-删除某个文件" class="headerlink" title="方式1 删除某个文件"></a>方式1 删除某个文件</h4><div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -rm /user/hadoop-user/ds2019.txt</span><br></pre></td></tr></table></figure></div>
+<h4 id="方式2-递归删除文件夹"><a href="#方式2-递归删除文件夹" class="headerlink" title="方式2 递归删除文件夹"></a>方式2 递归删除文件夹</h4><p>若被删除的文件夹下还有文件，则一同删除</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop fs -rm -r /user/</span><br></pre></td></tr></table></figure></div>
+
       
     </div>
-    
-
-
 
     
+
     
     
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/hadoop/" rel="tag"># hadoop</a>
+          
+            <a href="/tags/distributed-system/" rel="tag"># distributed system</a>
+          
+            <a href="/tags/lab/" rel="tag"># lab</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Hadoop-installed-in-Ubuntu1604/" rel="next" title="分布式lab1：Ubuntu16.04上Hadoop环境安装">
+                <i class="fa fa-chevron-left"></i> 分布式lab1：Ubuntu16.04上Hadoop环境安装
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/hadoop-demo-wordcount/" rel="prev" title="分布式lab3：词频统计">
+                分布式lab3：词频统计 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
 
         </div>
         
@@ -483,8 +655,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -630,6 +811,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#首先"><span class="nav-number">1.</span> <span class="nav-text">首先</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#先进入root账户"><span class="nav-number">2.</span> <span class="nav-text">先进入root账户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将bin目录和sbin目录里的命令配入环境变量"><span class="nav-number">3.</span> <span class="nav-text">将bin目录和sbin目录里的命令配入环境变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动Hadoop"><span class="nav-number">4.</span> <span class="nav-text">启动Hadoop</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDFS命令"><span class="nav-number">5.</span> <span class="nav-text">HDFS命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查看HDFS上当前目录下所有文件"><span class="nav-number">5.1.</span> <span class="nav-text">查看HDFS上当前目录下所有文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#递归查看HDFS上当前目录下所有文件"><span class="nav-number">5.2.</span> <span class="nav-text">递归查看HDFS上当前目录下所有文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在HDFS上新建文件夹"><span class="nav-number">5.3.</span> <span class="nav-text">在HDFS上新建文件夹</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方式1-逐个建立文件夹"><span class="nav-number">5.3.1.</span> <span class="nav-text">方式1 逐个建立文件夹</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方式2-递归建立文件夹"><span class="nav-number">5.3.2.</span> <span class="nav-text">方式2 递归建立文件夹</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本地准备一份文件"><span class="nav-number">5.4.</span> <span class="nav-text">本地准备一份文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#向HDFS上传文件"><span class="nav-number">5.5.</span> <span class="nav-text">向HDFS上传文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看是否上传成功"><span class="nav-number">5.6.</span> <span class="nav-text">查看是否上传成功</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在Terminal显示文件内容"><span class="nav-number">5.7.</span> <span class="nav-text">在Terminal显示文件内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下载HDFS上的文件"><span class="nav-number">5.8.</span> <span class="nav-text">下载HDFS上的文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除HDFS上的文件"><span class="nav-number">5.9.</span> <span class="nav-text">删除HDFS上的文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方式1-删除某个文件"><span class="nav-number">5.9.1.</span> <span class="nav-text">方式1 删除某个文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方式2-递归删除文件夹"><span class="nav-number">5.9.2.</span> <span class="nav-text">方式2 递归删除文件夹</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -802,6 +1000,8 @@
 
 
 
+
+  
 
 
   
