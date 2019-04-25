@@ -128,17 +128,23 @@
 
 
 
-  <meta name="description" content="Have a nice coding!🍻">
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags cloud">
-<meta property="og:url" content="https://www.keyanjie.net/tags/index.html">
+  <meta name="description" content="语音识别时，人说一句“Hello”，尽管发音很标准，但是由于有停顿、换气或是其他原因，音频信息中的“H”音很容易对不上文本信息中的“H”。这就需要预处理对齐问题，但是用人工的方法手动对齐比较音频信息和文本信息，需要耗费大量的人力财力。CTC就是处理这一类对齐问题而生的技术。">
+<meta name="keywords" content="loss,deep learning,note">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分布式lab1：CTC Loss学习笔记">
+<meta property="og:url" content="https://www.keyanjie.net/CTC Loss学习笔记/index.html">
 <meta property="og:site_name" content="Alan&#39;s Notebook🦍">
-<meta property="og:description" content="Have a nice coding!🍻">
+<meta property="og:description" content="语音识别时，人说一句“Hello”，尽管发音很标准，但是由于有停顿、换气或是其他原因，音频信息中的“H”音很容易对不上文本信息中的“H”。这就需要预处理对齐问题，但是用人工的方法手动对齐比较音频信息和文本信息，需要耗费大量的人力财力。CTC就是处理这一类对齐问题而生的技术。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-11T08:00:30.089Z">
+<meta property="og:image" content="https://latex.codecogs.com/svg.latex?\inline&space;y_c^t">
+<meta property="og:image" content="https://www.keyanjie.net/CTC%20Loss学习笔记/ctc_loss_1.png">
+<meta property="og:image" content="https://www.keyanjie.net/CTC%20Loss学习笔记/ctc_loss_2.png">
+<meta property="og:image" content="https://www.keyanjie.net/CTC%20Loss学习笔记/ctc_loss_3.png">
+<meta property="og:updated_time" content="2019-04-25T07:34:18.454Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tags cloud">
-<meta name="twitter:description" content="Have a nice coding!🍻">
+<meta name="twitter:title" content="分布式lab1：CTC Loss学习笔记">
+<meta name="twitter:description" content="语音识别时，人说一句“Hello”，尽管发音很标准，但是由于有停顿、换气或是其他原因，音频信息中的“H”音很容易对不上文本信息中的“H”。这就需要预处理对齐问题，但是用人工的方法手动对齐比较音频信息和文本信息，需要耗费大量的人力财力。CTC就是处理这一类对齐问题而生的技术。">
+<meta name="twitter:image" content="https://latex.codecogs.com/svg.latex?\inline&space;y_c^t">
 
 
 
@@ -146,7 +152,7 @@
 
   
   
-  <link rel="canonical" href="https://www.keyanjie.net/tags/">
+  <link rel="canonical" href="https://www.keyanjie.net/CTC Loss学习笔记/">
 
 
 
@@ -156,7 +162,7 @@
   };
 </script>
 
-  <title>tags cloud | Alan's Notebook🦍</title>
+  <title>分布式lab1：CTC Loss学习笔记 | Alan's Notebook🦍</title>
   
 
 
@@ -285,7 +291,7 @@
         
         
           
-          <li class="menu-item menu-item-tags🍨 menu-item-active">
+          <li class="menu-item menu-item-tags🍨">
 
     
     
@@ -342,31 +348,6 @@
   
     
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
   
 
   
@@ -414,141 +395,274 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.keyanjie.net/CTC Loss学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Alan Ke">
+      <meta itemprop="description" content="Have a nice coding!🍻">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Alan's Notebook🦍">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">tags cloud
-
-</h1>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
+          <h1 class="post-title" itemprop="name headline">分布式lab1：CTC Loss学习笔记
+
               
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-              20 tags in total
-            </div>
-            <div class="tag-cloud-tags">
-              
-                <a href="/tags/algorithm/" style="font-size: 24px; color: #4f4f4f">algorithm</a> <a href="/tags/cloud-computing/" style="font-size: 12px; color: #ccc">cloud computing</a> <a href="/tags/cnn/" style="font-size: 12px; color: #ccc">cnn</a> <a href="/tags/deep-learning/" style="font-size: 12px; color: #ccc">deep learning</a> <a href="/tags/demo/" style="font-size: 12px; color: #ccc">demo</a> <a href="/tags/distributed-system/" style="font-size: 30px; color: #111">distributed system</a> <a href="/tags/dnn/" style="font-size: 24px; color: #4f4f4f">dnn</a> <a href="/tags/dynamic-programming/" style="font-size: 12px; color: #ccc">dynamic programming</a> <a href="/tags/greedy/" style="font-size: 12px; color: #ccc">greedy</a> <a href="/tags/hadoop/" style="font-size: 18px; color: #8e8e8e">hadoop</a> <a href="/tags/lab/" style="font-size: 30px; color: #111">lab</a> <a href="/tags/leetcode/" style="font-size: 12px; color: #ccc">leetcode</a> <a href="/tags/loss/" style="font-size: 12px; color: #ccc">loss</a> <a href="/tags/math-proof/" style="font-size: 12px; color: #ccc">math proof</a> <a href="/tags/note/" style="font-size: 12px; color: #ccc">note</a> <a href="/tags/python/" style="font-size: 12px; color: #ccc">python</a> <a href="/tags/review-for-exam/" style="font-size: 24px; color: #4f4f4f">review for exam</a> <a href="/tags/round/" style="font-size: 12px; color: #ccc">round</a> <a href="/tags/study-note/" style="font-size: 12px; color: #ccc">study note</a> <a href="/tags/tensorflow/" style="font-size: 12px; color: #ccc">tensorflow</a>
-              
-            </div>
-          </div>
+            
+          </h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-12-11 19:12:14" itemprop="dateCreated datePublished" datetime="2018-12-11T19:12:14+08:00">2018-12-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-04-25 15:34:18" itemprop="dateModified" datetime="2019-04-25T15:34:18+08:00">2019-04-25</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/artificial-intelligence/" itemprop="url" rel="index"><span itemprop="name">artificial intelligence</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/CTC Loss学习笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/CTC Loss学习笔记/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>语音识别时，人说一句“Hello”，尽管发音很标准，但是由于有停顿、换气或是其他原因，音频信息中的“H”音很容易对不上文本信息中的“H”。这就需要预处理对齐问题，但是用人工的方法手动对齐比较音频信息和文本信息，需要耗费大量的人力财力。CTC就是处理这一类对齐问题而生的技术。</p>
+<a id="more"></a>
+<h1 id="基本过程"><a href="#基本过程" class="headerlink" title="基本过程"></a>基本过程</h1><p>在语音识别中，CTC会逐帧辨别发的什么音。如果通过发音辨别出了一个字母，那么这一帧就标记为这个字母；如果没声音就标记为blank，表示这是两个单词中间的空格；如果分辨不出来是啥，就标记为<span style="color: #ff0000;">ϵ</span> (ctc blank)。所以将“Hello”的音频信息进行辨别后，会得到的结果可能会是：“<span style="color: #ff0000;">ϵϵ</span>Hell<span style="color: #ff0000;">ϵ</span><span style="color: #ff0000;">ϵ</span>llo<span style="color: #ff0000;">ϵ</span>”，也可能是“Hee<span style="color: #ff0000;">ϵ</span><span style="color: #ff0000;">ϵ</span>ll<span style="color: #ff0000;">ϵ</span><span style="color: #ff0000;">ϵ</span>loo<span style="color: #ff0000;">ϵ</span><span style="color: #ff0000;">ϵ</span>”，还有其他很多种可能。</p>
+<p>ctc的处理过程分为2步：</p>
+<ol>
+<li>将识别结果中相邻的重复字符删掉，那么“<span style="color: #ff0000;">ϵϵ</span>Hell<span style="color: #ff0000;">ϵ</span><span style="color: #ff0000;">ϵ</span>llo<span style="color: #ff0000;">ϵ</span>”就变成了“<span style="color: #ff0000;">ϵ</span>Hel<span style="color: #ff0000;">ϵ</span>lo<span style="color: #ff0000;">ϵ</span>”，“Hee<span style="color: #ff0000;">ϵ</span><span style="color: #ff0000;">ϵ</span>ll<span style="color: #ff0000;">ϵ</span><span style="color: #ff0000;">ϵ</span>loo<span style="color: #ff0000;">ϵ</span><span style="color: #ff0000;">ϵ</span>”就变成了“He<span style="color: #ff0000;">ϵ</span>l<span style="color: #ff0000;">ϵ</span>lo<span style="color: #ff0000;">ϵ</span>”；</li>
+<li><span style="color: #000000;">删去</span><span style="color: #ff0000;">ϵ</span><span style="color: #000000;">，</span>“<span style="color: #ff0000;">ϵ</span>Hel<span style="color: #ff0000;">ϵ</span>lo<span style="color: #ff0000;">ϵ</span>”和“He<span style="color: #ff0000;">ϵ</span>l<span style="color: #ff0000;">ϵ</span>lo<span style="color: #ff0000;">ϵ</span>”就都变成了“Hello”。</li>
+</ol>
+<p>我们的目的是求出P(lable|x)，其中x是输入的数据，lable是标签数据，即正确的输出。P(lable|x)表示的是，如果在输入数据为x的条件下，能够正确输出标签数据的概率有多大，这个概率肯定是越大越好，如果P(lable|x)=1，那么就说明百分之百可以正确输出。</p>
+<p>Loss的定义如下，如果P(lable|x)越接近1，Loss就接近于0；如果P(lable|x)越接近0，Loss就会越大：</p>
+<p>$$<br>Loss=-\ln P(lable|x)<br>$$</p>
+<p>P(lable|x)如何计算呢？从上面ctc的处理过程可以看出来，有很多种序列最终都可以处理为标签数据，“<span style="color: #ff0000;">ϵϵ</span>Hell<span style="color: #ff0000;">ϵ</span><span style="color: #ff0000;">ϵ</span>llo<span style="color: #ff0000;">ϵ</span>”就是一条可以被处理为“Hello”的序列，记其为seq，那么产生seq的概率有多少呢？这里<img title="y_c^t" src="https://latex.codecogs.com/svg.latex?\inline&amp;space;y_c^t">表示在第t时间步生成字符c的概率有多少，那么要生成seq这么长的序列，就要把生成每个字符的概率乘起来。</p>
+<p>$$<br>P(seq|x)=y_\epsilon^1 \times y_\epsilon^2 \times y_H^3 \times y_e^4 \times y_l^5 \times y_l^6 \times y_\epsilon^7 \times y_\epsilon^8 \times y_l^9 \times y_l^{10} \times y_o^{11} \times y_\epsilon^{12}<br>$$</p>
+<p>如果再用π来表示一个序列的集合，这个集合中所有的序列和seq一样，经过ctc处理过后，都可以变为标签数据。那么将这个集合中所有序列的概率加起来，就是P(lable|x)。</p>
+<p>$$<br>P(lable|x)=\sum_{\pi}P(\pi|x)<br>$$</p>
+<p>可是，π集合中有多少序列呢，茫茫多的序列都可以转为lable。如果lable是“cat”的话，那么可以转为“cat”的序列数，可以通过下图可以看出来，白色节点表示识别为字母，黑色节点表示识别不出来是个啥，标记为“<span style="color: #ff0000;">ϵ</span>”（图片来自网络）：</p>
+<p><img src="/CTC Loss学习笔记/ctc_loss_1.png" alt="ctc_loss_1"></p>
+<p>每一条路径都是一种语音识别的结果，而且此结果可以经由ctc处理后转换为标签数据。这才3个字母，就这么条路径，如果成百上千的单词，一一计算每种可能的话，这个计算量很大。</p>
+<h1 id="使用动态规划优化"><a href="#使用动态规划优化" class="headerlink" title="使用动态规划优化"></a>使用动态规划优化</h1><p>动态规划的思想是自顶向下写一个递归式，然后自底向上算出来。</p>
+<p>如上文所述，在t个时间步走到字符“u”的路线有很多条，如果seq是其中一条路线，那么其概率为：</p>
+
+$$
+P(seq|x)=\prod_{i=1}^{t} y^i_{{seq}_i}
+$$
+
+
+<p>这里定义一个函数α(t,u)，表示在t个时间步走到字符“u”的概率。用π表示所有可以在t个时间步走到字符“u”的路线集合，那么有：</p>
+
+$$
+\alpha(t,u)=\sum_{\pi}\prod_{i=1}^{t} y^i_{\pi_i}
+$$
+
+
+<p>再看看刚刚开始那个例子“Hello”，如果当前在第t个时间步，判别成了一个字符“l”<span style="color: #ff0000;"><span style="color: #000000;">，那么在第t-1个时间步上，可以是哪些字符呢？</span></span></p>
+<p>这要分2种情况讨论：</p>
+<h2 id="第一种情况"><a href="#第一种情况" class="headerlink" title="第一种情况"></a>第一种情况</h2><p>如果“Hello”的第一个“l”，也就是”He<span style="color: #ff0000;">l</span>lo”标红的那个“l”，那么在第t-1个时间步上，可以是“e”、“<span style="color: #ff0000;">ϵ</span>”、“l”三种情况；</p>
+<p><img src="/CTC Loss学习笔记/ctc_loss_2.png" alt="ctc_loss_2"></p>
+<p>所以要求第t个时间步走到“l”的概率，就要先求出在t-1个时间步走到“e”、“<span style="color: #ff0000;">ϵ</span>”、“l”的概率，求和之后，再乘以$y_c^t$，即：</p>
+<p>$$<br>\alpha(t,u)=y_u^t[\alpha(t-1,u)+\alpha(t-1,u-1)+\alpha(t-1,u-2)]<br>$$</p>
+<p>这里u-1和u-2表示字符u的上一个字符和上两个字符。</p>
+<h2 id="第二种情况"><a href="#第二种情况" class="headerlink" title="第二种情况"></a>第二种情况</h2><p>如果是“Hello”的第二个“l”，也就是“Hel<span style="color: #ff0000;">l</span>o”标红的那个“l”，那么在第t-1个时间步上，只可以是“<span style="color: #ff0000;">ϵ</span>”、“l”两种情况。要是算上上面的“l”，那么这两个“l”会合并成1个；如果是在t个时间步上走到了“<span style="color: #ff0000;">ϵ</span>”这个字符，那么在t-1个时间步上，也只能是“l”、“<span style="color: #ff0000;">ϵ</span>”两种情况。要是也算上上面一个“<span style="color: #ff0000;">ϵ</span>”，那么会跨过中间这个“l”，这个字符就不输出了。</p>
+<p><img src="/CTC Loss学习笔记/ctc_loss_3.png" alt="ctc_loss_3"></p>
+<p>所以第t个时间步走到“l”或”<span style="color: #ff0000;">ϵ</span>“，只能横着走过来，或从上一个字符过来，概率即：<br>$$<br>\alpha(t,u)=y_u^t[\alpha(t-1,u)+\alpha(t-1,u-1)]<br>$$</p>
+<p>这样递归公式就定义好了，再算一下递归式子的底：</p>
+<p>$$<br>\alpha(1,1)=y_\epsilon^1<br>$$</p>
+<p>$$<br>\alpha(1,2)=y_h^1<br>$$</p>
+<p>$$<br>\alpha(1,u)=0 \quad u&gt;2<br>$$</p>
+<p>从这个底开始，使用递推公式自底向上的计算，直至算出$\alpha(T,lable)+\alpha(T,lable-1)$，T表示总时间步，所有可以经过ctc转化为“Hello”的序列，最后一个字符可以是“<span style="color: #ff0000;">ϵ</span>”也可以是“o”。label表示所最后一个字符是“<span style="color: #ff0000;">ϵ</span>”，label-1表示最后一个字符是“o”，这样走出的路线都可以经过ctc转化为“Hello”。</p>
+
       
     </div>
-    
-
-
 
     
+
     
     
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/loss/" rel="tag"># loss</a>
+          
+            <a href="/tags/deep-learning/" rel="tag"># deep learning</a>
+          
+            <a href="/tags/note/" rel="tag"># note</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/动态规划 - Dynamic Programming/" rel="next" title="动态规划 - Dynamic Programming">
+                <i class="fa fa-chevron-left"></i> 动态规划 - Dynamic Programming
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/删数问题的贪心选择策略证明/" rel="prev" title="删数问题的贪心选择策略证明">
+                删数问题的贪心选择策略证明 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
 
         </div>
         
@@ -568,8 +682,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -723,6 +846,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本过程"><span class="nav-number">1.</span> <span class="nav-text">基本过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用动态规划优化"><span class="nav-number">2.</span> <span class="nav-text">使用动态规划优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一种情况"><span class="nav-number">2.1.</span> <span class="nav-text">第一种情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二种情况"><span class="nav-number">2.2.</span> <span class="nav-text">第二种情况</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -895,6 +1035,8 @@
 
 
 
+
+  
 
 
   
