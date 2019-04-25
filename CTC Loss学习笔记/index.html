@@ -136,15 +136,14 @@
 <meta property="og:site_name" content="Alan&#39;s Notebook🦍">
 <meta property="og:description" content="语音识别时，人说一句“Hello”，尽管发音很标准，但是由于有停顿、换气或是其他原因，音频信息中的“H”音很容易对不上文本信息中的“H”。这就需要预处理对齐问题，但是用人工的方法手动对齐比较音频信息和文本信息，需要耗费大量的人力财力。CTC就是处理这一类对齐问题而生的技术。">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://latex.codecogs.com/svg.latex?\inline&space;y_c^t">
 <meta property="og:image" content="https://www.keyanjie.net/CTC%20Loss学习笔记/ctc_loss_1.png">
 <meta property="og:image" content="https://www.keyanjie.net/CTC%20Loss学习笔记/ctc_loss_2.png">
 <meta property="og:image" content="https://www.keyanjie.net/CTC%20Loss学习笔记/ctc_loss_3.png">
-<meta property="og:updated_time" content="2019-04-25T07:36:39.718Z">
+<meta property="og:updated_time" content="2019-04-25T07:37:46.704Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式lab1：CTC Loss学习笔记">
 <meta name="twitter:description" content="语音识别时，人说一句“Hello”，尽管发音很标准，但是由于有停顿、换气或是其他原因，音频信息中的“H”音很容易对不上文本信息中的“H”。这就需要预处理对齐问题，但是用人工的方法手动对齐比较音频信息和文本信息，需要耗费大量的人力财力。CTC就是处理这一类对齐问题而生的技术。">
-<meta name="twitter:image" content="https://latex.codecogs.com/svg.latex?\inline&space;y_c^t">
+<meta name="twitter:image" content="https://www.keyanjie.net/CTC%20Loss学习笔记/ctc_loss_1.png">
 
 
 
@@ -469,7 +468,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-25 15:36:39" itemprop="dateModified" datetime="2019-04-25T15:36:39+08:00">2019-04-25</time>
+                <time title="Modified: 2019-04-25 15:37:46" itemprop="dateModified" datetime="2019-04-25T15:37:46+08:00">2019-04-25</time>
               
             
           </span>
@@ -545,7 +544,7 @@
 <p>我们的目的是求出P(lable|x)，其中x是输入的数据，lable是标签数据，即正确的输出。P(lable|x)表示的是，如果在输入数据为x的条件下，能够正确输出标签数据的概率有多大，这个概率肯定是越大越好，如果P(lable|x)=1，那么就说明百分之百可以正确输出。</p>
 <p>Loss的定义如下，如果P(lable|x)越接近1，Loss就接近于0；如果P(lable|x)越接近0，Loss就会越大：</p>
 <p>$$<br>Loss=-\ln P(lable|x)<br>$$</p>
-<p>P(lable|x)如何计算呢？从上面ctc的处理过程可以看出来，有很多种序列最终都可以处理为标签数据，“<span style="color: #ff0000;">ϵϵ</span>Hell<span style="color: #ff0000;">ϵ</span><span style="color: #ff0000;">ϵ</span>llo<span style="color: #ff0000;">ϵ</span>”就是一条可以被处理为“Hello”的序列，记其为seq，那么产生seq的概率有多少呢？这里<img title="y_c^t" src="https://latex.codecogs.com/svg.latex?\inline&amp;space;y_c^t">表示在第t时间步生成字符c的概率有多少，那么要生成seq这么长的序列，就要把生成每个字符的概率乘起来。</p>
+<p>P(lable|x)如何计算呢？从上面ctc的处理过程可以看出来，有很多种序列最终都可以处理为标签数据，“<span style="color: #ff0000;">ϵϵ</span>Hell<span style="color: #ff0000;">ϵ</span><span style="color: #ff0000;">ϵ</span>llo<span style="color: #ff0000;">ϵ</span>”就是一条可以被处理为“Hello”的序列，记其为seq，那么产生seq的概率有多少呢？这里$y_c^t$表示在第t时间步生成字符c的概率有多少，那么要生成seq这么长的序列，就要把生成每个字符的概率乘起来。</p>
 <p>$$<br>P(seq|x)=y_\epsilon^1 \times y_\epsilon^2 \times y_H^3 \times y_e^4 \times y_l^5 \times y_l^6 \times y_\epsilon^7 \times y_\epsilon^8 \times y_l^9 \times y_l^{10} \times y_o^{11} \times y_\epsilon^{12}<br>$$</p>
 <p>如果再用π来表示一个序列的集合，这个集合中所有的序列和seq一样，经过ctc处理过后，都可以变为标签数据。那么将这个集合中所有序列的概率加起来，就是P(lable|x)。</p>
 <p>$$<br>P(lable|x)=\sum_{\pi}P(\pi|x)<br>$$</p>
