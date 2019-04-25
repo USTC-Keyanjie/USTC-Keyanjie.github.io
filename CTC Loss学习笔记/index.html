@@ -140,7 +140,7 @@
 <meta property="og:image" content="https://www.keyanjie.net/CTC%20Loss学习笔记/ctc_loss_1.png">
 <meta property="og:image" content="https://www.keyanjie.net/CTC%20Loss学习笔记/ctc_loss_2.png">
 <meta property="og:image" content="https://www.keyanjie.net/CTC%20Loss学习笔记/ctc_loss_3.png">
-<meta property="og:updated_time" content="2019-04-25T07:34:18.454Z">
+<meta property="og:updated_time" content="2019-04-25T07:36:39.718Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分布式lab1：CTC Loss学习笔记">
 <meta name="twitter:description" content="语音识别时，人说一句“Hello”，尽管发音很标准，但是由于有停顿、换气或是其他原因，音频信息中的“H”音很容易对不上文本信息中的“H”。这就需要预处理对齐问题，但是用人工的方法手动对齐比较音频信息和文本信息，需要耗费大量的人力财力。CTC就是处理这一类对齐问题而生的技术。">
@@ -469,7 +469,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-25 15:34:18" itemprop="dateModified" datetime="2019-04-25T15:34:18+08:00">2019-04-25</time>
+                <time title="Modified: 2019-04-25 15:36:39" itemprop="dateModified" datetime="2019-04-25T15:36:39+08:00">2019-04-25</time>
               
             
           </span>
@@ -1374,6 +1374,46 @@ $$
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
   
 
 
