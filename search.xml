@@ -8,7 +8,7 @@
       <link href="/sky-castle/"/>
       <url>/sky-castle/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>反正放假也没人来我博客玩，我就随便更点好了。五一快乐~</p><a id="more"></a><p>视频加载有点慢，原谅我付不起cdn，请耐心等待…</p><video width="480" height="320" controls><br><source src="sky castle.mp4"><br></video><div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"theme":"#FADFA3","video":{"url":"/sky-castle/sky%20castle.mp4"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>反正放假也没人来我博客玩，我就随便更点好了。五一快乐~</p><a id="more"></a><p>视频加载有点慢，原谅我付不起cdn，请耐心等待…</p><div id="dplayer1" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer1"),"theme":"#FADFA3","video":{"url":"/sky-castle/sky%20castle.mp4"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>]]></content>
       
       
       <categories>
@@ -33,7 +33,7 @@
       <link href="/lemon/"/>
       <url>/lemon/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>🤭<br><a id="more"></a></p><p>视频加载有点慢，原谅我付不起cdn，请耐心等待…</p><video width="480" height="320" controls><br><source src="lemon.mp4"><br></video>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>🤭<br><a id="more"></a></p><p>视频加载有点慢，原谅我付不起cdn，请耐心等待…</p><div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"theme":"#FADFA3","video":{"url":"/lemon/lemon.mp4"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>]]></content>
       
       
       <categories>
