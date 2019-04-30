@@ -4,6 +4,50 @@
   
     
     <entry>
+      <title>sky castle</title>
+      <link href="/sky-castle/"/>
+      <url>/sky-castle/</url>
+      
+        <content type="html"><![CDATA[<p>反正放假也没人来我博客玩，我就随便更点好了😜</p><p><img src="/sky-castle/sky castle.mp4" alt="sky castle"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> piano </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> piano </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>lemon</title>
+      <link href="/lemon/"/>
+      <url>/lemon/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> uncategorized </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>分布式与云计算复习笔记</title>
       <link href="/studynote-of-distributed-system/"/>
       <url>/studynote-of-distributed-system/</url>
