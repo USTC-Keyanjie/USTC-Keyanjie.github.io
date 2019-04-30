@@ -8,7 +8,7 @@
       <link href="/sky-castle/"/>
       <url>/sky-castle/</url>
       
-        <content type="html"><![CDATA[<p>反正放假也没人来我博客玩，我就随便更点好了😜</p><p><img src="/sky-castle/sky castle.mp4" alt="sky castle"></p>]]></content>
+        <content type="html"><![CDATA[<p>反正放假也没人来我博客玩，我就随便更点好了😜</p><video width="480" height="320" controls><br><source src="sky-castle/sky castle.mp4"><br></video>]]></content>
       
       
       <categories>
