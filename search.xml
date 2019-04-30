@@ -33,7 +33,7 @@
       <link href="/lemon/"/>
       <url>/lemon/</url>
       
-        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><a id="more"></a><p>视频加载有点慢，原谅我付不起cdn，请耐心等待…</p><video width="480" height="320" controls><br><source src="lemon/lemon.mp4"><br></video>]]></content>
+        <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>🤭</p><a id="more"></a><p>视频加载有点慢，原谅我付不起cdn，请耐心等待…</p><video width="480" height="320" controls><br><source src="lemon/lemon.mp4"><br></video>]]></content>
       
       
       <categories>
