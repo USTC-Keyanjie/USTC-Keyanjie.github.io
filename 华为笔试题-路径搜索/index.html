@@ -128,18 +128,18 @@
 
 
 
-  <meta name="description" content="题目题目描述一张N*M的地图上每个点的海拔高度不同；从当前点只能访问上、下、左、右四个点中还没有到达过的点，且下一步选择的点的海拔高度必须高于当前点；求从地图中的点A到点B总的路径条数除以$10^9$的余数。地图左上角坐标为(0,0)，右下角坐标为(N-1,M-1)。 输入描述 第一行输入两个整数N，M(0&amp;lt;N≤600, 0&amp;lt;M≤600)用空格隔开；接下来N行输入，每行M个整数用空格隔">
+  <meta name="description" content="华为笔试题。感觉考DFS的使用。">
 <meta name="keywords" content="algorithm,huawei,oj">
 <meta property="og:type" content="article">
 <meta property="og:title" content="华为笔试题 路径搜索">
 <meta property="og:url" content="https://www.keyanjie.net/华为笔试题-路径搜索/index.html">
 <meta property="og:site_name" content="Alan&#39;s Notebook🦍">
-<meta property="og:description" content="题目题目描述一张N*M的地图上每个点的海拔高度不同；从当前点只能访问上、下、左、右四个点中还没有到达过的点，且下一步选择的点的海拔高度必须高于当前点；求从地图中的点A到点B总的路径条数除以$10^9$的余数。地图左上角坐标为(0,0)，右下角坐标为(N-1,M-1)。 输入描述 第一行输入两个整数N，M(0&amp;lt;N≤600, 0&amp;lt;M≤600)用空格隔开；接下来N行输入，每行M个整数用空格隔">
+<meta property="og:description" content="华为笔试题。感觉考DFS的使用。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-11T10:44:27.276Z">
+<meta property="og:updated_time" content="2019-05-11T12:07:51.298Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="华为笔试题 路径搜索">
-<meta name="twitter:description" content="题目题目描述一张N*M的地图上每个点的海拔高度不同；从当前点只能访问上、下、左、右四个点中还没有到达过的点，且下一步选择的点的海拔高度必须高于当前点；求从地图中的点A到点B总的路径条数除以$10^9$的余数。地图左上角坐标为(0,0)，右下角坐标为(N-1,M-1)。 输入描述 第一行输入两个整数N，M(0&amp;lt;N≤600, 0&amp;lt;M≤600)用空格隔开；接下来N行输入，每行M个整数用空格隔">
+<meta name="twitter:description" content="华为笔试题。感觉考DFS的使用。">
 
 
 
@@ -464,7 +464,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-11 18:44:27" itemprop="dateModified" datetime="2019-05-11T18:44:27+08:00">2019-05-11</time>
+                <time title="Modified: 2019-05-11 20:07:51" itemprop="dateModified" datetime="2019-05-11T20:07:51+08:00">2019-05-11</time>
               
             
           </span>
@@ -529,7 +529,9 @@
       
 
       
-        <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>一张N*M的地图上每个点的海拔高度不同；从当前点只能访问上、下、左、右四个点中还没有到达过的点，且下一步选择的点的海拔高度必须高于当前点；求从地图中的点A到点B总的路径条数除以$10^9$的余数。地图左上角坐标为(0,0)，右下角坐标为(N-1,M-1)。</p>
+        <p>华为笔试题。感觉考DFS的使用。</p>
+<a id="more"></a>
+<h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>一张N*M的地图上每个点的海拔高度不同；从当前点只能访问上、下、左、右四个点中还没有到达过的点，且下一步选择的点的海拔高度必须高于当前点；求从地图中的点A到点B总的路径条数除以$10^9$的余数。地图左上角坐标为(0,0)，右下角坐标为(N-1,M-1)。</p>
 <h2 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述"></a>输入描述</h2><blockquote>
 <p>第一行输入两个整数N，M(0&lt;N≤600, 0&lt;M≤600)用空格隔开；接下来N行输入，每行M个整数用空格隔开，代表对应位置的海拔高度(0≤海拔高度≤360000)；最后一行四个整数X,Y,Z,W；前两个代表A的坐标为(X,Y)；后两个代表B的坐标为(Z,W)；输入保证A、B坐标不同，且坐标合法。</p>
 </blockquote>
