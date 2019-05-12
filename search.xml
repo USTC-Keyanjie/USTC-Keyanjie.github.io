@@ -111,9 +111,9 @@
             
             <tag> distributed system </tag>
             
-            <tag> lab </tag>
-            
             <tag> demo </tag>
+            
+            <tag> lab </tag>
             
         </tags>
       
@@ -138,11 +138,11 @@
       
         <tags>
             
-            <tag> hadoop </tag>
-            
             <tag> distributed system </tag>
             
             <tag> lab </tag>
+            
+            <tag> hadoop </tag>
             
         </tags>
       
@@ -167,11 +167,11 @@
       
         <tags>
             
-            <tag> hadoop </tag>
-            
             <tag> distributed system </tag>
             
             <tag> lab </tag>
+            
+            <tag> hadoop </tag>
             
         </tags>
       
@@ -279,11 +279,11 @@
       
         <tags>
             
+            <tag> note </tag>
+            
             <tag> loss </tag>
             
             <tag> deep learning </tag>
-            
-            <tag> note </tag>
             
         </tags>
       
