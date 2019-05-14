@@ -137,7 +137,7 @@
 <meta property="og:description" content="斐波那契数的计算方式是：$$fib(n)=\left\{\begin{matrix}0 &amp;amp; n=0\\1 &amp;amp; n=1\\fib(n-1)+fib(n-2) &amp;amp; n\geq 2 \\\end{matrix}\right.$$之前用这个计算公式写出了时间复杂度O(n)空间复杂度O(1)的动态规划迭代算法。而这篇文章主要是讲讲时间复杂度O(log(n))空间复杂度O(1)算法的思">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://www.keyanjie.net/one-more-thing-about-fibonacci/fib2729.jpg">
-<meta property="og:updated_time" content="2019-05-14T15:10:07.112Z">
+<meta property="og:updated_time" content="2019-05-14T15:11:36.507Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="时间复杂度O(log(n))空间复杂度O(1)求斐波那契数列第n项">
 <meta name="twitter:description" content="斐波那契数的计算方式是：$$fib(n)=\left\{\begin{matrix}0 &amp;amp; n=0\\1 &amp;amp; n=1\\fib(n-1)+fib(n-2) &amp;amp; n\geq 2 \\\end{matrix}\right.$$之前用这个计算公式写出了时间复杂度O(n)空间复杂度O(1)的动态规划迭代算法。而这篇文章主要是讲讲时间复杂度O(log(n))空间复杂度O(1)算法的思">
@@ -466,7 +466,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-14 23:10:07" itemprop="dateModified" datetime="2019-05-14T23:10:07+08:00">2019-05-14</time>
+                <time title="Modified: 2019-05-14 23:11:36" itemprop="dateModified" datetime="2019-05-14T23:11:36+08:00">2019-05-14</time>
               
             
           </span>
@@ -605,7 +605,7 @@
 </li>
 <li><p>跳过第一个为1的bit位，所有的数第一个有效bit位都是1，上面的计算图也可以看出跳过这个bit位，从第2个bit位开始；</p>
 </li>
-<li><p>此时<code>a</code>和<code>b</code>两个数就是$fib(1)$和$fib(0)$。设置<code>tmp</code>变量，用于奇数运算时，存储$fib(a)+fib(b)$的值。设置<code>c</code>和<code>d</code>变量，用于接收运算结果。</p>
+<li><p>此时<code>a</code>和<code>b</code>两个数就是$fib(1)$和$fib(0)$。设置<code>tmp</code>变量，用于奇数运算时，存储$fib(a)+fib(b)$的值。设置<code>c</code>和<code>d</code>变量，用于接收运算结果；</p>
 </li>
 <li><p>处理完后<code>c</code>的值赋予<code>a</code>，<code>d</code>的值赋予<code>b</code>，进入下一轮迭代；</p>
 </li>
