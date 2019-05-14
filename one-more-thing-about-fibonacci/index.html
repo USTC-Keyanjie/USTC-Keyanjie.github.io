@@ -128,18 +128,18 @@
 
 
 
-  <meta name="description" content="round函数是Python中常用的四舍五入的函数，但是今天试用了一下发现有点小坑。">
-<meta name="keywords" content="python,round">
+  <meta name="description" content="真的很喜欢斐波那契数列，也经常思考这个问题。受同学启发，想到这个算法。">
+<meta name="keywords" content="note,algorithm,proof,math,fib,dp">
 <meta property="og:type" content="article">
-<meta property="og:title" content="round(number[, ndigits])">
-<meta property="og:url" content="https://www.keyanjie.net/round(number[, ndigits])/index.html">
+<meta property="og:title" content="时间复杂度O(log(n))空间复杂度O(1)求斐波那契数列第n项">
+<meta property="og:url" content="https://www.keyanjie.net/one-more-thing-about-fibonacci/index.html">
 <meta property="og:site_name" content="Alan&#39;s Notebook🦍">
-<meta property="og:description" content="round函数是Python中常用的四舍五入的函数，但是今天试用了一下发现有点小坑。">
+<meta property="og:description" content="真的很喜欢斐波那契数列，也经常思考这个问题。受同学启发，想到这个算法。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-03T08:13:08.232Z">
+<meta property="og:updated_time" content="2019-05-14T04:25:41.820Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="round(number[, ndigits])">
-<meta name="twitter:description" content="round函数是Python中常用的四舍五入的函数，但是今天试用了一下发现有点小坑。">
+<meta name="twitter:title" content="时间复杂度O(log(n))空间复杂度O(1)求斐波那契数列第n项">
+<meta name="twitter:description" content="真的很喜欢斐波那契数列，也经常思考这个问题。受同学启发，想到这个算法。">
 
 
 
@@ -147,7 +147,7 @@
 
   
   
-  <link rel="canonical" href="https://www.keyanjie.net/round(number[, ndigits])/">
+  <link rel="canonical" href="https://www.keyanjie.net/one-more-thing-about-fibonacci/">
 
 
 
@@ -157,7 +157,7 @@
   };
 </script>
 
-  <title>round(number[, ndigits]) | Alan's Notebook🦍</title>
+  <title>时间复杂度O(log(n))空间复杂度O(1)求斐波那契数列第n项 | Alan's Notebook🦍</title>
   
 
 
@@ -404,7 +404,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.keyanjie.net/round(number[, ndigits])/">
+    <link itemprop="mainEntityOfPage" href="https://www.keyanjie.net/one-more-thing-about-fibonacci/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Alan Ke">
@@ -421,7 +421,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">round(number[, ndigits])
+          <h1 class="post-title" itemprop="name headline">时间复杂度O(log(n))空间复杂度O(1)求斐波那契数列第n项
 
               
             
@@ -447,7 +447,7 @@
                 
               
 
-              <time title="Created: 2019-01-15 16:01:52" itemprop="dateCreated datePublished" datetime="2019-01-15T16:01:52+08:00">2019-01-15</time>
+              <time title="Created: 2019-05-13 16:55:24" itemprop="dateCreated datePublished" datetime="2019-05-13T16:55:24+08:00">2019-05-13</time>
             
 
             
@@ -464,7 +464,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-03 16:13:08" itemprop="dateModified" datetime="2019-04-03T16:13:08+08:00">2019-04-03</time>
+                <time title="Modified: 2019-05-14 12:25:41" itemprop="dateModified" datetime="2019-05-14T12:25:41+08:00">2019-05-14</time>
               
             
           </span>
@@ -481,7 +481,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/note/" itemprop="url" rel="index"><span itemprop="name">note</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/algorithm/" itemprop="url" rel="index"><span itemprop="name">algorithm</span></a></span>
 
                 
                 
@@ -500,8 +500,8 @@
                 </span>
             
                 <span class="post-meta-item-text">Comments: </span>
-                <a href="/round(number[, ndigits])/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/round(number[, ndigits])/" itemprop="commentCount"></span>
+                <a href="/one-more-thing-about-fibonacci/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/one-more-thing-about-fibonacci/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -529,24 +529,25 @@
       
 
       
-        <p><strong>round函数是Python中常用的四舍五入的函数，但是今天试用了一下发现有点小坑</strong>。</p>
+        <p>真的很喜欢斐波那契数列，也经常思考这个问题。受同学启发，想到这个算法。</p>
 <a id="more"></a>
-<p><strong>对0.5进行四舍五入，结果应该为1，可是Python解释器给的结果是：</strong></p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span>&gt;&gt; round(0.5)</span><br><span class="line">0</span><br></pre></td></tr></table></figure></div>
-<p><strong>紧接着我又试了几个数，发现：</strong></p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span>&gt;&gt; round(1.5)</span><br><span class="line">2</span><br><span class="line"><span class="meta">&gt;</span>&gt;&gt; round(2.5)</span><br><span class="line">2</span><br></pre></td></tr></table></figure></div>
-<p><strong>round(1.5)还算正常，round(2.5)又很奇怪了，然后看了看Python文档，里面这样解释round函数：</strong></p>
-<blockquote>
-<p><strong>For the built-in types supporting round(), values are rounded to the closest multiple of 10 to the power minus ndigits; if two multiples are equally close, rounding is done toward the even choice (so, for example, both round(0.5) and round(-0.5) are 0, and round(1.5) is 2). Any integer value is valid for ndigits (positive, zero, or negative). The return value is an integer if ndigits is omitted or None. Otherwise the return value has the same type as number.</strong></p>
-</blockquote>
-<p><strong>意思是会把这个输入的数保留到小数点后指定的ndigit位数，并且按照一定规则圆整。规则就是看看这个数更靠近左右两端中哪一端，然后就将这个数圆整为这一端，比如0.4就圆整为0，0.6就圆整为1。那如果是像0.5这样的到左右两端距离一样的情况，就圆整到偶数的一端，比如0.5就圆整到0，1.5就圆整到2。</strong></p>
-<p><strong>文档里还写了这么一句话：</strong></p>
-<blockquote>
-<p><strong>Note: The behavior of round() for floats can be surprising: for example, round(2.675, 2) gives 2.67instead of the expected 2.68. This is not a bug: it’s a result of the fact that most decimal fractions can’t be represented exactly as a float. See Floating Point Arithmetic: Issues and Limitations for more information.</strong></p>
-</blockquote>
-<p><strong>就是按照上述规则，round(2.675, 2)的结果应该是2.68，可是实际结果是：</strong></p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="SHELL"><figure class="iseeu highlight /shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span>&gt;&gt; round(2.675, 2)</span><br><span class="line">2.67</span><br></pre></td></tr></table></figure></div>
-<p><strong>这不是我们写了个bug，这是因为机器在存储浮点数2.675的时候，不会存储到这么精确，存储的数比2.675小一点点，应该差不多是2.674999999这样，所以才会被圆整到2.67，这个问题没法解决。</strong></p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>斐波那契数的计算方式是：<br>$$<br>fib(n)=\left\{\begin{matrix}<br>0 &amp; n=0\ <br>1 &amp; n=1\ <br>fib(n-1)+fib(n-2) &amp;n\geq2<br>\end{matrix}\right.<br>$$</p>
+<p>之前用这个计算公式写出了时间复杂度O(n)空间复杂度O(1)的<a href="动态规划 - Dynamic Programming.md">动态规划迭代算法</a>。而这篇文章主要是讲讲时间复杂度O(log(n))空间复杂度O(1)算法的思路。</p>
+<h1 id="算法核心"><a href="#算法核心" class="headerlink" title="算法核心"></a>算法核心</h1><p>如果要将算法的时间复杂度降下来，那么就要改改上面的斐波那契数列递推公式。</p>
+<p>当n足够大时，做如下推理：<br>$$<br>\begin{equation}<br>\begin{aligned}<br>fib(n) &amp;= fib(n-1)+fib(n-2)\\<br>&amp;= [fib(n-2)+fib(n-3)]+fib(n-2)\\<br>&amp;= 2fib(n-2)+fib(n-3)\\<br>&amp;= 2[fib(n-3)+fib(n-4)] + fib(n-3)\\<br>&amp;= 3fib(n-3)+2fib(n-4)\\<br>&amp;= 3[fib(n-4)+fib(n-5)]+2fib(n-4)\\<br>&amp;= 5fib(n-4)+3fib(n-5)\\<br>&amp;= 8fib(n-5)+5fib(n-6)\\<br>&amp;= 13fib(n-6)+8fib(n-7)\\<br>&amp;= 21fib(n-7)+13fib(n-8)\\<br>&amp;= ···\\<br>\end{aligned}<br>\end{equation}<br>$$<br>看多项式的系数，不正是斐波那契数列的项吗？</p>
+<p>通过上述推理，发现了一个规律：<br>$$<br>fib(n)=fib(i)fib(n+1-i)+fib(i-1)fib(n-i) \quad \forall i \in \{x|1\leq x \leq n\}<br>$$<br>当$i$取$n$的一半时，这个公式就发生了一些奇妙的变化。</p>
+<p>取一半这个操作需要考虑n是奇数还是偶数：</p>
+<h2 id="n为奇数"><a href="#n为奇数" class="headerlink" title="n为奇数"></a>n为奇数</h2><p>此时$i$为$(n+1)/2$，代入公式可得：<br>$$<br>\begin{equation}<br>\begin{aligned}<br>fib(n) &amp;= fib(\frac{n+1}{2})fib(\frac{n+1}{2})+fib(\frac{n-1}{2})fib(\frac{n-1}{2})\\<br>&amp;= [fib(\frac{n+1}{2})]^2 + [fib(\frac{n-1}{2})]^2\\<br>\end{aligned}<br>\end{equation}<br>$$</p>
+<h2 id="n为偶数"><a href="#n为偶数" class="headerlink" title="n为偶数"></a>n为偶数</h2><p>此时$i$为$n/2$，代入公式可得：<br>$$<br>\begin{equation}<br>\begin{aligned}<br>fib(n)&amp;=fib(\frac{n}{2})fib(\frac{n}{2}+1)+fib(\frac{n}{2}-1)fib(\frac{n}{2})\\<br>&amp;=fib(\frac{n}{2})[fib(\frac{n}{2})+fib(\frac{n}{2}-1)]+fib(\frac{n}{2}-1)fib(\frac{n}{2})\\<br>&amp;=[fib(\frac{n}{2})]^2+2fib(\frac{n}{2})fib(\frac{n}{2}-1)\\<br>\end{aligned}<br>\end{equation}<br>$$</p>
+<h2 id="合并一下公式"><a href="#合并一下公式" class="headerlink" title="合并一下公式"></a>合并一下公式</h2><p>$$<br>fib(n)=\left\{\begin{matrix}<br>0 &amp; n=0\\<br>1 &amp; n=1\\<br>[fib(\frac{n+1}{2})]^2 + [fib(\frac{n-1}{2})]^2 &amp; \text{n &gt;1 and n is odd} \\<br>[fib(\frac{n}{2})]^2+2fib(\frac{n}{2})fib(\frac{n}{2}-1)&amp; \text{n &gt; 1 and n is even}\\<br>\end{matrix}\right.<br>$$</p>
+<p>这样n就不直接和自己的后两项发生关系，而是和自己的一半那个数扯上关系了。</p>
+<h1 id="递归代码"><a href="#递归代码" class="headerlink" title="递归代码"></a>递归代码</h1><p>使用上述递推式可以很容易写出的递归代码，虽然是个效率很低的递归思路，但是也比最朴素的递归求斐波那契数的算法效率高不少。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="CPP"><figure class="iseeu highlight /cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (n &amp; <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">pow</span>(fib((n + <span class="number">1</span>) / <span class="number">2</span>), <span class="number">2</span>) + <span class="built_in">pow</span>(fib((n - <span class="number">1</span>) / <span class="number">2</span>), <span class="number">2</span>);    <span class="comment">// a为奇数</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">pow</span>(fib(n / <span class="number">2</span>), <span class="number">2</span>) + <span class="number">2</span> * fib((n / <span class="number">2</span>)) * fib(n / <span class="number">2</span> - <span class="number">1</span>);    <span class="comment">// a为偶数</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; fib(n) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h1 id="使用记忆法进行优化"><a href="#使用记忆法进行优化" class="headerlink" title="使用记忆法进行优化"></a>使用记忆法进行优化</h1><p>记忆法是动态规划的一个变种，和上面的差不多，同样也是自顶向下的递归算法，区别在于算过的值都被记录下来，避免重复计算，提升了不少效率，这就是时间复杂度O(log(n))空间复杂度O(n)的算法：</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="CPP"><figure class="iseeu highlight /cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// memory数组用于记录是否计算过这个值，默认都是0</span></span><br><span class="line"><span class="comment">// 如果memory中此值是0，表示需要计算，计算完将结果填入memory数组中</span></span><br><span class="line"><span class="comment">// 如果此值已经计算过，直接从memory中取出即可</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt; memory;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">0</span>) &#123;</span><br><span class="line">        memory[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> memory[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (n == <span class="number">1</span>) &#123;</span><br><span class="line">        memory[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">return</span> memory[<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (memory[n] != <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> memory[n];</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (n &amp; <span class="number">1</span>) &#123;</span><br><span class="line">        memory[n] = <span class="built_in">pow</span>(fib((n + <span class="number">1</span>) / <span class="number">2</span>), <span class="number">2</span>) + <span class="built_in">pow</span>(fib((n - <span class="number">1</span>) / <span class="number">2</span>), <span class="number">2</span>); <span class="comment">// a为奇数</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        memory[n] = <span class="built_in">pow</span>(fib(n / <span class="number">2</span>), <span class="number">2</span>) + <span class="number">2</span> * fib((n / <span class="number">2</span>)) * fib(n / <span class="number">2</span> - <span class="number">1</span>);  <span class="comment">// a为偶数</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> memory[n];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    memory.resize(n + <span class="number">1</span>);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; fib(n) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h1 id="使用迭代法进一步优化"><a href="#使用迭代法进一步优化" class="headerlink" title="使用迭代法进一步优化"></a>使用迭代法进一步优化</h1><p>这是真正自底向上的算法了，迭代法算法可以在时间复杂度O(log(n))空间复杂度O(1)下计算第n个斐波那契数。</p>
+<p>先上代码，一会儿再写解释。</p>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="CPP"><figure class="iseeu highlight /cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="title">even_calculate</span> <span class="params">(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> a, <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a * a + <span class="number">2</span> * a * b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> <span class="title">odd_calculate</span> <span class="params">(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> a, <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a * a + b * b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num, cnt;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; num;</span><br><span class="line">    cnt = <span class="number">32</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> ruler = <span class="number">0x80000000</span>;</span><br><span class="line">    <span class="keyword">while</span> ((num &amp; ruler) == <span class="number">0</span>) &#123;</span><br><span class="line">        ruler &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">        cnt--;</span><br><span class="line">    &#125;</span><br><span class="line">    ruler &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    cnt--;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> a = <span class="number">1</span>, b = <span class="number">0</span>, tmp = a + b, c = <span class="number">2</span>, d = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> op_code;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; cnt; i++) &#123;</span><br><span class="line">        op_code = (num &amp; ruler) ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (op_code) &#123;</span><br><span class="line">            tmp = a + b;</span><br><span class="line">            c = odd_calculate(tmp,a);</span><br><span class="line">            d = even_calculate(a, b);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            c = even_calculate(a, b);</span><br><span class="line">            d = odd_calculate(a, b);</span><br><span class="line">        &#125;</span><br><span class="line">        a = c;</span><br><span class="line">        b = d;</span><br><span class="line">        ruler &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 
       
     </div>
@@ -570,9 +571,17 @@
       
         <div class="post-tags">
           
-            <a href="/tags/python/" rel="tag"># python</a>
+            <a href="/tags/note/" rel="tag"># note</a>
           
-            <a href="/tags/round/" rel="tag"># round</a>
+            <a href="/tags/algorithm/" rel="tag"># algorithm</a>
+          
+            <a href="/tags/proof/" rel="tag"># proof</a>
+          
+            <a href="/tags/math/" rel="tag"># math</a>
+          
+            <a href="/tags/fib/" rel="tag"># fib</a>
+          
+            <a href="/tags/dp/" rel="tag"># dp</a>
           
         </div>
       
@@ -585,8 +594,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/科大软院 - 人工智能期末考试复习/" rel="next" title="科大软院 - 人工智能期末考试复习">
-                <i class="fa fa-chevron-left"></i> 科大软院 - 人工智能期末考试复习
+              <a href="/华为笔试题-路径搜索/" rel="next" title="华为笔试题 路径搜索">
+                <i class="fa fa-chevron-left"></i> 华为笔试题 路径搜索
               </a>
             
           </div>
@@ -594,10 +603,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/Hadoop-installed-in-Ubuntu1604/" rel="prev" title="分布式lab1：Ubuntu16.04上Hadoop环境安装">
-                分布式lab1：Ubuntu16.04上Hadoop环境安装 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -645,8 +650,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -822,6 +836,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#算法核心"><span class="nav-number">2.</span> <span class="nav-text">算法核心</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#n为奇数"><span class="nav-number">2.1.</span> <span class="nav-text">n为奇数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#n为偶数"><span class="nav-number">2.2.</span> <span class="nav-text">n为偶数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#合并一下公式"><span class="nav-number">2.3.</span> <span class="nav-text">合并一下公式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#递归代码"><span class="nav-number">3.</span> <span class="nav-text">递归代码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用记忆法进行优化"><span class="nav-number">4.</span> <span class="nav-text">使用记忆法进行优化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用迭代法进一步优化"><span class="nav-number">5.</span> <span class="nav-text">使用迭代法进一步优化</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -1333,6 +1364,46 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
   
 
 
