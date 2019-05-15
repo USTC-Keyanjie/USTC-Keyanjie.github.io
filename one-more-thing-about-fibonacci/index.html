@@ -137,7 +137,7 @@
 <meta property="og:description" content="斐波那契数的计算方式是：$$fib(n)=\left\{\begin{matrix}0 &amp;amp; n=0\\1 &amp;amp; n=1\\fib(n-1)+fib(n-2) &amp;amp; n\geq 2 \\\end{matrix}\right.$$之前用这个计算公式写出了时间复杂度O(n)空间复杂度O(1)的动态规划迭代算法。而这篇文章主要是讲讲时间复杂度O(log(n))空间复杂度O(1)算法的思">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://www.keyanjie.net/one-more-thing-about-fibonacci/fib2729.png">
-<meta property="og:updated_time" content="2019-05-15T02:02:25.659Z">
+<meta property="og:updated_time" content="2019-05-15T02:10:13.363Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="时间复杂度O(log(n))空间复杂度O(1)求斐波那契数列第n项">
 <meta name="twitter:description" content="斐波那契数的计算方式是：$$fib(n)=\left\{\begin{matrix}0 &amp;amp; n=0\\1 &amp;amp; n=1\\fib(n-1)+fib(n-2) &amp;amp; n\geq 2 \\\end{matrix}\right.$$之前用这个计算公式写出了时间复杂度O(n)空间复杂度O(1)的动态规划迭代算法。而这篇文章主要是讲讲时间复杂度O(log(n))空间复杂度O(1)算法的思">
@@ -466,7 +466,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-15 10:02:25" itemprop="dateModified" datetime="2019-05-15T10:02:25+08:00">2019-05-15</time>
+                <time title="Modified: 2019-05-15 10:10:13" itemprop="dateModified" datetime="2019-05-15T10:10:13+08:00">2019-05-15</time>
               
             
           </span>
@@ -585,7 +585,7 @@
 <p>2、<code>ruler</code>是用于读取n的指定bit位的值的工具，初始化时<code>ruler</code>的第一个bit位是1，其他都是0，将<code>ruler</code>与<code>n</code>进行按位与运算，结果为0表示<code>n</code>这一个bit位是0；结果非0表示<code>n</code>这一个bit位是1；</p>
 <p>3、读取次数使用<code>count</code>变量来记录，<code>count</code>初始值为32，表示需要统计32次；</p>
 <p>4、跳过n前面的0bit位，计算机存储一个正数的时候，前面会补0，要先把这些0跳掉，一个<code>while</code>循环搞定：</p>
-<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="CPP"><figure class="iseeu highlight /cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> ((n &amp; ruler) == <span class="number">0</span>) &#123;</span><br><span class="line">	  ruler &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">	  count--;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="CPP"><figure class="iseeu highlight /cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> ((n &amp; ruler) == <span class="number">0</span>) &#123;</span><br><span class="line">    ruler &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    count--;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
 <p>5、跳过第一个为1的bit位，所有的数第一个有效bit位都是1，上面的计算图也可以看出跳过这个bit位，从第2个bit位开始；</p>
 <div class="highlight-wrap" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true" data-rel="CPP"><figure class="iseeu highlight /cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ruler &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">count--;</span><br></pre></td></tr></table></figure></div>
 <p>6、此时<code>a</code>和<code>b</code>两个数就是$fib(1)$和$fib(0)$。设置<code>tmp</code>变量，用于奇数运算时，存储$fib(a)+fib(b)$的值。设置<code>c</code>和<code>d</code>变量，用于接收运算结果；</p>
