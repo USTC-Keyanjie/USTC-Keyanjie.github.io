@@ -137,7 +137,7 @@
 <meta property="og:description" content="斐波那契数的计算方式是：$$fib(n)=\left\{\begin{matrix}0 &amp;amp; n=0\\1 &amp;amp; n=1\\fib(n-1)+fib(n-2) &amp;amp; n\geq 2 \\\end{matrix}\right.$$之前用这个计算公式写出了时间复杂度O(n)空间复杂度O(1)的动态规划迭代算法。而这篇文章主要是讲讲时间复杂度O(log(n))空间复杂度O(1)算法的思">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://www.keyanjie.net/one-more-thing-about-fibonacci/fib2729.png">
-<meta property="og:updated_time" content="2019-05-15T01:43:55.171Z">
+<meta property="og:updated_time" content="2019-05-15T02:02:25.659Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="时间复杂度O(log(n))空间复杂度O(1)求斐波那契数列第n项">
 <meta name="twitter:description" content="斐波那契数的计算方式是：$$fib(n)=\left\{\begin{matrix}0 &amp;amp; n=0\\1 &amp;amp; n=1\\fib(n-1)+fib(n-2) &amp;amp; n\geq 2 \\\end{matrix}\right.$$之前用这个计算公式写出了时间复杂度O(n)空间复杂度O(1)的动态规划迭代算法。而这篇文章主要是讲讲时间复杂度O(log(n))空间复杂度O(1)算法的思">
@@ -466,7 +466,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-15 09:43:55" itemprop="dateModified" datetime="2019-05-15T09:43:55+08:00">2019-05-15</time>
+                <time title="Modified: 2019-05-15 10:02:25" itemprop="dateModified" datetime="2019-05-15T10:02:25+08:00">2019-05-15</time>
               
             
           </span>
@@ -578,7 +578,7 @@
 <p>每次计算都会因为a的奇偶性不同而采取不同的运算策略，也就是只根据a的奇偶性，就可以知道该如何运算了。</p>
 <p><strong>如果到这里为止都看懂了再继续往下看。</strong></p>
 <h3 id="获取计算图"><a href="#获取计算图" class="headerlink" title="获取计算图"></a>获取计算图</h3><p>每次二分操作都要分a是奇数还是偶数，可以通过不断的将a进行模2运算得出结果。这个操作有没有觉得似曾相识，当初十进制转二进制不就是这么算的吗，也就是说最顶端的数，即要求的数$fib(n)$的二进制表示方法就是一张现成的计算规则。</p>
-<p>还是比如$fib(2729)$，2729的二进制表示是101010101001，而上面计算图右边的数从下往上看，就是他的二进制表示。</p>
+<p>还是比如$fib(2729)$，2729的二进制表示是1010 1010 1001，而上面计算图右边的数从下往上看，就是他的二进制表示。</p>
 <p>或者换个思路想，上面迭代规则总结中，是按a奇偶性分情况处理的，那么a的奇偶性会导致不同的模2结果，也就是n的二进制表示计算方式。</p>
 <p>在代码中，我使用了一个<code>ruler</code>的变量来读取n二进制的每一个bit位的值。具体操作如下：</p>
 <p>1、n是一个<code>int</code>型的变量，共有32个bit位；</p>
