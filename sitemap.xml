@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.keyanjie.net/about/index.html</loc>
+    
+    <lastmod>2019-05-15T06:19:15.932Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.keyanjie.net/one-more-thing-about-fibonacci/</loc>
     
     <lastmod>2019-05-15T06:07:35.879Z</lastmod>
@@ -68,13 +75,6 @@
     <loc>https://www.keyanjie.net/tags/index.html</loc>
     
     <lastmod>2019-04-11T08:00:30.089Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.keyanjie.net/about/index.html</loc>
-    
-    <lastmod>2019-04-10T04:29:56.705Z</lastmod>
     
   </url>
   
