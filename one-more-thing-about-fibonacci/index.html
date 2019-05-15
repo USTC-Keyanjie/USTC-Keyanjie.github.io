@@ -137,7 +137,7 @@
 <meta property="og:description" content="斐波那契数的计算方式是：$$fib(n)=\left\{\begin{matrix}0 &amp;amp; n=0\\1 &amp;amp; n=1\\fib(n-1)+fib(n-2) &amp;amp; n\geq 2 \\\end{matrix}\right.$$之前用这个计算公式写出了时间复杂度O(n)空间复杂度O(1)的动态规划迭代算法。而这篇文章主要是讲讲时间复杂度O(log(n))空间复杂度O(1)算法的思">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://www.keyanjie.net/one-more-thing-about-fibonacci/fib2729.png">
-<meta property="og:updated_time" content="2019-05-15T02:10:13.363Z">
+<meta property="og:updated_time" content="2019-05-15T06:07:35.879Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="时间复杂度O(log(n))空间复杂度O(1)求斐波那契数列第n项">
 <meta name="twitter:description" content="斐波那契数的计算方式是：$$fib(n)=\left\{\begin{matrix}0 &amp;amp; n=0\\1 &amp;amp; n=1\\fib(n-1)+fib(n-2) &amp;amp; n\geq 2 \\\end{matrix}\right.$$之前用这个计算公式写出了时间复杂度O(n)空间复杂度O(1)的动态规划迭代算法。而这篇文章主要是讲讲时间复杂度O(log(n))空间复杂度O(1)算法的思">
@@ -466,7 +466,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-05-15 10:10:13" itemprop="dateModified" datetime="2019-05-15T10:10:13+08:00">2019-05-15</time>
+                <time title="Modified: 2019-05-15 14:07:35" itemprop="dateModified" datetime="2019-05-15T14:07:35+08:00">2019-05-15</time>
               
             
           </span>
@@ -556,8 +556,15 @@
 <p>1、如果我使用$fib(n)=fib(n-1)+fib(n-2)$的递推思路，那么当我要求得$fib(n)$的值时，必须把$fib(0) - fib(n-1)$的值全部算出来；</p>
 <p>2、现在改为折半的递推思路，那么当我要求得$fib(n)$的值时，需要计算哪些值呢？</p>
 <p>举个栗子，当我要计算$fib(2729)$时：</p>
-<p>1、2729是奇数，需要先求得$fib(1365)$和$fib(1364)$，而$fib(1365)$是可以通过$fib(1363)+fib(1364)$求得的，这里只需要求出$fib(1363)$和$fib(1364)$。</p>
-<p><strong>为什么是求这两个数而不是求$fib(1365)$和$fib(1364)$，这是我踩的一个大坑，这是为了保持计算规则的一致性，需要计算后面两个数，看了我的计算图已经迭代规则总结就明白了。</strong></p>
+<p>1、2729是奇数，需要先求得$fib(1365)$和$fib(1364)$（因为<a href="#n为奇数">奇数公式</a>），而$fib(1365)$是可以通过$fib(1363)+fib(1364)$求得的，这里只需要求出$fib(1363)$和$fib(1364)$。</p>
+<p><strong>为什么是求这两个数而不是求$fib(1365)$和$fib(1364)$，这是我踩的一个大坑。</strong></p>
+<p><strong>我可以算$fib(1365)$和$fib(1364)$，也可以算$fib(1364)$和$fib(1363)$。</strong></p>
+<p>而我自己规定，遇到以下两种情况：</p>
+<ol>
+<li>所需要求的fib(n)​中，n是奇数时（比如这里2729是奇数）;</li>
+<li>一个要求先求得fib(x+1)和fib(x)，另一个需要先求得fib(x)和fib(x-1)时。比如下面求fib(341)和fib(340)的部分。</li>
+</ol>
+<p>都算后面两个数。<strong>而且整个计算图都需要保持计算规则的一致性，都计算后面两个数。</strong></p>
 <p>2、计算$fib(1364)$，1364是偶数，需要先求得$fib(682)$和$fib(681)$。</p>
 <p>3、计算$fib(1363)$，1363是奇数，需要先求得$fib(682)$和$fib(681)$。</p>
 <p>发现要计算的数是一样的，都是$fib(682)$和$fib(681)$</p>
@@ -566,13 +573,13 @@
 <p>5、计算$fib(341)$，341是奇数，需要先求得$fib(171)$和$fib(170)$。</p>
 <p>计算$fib(340)$，341是偶数，需要先求得$fib(170)$和$fib(169)$。</p>
 <p>这时要计算的数就不一样了，但是$fib(171)$可以通过$fib(170)$和$fib(169)$很轻易算出——$fib(171)=fib(170)+fib(169)$，所以只需要计算$fib(170)$和$fib(169)$就好了。</p>
-<p>However，计算$fib(171)$和$fib(170)$也是可以的。<strong>这就是我说的计算规则要一致，要么就都算后两个，要么就都算前两个。</strong></p>
-<p>这里我选择计算后两个，因为可以更快收敛到$fib(1)$和$fib(0)$。(其实差别不大)</p>
+<p>However，计算$fib(171)$和$fib(170)$也是可以的。<strong>但是计算规则要一致，要么就都算后两个，要么就都算前两个。</strong></p>
+<p>而我选择计算后两个，因为可以更快收敛到$fib(1)$和$fib(0)$。(其实差别不大)</p>
 <p>6、如此递推下去，直到$fib(1)=1$和$fib(0)=0$为止……</p>
-<p>不妨这样画出一张计算图，若需要计算相同的斐波那契数，在右边标记为0；若需要计算不同的斐波那契数，但通过后两项相加得前一项，在右边标记为1：</p>
+<p>可以画出一张计算图，若需要计算相同的斐波那契数，在右边标记为0；若需要计算不同的斐波那契数，但通过后两项相加得前一项，在右边标记为1（红色的标记暂时不管，这是代码中考虑的部分）：</p>
 <p><img src="/one-more-thing-about-fibonacci/fib2729.png" width="80%"></p>
 <p><strong>迭代规则总结</strong></p>
-<p>每次迭代都需要计算两个斐波那契数，记为$fib(a)$和$fib(b)$，最终要求得的值是$fib(a)$。</p>
+<p>每次迭代都需要计算两个斐波那契数，记为$fib(a)$和$fib(b)$，<strong>最终要求得的值是$fib(a)$</strong>。</p>
 <p>1、当a为偶数时，计算$fib(a)$和$fib(b)$需要相同的数；</p>
 <p>2、当a为奇数时，计算$fib(a)$和$fib(b)$需要的数不同，我的计算规则是只算后两个；</p>
 <p>每次计算都会因为a的奇偶性不同而采取不同的运算策略，也就是只根据a的奇偶性，就可以知道该如何运算了。</p>
