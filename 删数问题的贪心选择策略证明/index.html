@@ -129,7 +129,7 @@
 
 
   <meta name="description" content="题目：在一个n位的正整数A[1…n]中删除其中任意k(k≤n)个数字后，剩下的数字按原次序组成一个新的正整数。对于给定的n位正整数A和k，设计一个贪心算法，使得剩下的数字组成的新数最小。如：A=278693，k=4时最小新数为23，k=3时为263">
-<meta name="keywords" content="algorithm,greedy,math proof">
+<meta name="keywords" content="algorithm,greedy,math">
 <meta property="og:type" content="article">
 <meta property="og:title" content="删数问题的贪心选择策略证明">
 <meta property="og:url" content="https://www.keyanjie.net/删数问题的贪心选择策略证明/index.html">
@@ -139,7 +139,7 @@
 <meta property="og:image" content="https://www.keyanjie.net/删数问题的贪心选择策略证明/2_1.jpg">
 <meta property="og:image" content="https://www.keyanjie.net/删数问题的贪心选择策略证明/2_2.jpg">
 <meta property="og:image" content="https://www.keyanjie.net/删数问题的贪心选择策略证明/2_3.jpg">
-<meta property="og:updated_time" content="2019-04-03T08:08:51.188Z">
+<meta property="og:updated_time" content="2019-05-26T12:27:26.502Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="删数问题的贪心选择策略证明">
 <meta name="twitter:description" content="题目：在一个n位的正整数A[1…n]中删除其中任意k(k≤n)个数字后，剩下的数字按原次序组成一个新的正整数。对于给定的n位正整数A和k，设计一个贪心算法，使得剩下的数字组成的新数最小。如：A=278693，k=4时最小新数为23，k=3时为263">
@@ -470,7 +470,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-04-03 16:08:51" itemprop="dateModified" datetime="2019-04-03T16:08:51+08:00">2019-04-03</time>
+                <time title="Modified: 2019-05-26 20:27:26" itemprop="dateModified" datetime="2019-05-26T20:27:26+08:00">2019-05-26</time>
               
             
           </span>
@@ -545,11 +545,11 @@
 <li>如果A[1…n]是一条递增序列，那么就删除最后一个数；</li>
 <li>如果A[1…n]含有严格递减子序列，那么就删除第一个严格递减子序列的首字符。</li>
 </ol>
-<h2 id="贪心选择性质证明"><a href="#贪心选择性质证明" class="headerlink" title="贪心选择性质证明"></a>贪心选择性质证明</h2><p>假设A中有n个元素，将A中的每个元素进行编号为$a_x(1\leq x\leq n)​$：<br>$$<br>A=[a_1,a_2,…,a_{n-1},a_n]<br>$$</p>
+<h2 id="贪心选择性质证明"><a href="#贪心选择性质证明" class="headerlink" title="贪心选择性质证明"></a>贪心选择性质证明</h2><p>假设A中有n个元素，将A中的每个元素进行编号为$a_x(1\leq x\leq n)$：<br>$$<br>A=[a_1,a_2,…,a_{n-1},a_n]<br>$$</p>
 <ol>
 <li>如果A[1…n]是一条递增序列，那么就删除最后一个数；</li>
 </ol>
-<p>记原本A所代表的数值为$T_A​$，则有：<br>$$<br>T_A=a_1 \times 10^{n-1}+a_2\times10^{n-2}+…+a_{n-1}\times10+a_n<br>$$</p>
+<p>记原本A所代表的数值为$T_A$，则有：<br>$$<br>T_A=a_1 \times 10^{n-1}+a_2\times10^{n-2}+…+a_{n-1}\times10+a_n<br>$$</p>
 <p>记删除最后一个数后，A变为A’，A’所代表的数值为$T_{A’}$，则有：</p>
 <p>$$<br>T_{A’}=a_1\times10^{n-2}+a_2 \times 10^{n-3}+…+a_{n-2} \times 10+a_{n-1}<br>$$</p>
 <p>如果不删除最后一个数，而是删除另一个数$a_q(1\leq q&lt; n)$，此时A变为A’’，A’’所代表的数值为$T_{A’’}$，则有： </p>
@@ -596,12 +596,12 @@
 <p><img src="/删数问题的贪心选择策略证明/2_2.jpg" alt="2_2"></p>
 <p>但如果删除第一个山之后的任意一个元素的话，删完后发现$a_6=a_5$，而现在的$a_7=a_6$。</p>
 <p><img src="/删数问题的贪心选择策略证明/2_3.jpg" alt="2_3"></p>
-<p>由于$a_6&gt;a_7​$，所以不管后面删哪个元素，都会比删除$a_6​$所得到的数要大。</p>
+<p>由于$a_6&gt;a_7$，所以不管后面删哪个元素，都会比删除$a_6$所得到的数要大。</p>
 <p>数学证明如下：</p>
-<p>假设在A中，有3个连在一起的数$a_i,a_j,a_k(1\leq i&lt; j&lt; k\leq n)​$，还有另一个数$a_r(k \leq r &lt; n)​$，，其中$(a_1,a_j)​$是递增序列，$(a_j,a_r)​$是递减序列。</p>
+<p>假设在A中，有3个连在一起的数$a_i,a_j,a_k(1\leq i&lt; j&lt; k\leq n)$，还有另一个数$a_r(k \leq r &lt; n)$，，其中$(a_1,a_j)$是递增序列，$(a_j,a_r)$是递减序列。</p>
 <p>记原本A所代表的数值为$T_A$，则有：</p>
 <p>$$<br>T_A=a_1 \times 10^{n-1}+a_2 \times 10^{n-2}+…+a_i \times 10^{n-i}+a_j \times 10^{n-j}+a_k \times 10^{n-k}+…+a_{n-1} \times 10+a_n<br>$$</p>
-<p>删除$a_j​$后，A变为A’，A’所代表的数值为$T_{A’}​$，则有：</p>
+<p>删除$a_j$后，A变为A’，A’所代表的数值为$T_{A’}$，则有：</p>
 <p>$$<br>T_{A’}=a_1 \times 10^{n-2}+a_2 \times 10^{n-3}+…+a_i \times 10^{n-i-1}+a_k \times 10^{n-k}+…<br>$$</p>
 <p>如果不删除$a_j$，而是删除另一个数$a_q(r \leq q \leq n)$。此时A变为A’’，A’’所代表的数值为$T_{A’’}$，则有： </p>
 <p>$$<br>T_{A’’}=a_1 \times 10^{n-2}+a_2 \times 10^{n-3}+…+a_i \times 10^{n-i-1}+a_j \times 10^{n-j-1}+…<br>$$</p>
@@ -634,7 +634,7 @@
           
             <a href="/tags/greedy/" rel="tag"># greedy</a>
           
-            <a href="/tags/math-proof/" rel="tag"># math proof</a>
+            <a href="/tags/math/" rel="tag"># math</a>
           
         </div>
       
@@ -849,7 +849,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
