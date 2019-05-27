@@ -1886,7 +1886,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #a7e8cd;
+  background: #05ffff;
 }
 .feed-link,
 .chat {
@@ -2877,5 +2877,4 @@ hr {
 }
 .post-nav {
   margin-top: 30px;
-  margin-bottom: 30px;
 }
